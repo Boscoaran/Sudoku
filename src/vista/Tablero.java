@@ -13,25 +13,21 @@ import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Iterator;
+
 
 import javax.swing.JButton;
 import javax.swing.JTextPane;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import java.awt.Event;
 
-import javax.swing.border.MatteBorder;
 import javax.swing.BoxLayout;
 import java.awt.Font;
-import javax.swing.JSplitPane;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 
+@SuppressWarnings("serial")
 public class Tablero extends JFrame{
 
 	private JFrame frame;
