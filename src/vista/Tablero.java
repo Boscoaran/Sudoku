@@ -612,6 +612,7 @@ public class Tablero extends JFrame{
 	private JButton getBtnModificar() {
 		if (btnModificar == null) {
 			btnModificar = new JButton("Modificar");
+			btnModificar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 			btnModificar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
