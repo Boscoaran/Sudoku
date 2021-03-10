@@ -496,7 +496,7 @@ public class Tablero extends JFrame{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 939, 715);
+		frame.setBounds(100, 100, 939, 733);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		frame.getContentPane().add(getPanelWest(), BorderLayout.WEST);
@@ -509,6 +509,7 @@ public class Tablero extends JFrame{
 	private JPanel getPanelDatos() {
 		if (panelDatos == null) {
 			panelDatos = new JPanel();
+			panelDatos.setBackground(new Color(255, 0, 51));
 			GridBagLayout gbl_panelDatos = new GridBagLayout();
 			gbl_panelDatos.columnWidths = new int[]{18, 0, 117, 0, 0};
 			gbl_panelDatos.rowHeights = new int[]{20, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0};
@@ -562,7 +563,8 @@ public class Tablero extends JFrame{
 	private JLabel getLblTitulo() {
 		if (lblTitulo == null) {
 			lblTitulo = new JLabel("SUDOKU-ROYALE-MASTER");
-			lblTitulo.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 20));
+			lblTitulo.setForeground(Color.WHITE);
+			lblTitulo.setFont(new Font("Kamikaze 3D Gradient", Font.PLAIN, 40));
 			lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
 			lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		}
@@ -571,6 +573,8 @@ public class Tablero extends JFrame{
 	private JLabel getLblNombres() {
 		if (lblNombres == null) {
 			lblNombres = new JLabel("Vicente Ayarza - I\u00F1igo Landeta - Joel Bra - Bosco Aranguren - Diego Marta");
+			lblNombres.setForeground(Color.WHITE);
+			lblNombres.setFont(new Font("Gang of Three", Font.PLAIN, 20));
 			lblNombres.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 		return lblNombres;
@@ -585,12 +589,16 @@ public class Tablero extends JFrame{
 	private JLabel getLblCandidatos() {
 		if (lblCandidatos == null) {
 			lblCandidatos = new JLabel("Candidatos:");
+			lblCandidatos.setFont(new Font("Gang of Three", Font.PLAIN, 15));
+			lblCandidatos.setForeground(Color.WHITE);
 		}
 		return lblCandidatos;
 	}
 	private JLabel getLblValor() {
 		if (lblValor == null) {
 			lblValor = new JLabel("Valor:");
+			lblValor.setFont(new Font("Gang of Three", Font.PLAIN, 15));
+			lblValor.setForeground(Color.WHITE);
 		}
 		return lblValor;
 	}
@@ -644,6 +652,7 @@ public class Tablero extends JFrame{
 	private JPanel getPanelNorth() {
 		if (panelNorth == null) {
 			panelNorth = new JPanel();
+			panelNorth.setBackground(new Color(255, 0, 51));
 			GridBagLayout gbl_panelNorth = new GridBagLayout();
 			gbl_panelNorth.columnWidths = new int[]{923, 0};
 			gbl_panelNorth.rowHeights = new int[]{21, 14, 0, 10, 0};
@@ -668,12 +677,14 @@ public class Tablero extends JFrame{
 	private JPanel getPanelSouth() {
 		if (panelSouth == null) {
 			panelSouth = new JPanel();
+			panelSouth.setBackground(new Color(255, 0, 51));
 		}
 		return panelSouth;
 	}
 	private JPanel getPanelWest() {
 		if (panelWest == null) {
 			panelWest = new JPanel();
+			panelWest.setBackground(new Color(255, 0, 51));
 		}
 		return panelWest;
 	}
