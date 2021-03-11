@@ -19,8 +19,9 @@ import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import java.awt.Color;
 
+
+import java.awt.Color;
 import javax.swing.BoxLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -43,7 +44,7 @@ public class Tablero extends JFrame{
 	private JButton btnModificar;
 	private JButton btnAyuda;
 	private JPanel panelAyuda;
-	private JPanel panelNorth;
+	private JPanelBackground panelNorth;
 	private JPanel panelSouth;
 	private JPanel panelWest;
 	private JTextPane textPaneAyuda;
@@ -555,7 +556,7 @@ public class Tablero extends JFrame{
 			panelDatos.add(getPanelAyuda(), gbc_panelAyuda);
 		}
 		return panelDatos;
-	}
+	}	
 	private JLabel getLblTitulo() {
 		if (lblTitulo == null) {
 			lblTitulo = new JLabel("SUDOKU-ROYALE-MASTER");
@@ -646,10 +647,10 @@ public class Tablero extends JFrame{
 		}
 		return panelAyuda;
 	}
-	private JPanel getPanelNorth() {
+	private JPanelBackground getPanelNorth() {
 		if (panelNorth == null) {
-			panelNorth = new JPanel();
-			panelNorth.setBackground(new Color(255, 0, 51));
+			panelNorth = new JPanelBackground();
+			panelNorth.setBackground("C:\\Users\\bosco\\Desktop\\39605wide.jpg");
 			GridBagLayout gbl_panelNorth = new GridBagLayout();
 			gbl_panelNorth.columnWidths = new int[]{923, 0};
 			gbl_panelNorth.rowHeights = new int[]{21, 14, 0, 10, 0};
