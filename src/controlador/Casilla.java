@@ -11,7 +11,7 @@ public class Casilla {
 	private int origenX;
 	private int origenY;
 	
-	public Casilla(boolean pFijo, int pNumero, int pX, int pY, int oX, int oY) {
+	public Casilla(boolean pFijo, int pNumero, int pX, int pY) {
 		
 		
 	}
