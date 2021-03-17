@@ -13,7 +13,8 @@ import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
-
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JTextPane;
@@ -28,8 +29,8 @@ import javax.swing.SwingConstants;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 
-@SuppressWarnings("serial")
-public class Tablero extends JFrame{
+@SuppressWarnings({ "serial", "deprecation" })
+public class Tablero extends JFrame implements Observer{
 
 	private JFrame frame;
 	private JPanel panelDatos;
@@ -4690,5 +4691,11 @@ public class Tablero extends JFrame{
 			select=null;
 		}
 		return(select);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 }
