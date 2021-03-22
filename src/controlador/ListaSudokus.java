@@ -54,7 +54,7 @@ public class ListaSudokus {
 		return miListaSudokus;
 	}
 	
-	public int[][] getLSudokus() {
-		return lSudokus.get(0);
+	public int[][] getLSudokus(int pos) {
+		return lSudokus.get(pos);
 	}
 }

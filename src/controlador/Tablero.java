@@ -15,11 +15,33 @@ public class Tablero extends Observable{
 		numAyudas = 0;
 	}
 	
-	public Tablero getTablero() {
+	public static Tablero getTablero() {
 		if (miTablero == null) {
 			miTablero = new Tablero();
 		}
 		return miTablero;
+	}
+	
+	public void cargarTablero (int dif) {
+		int[][] a = ListaSudokus.getListaSudokus().getLSudokus(dif);
+		int i = 0;
+		while (i< tablero.length) {
+			int j = 0;
+			while (j < tablero[0].length) {
+				int val = a[i][j];
+				if (val == 0) {
+					tablero[i][j] = new Casilla(false, val, i, j);
+				}
+				
+			}
+		}
+		this.setChanged();
+		this.notifyObservers();
+		
+	}
+	
+	public Casilla[][] getListaCasillas() {
+		return this.tablero;
 	}
 	
 	

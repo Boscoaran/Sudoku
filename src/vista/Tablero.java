@@ -4695,7 +4695,16 @@ public class Tablero extends JFrame implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		controlador.Casilla[][] t = controlador.Tablero.getTablero().getListaCasillas();
+		//PanelValor_LetraFilaColumna
+		int i = 0;
+		while (i < t.length) {
+			int j = 0;
+			while (j < t[0].length) {
+				
+			}
+		}
+		
 		
 	}
 }

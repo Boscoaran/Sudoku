@@ -21,7 +21,7 @@ public class Iniciador {
 			switch (i) {
 				case 1: {
 					ListaSudokus.getListaSudokus();
-					int[][] a = ListaSudokus.getListaSudokus().getLSudokus();
+					int[][] a = ListaSudokus.getListaSudokus().getLSudokus(0);
 					int j = 0;
 					while (j<a.length) {
 						int k = 0;
