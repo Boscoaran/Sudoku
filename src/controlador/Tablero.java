@@ -31,6 +31,7 @@ public class Tablero extends Observable{
 				int val = a[i][j];
 				if (val == 0) {
 					tablero[i][j] = new Casilla(false, val, i, j);
+					
 				} else {
 					tablero[i][j] = new Casilla(true, val,i,j);
 				}
@@ -48,7 +49,11 @@ public class Tablero extends Observable{
 	}
 	
 	public void setValor(int x, int y, String s) {
-		tablero[x][y].setValor(Integer.parseInt(s));
+		if (!s.equals("")) {
+			int n = Integer.parseInt(s);
+			tablero[x][y].setValor(n);
+		}
+		
 	}
 	
 

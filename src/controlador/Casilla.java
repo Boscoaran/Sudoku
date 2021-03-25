@@ -23,4 +23,8 @@ public class Casilla {
 		this.numero = i;
 	}
 	
+	public int getValor() {
+		return numero;
+	}
+	
 }

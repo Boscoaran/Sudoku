@@ -12,6 +12,7 @@ import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -25,8 +26,6 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 
@@ -51,7 +50,7 @@ public class Tablero extends JFrame implements Observer{
 	private JPanel panelWest;
 	private JLabel lblTitulo;
 	private JLabel lblNombres;
-	private JPanel panel1;
+	private JPanel panel1_0;
 	private JPanel panelValor;
 	private JPanel panelCadidatos;
 	private JLabel lblValor1;
@@ -458,6 +457,7 @@ public class Tablero extends JFrame implements Observer{
 	private JLabel lblCandidatos1_80;
 	private JPanel panel;
 	private JLabel lblCrono;
+	private JPanel matrizPaneles[][];
 
 	/**
 	 * Launch the application.
@@ -479,8 +479,12 @@ public class Tablero extends JFrame implements Observer{
 	 * Create the application.
 	 */
 	public Tablero() {
+		matrizPaneles = new JPanel[9][9];
 		initialize();
+		System.out.println();
 		ponerTamañoCandidatos();
+		controlador.Tablero.getTablero().addObserver(this);
+		
 	}
 	/**
 	 * Initialize the contents of the frame.
@@ -507,6 +511,9 @@ public class Tablero extends JFrame implements Observer{
 		frame.getContentPane().add(getPanelDatos(), BorderLayout.EAST);
 		frame.getContentPane().add(getPanelTablero(), BorderLayout.CENTER);
 		frame.getContentPane().add(getPanelNorth(), BorderLayout.NORTH);
+		this.anadirAlArray();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
 	}
 
 	private JPanel getPanelDatos() {
@@ -624,6 +631,21 @@ public class Tablero extends JFrame implements Observer{
 							for (Component x2: ((JPanel) x1).getComponents()) {
 								if (((JLabel) x2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))){
 									((JLabel) x2).setText(textFieldValor.getText());
+									controlador.Tablero t = controlador.Tablero.getTablero();
+									boolean enc = false;
+									int i = 0;
+									int j = 0;
+									while (!enc && i < matrizPaneles.length) {
+										j = 0;
+										while (!enc && j < matrizPaneles[0].length) {
+											if (select.equals(matrizPaneles[i][j])) {
+												enc = true;
+											}
+											j++;
+										}
+										i++;
+									}
+									t.setValor(i-1, j-1, ((JLabel) x2).getText());
 								} else {
 									((JLabel) x2).setText(textFieldCandidatos.getText());
 								}
@@ -685,6 +707,7 @@ public class Tablero extends JFrame implements Observer{
 		}
 		return panelWest;
 	}
+	//panel principal
 	private JPanel getPanelTablero() {
 		if (panelTablero == null) {
 			panelTablero = new JPanel();
@@ -776,13 +799,14 @@ public class Tablero extends JFrame implements Observer{
 	}
 	public JPanel casillaSelect(MouseEvent event) {
 		JPanel seleccionado = (JPanel) event.getSource();
-		if (!seleccionado.getBorder().equals(bordeGrueso) && select==null){
+		if (!seleccionado.getBorder().equals(bordeGrueso) && select==null && seleccionado.isEnabled()){
 			bordeTemp=seleccionado.getBorder();
 			seleccionado.setBorder(bordeGrueso);
 			for (Component x1: seleccionado.getComponents()) {
 				for (Component x2: ((JPanel) x1).getComponents()) {
 					if (((JLabel) x2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))) {
 						textFieldValor.setText(((JLabel) x2).getText());
+						
 					} else {
 						textFieldCandidatos.setText(((JLabel) x2).getText());
 					}
@@ -800,28 +824,41 @@ public class Tablero extends JFrame implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		controlador.Casilla[][] t = controlador.Tablero.getTablero().getListaCasillas();
+		
+		for (int i = 0; i < t.length; i++) {
+			for (int j = 0; j < t[0].length; j++) {
+				if (t[i][j].getValor() != 0) {
+					((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(Integer.toString(t[i][j].getValor()));
+					((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setForeground(Color.RED);
+					matrizPaneles[i][j].setEnabled(false);
+				}
+				
+			}
+		}
+		
 		
 	}
 	private JPanel getPanel1_0() {
-		if (panel1 == null) {
-			panel1 = new JPanel();
-			panel1.addMouseListener(new MouseAdapter() {
+		if (panel1_0 == null) {
+			panel1_0 = new JPanel();
+			panel1_0.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					select=casillaSelect(e);
 				}
 			});
-			panel1.setBorder(new MatteBorder(4, 4, 1, 1, (Color) new Color(0, 0, 0)));
-			panel1.setLayout(new BorderLayout(0, 0));
-			panel1.add(getPanel_1_1(), BorderLayout.CENTER);
-			panel1.add(getPanelCadidatos(), BorderLayout.NORTH);
+			panel1_0.setBorder(new MatteBorder(4, 4, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_0.setLayout(new BorderLayout(0, 0));
+			panel1_0.add(getPanel_1_1(), BorderLayout.CENTER);
+			panel1_0.add(getPanelCadidatos(), BorderLayout.NORTH);
 		}
-		return panel1;
+		return panel1_0;
 	}
 	private JPanel getPanel_1_1() {
 		if (panelValor == null) {
 			panelValor = new JPanel();
 			panelValor.add(getLblValor1());
+			panelValor.setName("primer panel");
 		}
 		return panelValor;
 	}
@@ -836,6 +873,7 @@ public class Tablero extends JFrame implements Observer{
 		if (lblValor1 == null) {
 			lblValor1 = new JLabel("");
 			lblValor1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			lblValor1.setName("etiqueta uno");
 		}
 		return lblValor1;
 	}
@@ -1479,7 +1517,7 @@ public class Tablero extends JFrame implements Observer{
 		if (panel1_16 == null) {
 			panel1_16 = new JPanel();
 			panel1_16.setBorder(bordeNormal);
-			panel1_15.addMouseListener(new MouseAdapter() {
+			panel1_16.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					select=casillaSelect(e);
 				}
@@ -4223,4 +4261,103 @@ public class Tablero extends JFrame implements Observer{
 		}
 		return lblCrono;	
 	}
+	
+	private void anadirAlArray() {
+		int n = 0;
+		for (int i = 0; i < matrizPaneles.length; i++) {
+			for (int j = 0; j < matrizPaneles[0].length; j++) {
+				matrizPaneles[i][j] = devolverPanel(n);
+				n++;
+			}
+		}
+	}
+	
+	private JPanel devolverPanel (int n) {
+		switch (n) {
+			case 0: return this.panel1_0;
+			case 1: return this.panel1_1;
+			case 2: return this.panel1_2;
+			case 3: return this.panel1_3;
+			case 4: return this.panel1_4;
+			case 5: return this.panel1_5;
+			case 6: return this.panel1_6;
+			case 7: return this.panel1_7;
+			case 8: return this.panel1_8;
+			case 9: return this.panel1_9;
+			case 10: return this.panel1_10;
+			case 11: return this.panel1_11;
+			case 12: return this.panel1_12;
+			case 13: return this.panel1_13;
+			case 14: return this.panel1_14;
+			case 15: return this.panel1_15;
+			case 16: return this.panel1_16;
+			case 17: return this.panel1_17;
+			case 18: return this.panel1_18;
+			case 19: return this.panel1_19;
+			case 20: return this.panel1_20;
+			case 21: return this.panel1_21;
+			case 22: return this.panel1_22;
+			case 23: return this.panel1_23;
+			case 24: return this.panel1_24;
+			case 25: return this.panel1_25;
+			case 26: return this.panel1_26;
+			case 27: return this.panel1_27;
+			case 28: return this.panel1_28;
+			case 29: return this.panel1_29;
+			case 30: return this.panel1_30;
+			case 31: return this.panel1_31;
+			case 32: return this.panel1_32;
+			case 33: return this.panel1_33;
+			case 34: return this.panel1_34;
+			case 35: return this.panel1_35;
+			case 36: return this.panel1_36;
+			case 37: return this.panel1_37;
+			case 38: return this.panel1_38;
+			case 39: return this.panel1_39;
+			case 40: return this.panel1_40;
+			case 41: return this.panel1_41;
+			case 42: return this.panel1_42;
+			case 43: return this.panel1_43;
+			case 44: return this.panel1_44;
+			case 45: return this.panel1_45;
+			case 46: return this.panel1_46;
+			case 47: return this.panel1_47;
+			case 48: return this.panel1_48;
+			case 49: return this.panel1_49;
+			case 50: return this.panel1_50;
+			case 51: return this.panel1_51;
+			case 52: return this.panel1_52;
+			case 53: return this.panel1_53;
+			case 54: return this.panel1_54;
+			case 55: return this.panel1_55;
+			case 56: return this.panel1_56;
+			case 57: return this.panel1_57;
+			case 58: return this.panel1_58;
+			case 59: return this.panel1_59;
+			case 60: return this.panel1_60;
+			case 61: return this.panel1_61;
+			case 62: return this.panel1_62;
+			case 63: return this.panel1_63;
+			case 64: return this.panel1_64;
+			case 65: return this.panel1_65;
+			case 66: return this.panel1_66;
+			case 67: return this.panel1_67;
+			case 68: return this.panel1_68;
+			case 69: return this.panel1_69;
+			case 70: return this.panel1_70;
+			case 71: return this.panel1_71;
+			case 72: return this.panel1_72;
+			case 73: return this.panel1_73;
+			case 74: return this.panel1_74;
+			case 75: return this.panel1_75;
+			case 76: return this.panel1_76;
+			case 77: return this.panel1_77;
+			case 78: return this.panel1_78;
+			case 79: return this.panel1_79;
+			case 80: return this.panel1_80;	
+		}
+		return null;
+	}
+	
+	
 }
