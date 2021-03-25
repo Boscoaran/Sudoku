@@ -10,25 +10,25 @@ import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
-import java.awt.FlowLayout;
 import java.awt.Insets;
-import java.awt.Window;
 import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
-import javax.swing.JTextPane;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 
 import java.awt.Color;
-import javax.swing.BoxLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
+import javax.swing.BoxLayout;
+import java.awt.FlowLayout;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.MatteBorder;
 
 @SuppressWarnings({ "serial", "deprecation" })
 public class Tablero extends JFrame implements Observer{
@@ -37,435 +37,427 @@ public class Tablero extends JFrame implements Observer{
 	private JPanel panelDatos;
 	private JPanel panelTablero;
 	private Border bordeNormal = new LineBorder(Color.BLACK, 1);
-	private Border bordeGrueso = new LineBorder(Color.BLACK, 3);
+	private Border bordeGrueso = new LineBorder(Color.BLUE, 3);
 	private JPanel select = null;
+	private Border bordeTemp;
 	private JTextField textFieldCandidatos;
 	private JLabel lblCandidatos;
 	private JLabel lblValor;
 	private JTextField textFieldValor;
 	private JButton btnModificar;
 	private JButton btnAyuda;
-	private JPanel panelAyuda;
 	private JPanelBackground panelNorth;
 	private JPanel panelSouth;
 	private JPanel panelWest;
-	private JTextPane textPaneAyuda;
-	private JPanel panelA11;
-	private JPanel panelB12;
-	private JPanel panelC13;
-	private JPanel panelD21;
-	private JPanel panelE22;
-	private JPanel panelF23;
-	private JPanel panelG31;
-	private JPanel panelH32;
-	private JPanel panelI33;
-	private JPanel panelA_11;
-	private JPanel panelA_12;
-	private JPanel panelA_13;
-	private JPanel panelA_21;
-	private JPanel panelA_22;
-	private JPanel panelA_23;
-	private JPanel panelA_31;
-	private JPanel panelA_32;
-	private JPanel panelA_33;
-	private JPanel panelB_11;
-	private JPanel panelB_12;
-	private JPanel panelB_13;
-	private JPanel panelB_21;
-	private JPanel panelB_22;
-	private JPanel panelB_23;
-	private JPanel panelB_31;
-	private JPanel panelB_32;
-	private JPanel panelB_33;
-	private JPanel panelC_11;
-	private JPanel panelC_12;
-	private JPanel panelC_13;
-	private JPanel panelC_21;
-	private JPanel panelC_22;
-	private JPanel panelC_23;
-	private JPanel panelC_31;
-	private JPanel panelC_32;
-	private JPanel panelC_33;
-	private JPanel panelD_11;
-	private JPanel panelD_12;
-	private JPanel panelD_13;
-	private JPanel panelD_21;
-	private JPanel panelD_22;
-	private JPanel panelD_23;
-	private JPanel panelD_31;
-	private JPanel panelD_32;
-	private JPanel panelD_33;
-	private JPanel panelE_11;
-	private JPanel panelE_12;
-	private JPanel panelE_13;
-	private JPanel panelE_21;
-	private JPanel panelE_22;
-	private JPanel panelE_23;
-	private JPanel panelE_31;
-	private JPanel panelE_32;
-	private JPanel panelE_33;
-	private JPanel panelF_11;
-	private JPanel panelF_12;
-	private JPanel panelF_13;
-	private JPanel panelF_21;
-	private JPanel panelF_22;
-	private JPanel panelF_23;
-	private JPanel panelF_31;
-	private JPanel panelF_32;
-	private JPanel panelF_33;
-	private JPanel panelG_11;
-	private JPanel panelG_12;
-	private JPanel panelG_13;
-	private JPanel panelG_21;
-	private JPanel panelG_22;
-	private JPanel panelG_23;
-	private JPanel panelG_31;
-	private JPanel panelG_32;
-	private JPanel panelG_33;
-	private JPanel panelH_11;
-	private JPanel panelH_12;
-	private JPanel panelH_13;
-	private JPanel panelH_21;
-	private JPanel panelH_22;
-	private JPanel panelH_23;
-	private JPanel panelH_31;
-	private JPanel panelH_32;
-	private JPanel panelH_33;
-	private JPanel panelI_11;
-	private JPanel panelI_12;
-	private JPanel panelI_13;
-	private JPanel panelI_21;
-	private JPanel panelI_22;
-	private JPanel panelI_23;
-	private JPanel panelI_31;
-	private JPanel panelI_32;
-	private JPanel panelI_33;
-	private JPanel panelValor_A11;
-	private JLabel lblValor_A11;
-	private JPanel panelCandidatos_A11;
-	private JLabel lblCandidatos_A11;
-	private JPanel panelValor_A12;
-	private JPanel panelCandidatos_A12;
-	private JLabel lblCandidatos_A12;
-	private JLabel lblValor_A12;
-	private JPanel panelValor_A13;
-	private JLabel lblValor_A13;
-	private JPanel panelCandidatos_A13;
-	private JLabel lblCandidatos_A13;
-	private JPanel panelValor_A21;
-	private JLabel lblValor_A21;
-	private JPanel panelCandidatos_A21;
-	private JLabel lblCandidatos_A21;
-	private JPanel panelValor_A22;
-	private JLabel lblValor_A22;
-	private JPanel panelCandidatos_A22;
-	private JLabel lblCandidatos_A22;
-	private JPanel panelValor_A23;
-	private JLabel lblValor_A23;
-	private JPanel panelCandidatos_A23;
-	private JLabel lblCandidatos_A23;
-	private JPanel panelValor_A31;
-	private JLabel lblValor_A31;
-	private JPanel panelCandidatos_A31;
-	private JLabel lblCandidatos_A31;
-	private JPanel panelValor_A32;
-	private JLabel lblValor_A32;
-	private JPanel panelCandidatos_A32;
-	private JLabel lblCandidatos_A32;
-	private JPanel panelValor_A33;
-	private JLabel lblValor_A33;
-	private JPanel panelCandidatos_A33;
-	private JLabel lblCandidatos_A33;
-	private JPanel panelValor_B11;
-	private JLabel lblValor_B11;
-	private JPanel panelCandidatos_B11;
-	private JLabel lblCandidatos_B11;
-	private JPanel panelValor_B12;
-	private JLabel lblValor_B12;
-	private JPanel panelCandidatos_B12;
-	private JLabel lblCandidatos_B12;
-	private JPanel panelValor_B13;
-	private JLabel lblValor_B13;
-	private JPanel panelCandidatos_B13;
-	private JLabel lblCandidatos_B13;
-	private JPanel panelValor_B21;
-	private JLabel lblValor_B21;
-	private JPanel panelCandidatos_B21;
-	private JLabel lblCandidatos_B21;
-	private JPanel panelValor_B22;
-	private JLabel lblValor_B22;
-	private JPanel panelCandidatos_B22;
-	private JLabel lblCandidatos_B22;
-	private JPanel panelValor_B23;
-	private JLabel lblValor_B23;
-	private JPanel panelCandidatos_B23;
-	private JLabel lblCandidatos_B23;
-	private JPanel panelValor_B31;
-	private JLabel lblValor_B31;
-	private JPanel panelCandidatos_B31;
-	private JLabel lblCandidatos_B31;
-	private JPanel panelValor_B32;
-	private JLabel lblValor_B32;
-	private JPanel panelCandidatos_B32;
-	private JLabel lblCandidatos_B32;
-	private JPanel panelValor_B33;
-	private JLabel lblValor_B33;
-	private JPanel panelCandidatos_B33;
-	private JLabel lblCandidatos_B33;
-	private JPanel panelValor_C12;
-	private JLabel lblValor_C12;
-	private JPanel panelCandidatos_C12;
-	private JLabel lblCandidatos_C12;
-	private JPanel panelValor_C11;
-	private JLabel lblValor_C11;
-	private JPanel panelCandidatos_C11;
-	private JLabel lblCandidatos_C11;
-	private JPanel panelValor_C13;
-	private JLabel lblValor_C13;
-	private JPanel panelCandidatos_C13;
-	private JLabel lblCandidatos_C13;
-	private JPanel panelValor_C21;
-	private JLabel lblValor_C21;
-	private JPanel panelCandidatos_C21;
-	private JLabel lblCandidatos_C21;
-	private JPanel panelValor_C22;
-	private JLabel lblValor_C22;
-	private JPanel panelCandidatos_C22;
-	private JLabel lblCandidatos_C22;
-	private JPanel panelValor_C23;
-	private JLabel lblValor_C23;
-	private JPanel panelCandidatos_C23;
-	private JLabel lblCandidatos_C23;
-	private JPanel panelValor_C31;
-	private JLabel lblValor_C31;
-	private JPanel panelCandidatos_C31;
-	private JLabel lblCandidatos_C31;
-	private JPanel panelValor_C32;
-	private JLabel lblValor_C32;
-	private JPanel panelCandidatos_C32;
-	private JLabel lblCandidatos_C32;
-	private JPanel panelValor_C33;
-	private JLabel lblValor_C33;
-	private JPanel panelCandidatos_C33;
-	private JLabel lblCandidatos_C33;
 	private JLabel lblTitulo;
 	private JLabel lblNombres;
-	private JPanel panelValor_D11;
-	private JLabel lblValor_D11;
-	private JPanel panelCandidatos_D11;
-	private JLabel lblCandidatos_D11;
-	private JPanel panelValor_D12;
-	private JLabel lblValor_D12;
-	private JPanel panelCandidatos_D12;
-	private JLabel lblCandidatos_D12;
-	private JPanel panelValor_D13;
-	private JLabel lblValor_D13;
-	private JPanel panelCandidatos_D13;
-	private JLabel lblCandidatos_D13;
-	private JPanel panelValor_D21;
-	private JLabel lblValor_D21;
-	private JPanel panelCandidatos_D21;
-	private JLabel lblCandidatos_D21;
-	private JPanel panelValor_D22;
-	private JLabel lblValor_D22;
-	private JPanel panelCandidatos_D22;
-	private JLabel lblCandidatos_D22;
-	private JPanel panelValor_D23;
-	private JLabel lblValor_D23;
-	private JPanel panelCandidatos_D23;
-	private JLabel lblCandidatos_D23;
-	private JPanel panelValor_D31;
-	private JLabel lblValor_D31;
-	private JPanel panelCandidatos_D31;
-	private JLabel lblCandidatos_D31;
-	private JPanel panelValor_D32;
-	private JLabel lblValor_D32;
-	private JPanel panelCandidatos_D32;
-	private JLabel lblCandidatos_D32;
-	private JPanel panelValor_D33;
-	private JLabel lblValor_D33;
-	private JPanel panelCandidatos_D33;
-	private JLabel lblCandidatos_D33;
-	private JPanel panelValor_E11;
-	private JLabel lblValor_E11;
-	private JPanel panelCandidatos_E11;
-	private JLabel lblCandidatos_E11;
-	private JPanel panelValor_E12;
-	private JLabel lblValor_E12;
-	private JPanel panelCandidatos_E12;
-	private JLabel lblCandidatos_E12;
-	private JPanel panelValor_E13;
-	private JLabel lblValor_E13;
-	private JPanel panelCandidatos_E13;
-	private JLabel lblCandidatos_E13;
-	private JPanel panelValor_E21;
-	private JLabel lblValor_E21;
-	private JPanel panelCandidatos_E21;
-	private JLabel lblCandidatos_E21;
-	private JPanel panelValor_E22;
-	private JLabel lblValor_E22;
-	private JPanel panelCandidatos_E22;
-	private JLabel lblCandidatos_E22;
-	private JPanel panelValor_E23;
-	private JLabel lblValor_E23;
-	private JPanel panelCandidatos_E23;
-	private JLabel lblCandidatos_E23;
-	private JPanel panelValor_E31;
-	private JLabel lblValor_E31;
-	private JPanel panelCandidatos_E31;
-	private JLabel lblCandidatos_E31;
-	private JPanel panelValor_E32;
-	private JLabel lblValor_E32;
-	private JPanel panelCandidatos_E32;
-	private JLabel lblCandidatos_E32;
-	private JPanel panelValor_E33;
-	private JLabel lblValor_E33;
-	private JPanel panelCandidatos_E33;
-	private JLabel lblCandidatos_E33;
-	private JPanel panelValor_F11;
-	private JLabel lblValor_F11;
-	private JPanel panelCandidatos_F11;
-	private JLabel lblCandidatos_F11;
-	private JPanel panelValor_F12;
-	private JLabel lblValor_F12;
-	private JPanel panelCandidatos_F12;
-	private JLabel lblCandidatos_F12;
-	private JPanel panelValor_F13;
-	private JLabel lblValor_F13;
-	private JPanel panelCandidatos_F13;
-	private JLabel lblCandidatos_F13;
-	private JPanel panelValor_F21;
-	private JLabel lblValor_F21;
-	private JPanel panelCandidatos_F21;
-	private JLabel lblCandidatos_F21;
-	private JPanel panelValor_F22;
-	private JLabel lblValor_F22;
-	private JPanel panelCandidatos_F22;
-	private JLabel lblCandidatos_F22;
-	private JPanel panelValor_F23;
-	private JLabel lblValor_F23;
-	private JPanel panelCandidatos_F23;
-	private JLabel lblCandidatos_F23;
-	private JPanel panelValor_F31;
-	private JLabel lblValor_F31;
-	private JPanel panelCandidatos_F31;
-	private JLabel lblCandidatos_F31;
-	private JPanel panelValor_F32;
-	private JLabel lblValor_F32;
-	private JPanel panelCandidatos_F32;
-	private JLabel lblCandidatos_F32;
-	private JPanel panelValor_F33;
-	private JLabel lblValor_F33;
-	private JPanel panelCandidatos_F33;
-	private JLabel lblCandidatos_F33;
-	private JPanel panelValor_G11;
-	private JLabel lblValor_G11;
-	private JPanel panelCandidatos_G11;
-	private JLabel lblCandidatos_G11;
-	private JPanel panelValor_G12;
-	private JLabel lblValor_G12;
-	private JPanel panelCandidatos_G12;
-	private JLabel lblCandidatos_G12;
-	private JPanel panelValor_G13;
-	private JLabel lblValor_G13;
-	private JPanel panelCandidatos_G13;
-	private JLabel lblCandidatos_G13;
-	private JPanel panelValor_G21;
-	private JLabel lblValor_G21;
-	private JPanel panelCandidatos_G21;
-	private JLabel lblCandidatos_G21;
-	private JPanel panelValor_G22;
-	private JLabel lblValor_G22;
-	private JPanel panelCandidatos_G22;
-	private JLabel lblCandidatos_G22;
-	private JPanel panelValor_G23;
-	private JLabel lblValor_G23;
-	private JPanel panelCandidatos_G23;
-	private JLabel lblCandidatos_G23;
-	private JPanel panelValor_G31;
-	private JLabel lblValor_G31;
-	private JPanel panelCandidatos_G31;
-	private JLabel lblCandidatos_G31;
-	private JPanel panelValor_G32;
-	private JLabel lblValor_G32;
-	private JPanel panelCandidatos_G32;
-	private JLabel lblCandidatos_G32;
-	private JPanel panelValor_G33;
-	private JLabel lblValor_G33;
-	private JPanel panelCandidatos_G33;
-	private JLabel lblCandidatos_G33;
-	private JPanel panelValor_H11;
-	private JLabel lblValor_H11;
-	private JPanel panelCandidatos_H11;
-	private JLabel lblCandidatos_H11;
-	private JPanel panelValor_H12;
-	private JLabel lblValor_H12;
-	private JPanel panelCandidatos_H12;
-	private JLabel lblCandidatos_H12;
-	private JPanel panelValor_H13;
-	private JLabel lblValor_H13;
-	private JPanel panelCandidatos_H13;
-	private JLabel lblCandidatos_H13;
-	private JPanel panelValor_H21;
-	private JLabel lblValor_H21;
-	private JPanel panelCandidatos_H21;
-	private JLabel lblCandidatos_H21;
-	private JPanel panelValor_H22;
-	private JLabel lblValor_H22;
-	private JPanel panelCandidatos_H22;
-	private JLabel lblCandidatos_H22;
-	private JPanel panelValor_H23;
-	private JLabel lblValor_H23;
-	private JPanel panelCandidatos_H23;
-	private JLabel lblCandidatos_H23;
-	private JPanel panelValor_H31;
-	private JLabel lblValor_H31;
-	private JPanel panelCandidatos_H31;
-	private JLabel lblCandidatos_H31;
-	private JPanel panelValor_H32;
-	private JLabel lblValor_H32;
-	private JPanel panelCandidatos_H32;
-	private JLabel lblCandidatos_H32;
-	private JPanel panelValor_H33;
-	private JLabel lblValor_H33;
-	private JPanel panelCandidatos_H33;
-	private JLabel lblCandidatos_H33;
-	private JPanel panelValor_I11;
-	private JLabel lblValor_I11;
-	private JPanel panelCandidatos_I11;
-	private JLabel lblCandidatos_I11;
-	private JPanel panelValor_I12;
-	private JLabel lblValor_I12;
-	private JPanel panelCandidatos_I12;
-	private JLabel lblCandidatos_I12;
-	private JPanel panelValor_I13;
-	private JLabel lblValor_I13;
-	private JPanel panelCandidatos_I13;
-	private JLabel lblCandidatos_I13;
-	private JPanel panelValor_I21;
-	private JLabel lblValor_I21;
-	private JPanel panelCandidatos_I21;
-	private JLabel lblCandidatos_I21;
-	private JPanel panelValor_I22;
-	private JLabel lblValor_I22;
-	private JPanel panelCandidatos_I22;
-	private JLabel lblCandidatos_I22;
-	private JPanel panelValor_I23;
-	private JLabel lblValor_I23;
-	private JPanel panelCandidatos_I23;
-	private JLabel lblCandidatos_I23;
-	private JPanel panelValor_I31;
-	private JLabel lblValor_I31;
-	private JPanel panelCandidatos_I31;
-	private JLabel lblCandidatos_I31;
-	private JPanel panelValor_I32;
-	private JLabel lblValor_I32;
-	private JPanel panelCandidatos_I32;
-	private JLabel lblCandidatos_I32;
-	private JPanel panelValor_I33;
-	private JLabel lblValor_I33;
-	private JPanel panelCandidatos_I33;
-	private JLabel lblCandidatos_I33;
+	private JPanel panel1;
+	private JPanel panelValor;
+	private JPanel panelCadidatos;
+	private JLabel lblValor1;
+	private JLabel lblCandidatos1;
+	private JPanel panel1_1;
+	private JPanel panelValor_1;
+	private JLabel lblValor1_1;
+	private JPanel panelCadidatos_1;
+	private JLabel lblCandidatos1_1;
+	private JPanel panel1_2;
+	private JPanel panelValor_2;
+	private JLabel lblValor1_2;
+	private JPanel panelCadidatos_2;
+	private JLabel lblCandidatos1_2;
+	private JPanel panel1_3;
+	private JPanel panelValor_3;
+	private JLabel lblValor1_3;
+	private JPanel panelCadidatos_3;
+	private JLabel lblCandidatos1_3;
+	private JPanel panel1_4;
+	private JPanel panelValor_4;
+	private JLabel lblValor1_4;
+	private JPanel panelCadidatos_4;
+	private JLabel lblCandidatos1_4;
+	private JPanel panel1_5;
+	private JPanel panelValor_5;
+	private JLabel lblValor1_5;
+	private JPanel panelCadidatos_5;
+	private JLabel lblCandidatos1_5;
+	private JPanel panel1_6;
+	private JPanel panelValor_6;
+	private JLabel lblValor1_6;
+	private JPanel panelCadidatos_6;
+	private JLabel lblCandidatos1_6;
+	private JPanel panel1_7;
+	private JPanel panelValor_7;
+	private JLabel lblValor1_7;
+	private JPanel panelCadidatos_7;
+	private JLabel lblCandidatos1_7;
+	private JPanel panel1_8;
+	private JPanel panelValor_8;
+	private JLabel lblValor1_8;
+	private JPanel panelCadidatos_8;
+	private JLabel lblCandidatos1_8;
+	private JPanel panel1_9;
+	private JPanel panelValor_9;
+	private JLabel lblValor1_9;
+	private JPanel panelCadidatos_9;
+	private JLabel lblCandidatos1_9;
+	private JPanel panel1_10;
+	private JPanel panelValor_10;
+	private JLabel lblValor1_10;
+	private JPanel panelCadidatos_10;
+	private JLabel lblCandidatos1_10;
+	private JPanel panel1_11;
+	private JPanel panelValor_11;
+	private JLabel lblValor1_11;
+	private JPanel panelCadidatos_11;
+	private JLabel lblCandidatos1_11;
+	private JPanel panel1_12;
+	private JPanel panelValor_12;
+	private JLabel lblValor1_12;
+	private JPanel panelCadidatos_12;
+	private JLabel lblCandidatos1_12;
+	private JPanel panel1_13;
+	private JPanel panelValor_13;
+	private JLabel lblValor1_13;
+	private JPanel panelCadidatos_13;
+	private JLabel lblCandidatos1_13;
+	private JPanel panel1_14;
+	private JPanel panelValor_14;
+	private JLabel lblValor1_14;
+	private JPanel panelCadidatos_14;
+	private JLabel lblCandidatos1_14;
+	private JPanel panel1_15;
+	private JPanel panelValor_15;
+	private JLabel lblValor1_15;
+	private JPanel panelCadidatos_15;
+	private JLabel lblCandidatos1_15;
+	private JPanel panel1_16;
+	private JPanel panelValor_16;
+	private JLabel lblValor1_16;
+	private JPanel panelCadidatos_16;
+	private JLabel lblCandidatos1_16;
+	private JPanel panel1_17;
+	private JPanel panelValor_17;
+	private JLabel lblValor1_17;
+	private JPanel panelCadidatos_17;
+	private JLabel lblCandidatos1_17;
+	private JPanel panel1_18;
+	private JPanel panelValor_18;
+	private JLabel lblValor1_18;
+	private JPanel panelCadidatos_18;
+	private JLabel lblCandidatos1_18;
+	private JPanel panel1_19;
+	private JPanel panelValor_19;
+	private JLabel lblValor1_19;
+	private JPanel panelCadidatos_19;
+	private JLabel lblCandidatos1_19;
+	private JPanel panel1_20;
+	private JPanel panelValor_20;
+	private JLabel lblValor1_20;
+	private JPanel panelCadidatos_20;
+	private JLabel lblCandidatos1_20;
+	private JPanel panel1_21;
+	private JPanel panelValor_21;
+	private JLabel lblValor1_21;
+	private JPanel panelCadidatos_21;
+	private JLabel lblCandidatos1_21;
+	private JPanel panel1_22;
+	private JPanel panelValor_22;
+	private JLabel lblValor1_22;
+	private JPanel panelCadidatos_22;
+	private JLabel lblCandidatos1_22;
+	private JPanel panel1_23;
+	private JPanel panelValor_23;
+	private JLabel lblValor1_23;
+	private JPanel panelCadidatos_23;
+	private JLabel lblCandidatos1_23;
+	private JPanel panel1_24;
+	private JPanel panelValor_24;
+	private JLabel lblValor1_24;
+	private JPanel panelCadidatos_24;
+	private JLabel lblCandidatos1_24;
+	private JPanel panel1_25;
+	private JPanel panelValor_25;
+	private JLabel lblValor1_25;
+	private JPanel panelCadidatos_25;
+	private JLabel lblCandidatos1_25;
+	private JPanel panel1_26;
+	private JPanel panelValor_26;
+	private JLabel lblValor1_26;
+	private JPanel panelCadidatos_26;
+	private JLabel lblCandidatos1_26;
+	private JPanel panel1_27;
+	private JPanel panelValor_27;
+	private JLabel lblValor1_27;
+	private JPanel panelCadidatos_27;
+	private JLabel lblCandidatos1_27;
+	private JPanel panel1_28;
+	private JPanel panelValor_28;
+	private JLabel lblValor1_28;
+	private JPanel panelCadidatos_28;
+	private JLabel lblCandidatos1_28;
+	private JPanel panel1_29;
+	private JPanel panelValor_29;
+	private JLabel lblValor1_29;
+	private JPanel panelCadidatos_29;
+	private JLabel lblCandidatos1_29;
+	private JPanel panel1_30;
+	private JPanel panelValor_30;
+	private JLabel lblValor1_30;
+	private JPanel panelCadidatos_30;
+	private JLabel lblCandidatos1_30;
+	private JPanel panel1_31;
+	private JPanel panelValor_31;
+	private JLabel lblValor1_31;
+	private JPanel panelCadidatos_31;
+	private JLabel lblCandidatos1_31;
+	private JPanel panel1_32;
+	private JPanel panelValor_32;
+	private JLabel lblValor1_32;
+	private JPanel panelCadidatos_32;
+	private JLabel lblCandidatos1_32;
+	private JPanel panel1_33;
+	private JPanel panelValor_33;
+	private JLabel lblValor1_33;
+	private JPanel panelCadidatos_33;
+	private JLabel lblCandidatos1_33;
+	private JPanel panel1_34;
+	private JPanel panelValor_34;
+	private JLabel lblValor1_34;
+	private JPanel panelCadidatos_34;
+	private JLabel lblCandidatos1_34;
+	private JPanel panel1_35;
+	private JPanel panelValor_35;
+	private JLabel lblValor1_35;
+	private JPanel panelCadidatos_35;
+	private JLabel lblCandidatos1_35;
+	private JPanel panel1_36;
+	private JPanel panelValor_36;
+	private JLabel lblValor1_36;
+	private JPanel panelCadidatos_36;
+	private JLabel lblCandidatos1_36;
+	private JPanel panel1_37;
+	private JPanel panelValor_37;
+	private JLabel lblValor1_37;
+	private JPanel panelCadidatos_37;
+	private JLabel lblCandidatos1_37;
+	private JPanel panel1_38;
+	private JPanel panelValor_38;
+	private JLabel lblValor1_38;
+	private JPanel panelCadidatos_38;
+	private JLabel lblCandidatos1_38;
+	private JPanel panel1_39;
+	private JPanel panelValor_39;
+	private JLabel lblValor1_39;
+	private JPanel panelCadidatos_39;
+	private JLabel lblCandidatos1_39;
+	private JPanel panel1_40;
+	private JPanel panelValor_40;
+	private JLabel lblValor1_40;
+	private JPanel panelCadidatos_40;
+	private JLabel lblCandidatos1_40;
+	private JPanel panel1_41;
+	private JPanel panelValor_41;
+	private JLabel lblValor1_41;
+	private JPanel panelCadidatos_41;
+	private JLabel lblCandidatos1_41;
+	private JPanel panel1_42;
+	private JPanel panelValor_42;
+	private JLabel lblValor1_42;
+	private JPanel panelCadidatos_42;
+	private JLabel lblCandidatos1_42;
+	private JPanel panel1_43;
+	private JPanel panelValor_43;
+	private JLabel lblValor1_43;
+	private JPanel panelCadidatos_43;
+	private JLabel lblCandidatos1_43;
+	private JPanel panel1_44;
+	private JPanel panelValor_44;
+	private JLabel lblValor1_44;
+	private JPanel panelCadidatos_44;
+	private JLabel lblCandidatos1_44;
+	private JPanel panel1_45;
+	private JPanel panelValor_45;
+	private JLabel lblValor1_45;
+	private JPanel panelCadidatos_45;
+	private JLabel lblCandidatos1_45;
+	private JPanel panel1_46;
+	private JPanel panelValor_46;
+	private JLabel lblValor1_46;
+	private JPanel panelCadidatos_46;
+	private JLabel lblCandidatos1_46;
+	private JPanel panel1_47;
+	private JPanel panelValor_47;
+	private JLabel lblValor1_47;
+	private JPanel panelCadidatos_47;
+	private JLabel lblCandidatos1_47;
+	private JPanel panel1_48;
+	private JPanel panelValor_48;
+	private JLabel lblValor1_48;
+	private JPanel panelCadidatos_48;
+	private JLabel lblCandidatos1_48;
+	private JPanel panel1_49;
+	private JPanel panelValor_49;
+	private JLabel lblValor1_49;
+	private JPanel panelCadidatos_49;
+	private JLabel lblCandidatos1_49;
+	private JPanel panel1_50;
+	private JPanel panelValor_50;
+	private JLabel lblValor1_50;
+	private JPanel panelCadidatos_50;
+	private JLabel lblCandidatos1_50;
+	private JPanel panel1_51;
+	private JPanel panelValor_51;
+	private JLabel lblValor1_51;
+	private JPanel panelCadidatos_51;
+	private JLabel lblCandidatos1_51;
+	private JPanel panel1_52;
+	private JPanel panelValor_52;
+	private JLabel lblValor1_52;
+	private JPanel panelCadidatos_52;
+	private JLabel lblCandidatos1_52;
+	private JPanel panel1_53;
+	private JPanel panelValor_53;
+	private JLabel lblValor1_53;
+	private JPanel panelCadidatos_53;
+	private JLabel lblCandidatos1_53;
+	private JPanel panel1_54;
+	private JPanel panelValor_54;
+	private JLabel lblValor1_54;
+	private JPanel panelCadidatos_54;
+	private JLabel lblCandidatos1_54;
+	private JPanel panel1_55;
+	private JPanel panelValor_55;
+	private JLabel lblValor1_55;
+	private JPanel panelCadidatos_55;
+	private JLabel lblCandidatos1_55;
+	private JPanel panel1_56;
+	private JPanel panelValor_56;
+	private JLabel lblValor1_56;
+	private JPanel panelCadidatos_56;
+	private JLabel lblCandidatos1_56;
+	private JPanel panel1_57;
+	private JPanel panelValor_57;
+	private JLabel lblValor1_57;
+	private JPanel panelCadidatos_57;
+	private JLabel lblCandidatos1_57;
+	private JPanel panel1_58;
+	private JPanel panelValor_58;
+	private JLabel lblValor1_58;
+	private JPanel panelCadidatos_58;
+	private JLabel lblCandidatos1_58;
+	private JPanel panel1_59;
+	private JPanel panelValor_59;
+	private JLabel lblValor1_59;
+	private JPanel panelCadidatos_59;
+	private JLabel lblCandidatos1_59;
+	private JPanel panel1_60;
+	private JPanel panelValor_60;
+	private JLabel lblValor1_60;
+	private JPanel panelCadidatos_60;
+	private JLabel lblCandidatos1_60;
+	private JPanel panel1_61;
+	private JPanel panelValor_61;
+	private JLabel lblValor1_61;
+	private JPanel panelCadidatos_61;
+	private JLabel lblCandidatos1_61;
+	private JPanel panel1_62;
+	private JPanel panelValor_62;
+	private JLabel lblValor1_62;
+	private JPanel panelCadidatos_62;
+	private JLabel lblCandidatos1_62;
+	private JPanel panel1_63;
+	private JPanel panelValor_63;
+	private JLabel lblValor1_63;
+	private JPanel panelCadidatos_63;
+	private JLabel lblCandidatos1_63;
+	private JPanel panel1_64;
+	private JPanel panelValor_64;
+	private JLabel lblValor1_64;
+	private JPanel panelCadidatos_64;
+	private JLabel lblCandidatos1_64;
+	private JPanel panel1_65;
+	private JPanel panelValor_65;
+	private JLabel lblValor1_65;
+	private JPanel panelCadidatos_65;
+	private JLabel lblCandidatos1_65;
+	private JPanel panel1_66;
+	private JPanel panelValor_66;
+	private JLabel lblValor1_66;
+	private JPanel panelCadidatos_66;
+	private JLabel lblCandidatos1_66;
+	private JPanel panel1_67;
+	private JPanel panelValor_67;
+	private JLabel lblValor1_67;
+	private JPanel panelCadidatos_67;
+	private JLabel lblCandidatos1_67;
+	private JPanel panel1_68;
+	private JPanel panelValor_68;
+	private JLabel lblValor1_68;
+	private JPanel panelCadidatos_68;
+	private JLabel lblCandidatos1_68;
+	private JPanel panel1_69;
+	private JPanel panelValor_69;
+	private JLabel lblValor1_69;
+	private JPanel panelCadidatos_69;
+	private JLabel lblCandidatos1_69;
+	private JPanel panel1_70;
+	private JPanel panelValor_70;
+	private JLabel lblValor1_70;
+	private JPanel panelCadidatos_70;
+	private JLabel lblCandidatos1_70;
+	private JPanel panel1_71;
+	private JPanel panelValor_71;
+	private JLabel lblValor1_71;
+	private JPanel panelCadidatos_71;
+	private JLabel lblCandidatos1_71;
+	private JPanel panel1_72;
+	private JPanel panelValor_72;
+	private JLabel lblValor1_72;
+	private JPanel panelCadidatos_72;
+	private JLabel lblCandidatos1_72;
+	private JPanel panel1_73;
+	private JPanel panelValor_73;
+	private JLabel lblValor1_73;
+	private JPanel panelCadidatos_73;
+	private JLabel lblCandidatos1_73;
+	private JPanel panel1_74;
+	private JPanel panelValor_74;
+	private JLabel lblValor1_74;
+	private JPanel panelCadidatos_74;
+	private JLabel lblCandidatos1_74;
+	private JPanel panel1_75;
+	private JPanel panelValor_75;
+	private JLabel lblValor1_75;
+	private JPanel panelCadidatos_75;
+	private JLabel lblCandidatos1_75;
+	private JPanel panel1_76;
+	private JPanel panelValor_76;
+	private JLabel lblValor1_76;
+	private JPanel panelCadidatos_76;
+	private JLabel lblCandidatos1_76;
+	private JPanel panel1_77;
+	private JPanel panelValor_77;
+	private JLabel lblValor1_77;
+	private JPanel panelCadidatos_77;
+	private JLabel lblCandidatos1_77;
+	private JPanel panel1_78;
+	private JPanel panelValor_78;
+	private JLabel lblValor1_78;
+	private JPanel panelCadidatos_78;
+	private JLabel lblCandidatos1_78;
+	private JPanel panel1_79;
+	private JPanel panelValor_79;
+	private JLabel lblValor1_79;
+	private JPanel panelCadidatos_79;
+	private JLabel lblCandidatos1_79;
+	private JPanel panel1_80;
+	private JPanel panelValor_80;
+	private JLabel lblValor1_80;
+	private JPanel panelCadidatos_80;
+	private JLabel lblCandidatos1_80;
+	private JPanel panel;
+	private JLabel lblCrono;
 
 	/**
 	 * Launch the application.
@@ -487,14 +479,24 @@ public class Tablero extends JFrame implements Observer{
 	 * Create the application.
 	 */
 	public Tablero() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initialize();
-		controlador.Tablero.getTablero().addObserver(this);
+		ponerTamañoCandidatos();
 	}
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	private void ponerTamañoCandidatos() {
+		for (Component jP1: panelTablero.getComponents()) {
+			for (Component jP2: ((JPanel) jP1).getComponents()) {
+				for (Component lbl : ((JPanel) jP2).getComponents()) {
+					if (!((JLabel) lbl).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))) {
+						((JLabel)lbl).setText(" ");
+					}
+				}
+			}
+		};
+	}
+	
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 939, 733);
@@ -505,7 +507,6 @@ public class Tablero extends JFrame implements Observer{
 		frame.getContentPane().add(getPanelDatos(), BorderLayout.EAST);
 		frame.getContentPane().add(getPanelTablero(), BorderLayout.CENTER);
 		frame.getContentPane().add(getPanelNorth(), BorderLayout.NORTH);
-		this.frame.setVisible(true);
 	}
 
 	private JPanel getPanelDatos() {
@@ -514,9 +515,9 @@ public class Tablero extends JFrame implements Observer{
 			panelDatos.setBackground(new Color(255, 0, 51));
 			GridBagLayout gbl_panelDatos = new GridBagLayout();
 			gbl_panelDatos.columnWidths = new int[]{18, 0, 117, 0, 0};
-			gbl_panelDatos.rowHeights = new int[]{20, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0};
-			gbl_panelDatos.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-			gbl_panelDatos.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+			gbl_panelDatos.rowHeights = new int[]{20, 0, 0, 0, 0, 0, 0, 0, 110, 11, 0};
+			gbl_panelDatos.columnWeights = new double[]{1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+			gbl_panelDatos.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 			panelDatos.setLayout(gbl_panelDatos);
 			GridBagConstraints gbc_lblCandidatos = new GridBagConstraints();
 			gbc_lblCandidatos.anchor = GridBagConstraints.EAST;
@@ -552,13 +553,13 @@ public class Tablero extends JFrame implements Observer{
 			gbc_btnAyuda.gridx = 2;
 			gbc_btnAyuda.gridy = 6;
 			panelDatos.add(getBtnAyuda(), gbc_btnAyuda);
-			GridBagConstraints gbc_panelAyuda = new GridBagConstraints();
-			gbc_panelAyuda.insets = new Insets(0, 0, 5, 5);
-			gbc_panelAyuda.gridwidth = 2;
-			gbc_panelAyuda.fill = GridBagConstraints.BOTH;
-			gbc_panelAyuda.gridx = 1;
-			gbc_panelAyuda.gridy = 8;
-			panelDatos.add(getPanelAyuda(), gbc_panelAyuda);
+			GridBagConstraints gbc_panel = new GridBagConstraints();
+			gbc_panel.gridwidth = 2;
+			gbc_panel.insets = new Insets(0, 0, 5, 5);
+			gbc_panel.fill = GridBagConstraints.BOTH;
+			gbc_panel.gridx = 1;
+			gbc_panel.gridy = 8;
+			panelDatos.add(getPanel(), gbc_panel);
 		}
 		return panelDatos;
 	}	
@@ -623,7 +624,6 @@ public class Tablero extends JFrame implements Observer{
 							for (Component x2: ((JPanel) x1).getComponents()) {
 								if (((JLabel) x2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))){
 									((JLabel) x2).setText(textFieldValor.getText());
-									controlador.Tablero.getTablero().setValor(x2.getName(), ABORT, getWarningString());
 								} else {
 									((JLabel) x2).setText(textFieldCandidatos.getText());
 								}
@@ -631,7 +631,7 @@ public class Tablero extends JFrame implements Observer{
 						}
 						textFieldCandidatos.setText("");
 						textFieldValor.setText("");
-						select.setBorder(bordeNormal);
+						select.setBorder(bordeTemp);
 						select=null;
 					}
 				}
@@ -642,21 +642,14 @@ public class Tablero extends JFrame implements Observer{
 	private JButton getBtnAyuda() {
 		if (btnAyuda == null) {
 			btnAyuda = new JButton("Ayuda");
+			btnAyuda.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		}
 		return btnAyuda;
-	}
-	private JPanel getPanelAyuda() {
-		if (panelAyuda == null) {
-			panelAyuda = new JPanel();
-			panelAyuda.setLayout(new BoxLayout(panelAyuda, BoxLayout.X_AXIS));
-			panelAyuda.add(getTextPaneAyuda());
-		}
-		return panelAyuda;
 	}
 	private JPanelBackground getPanelNorth() {
 		if (panelNorth == null) {
 			panelNorth = new JPanelBackground();
-			panelNorth.setBackground("C:\\Users\\bosco\\Desktop\\39605wide.jpg");
+			panelNorth.setBackground("39605wide.jpg");
 			GridBagLayout gbl_panelNorth = new GridBagLayout();
 			gbl_panelNorth.columnWidths = new int[]{923, 0};
 			gbl_panelNorth.rowHeights = new int[]{21, 14, 0, 10, 0};
@@ -692,4009 +685,112 @@ public class Tablero extends JFrame implements Observer{
 		}
 		return panelWest;
 	}
-	private JTextPane getTextPaneAyuda() {
-		if (textPaneAyuda == null) {
-			textPaneAyuda = new JTextPane();
-		}
-		return textPaneAyuda;
-	}
 	private JPanel getPanelTablero() {
 		if (panelTablero == null) {
 			panelTablero = new JPanel();
-			panelTablero.setBorder(null);
-			panelTablero.setLayout(new GridLayout(3, 3, 0, 0));
-			panelTablero.add(getPanelA11());
-			panelTablero.add(getPanelB12());
-			panelTablero.add(getPanelC13());
-			panelTablero.add(getPanelD21());
-			panelTablero.add(getPanelE22());
-			panelTablero.add(getPanelF23());
-			panelTablero.add(getPanelG31());
-			panelTablero.add(getPanelH32());
-			panelTablero.add(getPanelI33());
+			panelTablero.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+			panelTablero.setLayout(new GridLayout(9, 9, 0, 0));
+			panelTablero.add(getPanel1_0());
+			panelTablero.add(getPanel1_1());
+			panelTablero.add(getPanel1_2());
+			panelTablero.add(getPanel1_3());
+			panelTablero.add(getPanel1_4());
+			panelTablero.add(getPanel1_5());
+			panelTablero.add(getPanel1_6());
+			panelTablero.add(getPanel1_7());
+			panelTablero.add(getPanel1_8());
+			panelTablero.add(getPanel1_9());
+			panelTablero.add(getPanel1_10());
+			panelTablero.add(getPanel1_11());
+			panelTablero.add(getPanel1_12());
+			panelTablero.add(getPanel1_13());
+			panelTablero.add(getPanel1_14());
+			panelTablero.add(getPanel1_15());
+			panelTablero.add(getPanel1_16());
+			panelTablero.add(getPanel1_17());
+			panelTablero.add(getPanel1_18());
+			panelTablero.add(getPanel1_19());
+			panelTablero.add(getPanel1_20());
+			panelTablero.add(getPanel1_21());
+			panelTablero.add(getPanel1_22());
+			panelTablero.add(getPanel1_23());
+			panelTablero.add(getPanel1_24());
+			panelTablero.add(getPanel1_25());
+			panelTablero.add(getPanel1_26());
+			panelTablero.add(getPanel1_27());
+			panelTablero.add(getPanel1_28());
+			panelTablero.add(getPanel1_29());
+			panelTablero.add(getPanel1_30());
+			panelTablero.add(getPanel1_31());
+			panelTablero.add(getPanel1_32());
+			panelTablero.add(getPanel1_33());
+			panelTablero.add(getPanel1_34());
+			panelTablero.add(getPanel1_35());
+			panelTablero.add(getPanel1_36());
+			panelTablero.add(getPanel1_37());
+			panelTablero.add(getPanel1_38());
+			panelTablero.add(getPanel1_39());
+			panelTablero.add(getPanel1_40());
+			panelTablero.add(getPanel1_41());
+			panelTablero.add(getPanel1_42());
+			panelTablero.add(getPanel1_43());
+			panelTablero.add(getPanel1_44());
+			panelTablero.add(getPanel1_45());
+			panelTablero.add(getPanel1_46());
+			panelTablero.add(getPanel1_47());
+			panelTablero.add(getPanel1_48());
+			panelTablero.add(getPanel1_49());
+			panelTablero.add(getPanel1_50());
+			panelTablero.add(getPanel1_51());
+			panelTablero.add(getPanel1_52());
+			panelTablero.add(getPanel1_53());
+			panelTablero.add(getPanel1_54());
+			panelTablero.add(getPanel1_55());
+			panelTablero.add(getPanel1_56());
+			panelTablero.add(getPanel1_57());
+			panelTablero.add(getPanel1_58());
+			panelTablero.add(getPanel1_59());
+			panelTablero.add(getPanel1_60());
+			panelTablero.add(getPanel1_61());
+			panelTablero.add(getPanel1_62());
+			panelTablero.add(getPanel1_63());
+			panelTablero.add(getPanel1_64());
+			panelTablero.add(getPanel1_65());
+			panelTablero.add(getPanel1_66());
+			panelTablero.add(getPanel1_67());
+			panelTablero.add(getPanel1_68());
+			panelTablero.add(getPanel1_69());
+			panelTablero.add(getPanel1_70());
+			panelTablero.add(getPanel1_71());
+			panelTablero.add(getPanel1_72());
+			panelTablero.add(getPanel1_73());
+			panelTablero.add(getPanel1_74());
+			panelTablero.add(getPanel1_75());
+			panelTablero.add(getPanel1_76());
+			panelTablero.add(getPanel1_77());
+			panelTablero.add(getPanel1_78());
+			panelTablero.add(getPanel1_79());
+			panelTablero.add(getPanel1_80());
 		}
 		return panelTablero;
 	}
-	private JPanel getPanelA11() {
-		if (panelA11 == null) {
-			panelA11 = new JPanel();
-			panelA11.setBorder(new LineBorder(Color.BLACK, 2));
-			panelA11.setLayout(new GridLayout(3, 3, 0, 0));
-			panelA11.add(getPanelA_11());
-			panelA11.add(getPanelA_12());
-			panelA11.add(getPanelA_13());
-			panelA11.add(getPanelA_21());
-			panelA11.add(getPanelA_22());
-			panelA11.add(getPanelA_23());
-			panelA11.add(getPanelA_31());
-			panelA11.add(getPanelA_32());
-			panelA11.add(getPanelA_33());
-		}
-		return panelA11;
-	}
-	private JPanel getPanelB12() {
-		if (panelB12 == null) {
-			panelB12 = new JPanel();
-			panelB12.setBorder(new LineBorder(Color.BLACK, 2));
-			panelB12.setLayout(new GridLayout(3, 3, 0, 0));
-			panelB12.add(getPanelB_11());
-			panelB12.add(getPanelB_12());
-			panelB12.add(getPanelB_13());
-			panelB12.add(getPanelB_21());
-			panelB12.add(getPanelB_22());
-			panelB12.add(getPanelB_23());
-			panelB12.add(getPanelB_31());
-			panelB12.add(getPanelB_32());
-			panelB12.add(getPanelB_33());
-		}
-		return panelB12;
-	}
-	private JPanel getPanelC13() {
-		if (panelC13 == null) {
-			panelC13 = new JPanel();
-			panelC13.setBorder(new LineBorder(Color.BLACK, 2));
-			panelC13.setLayout(new GridLayout(3, 3, 0, 0));
-			panelC13.add(getPanelC_11());
-			panelC13.add(getPanelC_12());
-			panelC13.add(getPanelC_13());
-			panelC13.add(getPanelC_21());
-			panelC13.add(getPanelC_22());
-			panelC13.add(getPanelC_23());
-			panelC13.add(getPanelC_31());
-			panelC13.add(getPanelC_32());
-			panelC13.add(getPanelC_33());
-		}
-		return panelC13;
-	}
-	private JPanel getPanelD21() {
-		if (panelD21 == null) {
-			panelD21 = new JPanel();
-			panelD21.setBorder(new LineBorder(Color.BLACK, 2));
-			panelD21.setLayout(new GridLayout(3, 3, 0, 0));
-			panelD21.add(getPanelD_11());
-			panelD21.add(getPanelD_12());
-			panelD21.add(getPanelD_13());
-			panelD21.add(getPanelD_21());
-			panelD21.add(getPanelD_22());
-			panelD21.add(getPanelD_23());
-			panelD21.add(getPanelD_31());
-			panelD21.add(getPanelD_32());
-			panelD21.add(getPanelD_33());
-		}
-		return panelD21;
-	}
-	private JPanel getPanelE22() {
-		if (panelE22 == null) {
-			panelE22 = new JPanel();
-			panelE22.setBorder(new LineBorder(Color.BLACK, 2));
-			panelE22.setLayout(new GridLayout(3, 3, 0, 0));
-			panelE22.add(getPanelE_11());
-			panelE22.add(getPanelE_12());
-			panelE22.add(getPanelE_13());
-			panelE22.add(getPanelE_21());
-			panelE22.add(getPanelE_22());
-			panelE22.add(getPanelE_23());
-			panelE22.add(getPanelE_31());
-			panelE22.add(getPanelE_32());
-			panelE22.add(getPanelE_33());
-		}
-		return panelE22;
-	}
-	private JPanel getPanelF23() {
-		if (panelF23 == null) {
-			panelF23 = new JPanel();
-			panelF23.setBorder(new LineBorder(Color.BLACK, 2));
-			panelF23.setLayout(new GridLayout(3, 3, 0, 0));
-			panelF23.add(getPanelF_11());
-			panelF23.add(getPanelF_12());
-			panelF23.add(getPanelF_13());
-			panelF23.add(getPanelF_21());
-			panelF23.add(getPanelF_22());
-			panelF23.add(getPanelF_23());
-			panelF23.add(getPanelF_31());
-			panelF23.add(getPanelF_32());
-			panelF23.add(getPanelF_33());
-		}
-		return panelF23;
-	}
-	private JPanel getPanelG31() {
-		if (panelG31 == null) {
-			panelG31 = new JPanel();
-			panelG31.setBorder(new LineBorder(Color.BLACK, 2));
-			panelG31.setLayout(new GridLayout(3, 3, 0, 0));
-			panelG31.add(getPanelG_11());
-			panelG31.add(getPanelG_12());
-			panelG31.add(getPanelG_13());
-			panelG31.add(getPanelG_21());
-			panelG31.add(getPanelG_22());
-			panelG31.add(getPanelG_23());
-			panelG31.add(getPanelG_31());
-			panelG31.add(getPanelG_32());
-			panelG31.add(getPanelG_33());
-		}
-		return panelG31;
-	}
-	private JPanel getPanelH32() {
-		if (panelH32 == null) {
-			panelH32 = new JPanel();
-			panelH32.setBorder(new LineBorder(Color.BLACK, 2));
-			panelH32.setLayout(new GridLayout(3, 3, 0, 0));
-			panelH32.add(getPanelH_11());
-			panelH32.add(getPanelH_12());
-			panelH32.add(getPanelH_13());
-			panelH32.add(getPanelH_21());
-			panelH32.add(getPanelH_22());
-			panelH32.add(getPanelH_23());
-			panelH32.add(getPanelH_31());
-			panelH32.add(getPanelH_32());
-			panelH32.add(getPanelH_33());
-		}
-		return panelH32;
-	}
-	private JPanel getPanelI33() {
-		if (panelI33 == null) {
-			panelI33 = new JPanel();
-			panelI33.setBorder(new LineBorder(Color.BLACK, 2));
-			panelI33.setLayout(new GridLayout(3, 3, 0, 0));
-			panelI33.add(getPanelI_11());
-			panelI33.add(getPanelI_12());
-			panelI33.add(getPanelI_13());
-			panelI33.add(getPanelI_21());
-			panelI33.add(getPanelI_22());
-			panelI33.add(getPanelI_23());
-			panelI33.add(getPanelI_31());
-			panelI33.add(getPanelI_32());
-			panelI33.add(getPanelI_33());
-		}
-		return panelI33;
-	}
-	private JPanel getPanelA_11() {
-		if (panelA_11 == null) {
-			panelA_11 = new JPanel();
-			panelA_11.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelA_11.setBorder(bordeNormal);
-			panelA_11.setLayout(new BorderLayout(0, 0));
-			panelA_11.add(getPanelValor_A11(), BorderLayout.CENTER);
-			panelA_11.add(getPanelCandidatos_A11(), BorderLayout.NORTH);
-		}
-		return panelA_11;
-	}
-	private JPanel getPanelA_12() {
-		if (panelA_12 == null) {
-			panelA_12 = new JPanel();
-			panelA_12.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelA_12.setBorder(bordeNormal);
-			panelA_12.setLayout(new BorderLayout(0, 0));
-			panelA_12.add(getPanelValor_A12(), BorderLayout.CENTER);
-			panelA_12.add(getPanelCandidatos_A12(), BorderLayout.NORTH);
-		}
-		return panelA_12;
-	}
-	private JPanel getPanelA_13() {
-		if (panelA_13 == null) {
-			panelA_13 = new JPanel();
-			panelA_13.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelA_13.setBorder(bordeNormal);
-			panelA_13.setLayout(new BorderLayout(0, 0));
-			panelA_13.add(getPanelValor_A13(), BorderLayout.CENTER);
-			panelA_13.add(getPanelCandidatos_A13(), BorderLayout.NORTH);
-		}
-		return panelA_13;
-	}
-	private JPanel getPanelA_21() {
-		if (panelA_21 == null) {
-			panelA_21 = new JPanel();
-			panelA_21.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelA_21.setBorder(bordeNormal);
-			panelA_21.setLayout(new BorderLayout(0, 0));
-			panelA_21.add(getPanelValor_A21(), BorderLayout.CENTER);
-			panelA_21.add(getPanelCandidatos_A21(), BorderLayout.NORTH);
-		}
-		return panelA_21;
-	}
-	private JPanel getPanelA_22() {
-		if (panelA_22 == null) {
-			panelA_22 = new JPanel();
-			panelA_22.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelA_22.setBorder(bordeNormal);
-			panelA_22.setLayout(new BorderLayout(0, 0));
-			panelA_22.add(getPanelValor_A22(), BorderLayout.CENTER);
-			panelA_22.add(getPanelCandidatos_A22(), BorderLayout.NORTH);
-		}
-		return panelA_22;
-	}
-	private JPanel getPanelA_23() {
-		if (panelA_23 == null) {
-			panelA_23 = new JPanel();
-			panelA_23.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelA_23.setBorder(bordeNormal);
-			panelA_23.setLayout(new BorderLayout(0, 0));
-			panelA_23.add(getPanelValor_A23(), BorderLayout.CENTER);
-			panelA_23.add(getPanelCandidatos_A23(), BorderLayout.NORTH);
-		}
-		return panelA_23;
-	}
-	private JPanel getPanelA_31() {
-		if (panelA_31 == null) {
-			panelA_31 = new JPanel();
-			panelA_31.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelA_31.setBorder(bordeNormal);
-			panelA_31.setLayout(new BorderLayout(0, 0));
-			panelA_31.add(getPanelValor_A31(), BorderLayout.CENTER);
-			panelA_31.add(getPanelCandidatos_A31(), BorderLayout.NORTH);
-		}
-		return panelA_31;
-	}
-	private JPanel getPanelA_32() {
-		if (panelA_32 == null) {
-			panelA_32 = new JPanel();
-			panelA_32.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelA_32.setBorder(bordeNormal);
-			panelA_32.setLayout(new BorderLayout(0, 0));
-			panelA_32.add(getPanelValor_A32(), BorderLayout.CENTER);
-			panelA_32.add(getPanelCandidatos_A32(), BorderLayout.NORTH);
-		}
-		return panelA_32;
-	}
-	private JPanel getPanelA_33() {
-		if (panelA_33 == null) {
-			panelA_33 = new JPanel();
-			panelA_33.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelA_33.setBorder(bordeNormal);
-			panelA_33.setLayout(new BorderLayout(0, 0));
-			panelA_33.add(getPanelValor_A33(), BorderLayout.CENTER);
-			panelA_33.add(getPanelCandidatos_A33(), BorderLayout.NORTH);
-		}
-		return panelA_33;
-	}
-	private JPanel getPanelB_11() {
-		if (panelB_11 == null) {
-			panelB_11 = new JPanel();
-			panelB_11.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelB_11.setBorder(bordeNormal);
-			panelB_11.setLayout(new BorderLayout(0, 0));
-			panelB_11.add(getPanelValor_B11(), BorderLayout.CENTER);
-			panelB_11.add(getPanelCandidatos_B11(), BorderLayout.NORTH);
-		}
-		return panelB_11;
-	}
-	private JPanel getPanelB_12() {
-		if (panelB_12 == null) {
-			panelB_12 = new JPanel();
-			panelB_12.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelB_12.setBorder(bordeNormal);
-			panelB_12.setLayout(new BorderLayout(0, 0));
-			panelB_12.add(getPanelValor_B12(), BorderLayout.CENTER);
-			panelB_12.add(getPanelCandidatos_B12(), BorderLayout.NORTH);
-		}
-		return panelB_12;
-	}
-	private JPanel getPanelB_13() {
-		if (panelB_13 == null) {
-			panelB_13 = new JPanel();
-			panelB_13.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelB_13.setBorder(bordeNormal);
-			panelB_13.setLayout(new BorderLayout(0, 0));
-			panelB_13.add(getPanelValor_B13(), BorderLayout.CENTER);
-			panelB_13.add(getPanelCandidatos_B13(), BorderLayout.NORTH);
-		}
-		return panelB_13;
-	}
-	private JPanel getPanelB_21() {
-		if (panelB_21 == null) {
-			panelB_21 = new JPanel();
-			panelB_21.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelB_21.setBorder(bordeNormal);
-			panelB_21.setLayout(new BorderLayout(0, 0));
-			panelB_21.add(getPanelValor_B21(), BorderLayout.CENTER);
-			panelB_21.add(getPanelCandidatos_B21(), BorderLayout.NORTH);
-		}
-		return panelB_21;
-	}
-	private JPanel getPanelB_22() {
-		if (panelB_22 == null) {
-			panelB_22 = new JPanel();
-			panelB_22.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelB_22.setBorder(bordeNormal);
-			panelB_22.setLayout(new BorderLayout(0, 0));
-			panelB_22.add(getPanelValor_B22(), BorderLayout.CENTER);
-			panelB_22.add(getPanelCandidatos_B22(), BorderLayout.NORTH);
-		}
-		return panelB_22;
-	}
-	private JPanel getPanelB_23() {
-		if (panelB_23 == null) {
-			panelB_23 = new JPanel();
-			panelB_23.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelB_23.setBorder(bordeNormal);
-			panelB_23.setLayout(new BorderLayout(0, 0));
-			panelB_23.add(getPanelValor_B23(), BorderLayout.CENTER);
-			panelB_23.add(getPanelCandidatos_B23(), BorderLayout.NORTH);
-		}
-		return panelB_23;
-	}
-	private JPanel getPanelB_31() {
-		if (panelB_31 == null) {
-			panelB_31 = new JPanel();
-			panelB_31.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelB_31.setBorder(bordeNormal);
-			panelB_31.setLayout(new BorderLayout(0, 0));
-			panelB_31.add(getPanelValor_B31(), BorderLayout.CENTER);
-			panelB_31.add(getPanelCandidatos_B31(), BorderLayout.NORTH);
-		}
-		return panelB_31;
-	}
-	private JPanel getPanelB_32() {
-		if (panelB_32 == null) {
-			panelB_32 = new JPanel();
-			panelB_32.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelB_32.setBorder(bordeNormal);
-			panelB_32.setLayout(new BorderLayout(0, 0));
-			panelB_32.add(getPanelValor_B32(), BorderLayout.CENTER);
-			panelB_32.add(getPanelCandidatos_B32(), BorderLayout.NORTH);
-		}
-		return panelB_32;
-	}
-	private JPanel getPanelB_33() {
-		if (panelB_33 == null) {
-			panelB_33 = new JPanel();
-			panelB_33.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelB_33.setBorder(bordeNormal);
-			panelB_33.setLayout(new BorderLayout(0, 0));
-			panelB_33.add(getPanelValor_B33(), BorderLayout.CENTER);
-			panelB_33.add(getPanelCandidatos_B33(), BorderLayout.NORTH);
-		}
-		return panelB_33;
-	}
-	private JPanel getPanelC_11() {
-		if (panelC_11 == null) {
-			panelC_11 = new JPanel();
-			panelC_11.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelC_11.setBorder(bordeNormal);
-			panelC_11.setLayout(new BorderLayout(0, 0));
-			panelC_11.add(getPanelValor_C11(), BorderLayout.CENTER);
-			panelC_11.add(getPanelCandidatos_C11(), BorderLayout.NORTH);
-		}
-		return panelC_11;
-	}
-	private JPanel getPanelC_12() {
-		if (panelC_12 == null) {
-			panelC_12 = new JPanel();
-			panelC_12.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelC_12.setBorder(bordeNormal);
-			panelC_12.setLayout(new BorderLayout(0, 0));
-			panelC_12.add(getPanelValor_C12(), BorderLayout.CENTER);
-			panelC_12.add(getPanelCandidatos_C12(), BorderLayout.NORTH);
-		}
-		return panelC_12;
-	}
-	private JPanel getPanelC_13() {
-		if (panelC_13 == null) {
-			panelC_13 = new JPanel();
-			panelC_13.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelC_13.setBorder(bordeNormal);
-			panelC_13.setLayout(new BorderLayout(0, 0));
-			panelC_13.add(getPanelValor_C13(), BorderLayout.CENTER);
-			panelC_13.add(getPanelCandidatos_C13(), BorderLayout.NORTH);
-		}
-		return panelC_13;
-	}
-	private JPanel getPanelC_21() {
-		if (panelC_21 == null) {
-			panelC_21 = new JPanel();
-			panelC_21.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelC_21.setBorder(bordeNormal);
-			panelC_21.setLayout(new BorderLayout(0, 0));
-			panelC_21.add(getPanelValor_C21(), BorderLayout.CENTER);
-			panelC_21.add(getPanelCandidatos_C21(), BorderLayout.NORTH);
-		}
-		return panelC_21;
-	}
-	private JPanel getPanelC_22() {
-		if (panelC_22 == null) {
-			panelC_22 = new JPanel();
-			panelC_22.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelC_22.setBorder(bordeNormal);
-			panelC_22.setLayout(new BorderLayout(0, 0));
-			panelC_22.add(getPanelValor_C22(), BorderLayout.CENTER);
-			panelC_22.add(getPanelCandidatos_C22(), BorderLayout.NORTH);
-		}
-		return panelC_22;
-	}
-	private JPanel getPanelC_23() {
-		if (panelC_23 == null) {
-			panelC_23 = new JPanel();
-			panelC_23.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelC_23.setBorder(bordeNormal);
-			panelC_23.setLayout(new BorderLayout(0, 0));
-			panelC_23.add(getPanelValor_C23(), BorderLayout.CENTER);
-			panelC_23.add(getPanelCandidatos_C23(), BorderLayout.NORTH);
-		}
-		return panelC_23;
-	}
-	private JPanel getPanelC_31() {
-		if (panelC_31 == null) {
-			panelC_31 = new JPanel();
-			panelC_31.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelC_31.setBorder(bordeNormal);
-			panelC_31.setLayout(new BorderLayout(0, 0));
-			panelC_31.add(getPanelValor_C31(), BorderLayout.CENTER);
-			panelC_31.add(getPanelCandidatos_C31(), BorderLayout.NORTH);
-		}
-		return panelC_31;
-	}
-	private JPanel getPanelC_32() {
-		if (panelC_32 == null) {
-			panelC_32 = new JPanel();
-			panelC_32.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelC_32.setBorder(bordeNormal);
-			panelC_32.setLayout(new BorderLayout(0, 0));
-			panelC_32.add(getPanelValor_C32(), BorderLayout.CENTER);
-			panelC_32.add(getPanelCandidatos_C32(), BorderLayout.NORTH);
-		}
-		return panelC_32;
-	}
-	private JPanel getPanelC_33() {
-		if (panelC_33 == null) {
-			panelC_33 = new JPanel();
-			panelC_33.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelC_33.setBorder(bordeNormal);
-			panelC_33.setLayout(new BorderLayout(0, 0));
-			panelC_33.add(getPanelValor_C33(), BorderLayout.CENTER);
-			panelC_33.add(getPanelCandidatos_C33(), BorderLayout.NORTH);
-		}
-		return panelC_33;
-	}
-	private JPanel getPanelD_11() {
-		if (panelD_11 == null) {
-			panelD_11 = new JPanel();
-			panelD_11.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelD_11.setBorder(bordeNormal);
-			panelD_11.setLayout(new BorderLayout(0, 0));
-			panelD_11.add(getPanelValor_D11(), BorderLayout.CENTER);
-			panelD_11.add(getPanelCandidatos_D11(), BorderLayout.NORTH);
-		}
-		return panelD_11;
-	}
-	private JPanel getPanelD_12() {
-		if (panelD_12 == null) {
-			panelD_12 = new JPanel();
-			panelD_12.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelD_12.setBorder(bordeNormal);
-			panelD_12.setLayout(new BorderLayout(0, 0));
-			panelD_12.add(getPanelValor_D12(), BorderLayout.CENTER);
-			panelD_12.add(getPanelCandidatos_D12(), BorderLayout.NORTH);
-		}
-		return panelD_12;
-	}
-	private JPanel getPanelD_13() {
-		if (panelD_13 == null) {
-			panelD_13 = new JPanel();
-			panelD_13.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelD_13.setBorder(bordeNormal);
-			panelD_13.setLayout(new BorderLayout(0, 0));
-			panelD_13.add(getPanelValor_D13(), BorderLayout.CENTER);
-			panelD_13.add(getPanelCandidatos_D13(), BorderLayout.NORTH);
-		}
-		return panelD_13;
-	}
-	private JPanel getPanelD_21() {
-		if (panelD_21 == null) {
-			panelD_21 = new JPanel();
-			panelD_21.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelD_21.setBorder(bordeNormal);
-			panelD_21.setLayout(new BorderLayout(0, 0));
-			panelD_21.add(getPanelValor_D21(), BorderLayout.CENTER);
-			panelD_21.add(getPanelCandidatos_D21(), BorderLayout.NORTH);
-		}
-		return panelD_21;
-	}
-	private JPanel getPanelD_22() {
-		if (panelD_22 == null) {
-			panelD_22 = new JPanel();
-			panelD_22.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelD_22.setBorder(bordeNormal);
-			panelD_22.setLayout(new BorderLayout(0, 0));
-			panelD_22.add(getPanelValor_D22(), BorderLayout.CENTER);
-			panelD_22.add(getPanelCandidatos_D22(), BorderLayout.NORTH);
-		}
-		return panelD_22;
-	}
-	private JPanel getPanelD_23() {
-		if (panelD_23 == null) {
-			panelD_23 = new JPanel();
-			panelD_23.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelD_23.setBorder(bordeNormal);
-			panelD_23.setLayout(new BorderLayout(0, 0));
-			panelD_23.add(getPanelValor_D23(), BorderLayout.CENTER);
-			panelD_23.add(getPanelCandidatos_D23(), BorderLayout.NORTH);
-		}
-		return panelD_23;
-	}
-	private JPanel getPanelD_31() {
-		if (panelD_31 == null) {
-			panelD_31 = new JPanel();
-			panelD_31.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelD_31.setBorder(bordeNormal);
-			panelD_31.setLayout(new BorderLayout(0, 0));
-			panelD_31.add(getPanelValor_D31(), BorderLayout.CENTER);
-			panelD_31.add(getPanelCandidatos_D31(), BorderLayout.NORTH);
-		}
-		return panelD_31;
-	}
-	private JPanel getPanelD_32() {
-		if (panelD_32 == null) {
-			panelD_32 = new JPanel();
-			panelD_32.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelD_32.setBorder(bordeNormal);
-			panelD_32.setLayout(new BorderLayout(0, 0));
-			panelD_32.add(getPanelValor_D32(), BorderLayout.CENTER);
-			panelD_32.add(getPanelCandidatos_D32(), BorderLayout.NORTH);
-		}
-		return panelD_32;
-	}
-	private JPanel getPanelD_33() {
-		if (panelD_33 == null) {
-			panelD_33 = new JPanel();
-			panelD_33.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelD_33.setBorder(bordeNormal);
-			panelD_33.setLayout(new BorderLayout(0, 0));
-			panelD_33.add(getPanelValor_D33(), BorderLayout.CENTER);
-			panelD_33.add(getPanelCandidatos_D33(), BorderLayout.NORTH);
-		}
-		return panelD_33;
-	}
-	private JPanel getPanelE_11() {
-		if (panelE_11 == null) {
-			panelE_11 = new JPanel();
-			panelE_11.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelE_11.setBorder(bordeNormal);
-			panelE_11.setLayout(new BorderLayout(0, 0));
-			panelE_11.add(getPanelValor_E11(), BorderLayout.CENTER);
-			panelE_11.add(getPanelCandidatos_E11(), BorderLayout.NORTH);
-		}
-		return panelE_11;
-	}
-	private JPanel getPanelE_12() {
-		if (panelE_12 == null) {
-			panelE_12 = new JPanel();
-			panelE_12.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelE_12.setBorder(bordeNormal);
-			panelE_12.setLayout(new BorderLayout(0, 0));
-			panelE_12.add(getPanelValor_E12(), BorderLayout.CENTER);
-			panelE_12.add(getPanelCandidatos_E12(), BorderLayout.NORTH);
-		}
-		return panelE_12;
-	}
-	private JPanel getPanelE_13() {
-		if (panelE_13 == null) {
-			panelE_13 = new JPanel();
-			panelE_13.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelE_13.setBorder(bordeNormal);
-			panelE_13.setLayout(new BorderLayout(0, 0));
-			panelE_13.add(getPanelValor_E13(), BorderLayout.CENTER);
-			panelE_13.add(getPanelCandidatos_E13(), BorderLayout.NORTH);
-		}
-		return panelE_13;
-	}
-	private JPanel getPanelE_21() {
-		if (panelE_21 == null) {
-			panelE_21 = new JPanel();
-			panelE_21.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelE_21.setBorder(bordeNormal);
-			panelE_21.setLayout(new BorderLayout(0, 0));
-			panelE_21.add(getPanelValor_E21(), BorderLayout.CENTER);
-			panelE_21.add(getPanelCandidatos_E21(), BorderLayout.NORTH);
-		}
-		return panelE_21;
-	}
-	private JPanel getPanelE_22() {
-		if (panelE_22 == null) {
-			panelE_22 = new JPanel();
-			panelE_22.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelE_22.setBorder(bordeNormal);
-			panelE_22.setLayout(new BorderLayout(0, 0));
-			panelE_22.add(getPanelValor_E22(), BorderLayout.CENTER);
-			panelE_22.add(getPanelCandidatos_E22(), BorderLayout.NORTH);
-		}
-		return panelE_22;
-	}
-	private JPanel getPanelE_23() {
-		if (panelE_23 == null) {
-			panelE_23 = new JPanel();
-			panelE_23.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelE_23.setBorder(bordeNormal);
-			panelE_23.setLayout(new BorderLayout(0, 0));
-			panelE_23.add(getPanelValor_E23(), BorderLayout.CENTER);
-			panelE_23.add(getPanelCandidatos_E23(), BorderLayout.NORTH);
-		}
-		return panelE_23;
-	}
-	private JPanel getPanelE_31() {
-		if (panelE_31 == null) {
-			panelE_31 = new JPanel();
-			panelE_31.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelE_31.setBorder(bordeNormal);
-			panelE_31.setLayout(new BorderLayout(0, 0));
-			panelE_31.add(getPanelValor_E31(), BorderLayout.CENTER);
-			panelE_31.add(getPanelCandidatos_E31(), BorderLayout.NORTH);
-		}
-		return panelE_31;
-	}
-	private JPanel getPanelE_32() {
-		if (panelE_32 == null) {
-			panelE_32 = new JPanel();
-			panelE_32.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelE_32.setBorder(bordeNormal);
-			panelE_32.setLayout(new BorderLayout(0, 0));
-			panelE_32.add(getPanelValor_E32());
-			panelE_32.add(getPanelCandidatos_E32(), BorderLayout.NORTH);
-		}
-		return panelE_32;
-	}
-	private JPanel getPanelE_33() {
-		if (panelE_33 == null) {
-			panelE_33 = new JPanel();
-			panelE_33.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelE_33.setBorder(bordeNormal);
-			panelE_33.setLayout(new BorderLayout(0, 0));
-			panelE_33.add(getPanelValor_E33(), BorderLayout.CENTER);
-			panelE_33.add(getPanelCandidatos_E33(), BorderLayout.NORTH);
-		}
-		return panelE_33;
-	}
-	private JPanel getPanelF_11() {
-		if (panelF_11 == null) {
-			panelF_11 = new JPanel();
-			panelF_11.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelF_11.setBorder(bordeNormal);
-			panelF_11.setLayout(new BorderLayout(0, 0));
-			panelF_11.add(getPanelValor_E11_1_1(), BorderLayout.CENTER);
-			panelF_11.add(getPanelCandidatos_E11_1_1(), BorderLayout.NORTH);
-		}
-		return panelF_11;
-	}
-	private JPanel getPanelF_12() {
-		if (panelF_12 == null) {
-			panelF_12 = new JPanel();
-			panelF_12.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelF_12.setBorder(bordeNormal);
-			panelF_12.setLayout(new BorderLayout(0, 0));
-			panelF_12.add(getPanelValor_F12(), BorderLayout.CENTER);
-			panelF_12.add(getPanelCandidatos_F12(), BorderLayout.NORTH);
-		}
-		return panelF_12;
-	}
-	private JPanel getPanelF_13() {
-		if (panelF_13 == null) {
-			panelF_13 = new JPanel();
-			panelF_13.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelF_13.setBorder(bordeNormal);
-			panelF_13.setLayout(new BorderLayout(0, 0));
-			panelF_13.add(getPanelValor_F13(), BorderLayout.CENTER);
-			panelF_13.add(getPanelCandidatos_F13(), BorderLayout.NORTH);
-		}
-		return panelF_13;
-	}
-	private JPanel getPanelF_21() {
-		if (panelF_21 == null) {
-			panelF_21 = new JPanel();
-			panelF_21.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelF_21.setBorder(bordeNormal);
-			panelF_21.setLayout(new BorderLayout(0, 0));
-			panelF_21.add(getPanelValor_F21(), BorderLayout.CENTER);
-			panelF_21.add(getPanelCandidatos_F21(), BorderLayout.NORTH);
-		}
-		return panelF_21;
-	}
-	private JPanel getPanelF_22() {
-		if (panelF_22 == null) {
-			panelF_22 = new JPanel();
-			panelF_22.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelF_22.setBorder(bordeNormal);
-			panelF_22.setLayout(new BorderLayout(0, 0));
-			panelF_22.add(getPanelValor_F22(), BorderLayout.CENTER);
-			panelF_22.add(getPanelCandidatos_F22(), BorderLayout.NORTH);
-		}
-		return panelF_22;
-	}
-	private JPanel getPanelF_23() {
-		if (panelF_23 == null) {
-			panelF_23 = new JPanel();
-			panelF_23.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelF_23.setBorder(bordeNormal);
-			panelF_23.setLayout(new BorderLayout(0, 0));
-			panelF_23.add(getPanelValor_F23(), BorderLayout.CENTER);
-			panelF_23.add(getPanelCandidatos_F23(), BorderLayout.NORTH);
-		}
-		return panelF_23;
-	}
-	private JPanel getPanelF_31() {
-		if (panelF_31 == null) {
-			panelF_31 = new JPanel();
-			panelF_31.setBorder(bordeNormal);
-			panelF_31.setLayout(new BorderLayout(0, 0));
-			panelF_31.add(getPanelValor_F31(), BorderLayout.CENTER);
-			panelF_31.add(getPanelCandidatos_F31(), BorderLayout.NORTH);
-		}
-		return panelF_31;
-	}
-	private JPanel getPanelF_32() {
-		if (panelF_32 == null) {
-			panelF_32 = new JPanel();
-			panelF_32.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelF_32.setBorder(bordeNormal);
-			panelF_32.setLayout(new BorderLayout(0, 0));
-			panelF_32.add(getPanelValor_F32(), BorderLayout.CENTER);
-			panelF_32.add(getPanelCandidatos_F32(), BorderLayout.NORTH);
-		}
-		return panelF_32;
-	}
-	private JPanel getPanelF_33() {
-		if (panelF_33 == null) {
-			panelF_33 = new JPanel();
-			panelF_33.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelF_33.setBorder(bordeNormal);
-			panelF_33.setLayout(new BorderLayout(0, 0));
-			panelF_33.add(getPanelValor_F33(), BorderLayout.CENTER);
-			panelF_33.add(getPanelCandidatos_F33(), BorderLayout.NORTH);
-		}
-		return panelF_33;
-	}
-	private JPanel getPanelG_11() {
-		if (panelG_11 == null) {
-			panelG_11 = new JPanel();
-			panelG_11.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelG_11.setBorder(bordeNormal);
-			panelG_11.setLayout(new BorderLayout(0, 0));
-			panelG_11.add(getPanelValor_G11(), BorderLayout.CENTER);
-			panelG_11.add(getPanelCandidatos_G11(), BorderLayout.NORTH);
-		}
-		return panelG_11;
-	}
-	private JPanel getPanelG_12() {
-		if (panelG_12 == null) {
-			panelG_12 = new JPanel();
-			panelG_12.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelG_12.setBorder(bordeNormal);
-			panelG_12.setLayout(new BorderLayout(0, 0));
-			panelG_12.add(getPanelValor_G12(), BorderLayout.CENTER);
-			panelG_12.add(getPanelCandidatos_G12(), BorderLayout.NORTH);
-		}
-		return panelG_12;
-	}
-	private JPanel getPanelG_13() {
-		if (panelG_13 == null) {
-			panelG_13 = new JPanel();
-			panelG_13.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelG_13.setBorder(bordeNormal);
-			panelG_13.setLayout(new BorderLayout(0, 0));
-			panelG_13.add(getPanelValor_G13(), BorderLayout.CENTER);
-			panelG_13.add(getPanelCandidatos_G13(), BorderLayout.NORTH);
-		}
-		return panelG_13;
-	}
-	private JPanel getPanelG_21() {
-		if (panelG_21 == null) {
-			panelG_21 = new JPanel();
-			panelG_21.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelG_21.setBorder(bordeNormal);
-			panelG_21.setLayout(new BorderLayout(0, 0));
-			panelG_21.add(getPanelValor_G21(), BorderLayout.CENTER);
-			panelG_21.add(getPanelCandidatos_G21(), BorderLayout.NORTH);
-		}
-		return panelG_21;
-	}
-	private JPanel getPanelG_22() {
-		if (panelG_22 == null) {
-			panelG_22 = new JPanel();
-			panelG_22.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelG_22.setBorder(bordeNormal);
-			panelG_22.setLayout(new BorderLayout(0, 0));
-			panelG_22.add(getPanelValor_G22(), BorderLayout.CENTER);
-			panelG_22.add(getPanelCandidatos_G22(), BorderLayout.NORTH);
-		}
-		return panelG_22;
-	}
-	private JPanel getPanelG_23() {
-		if (panelG_23 == null) {
-			panelG_23 = new JPanel();
-			panelG_23.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelG_23.setBorder(bordeNormal);
-			panelG_23.setLayout(new BorderLayout(0, 0));
-			panelG_23.add(getPanelValor_G23(), BorderLayout.CENTER);
-			panelG_23.add(getPanelCandidatos_G23(), BorderLayout.NORTH);
-		}
-		return panelG_23;
-	}
-	private JPanel getPanelG_31() {
-		if (panelG_31 == null) {
-			panelG_31 = new JPanel();
-			panelG_31.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelG_31.setBorder(bordeNormal);
-			panelG_31.setLayout(new BorderLayout(0, 0));
-			panelG_31.add(getPanelValor_G31(), BorderLayout.CENTER);
-			panelG_31.add(getPanelCandidatos_G31(), BorderLayout.NORTH);
-		}
-		return panelG_31;
-	}
-	private JPanel getPanelG_32() {
-		if (panelG_32 == null) {
-			panelG_32 = new JPanel();
-			panelG_32.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelG_32.setBorder(bordeNormal);
-			panelG_32.setLayout(new BorderLayout(0, 0));
-			panelG_32.add(getPanelValor_G32(), BorderLayout.CENTER);
-			panelG_32.add(getPanelCandidatos_G32(), BorderLayout.NORTH);
-		}
-		return panelG_32;
-	}
-	private JPanel getPanelG_33() {
-		if (panelG_33 == null) {
-			panelG_33 = new JPanel();
-			panelG_33.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelG_33.setBorder(bordeNormal);
-			panelG_33.setLayout(new BorderLayout(0, 0));
-			panelG_33.add(getPanelValor_G33(), BorderLayout.CENTER);
-			panelG_33.add(getPanelCandidatos_G33(), BorderLayout.NORTH);
-		}
-		return panelG_33;
-	}
-	private JPanel getPanelH_11() {
-		if (panelH_11 == null) {
-			panelH_11 = new JPanel();
-			panelH_11.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelH_11.setBorder(bordeNormal);
-			panelH_11.setLayout(new BorderLayout(0, 0));
-			panelH_11.add(getPanelValor_H11(), BorderLayout.CENTER);
-			panelH_11.add(getPanelCandidatos_H11(), BorderLayout.NORTH);
-		}
-		return panelH_11;
-	}
-	private JPanel getPanelH_12() {
-		if (panelH_12 == null) {
-			panelH_12 = new JPanel();
-			panelH_12.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelH_12.setBorder(bordeNormal);
-			panelH_12.setLayout(new BorderLayout(0, 0));
-			panelH_12.add(getPanelValor_H12(), BorderLayout.CENTER);
-			panelH_12.add(getPanelCandidatos_H12(), BorderLayout.NORTH);
-		}
-		return panelH_12;
-	}
-	private JPanel getPanelH_13() {
-		if (panelH_13 == null) {
-			panelH_13 = new JPanel();
-			panelH_13.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelH_13.setBorder(bordeNormal);
-			panelH_13.setLayout(new BorderLayout(0, 0));
-			panelH_13.add(getPanelValor_H13(), BorderLayout.CENTER);
-			panelH_13.add(getPanelCandidatos_H13(), BorderLayout.NORTH);
-		}
-		return panelH_13;
-	}
-	private JPanel getPanelH_21() {
-		if (panelH_21 == null) {
-			panelH_21 = new JPanel();
-			panelH_21.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelH_21.setBorder(bordeNormal);
-			panelH_21.setLayout(new BorderLayout(0, 0));
-			panelH_21.add(getPanelValor_H21(), BorderLayout.CENTER);
-			panelH_21.add(getPanelCandidatos_H21(), BorderLayout.NORTH);
-		}
-		return panelH_21;
-	}
-	private JPanel getPanelH_22() {
-		if (panelH_22 == null) {
-			panelH_22 = new JPanel();
-			panelH_22.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelH_22.setBorder(bordeNormal);
-			panelH_22.setLayout(new BorderLayout(0, 0));
-			panelH_22.add(getPanelValor_H22(), BorderLayout.CENTER);
-			panelH_22.add(getPanelCandidatos_H22(), BorderLayout.NORTH);
-		}
-		return panelH_22;
-	}
-	private JPanel getPanelH_23() {
-		if (panelH_23 == null) {
-			panelH_23 = new JPanel();
-			panelH_23.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelH_23.setBorder(bordeNormal);
-			panelH_23.setLayout(new BorderLayout(0, 0));
-			panelH_23.add(getPanelValor_H23(), BorderLayout.CENTER);
-			panelH_23.add(getPanelCandidatos_H23(), BorderLayout.NORTH);
-		}
-		return panelH_23;
-	}
-	private JPanel getPanelH_31() {
-		if (panelH_31 == null) {
-			panelH_31 = new JPanel();
-			panelH_31.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelH_31.setBorder(bordeNormal);
-			panelH_31.setLayout(new BorderLayout(0, 0));
-			panelH_31.add(getPanelValor_H31(), BorderLayout.CENTER);
-			panelH_31.add(getPanelCandidatos_H31(), BorderLayout.NORTH);
-		}
-		return panelH_31;
-	}
-	private JPanel getPanelH_32() {
-		if (panelH_32 == null) {
-			panelH_32 = new JPanel();
-			panelH_32.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelH_32.setBorder(bordeNormal);
-			panelH_32.setLayout(new BorderLayout(0, 0));
-			panelH_32.add(getPanelValor_H32(), BorderLayout.CENTER);
-			panelH_32.add(getPanelCandidatos_H32(), BorderLayout.NORTH);
-		}
-		return panelH_32;
-	}
-	private JPanel getPanelH_33() {
-		if (panelH_33 == null) {
-			panelH_33 = new JPanel();
-			panelH_33.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelH_33.setBorder(bordeNormal);
-			panelH_33.setLayout(new BorderLayout(0, 0));
-			panelH_33.add(getPanelValor_H33(), BorderLayout.CENTER);
-			panelH_33.add(getPanelCandidatos_H33(), BorderLayout.NORTH);
-		}
-		return panelH_33;
-	}
-	private JPanel getPanelI_11() {
-		if (panelI_11 == null) {
-			panelI_11 = new JPanel();
-			panelI_11.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelI_11.setBorder(bordeNormal);
-			panelI_11.setLayout(new BorderLayout(0, 0));
-			panelI_11.add(getPanelValor_I11(), BorderLayout.CENTER);
-			panelI_11.add(getPanelCandidatos_I11(), BorderLayout.NORTH);
-		}
-		return panelI_11;
-	}
-	private JPanel getPanelI_12() {
-		if (panelI_12 == null) {
-			panelI_12 = new JPanel();
-			panelI_12.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelI_12.setBorder(bordeNormal);
-			panelI_12.setLayout(new BorderLayout(0, 0));
-			panelI_12.add(getPanelValor_I12(), BorderLayout.CENTER);
-			panelI_12.add(getPanelCandidatos_I12(), BorderLayout.NORTH);
-		}
-		return panelI_12;
-	}
-	private JPanel getPanelI_13() {
-		if (panelI_13 == null) {
-			panelI_13 = new JPanel();
-			panelI_13.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelI_13.setBorder(bordeNormal);
-			panelI_13.setLayout(new BorderLayout(0, 0));
-			panelI_13.add(getPanelValor_I13(), BorderLayout.CENTER);
-			panelI_13.add(getPanelCandidatos_I13(), BorderLayout.NORTH);
-		}
-		return panelI_13;
-	}
-	private JPanel getPanelI_21() {
-		if (panelI_21 == null) {
-			panelI_21 = new JPanel();
-			panelI_21.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelI_21.setBorder(bordeNormal);
-			panelI_21.setLayout(new BorderLayout(0, 0));
-			panelI_21.add(getPanelValor_I21(), BorderLayout.CENTER);
-			panelI_21.add(getPanelCandidatos_I21(), BorderLayout.NORTH);
-		}
-		return panelI_21;
-	}
-	private JPanel getPanelI_22() {
-		if (panelI_22 == null) {
-			panelI_22 = new JPanel();
-			panelI_22.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelI_22.setBorder(bordeNormal);
-			panelI_22.setLayout(new BorderLayout(0, 0));
-			panelI_22.add(getPanelValor_I22(), BorderLayout.CENTER);
-			panelI_22.add(getPanelCandidatos_I22(), BorderLayout.NORTH);
-		}
-		return panelI_22;
-	}
-	private JPanel getPanelI_23() {
-		if (panelI_23 == null) {
-			panelI_23 = new JPanel();
-			panelI_23.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelI_23.setBorder(bordeNormal);
-			panelI_23.setLayout(new BorderLayout(0, 0));
-			panelI_23.add(getPanelValor_I23(), BorderLayout.CENTER);
-			panelI_23.add(getPanelCandidatos_I23(), BorderLayout.NORTH);
-		}
-		return panelI_23;
-	}
-	private JPanel getPanelI_31() {
-		if (panelI_31 == null) {
-			panelI_31 = new JPanel();
-			panelI_31.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelI_31.setBorder(bordeNormal);
-			panelI_31.setLayout(new BorderLayout(0, 0));
-			panelI_31.add(getPanelValor_I31(), BorderLayout.CENTER);
-			panelI_31.add(getPanelCandidatos_I31(), BorderLayout.NORTH);
-		}
-		return panelI_31;
-	}
-	private JPanel getPanelI_32() {
-		if (panelI_32 == null) {
-			panelI_32 = new JPanel();
-			panelI_32.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelI_32.setBorder(bordeNormal);
-			panelI_32.setLayout(new BorderLayout(0, 0));
-			panelI_32.add(getPanelValor_I32(), BorderLayout.CENTER);
-			panelI_32.add(getPanelCandidatos_I32(), BorderLayout.NORTH);
-		}
-		return panelI_32;
-	}
-	private JPanel getPanelI_33() {
-		if (panelI_33 == null) {
-			panelI_33 = new JPanel();
-			panelI_33.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					select=casillaSelect(e, select);
-				}
-			});
-			panelI_33.setBorder(bordeNormal);
-			panelI_33.setLayout(new BorderLayout(0, 0));
-			panelI_33.add(getPanelValor_I33(), BorderLayout.CENTER);
-			panelI_33.add(getPanelCandidatos_I33(), BorderLayout.NORTH);
-		}
-		return panelI_33;
-	}
-	
-	private JPanel getPanelValor_A12() {
-		if (panelValor_A12 == null) {
-			panelValor_A12 = new JPanel();
-			panelValor_A12.add(getLblValor_A12());
-		}
-		return panelValor_A12;
-	}
-	private JPanel getPanelCandidatos_A12() {
-		if (panelCandidatos_A12 == null) {
-			panelCandidatos_A12 = new JPanel();
-			panelCandidatos_A12.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_A12.add(getLblCandidatos_A12());
-		}
-		return panelCandidatos_A12;
-	}
-	private JLabel getLblCandidatos_A12() {
-		if (lblCandidatos_A12 == null) {
-			lblCandidatos_A12 = new JLabel(" ");
-			lblCandidatos_A12.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_A12;
-	}
-	private JLabel getLblValor_A12() {
-		if (lblValor_A12 == null) {
-			lblValor_A12 = new JLabel(" ");
-			lblValor_A12.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_A12.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_A12.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_A12;
-	}
-	private JPanel getPanelValor_A11() {
-		if (panelValor_A11 == null) {
-			panelValor_A11 = new JPanel();
-			panelValor_A11.add(getLblValor_A11());
-		}
-		return panelValor_A11;
-	}
-	private JLabel getLblValor_A11() {
-		if (lblValor_A11 == null) {
-			lblValor_A11 = new JLabel("");
-			lblValor_A11.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_A11.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_A11.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_A11;
-	}
-	private JPanel getPanelCandidatos_A11() {
-		if (panelCandidatos_A11 == null) {
-			panelCandidatos_A11 = new JPanel();
-			panelCandidatos_A11.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_A11.add(getLblCandidatos_A11());
-		}
-		return panelCandidatos_A11;
-	}
-	private JLabel getLblCandidatos_A11() {
-		if (lblCandidatos_A11 == null) {
-			lblCandidatos_A11 = new JLabel(" ");
-			lblCandidatos_A11.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_A11;
-	}
-	private JPanel getPanelValor_A13() {
-		if (panelValor_A13 == null) {
-			panelValor_A13 = new JPanel();
-			panelValor_A13.add(getLblValor_A13());
-		}
-		return panelValor_A13;
-	}
-	private JLabel getLblValor_A13() {
-		if (lblValor_A13 == null) {
-			lblValor_A13 = new JLabel(" ");
-			lblValor_A13.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_A13.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_A13.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_A13;
-	}
-	private JPanel getPanelCandidatos_A13() {
-		if (panelCandidatos_A13 == null) {
-			panelCandidatos_A13 = new JPanel();
-			panelCandidatos_A13.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_A13.add(getLblCandidatos_A13());
-		}
-		return panelCandidatos_A13;
-	}
-	private JLabel getLblCandidatos_A13() {
-		if (lblCandidatos_A13 == null) {
-			lblCandidatos_A13 = new JLabel(" ");
-			lblCandidatos_A13.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_A13;
-	}
-	private JPanel getPanelValor_A21() {
-		if (panelValor_A21 == null) {
-			panelValor_A21 = new JPanel();
-			panelValor_A21.add(getLblValor_A21());
-		}
-		return panelValor_A21;
-	}
-	private JLabel getLblValor_A21() {
-		if (lblValor_A21 == null) {
-			lblValor_A21 = new JLabel(" ");
-			lblValor_A21.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_A21.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_A21.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_A21;
-	}
-	private JPanel getPanelCandidatos_A21() {
-		if (panelCandidatos_A21 == null) {
-			panelCandidatos_A21 = new JPanel();
-			panelCandidatos_A21.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_A21.add(getLblCandidatos_A21());
-		}
-		return panelCandidatos_A21;
-	}
-	private JLabel getLblCandidatos_A21() {
-		if (lblCandidatos_A21 == null) {
-			lblCandidatos_A21 = new JLabel(" ");
-			lblCandidatos_A21.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_A21;
-	}
-	private JPanel getPanelValor_A22() {
-		if (panelValor_A22 == null) {
-			panelValor_A22 = new JPanel();
-			panelValor_A22.add(getLblValor_A22());
-		}
-		return panelValor_A22;
-	}
-	private JLabel getLblValor_A22() {
-		if (lblValor_A22 == null) {
-			lblValor_A22 = new JLabel(" ");
-			lblValor_A22.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_A22.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_A22.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_A22;
-	}
-	private JPanel getPanelCandidatos_A22() {
-		if (panelCandidatos_A22 == null) {
-			panelCandidatos_A22 = new JPanel();
-			panelCandidatos_A22.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_A22.add(getLblCandidatos_A22());
-		}
-		return panelCandidatos_A22;
-	}
-	private JLabel getLblCandidatos_A22() {
-		if (lblCandidatos_A22 == null) {
-			lblCandidatos_A22 = new JLabel(" ");
-			lblCandidatos_A22.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_A22;
-	}
-	private JPanel getPanelValor_A23() {
-		if (panelValor_A23 == null) {
-			panelValor_A23 = new JPanel();
-			panelValor_A23.add(getLblValor_A23());
-		}
-		return panelValor_A23;
-	}
-	private JLabel getLblValor_A23() {
-		if (lblValor_A23 == null) {
-			lblValor_A23 = new JLabel(" ");
-			lblValor_A23.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_A23.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_A23.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_A23;
-	}
-	private JPanel getPanelCandidatos_A23() {
-		if (panelCandidatos_A23 == null) {
-			panelCandidatos_A23 = new JPanel();
-			panelCandidatos_A23.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_A23.add(getLblCandidatos_A23());
-		}
-		return panelCandidatos_A23;
-	}
-	private JLabel getLblCandidatos_A23() {
-		if (lblCandidatos_A23 == null) {
-			lblCandidatos_A23 = new JLabel(" ");
-			lblCandidatos_A23.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_A23;
-	}
-	private JPanel getPanelValor_A31() {
-		if (panelValor_A31 == null) {
-			panelValor_A31 = new JPanel();
-			panelValor_A31.add(getLblValor_A31());
-		}
-		return panelValor_A31;
-	}
-	private JLabel getLblValor_A31() {
-		if (lblValor_A31 == null) {
-			lblValor_A31 = new JLabel(" ");
-			lblValor_A31.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_A31.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_A31.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_A31;
-	}
-	private JPanel getPanelCandidatos_A31() {
-		if (panelCandidatos_A31 == null) {
-			panelCandidatos_A31 = new JPanel();
-			panelCandidatos_A31.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_A31.add(getLblCandidatos_A31());
-		}
-		return panelCandidatos_A31;
-	}
-	private JLabel getLblCandidatos_A31() {
-		if (lblCandidatos_A31 == null) {
-			lblCandidatos_A31 = new JLabel(" ");
-			lblCandidatos_A31.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_A31;
-	}
-	private JPanel getPanelValor_A32() {
-		if (panelValor_A32 == null) {
-			panelValor_A32 = new JPanel();
-			panelValor_A32.add(getLblValor_A32());
-		}
-		return panelValor_A32;
-	}
-	private JLabel getLblValor_A32() {
-		if (lblValor_A32 == null) {
-			lblValor_A32 = new JLabel(" ");
-			lblValor_A32.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_A32.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_A32.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_A32;
-	}
-	private JPanel getPanelCandidatos_A32() {
-		if (panelCandidatos_A32 == null) {
-			panelCandidatos_A32 = new JPanel();
-			panelCandidatos_A32.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_A32.add(getLblCandidatos_A32());
-		}
-		return panelCandidatos_A32;
-	}
-	private JLabel getLblCandidatos_A32() {
-		if (lblCandidatos_A32 == null) {
-			lblCandidatos_A32 = new JLabel(" ");
-			lblCandidatos_A32.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_A32;
-	}
-	private JPanel getPanelValor_A33() {
-		if (panelValor_A33 == null) {
-			panelValor_A33 = new JPanel();
-			panelValor_A33.add(getLblValor_A33());
-		}
-		return panelValor_A33;
-	}
-	private JLabel getLblValor_A33() {
-		if (lblValor_A33 == null) {
-			lblValor_A33 = new JLabel(" ");
-			lblValor_A33.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_A33.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_A33.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_A33;
-	}
-	private JPanel getPanelCandidatos_A33() {
-		if (panelCandidatos_A33 == null) {
-			panelCandidatos_A33 = new JPanel();
-			panelCandidatos_A33.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_A33.add(getLblCandidatos_A33());
-		}
-		return panelCandidatos_A33;
-	}
-	private JLabel getLblCandidatos_A33() {
-		if (lblCandidatos_A33 == null) {
-			lblCandidatos_A33 = new JLabel(" ");
-			lblCandidatos_A33.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_A33;
-	}
-	private JPanel getPanelValor_B11() {
-		if (panelValor_B11 == null) {
-			panelValor_B11 = new JPanel();
-			panelValor_B11.add(getLblValor_B11());
-		}
-		return panelValor_B11;
-	}
-	private JLabel getLblValor_B11() {
-		if (lblValor_B11 == null) {
-			lblValor_B11 = new JLabel(" ");
-			lblValor_B11.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_B11.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_B11.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_B11;
-	}
-	private JPanel getPanelCandidatos_B11() {
-		if (panelCandidatos_B11 == null) {
-			panelCandidatos_B11 = new JPanel();
-			panelCandidatos_B11.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_B11.add(getLblCandidatos_B11());
-		}
-		return panelCandidatos_B11;
-	}
-	private JLabel getLblCandidatos_B11() {
-		if (lblCandidatos_B11 == null) {
-			lblCandidatos_B11 = new JLabel(" ");
-			lblCandidatos_B11.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_B11;
-	}
-	private JPanel getPanelValor_B12() {
-		if (panelValor_B12 == null) {
-			panelValor_B12 = new JPanel();
-			panelValor_B12.add(getLblValor_B12());
-		}
-		return panelValor_B12;
-	}
-	private JLabel getLblValor_B12() {
-		if (lblValor_B12 == null) {
-			lblValor_B12 = new JLabel(" ");
-			lblValor_B12.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_B12.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_B12.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_B12;
-	}
-	private JPanel getPanelCandidatos_B12() {
-		if (panelCandidatos_B12 == null) {
-			panelCandidatos_B12 = new JPanel();
-			panelCandidatos_B12.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_B12.add(getLblCandidatos_B12());
-		}
-		return panelCandidatos_B12;
-	}
-	private JLabel getLblCandidatos_B12() {
-		if (lblCandidatos_B12 == null) {
-			lblCandidatos_B12 = new JLabel(" ");
-			lblCandidatos_B12.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_B12;
-	}
-	private JPanel getPanelValor_B13() {
-		if (panelValor_B13 == null) {
-			panelValor_B13 = new JPanel();
-			panelValor_B13.add(getLblValor_B13());
-		}
-		return panelValor_B13;
-	}
-	private JLabel getLblValor_B13() {
-		if (lblValor_B13 == null) {
-			lblValor_B13 = new JLabel(" ");
-			lblValor_B13.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_B13.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_B13.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_B13;
-	}
-	private JPanel getPanelCandidatos_B13() {
-		if (panelCandidatos_B13 == null) {
-			panelCandidatos_B13 = new JPanel();
-			panelCandidatos_B13.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_B13.add(getLblCandidatos_B13());
-		}
-		return panelCandidatos_B13;
-	}
-	private JLabel getLblCandidatos_B13() {
-		if (lblCandidatos_B13 == null) {
-			lblCandidatos_B13 = new JLabel(" ");
-			lblCandidatos_B13.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_B13;
-	}
-	private JPanel getPanelValor_B21() {
-		if (panelValor_B21 == null) {
-			panelValor_B21 = new JPanel();
-			panelValor_B21.add(getLblValor_B21());
-		}
-		return panelValor_B21;
-	}
-	private JLabel getLblValor_B21() {
-		if (lblValor_B21 == null) {
-			lblValor_B21 = new JLabel(" ");
-			lblValor_B21.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_B21.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_B21.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_B21;
-	}
-	private JPanel getPanelCandidatos_B21() {
-		if (panelCandidatos_B21 == null) {
-			panelCandidatos_B21 = new JPanel();
-			panelCandidatos_B21.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_B21.add(getLblCandidatos_B21());
-		}
-		return panelCandidatos_B21;
-	}
-	private JLabel getLblCandidatos_B21() {
-		if (lblCandidatos_B21 == null) {
-			lblCandidatos_B21 = new JLabel(" ");
-			lblCandidatos_B21.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_B21;
-	}
-	private JPanel getPanelValor_B22() {
-		if (panelValor_B22 == null) {
-			panelValor_B22 = new JPanel();
-			panelValor_B22.add(getLblValor_B22());
-		}
-		return panelValor_B22;
-	}
-	private JLabel getLblValor_B22() {
-		if (lblValor_B22 == null) {
-			lblValor_B22 = new JLabel(" ");
-			lblValor_B22.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_B22.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_B22.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_B22;
-	}
-	private JPanel getPanelCandidatos_B22() {
-		if (panelCandidatos_B22 == null) {
-			panelCandidatos_B22 = new JPanel();
-			panelCandidatos_B22.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_B22.add(getLblCandidatos_B22());
-		}
-		return panelCandidatos_B22;
-	}
-	private JLabel getLblCandidatos_B22() {
-		if (lblCandidatos_B22 == null) {
-			lblCandidatos_B22 = new JLabel(" ");
-			lblCandidatos_B22.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_B22;
-	}
-	private JPanel getPanelValor_B23() {
-		if (panelValor_B23 == null) {
-			panelValor_B23 = new JPanel();
-			panelValor_B23.add(getLblValor_B23());
-		}
-		return panelValor_B23;
-	}
-	private JLabel getLblValor_B23() {
-		if (lblValor_B23 == null) {
-			lblValor_B23 = new JLabel(" ");
-			lblValor_B23.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_B23.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_B23.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_B23;
-	}
-	private JPanel getPanelCandidatos_B23() {
-		if (panelCandidatos_B23 == null) {
-			panelCandidatos_B23 = new JPanel();
-			panelCandidatos_B23.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_B23.add(getLblCandidatos_B23());
-		}
-		return panelCandidatos_B23;
-	}
-	private JLabel getLblCandidatos_B23() {
-		if (lblCandidatos_B23 == null) {
-			lblCandidatos_B23 = new JLabel(" ");
-			lblCandidatos_B23.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_B23;
-	}
-	private JPanel getPanelValor_B31() {
-		if (panelValor_B31 == null) {
-			panelValor_B31 = new JPanel();
-			panelValor_B31.add(getLblValor_B31());
-		}
-		return panelValor_B31;
-	}
-	private JLabel getLblValor_B31() {
-		if (lblValor_B31 == null) {
-			lblValor_B31 = new JLabel(" ");
-			lblValor_B31.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_B31.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_B31.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_B31;
-	}
-	private JPanel getPanelCandidatos_B31() {
-		if (panelCandidatos_B31 == null) {
-			panelCandidatos_B31 = new JPanel();
-			panelCandidatos_B31.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_B31.add(getLblCandidatos_B31());
-		}
-		return panelCandidatos_B31;
-	}
-	private JLabel getLblCandidatos_B31() {
-		if (lblCandidatos_B31 == null) {
-			lblCandidatos_B31 = new JLabel(" ");
-			lblCandidatos_B31.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_B31;
-	}
-	private JPanel getPanelValor_B32() {
-		if (panelValor_B32 == null) {
-			panelValor_B32 = new JPanel();
-			panelValor_B32.add(getLblValor_B32());
-		}
-		return panelValor_B32;
-	}
-	private JLabel getLblValor_B32() {
-		if (lblValor_B32 == null) {
-			lblValor_B32 = new JLabel(" ");
-			lblValor_B32.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_B32.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_B32.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_B32;
-	}
-	private JPanel getPanelCandidatos_B32() {
-		if (panelCandidatos_B32 == null) {
-			panelCandidatos_B32 = new JPanel();
-			panelCandidatos_B32.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_B32.add(getLblCandidatos_B32());
-		}
-		return panelCandidatos_B32;
-	}
-	private JLabel getLblCandidatos_B32() {
-		if (lblCandidatos_B32 == null) {
-			lblCandidatos_B32 = new JLabel(" ");
-			lblCandidatos_B32.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_B32;
-	}
-	private JPanel getPanelValor_B33() {
-		if (panelValor_B33 == null) {
-			panelValor_B33 = new JPanel();
-			panelValor_B33.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelValor_B33.add(getLblValor_B33());
-		}
-		return panelValor_B33;
-	}
-	private JLabel getLblValor_B33() {
-		if (lblValor_B33 == null) {
-			lblValor_B33 = new JLabel("");
-			lblValor_B33.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_B33.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_B33;
-	}
-	private JPanel getPanelCandidatos_B33() {
-		if (panelCandidatos_B33 == null) {
-			panelCandidatos_B33 = new JPanel();
-			panelCandidatos_B33.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_B33.add(getLblCandidatos_B33());
-		}
-		return panelCandidatos_B33;
-	}
-	private JLabel getLblCandidatos_B33() {
-		if (lblCandidatos_B33 == null) {
-			lblCandidatos_B33 = new JLabel(" ");
-			lblCandidatos_B33.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_B33;
-	}
-	private JPanel getPanelValor_C12() {
-		if (panelValor_C12 == null) {
-			panelValor_C12 = new JPanel();
-			panelValor_C12.add(getLblValor_C12());
-		}
-		return panelValor_C12;
-	}
-	private JLabel getLblValor_C12() {
-		if (lblValor_C12 == null) {
-			lblValor_C12 = new JLabel(" ");
-			lblValor_C12.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_C12.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_C12.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_C12;
-	}
-	private JPanel getPanelCandidatos_C12() {
-		if (panelCandidatos_C12 == null) {
-			panelCandidatos_C12 = new JPanel();
-			panelCandidatos_C12.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_C12.add(getLblCandidatos_C12());
-		}
-		return panelCandidatos_C12;
-	}
-	private JLabel getLblCandidatos_C12() {
-		if (lblCandidatos_C12 == null) {
-			lblCandidatos_C12 = new JLabel(" ");
-			lblCandidatos_C12.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_C12;
-	}
-	private JPanel getPanelValor_C11() {
-		if (panelValor_C11 == null) {
-			panelValor_C11 = new JPanel();
-			panelValor_C11.add(getLblValor_C11());
-		}
-		return panelValor_C11;
-	}
-	private JLabel getLblValor_C11() {
-		if (lblValor_C11 == null) {
-			lblValor_C11 = new JLabel(" ");
-			lblValor_C11.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_C11.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_C11.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_C11;
-	}
-	private JPanel getPanelCandidatos_C11() {
-		if (panelCandidatos_C11 == null) {
-			panelCandidatos_C11 = new JPanel();
-			panelCandidatos_C11.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_C11.add(getLblCandidatos_C11());
-		}
-		return panelCandidatos_C11;
-	}
-	private JLabel getLblCandidatos_C11() {
-		if (lblCandidatos_C11 == null) {
-			lblCandidatos_C11 = new JLabel(" ");
-			lblCandidatos_C11.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_C11;
-	}
-	private JPanel getPanelValor_C13() {
-		if (panelValor_C13 == null) {
-			panelValor_C13 = new JPanel();
-			panelValor_C13.add(getLblValor_C13());
-		}
-		return panelValor_C13;
-	}
-	private JLabel getLblValor_C13() {
-		if (lblValor_C13 == null) {
-			lblValor_C13 = new JLabel(" ");
-			lblValor_C13.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_C13.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_C13.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_C13;
-	}
-	private JPanel getPanelCandidatos_C13() {
-		if (panelCandidatos_C13 == null) {
-			panelCandidatos_C13 = new JPanel();
-			panelCandidatos_C13.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_C13.add(getLblCandidatos_C13());
-		}
-		return panelCandidatos_C13;
-	}
-	private JLabel getLblCandidatos_C13() {
-		if (lblCandidatos_C13 == null) {
-			lblCandidatos_C13 = new JLabel(" ");
-			lblCandidatos_C13.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_C13;
-	}
-	private JPanel getPanelValor_C21() {
-		if (panelValor_C21 == null) {
-			panelValor_C21 = new JPanel();
-			panelValor_C21.add(getLblValor_C21());
-		}
-		return panelValor_C21;
-	}
-	private JLabel getLblValor_C21() {
-		if (lblValor_C21 == null) {
-			lblValor_C21 = new JLabel(" ");
-			lblValor_C21.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_C21.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_C21.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_C21;
-	}
-	private JPanel getPanelCandidatos_C21() {
-		if (panelCandidatos_C21 == null) {
-			panelCandidatos_C21 = new JPanel();
-			panelCandidatos_C21.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_C21.add(getLblCandidatos_C21());
-		}
-		return panelCandidatos_C21;
-	}
-	private JLabel getLblCandidatos_C21() {
-		if (lblCandidatos_C21 == null) {
-			lblCandidatos_C21 = new JLabel(" ");
-			lblCandidatos_C21.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_C21;
-	}
-	private JPanel getPanelValor_C22() {
-		if (panelValor_C22 == null) {
-			panelValor_C22 = new JPanel();
-			panelValor_C22.add(getLblValor_C22());
-		}
-		return panelValor_C22;
-	}
-	private JLabel getLblValor_C22() {
-		if (lblValor_C22 == null) {
-			lblValor_C22 = new JLabel(" ");
-			lblValor_C22.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_C22.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_C22.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_C22;
-	}
-	private JPanel getPanelCandidatos_C22() {
-		if (panelCandidatos_C22 == null) {
-			panelCandidatos_C22 = new JPanel();
-			panelCandidatos_C22.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_C22.add(getLblCandidatos_C22());
-		}
-		return panelCandidatos_C22;
-	}
-	private JLabel getLblCandidatos_C22() {
-		if (lblCandidatos_C22 == null) {
-			lblCandidatos_C22 = new JLabel(" ");
-			lblCandidatos_C22.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_C22;
-	}
-	private JPanel getPanelValor_C23() {
-		if (panelValor_C23 == null) {
-			panelValor_C23 = new JPanel();
-			panelValor_C23.add(getLblValor_C23());
-		}
-		return panelValor_C23;
-	}
-	private JLabel getLblValor_C23() {
-		if (lblValor_C23 == null) {
-			lblValor_C23 = new JLabel(" ");
-			lblValor_C23.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_C23.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_C23.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_C23;
-	}
-	private JPanel getPanelCandidatos_C23() {
-		if (panelCandidatos_C23 == null) {
-			panelCandidatos_C23 = new JPanel();
-			panelCandidatos_C23.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_C23.add(getLblCandidatos_C23());
-		}
-		return panelCandidatos_C23;
-	}
-	private JLabel getLblCandidatos_C23() {
-		if (lblCandidatos_C23 == null) {
-			lblCandidatos_C23 = new JLabel(" ");
-			lblCandidatos_C23.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_C23;
-	}
-	private JPanel getPanelValor_C31() {
-		if (panelValor_C31 == null) {
-			panelValor_C31 = new JPanel();
-			panelValor_C31.add(getLblValor_C31());
-		}
-		return panelValor_C31;
-	}
-	private JLabel getLblValor_C31() {
-		if (lblValor_C31 == null) {
-			lblValor_C31 = new JLabel(" ");
-			lblValor_C31.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_C31.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_C31.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_C31;
-	}
-	private JPanel getPanelCandidatos_C31() {
-		if (panelCandidatos_C31 == null) {
-			panelCandidatos_C31 = new JPanel();
-			panelCandidatos_C31.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_C31.add(getLblCandidatos_C31());
-		}
-		return panelCandidatos_C31;
-	}
-	private JLabel getLblCandidatos_C31() {
-		if (lblCandidatos_C31 == null) {
-			lblCandidatos_C31 = new JLabel(" ");
-			lblCandidatos_C31.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_C31;
-	}
-	private JPanel getPanelValor_C32() {
-		if (panelValor_C32 == null) {
-			panelValor_C32 = new JPanel();
-			panelValor_C32.add(getLblValor_C32());
-		}
-		return panelValor_C32;
-	}
-	private JLabel getLblValor_C32() {
-		if (lblValor_C32 == null) {
-			lblValor_C32 = new JLabel(" ");
-			lblValor_C32.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_C32.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_C32.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_C32;
-	}
-	private JPanel getPanelCandidatos_C32() {
-		if (panelCandidatos_C32 == null) {
-			panelCandidatos_C32 = new JPanel();
-			panelCandidatos_C32.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_C32.add(getLblCandidatos_C32());
-		}
-		return panelCandidatos_C32;
-	}
-	private JLabel getLblCandidatos_C32() {
-		if (lblCandidatos_C32 == null) {
-			lblCandidatos_C32 = new JLabel(" ");
-			lblCandidatos_C32.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_C32;
-	}
-	private JPanel getPanelValor_C33() {
-		if (panelValor_C33 == null) {
-			panelValor_C33 = new JPanel();
-			panelValor_C33.add(getLblValor_C33());
-		}
-		return panelValor_C33;
-	}
-	private JLabel getLblValor_C33() {
-		if (lblValor_C33 == null) {
-			lblValor_C33 = new JLabel(" ");
-			lblValor_C33.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_C33.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_C33.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_C33;
-	}
-	private JPanel getPanelCandidatos_C33() {
-		if (panelCandidatos_C33 == null) {
-			panelCandidatos_C33 = new JPanel();
-			panelCandidatos_C33.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_C33.add(getLblCandidatos_C33());
-		}
-		return panelCandidatos_C33;
-	}
-	private JLabel getLblCandidatos_C33() {
-		if (lblCandidatos_C33 == null) {
-			lblCandidatos_C33 = new JLabel(" ");
-			lblCandidatos_C33.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_C33;
-	}
-
-	private JPanel getPanelValor_D11() {
-		if (panelValor_D11 == null) {
-			panelValor_D11 = new JPanel();
-			panelValor_D11.add(getLblValor_D11());
-		}
-		return panelValor_D11;
-	}
-	private JLabel getLblValor_D11() {
-		if (lblValor_D11 == null) {
-			lblValor_D11 = new JLabel(" ");
-			lblValor_D11.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_D11.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_D11.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_D11;
-	}
-	private JPanel getPanelCandidatos_D11() {
-		if (panelCandidatos_D11 == null) {
-			panelCandidatos_D11 = new JPanel();
-			panelCandidatos_D11.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_D11.add(getLblCandidatos_D11());
-		}
-		return panelCandidatos_D11;
-	}
-	private JLabel getLblCandidatos_D11() {
-		if (lblCandidatos_D11 == null) {
-			lblCandidatos_D11 = new JLabel(" ");
-			lblCandidatos_D11.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_D11;
-	}
-	private JPanel getPanelValor_D12() {
-		if (panelValor_D12 == null) {
-			panelValor_D12 = new JPanel();
-			panelValor_D12.add(getLblValor_D12());
-		}
-		return panelValor_D12;
-	}
-	private JLabel getLblValor_D12() {
-		if (lblValor_D12 == null) {
-			lblValor_D12 = new JLabel(" ");
-			lblValor_D12.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_D12.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_D12.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_D12;
-	}
-	private JPanel getPanelCandidatos_D12() {
-		if (panelCandidatos_D12 == null) {
-			panelCandidatos_D12 = new JPanel();
-			panelCandidatos_D12.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_D12.add(getLblCandidatos_D12());
-		}
-		return panelCandidatos_D12;
-	}
-	private JLabel getLblCandidatos_D12() {
-		if (lblCandidatos_D12 == null) {
-			lblCandidatos_D12 = new JLabel(" ");
-			lblCandidatos_D12.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_D12;
-	}
-	private JPanel getPanelValor_D13() {
-		if (panelValor_D13 == null) {
-			panelValor_D13 = new JPanel();
-			panelValor_D13.add(getLblValor_D13());
-		}
-		return panelValor_D13;
-	}
-	private JLabel getLblValor_D13() {
-		if (lblValor_D13 == null) {
-			lblValor_D13 = new JLabel(" ");
-			lblValor_D13.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_D13.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_D13.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_D13;
-	}
-	private JPanel getPanelCandidatos_D13() {
-		if (panelCandidatos_D13 == null) {
-			panelCandidatos_D13 = new JPanel();
-			panelCandidatos_D13.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_D13.add(getLblCandidatos_D13());
-		}
-		return panelCandidatos_D13;
-	}
-	private JLabel getLblCandidatos_D13() {
-		if (lblCandidatos_D13 == null) {
-			lblCandidatos_D13 = new JLabel(" ");
-			lblCandidatos_D13.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_D13;
-	}
-	private JPanel getPanelValor_D21() {
-		if (panelValor_D21 == null) {
-			panelValor_D21 = new JPanel();
-			panelValor_D21.add(getLblValor_D21());
-		}
-		return panelValor_D21;
-	}
-	private JLabel getLblValor_D21() {
-		if (lblValor_D21 == null) {
-			lblValor_D21 = new JLabel(" ");
-			lblValor_D21.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_D21.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_D21.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_D21;
-	}
-	private JPanel getPanelCandidatos_D21() {
-		if (panelCandidatos_D21 == null) {
-			panelCandidatos_D21 = new JPanel();
-			panelCandidatos_D21.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_D21.add(getLblCandidatos_D21());
-		}
-		return panelCandidatos_D21;
-	}
-	private JLabel getLblCandidatos_D21() {
-		if (lblCandidatos_D21 == null) {
-			lblCandidatos_D21 = new JLabel(" ");
-			lblCandidatos_D21.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_D21;
-	}
-	private JPanel getPanelValor_D22() {
-		if (panelValor_D22 == null) {
-			panelValor_D22 = new JPanel();
-			panelValor_D22.add(getLblValor_D22());
-		}
-		return panelValor_D22;
-	}
-	private JLabel getLblValor_D22() {
-		if (lblValor_D22 == null) {
-			lblValor_D22 = new JLabel(" ");
-			lblValor_D22.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_D22.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_D22.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_D22;
-	}
-	private JPanel getPanelCandidatos_D22() {
-		if (panelCandidatos_D22 == null) {
-			panelCandidatos_D22 = new JPanel();
-			panelCandidatos_D22.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_D22.add(getLblCandidatos_D22());
-		}
-		return panelCandidatos_D22;
-	}
-	private JLabel getLblCandidatos_D22() {
-		if (lblCandidatos_D22 == null) {
-			lblCandidatos_D22 = new JLabel(" ");
-			lblCandidatos_D22.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_D22;
-	}
-	private JPanel getPanelValor_D23() {
-		if (panelValor_D23 == null) {
-			panelValor_D23 = new JPanel();
-			panelValor_D23.add(getLblValor_D23());
-		}
-		return panelValor_D23;
-	}
-	private JLabel getLblValor_D23() {
-		if (lblValor_D23 == null) {
-			lblValor_D23 = new JLabel(" ");
-			lblValor_D23.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_D23.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_D23.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_D23;
-	}
-	private JPanel getPanelCandidatos_D23() {
-		if (panelCandidatos_D23 == null) {
-			panelCandidatos_D23 = new JPanel();
-			panelCandidatos_D23.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_D23.add(getLblCandidatos_D23());
-		}
-		return panelCandidatos_D23;
-	}
-	private JLabel getLblCandidatos_D23() {
-		if (lblCandidatos_D23 == null) {
-			lblCandidatos_D23 = new JLabel(" ");
-			lblCandidatos_D23.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_D23;
-	}
-	private JPanel getPanelValor_D31() {
-		if (panelValor_D31 == null) {
-			panelValor_D31 = new JPanel();
-			panelValor_D31.add(getLblValor_D31());
-		}
-		return panelValor_D31;
-	}
-	private JLabel getLblValor_D31() {
-		if (lblValor_D31 == null) {
-			lblValor_D31 = new JLabel(" ");
-			lblValor_D31.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_D31.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_D31.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_D31;
-	}
-	private JPanel getPanelCandidatos_D31() {
-		if (panelCandidatos_D31 == null) {
-			panelCandidatos_D31 = new JPanel();
-			panelCandidatos_D31.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_D31.add(getLblCandidatos_D31());
-		}
-		return panelCandidatos_D31;
-	}
-	private JLabel getLblCandidatos_D31() {
-		if (lblCandidatos_D31 == null) {
-			lblCandidatos_D31 = new JLabel(" ");
-			lblCandidatos_D31.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_D31;
-	}
-	private JPanel getPanelValor_D32() {
-		if (panelValor_D32 == null) {
-			panelValor_D32 = new JPanel();
-			panelValor_D32.add(getLblValor_D32());
-		}
-		return panelValor_D32;
-	}
-	private JLabel getLblValor_D32() {
-		if (lblValor_D32 == null) {
-			lblValor_D32 = new JLabel(" ");
-			lblValor_D32.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_D32.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_D32.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_D32;
-	}
-	private JPanel getPanelCandidatos_D32() {
-		if (panelCandidatos_D32 == null) {
-			panelCandidatos_D32 = new JPanel();
-			panelCandidatos_D32.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_D32.add(getLblCandidatos_D32());
-		}
-		return panelCandidatos_D32;
-	}
-	private JLabel getLblCandidatos_D32() {
-		if (lblCandidatos_D32 == null) {
-			lblCandidatos_D32 = new JLabel(" ");
-			lblCandidatos_D32.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_D32;
-	}
-	private JPanel getPanelValor_D33() {
-		if (panelValor_D33 == null) {
-			panelValor_D33 = new JPanel();
-			panelValor_D33.add(getLblValor_D33());
-		}
-		return panelValor_D33;
-	}
-	private JLabel getLblValor_D33() {
-		if (lblValor_D33 == null) {
-			lblValor_D33 = new JLabel(" ");
-			lblValor_D33.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_D33.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_D33.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_D33;
-	}
-	private JPanel getPanelCandidatos_D33() {
-		if (panelCandidatos_D33 == null) {
-			panelCandidatos_D33 = new JPanel();
-			panelCandidatos_D33.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_D33.add(getLblCandidatos_D33());
-		}
-		return panelCandidatos_D33;
-	}
-	private JLabel getLblCandidatos_D33() {
-		if (lblCandidatos_D33 == null) {
-			lblCandidatos_D33 = new JLabel(" ");
-			lblCandidatos_D33.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_D33;
-	}
-	private JPanel getPanelValor_E11() {
-		if (panelValor_E11 == null) {
-			panelValor_E11 = new JPanel();
-			panelValor_E11.add(getLblValor_E11());
-		}
-		return panelValor_E11;
-	}
-	private JLabel getLblValor_E11() {
-		if (lblValor_E11 == null) {
-			lblValor_E11 = new JLabel(" ");
-			lblValor_E11.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_E11.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_E11.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_E11;
-	}
-	private JPanel getPanelCandidatos_E11() {
-		if (panelCandidatos_E11 == null) {
-			panelCandidatos_E11 = new JPanel();
-			panelCandidatos_E11.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_E11.add(getLblCandidatos_E11());
-		}
-		return panelCandidatos_E11;
-	}
-	private JLabel getLblCandidatos_E11() {
-		if (lblCandidatos_E11 == null) {
-			lblCandidatos_E11 = new JLabel(" ");
-			lblCandidatos_E11.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_E11;
-	}
-	private JPanel getPanelValor_E12() {
-		if (panelValor_E12 == null) {
-			panelValor_E12 = new JPanel();
-			panelValor_E12.add(getLblValor_E12());
-		}
-		return panelValor_E12;
-	}
-	private JLabel getLblValor_E12() {
-		if (lblValor_E12 == null) {
-			lblValor_E12 = new JLabel(" ");
-			lblValor_E12.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_E12.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_E12.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_E12;
-	}
-	private JPanel getPanelCandidatos_E12() {
-		if (panelCandidatos_E12 == null) {
-			panelCandidatos_E12 = new JPanel();
-			panelCandidatos_E12.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_E12.add(getLblCandidatos_E12());
-		}
-		return panelCandidatos_E12;
-	}
-	private JLabel getLblCandidatos_E12() {
-		if (lblCandidatos_E12 == null) {
-			lblCandidatos_E12 = new JLabel(" ");
-			lblCandidatos_E12.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_E12;
-	}
-	private JPanel getPanelValor_E13() {
-		if (panelValor_E13 == null) {
-			panelValor_E13 = new JPanel();
-			panelValor_E13.add(getLblValor_E13());
-		}
-		return panelValor_E13;
-	}
-	private JLabel getLblValor_E13() {
-		if (lblValor_E13 == null) {
-			lblValor_E13 = new JLabel(" ");
-			lblValor_E13.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_E13.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_E13.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_E13;
-	}
-	private JPanel getPanelCandidatos_E13() {
-		if (panelCandidatos_E13 == null) {
-			panelCandidatos_E13 = new JPanel();
-			panelCandidatos_E13.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_E13.add(getLblCandidatos_E13());
-		}
-		return panelCandidatos_E13;
-	}
-	private JLabel getLblCandidatos_E13() {
-		if (lblCandidatos_E13 == null) {
-			lblCandidatos_E13 = new JLabel(" ");
-			lblCandidatos_E13.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_E13;
-	}
-	private JPanel getPanelValor_E21() {
-		if (panelValor_E21 == null) {
-			panelValor_E21 = new JPanel();
-			panelValor_E21.add(getLblValor_E21());
-		}
-		return panelValor_E21;
-	}
-	private JLabel getLblValor_E21() {
-		if (lblValor_E21 == null) {
-			lblValor_E21 = new JLabel(" ");
-			lblValor_E21.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_E21.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_E21.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_E21;
-	}
-	private JPanel getPanelCandidatos_E21() {
-		if (panelCandidatos_E21 == null) {
-			panelCandidatos_E21 = new JPanel();
-			panelCandidatos_E21.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_E21.add(getLblCandidatos_E21());
-		}
-		return panelCandidatos_E21;
-	}
-	private JLabel getLblCandidatos_E21() {
-		if (lblCandidatos_E21 == null) {
-			lblCandidatos_E21 = new JLabel(" ");
-			lblCandidatos_E21.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_E21;
-	}
-	private JPanel getPanelValor_E22() {
-		if (panelValor_E22 == null) {
-			panelValor_E22 = new JPanel();
-			panelValor_E22.add(getLblValor_E22());
-		}
-		return panelValor_E22;
-	}
-	private JLabel getLblValor_E22() {
-		if (lblValor_E22 == null) {
-			lblValor_E22 = new JLabel("");
-			lblValor_E22.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_E22.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_E22.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_E22;
-	}
-	private JPanel getPanelCandidatos_E22() {
-		if (panelCandidatos_E22 == null) {
-			panelCandidatos_E22 = new JPanel();
-			panelCandidatos_E22.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_E22.add(getLblCandidatos_E22());
-		}
-		return panelCandidatos_E22;
-	}
-	private JLabel getLblCandidatos_E22() {
-		if (lblCandidatos_E22 == null) {
-			lblCandidatos_E22 = new JLabel(" ");
-			lblCandidatos_E22.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_E22;
-	}
-	private JPanel getPanelValor_E23() {
-		if (panelValor_E23 == null) {
-			panelValor_E23 = new JPanel();
-			panelValor_E23.add(getLblValor_E23());
-		}
-		return panelValor_E23;
-	}
-	private JLabel getLblValor_E23() {
-		if (lblValor_E23 == null) {
-			lblValor_E23 = new JLabel(" ");
-			lblValor_E23.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_E23.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_E23.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_E23;
-	}
-	private JPanel getPanelCandidatos_E23() {
-		if (panelCandidatos_E23 == null) {
-			panelCandidatos_E23 = new JPanel();
-			panelCandidatos_E23.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_E23.add(getLblCandidatos_E23());
-		}
-		return panelCandidatos_E23;
-	}
-	private JLabel getLblCandidatos_E23() {
-		if (lblCandidatos_E23 == null) {
-			lblCandidatos_E23 = new JLabel(" ");
-			lblCandidatos_E23.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_E23;
-	}
-	private JPanel getPanelValor_E31() {
-		if (panelValor_E31 == null) {
-			panelValor_E31 = new JPanel();
-			panelValor_E31.add(getLblValor_E31());
-		}
-		return panelValor_E31;
-	}
-	private JLabel getLblValor_E31() {
-		if (lblValor_E31 == null) {
-			lblValor_E31 = new JLabel(" ");
-			lblValor_E31.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_E31.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_E31.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_E31;
-	}
-	private JPanel getPanelCandidatos_E31() {
-		if (panelCandidatos_E31 == null) {
-			panelCandidatos_E31 = new JPanel();
-			panelCandidatos_E31.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_E31.add(getLblCandidatos_E31());
-		}
-		return panelCandidatos_E31;
-	}
-	private JLabel getLblCandidatos_E31() {
-		if (lblCandidatos_E31 == null) {
-			lblCandidatos_E31 = new JLabel(" ");
-			lblCandidatos_E31.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_E31;
-	}
-	private JPanel getPanelValor_E32() {
-		if (panelValor_E32 == null) {
-			panelValor_E32 = new JPanel();
-			panelValor_E32.add(getLblValor_E32());
-		}
-		return panelValor_E32;
-	}
-	private JLabel getLblValor_E32() {
-		if (lblValor_E32 == null) {
-			lblValor_E32 = new JLabel(" ");
-			lblValor_E32.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_E32.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_E32.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_E32;
-	}
-	private JPanel getPanelCandidatos_E32() {
-		if (panelCandidatos_E32 == null) {
-			panelCandidatos_E32 = new JPanel();
-			panelCandidatos_E32.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_E32.add(getLblCandidatos_E32());
-		}
-		return panelCandidatos_E32;
-	}
-	private JLabel getLblCandidatos_E32() {
-		if (lblCandidatos_E32 == null) {
-			lblCandidatos_E32 = new JLabel(" ");
-			lblCandidatos_E32.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_E32;
-	}
-	private JPanel getPanelValor_E33() {
-		if (panelValor_E33 == null) {
-			panelValor_E33 = new JPanel();
-			panelValor_E33.add(getLblValor_E33());
-		}
-		return panelValor_E33;
-	}
-	private JLabel getLblValor_E33() {
-		if (lblValor_E33 == null) {
-			lblValor_E33 = new JLabel(" ");
-			lblValor_E33.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_E33.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_E33.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_E33;
-	}
-	private JPanel getPanelCandidatos_E33() {
-		if (panelCandidatos_E33 == null) {
-			panelCandidatos_E33 = new JPanel();
-			panelCandidatos_E33.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_E33.add(getLblCandidatos_E33());
-		}
-		return panelCandidatos_E33;
-	}
-	private JLabel getLblCandidatos_E33() {
-		if (lblCandidatos_E33 == null) {
-			lblCandidatos_E33 = new JLabel(" ");
-			lblCandidatos_E33.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_E33;
-	}
-	private JPanel getPanelValor_E11_1_1() {
-		if (panelValor_F11 == null) {
-			panelValor_F11 = new JPanel();
-			panelValor_F11.add(getLblValor_E11_1_1());
-		}
-		return panelValor_F11;
-	}
-	private JLabel getLblValor_E11_1_1() {
-		if (lblValor_F11 == null) {
-			lblValor_F11 = new JLabel(" ");
-			lblValor_F11.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_F11.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_F11.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_F11;
-	}
-	private JPanel getPanelCandidatos_E11_1_1() {
-		if (panelCandidatos_F11 == null) {
-			panelCandidatos_F11 = new JPanel();
-			panelCandidatos_F11.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_F11.add(getLblCandidatos_E11_1_1());
-		}
-		return panelCandidatos_F11;
-	}
-	private JLabel getLblCandidatos_E11_1_1() {
-		if (lblCandidatos_F11 == null) {
-			lblCandidatos_F11 = new JLabel(" ");
-			lblCandidatos_F11.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_F11;
-	}
-	private JPanel getPanelValor_F12() {
-		if (panelValor_F12 == null) {
-			panelValor_F12 = new JPanel();
-			panelValor_F12.add(getLblValor_F12());
-		}
-		return panelValor_F12;
-	}
-	private JLabel getLblValor_F12() {
-		if (lblValor_F12 == null) {
-			lblValor_F12 = new JLabel(" ");
-			lblValor_F12.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_F12.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_F12.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_F12;
-	}
-	private JPanel getPanelCandidatos_F12() {
-		if (panelCandidatos_F12 == null) {
-			panelCandidatos_F12 = new JPanel();
-			panelCandidatos_F12.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_F12.add(getLblCandidatos_F12());
-		}
-		return panelCandidatos_F12;
-	}
-	private JLabel getLblCandidatos_F12() {
-		if (lblCandidatos_F12 == null) {
-			lblCandidatos_F12 = new JLabel(" ");
-			lblCandidatos_F12.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_F12;
-	}
-	private JPanel getPanelValor_F13() {
-		if (panelValor_F13 == null) {
-			panelValor_F13 = new JPanel();
-			panelValor_F13.add(getLblValor_F13());
-		}
-		return panelValor_F13;
-	}
-	private JLabel getLblValor_F13() {
-		if (lblValor_F13 == null) {
-			lblValor_F13 = new JLabel(" ");
-			lblValor_F13.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_F13.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_F13.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_F13;
-	}
-	private JPanel getPanelCandidatos_F13() {
-		if (panelCandidatos_F13 == null) {
-			panelCandidatos_F13 = new JPanel();
-			panelCandidatos_F13.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_F13.add(getLblCandidatos_F13());
-		}
-		return panelCandidatos_F13;
-	}
-	private JLabel getLblCandidatos_F13() {
-		if (lblCandidatos_F13 == null) {
-			lblCandidatos_F13 = new JLabel(" ");
-			lblCandidatos_F13.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_F13;
-	}
-	private JPanel getPanelValor_F21() {
-		if (panelValor_F21 == null) {
-			panelValor_F21 = new JPanel();
-			panelValor_F21.add(getLblValor_F21());
-		}
-		return panelValor_F21;
-	}
-	private JLabel getLblValor_F21() {
-		if (lblValor_F21 == null) {
-			lblValor_F21 = new JLabel(" ");
-			lblValor_F21.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_F21.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_F21.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_F21;
-	}
-	private JPanel getPanelCandidatos_F21() {
-		if (panelCandidatos_F21 == null) {
-			panelCandidatos_F21 = new JPanel();
-			panelCandidatos_F21.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_F21.add(getLblCandidatos_F21());
-		}
-		return panelCandidatos_F21;
-	}
-	private JLabel getLblCandidatos_F21() {
-		if (lblCandidatos_F21 == null) {
-			lblCandidatos_F21 = new JLabel(" ");
-			lblCandidatos_F21.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_F21;
-	}
-	private JPanel getPanelValor_F22() {
-		if (panelValor_F22 == null) {
-			panelValor_F22 = new JPanel();
-			panelValor_F22.add(getLblValor_F22());
-		}
-		return panelValor_F22;
-	}
-	private JLabel getLblValor_F22() {
-		if (lblValor_F22 == null) {
-			lblValor_F22 = new JLabel(" ");
-			lblValor_F22.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_F22.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_F22.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_F22;
-	}
-	private JPanel getPanelCandidatos_F22() {
-		if (panelCandidatos_F22 == null) {
-			panelCandidatos_F22 = new JPanel();
-			panelCandidatos_F22.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_F22.add(getLblCandidatos_F22());
-		}
-		return panelCandidatos_F22;
-	}
-	private JLabel getLblCandidatos_F22() {
-		if (lblCandidatos_F22 == null) {
-			lblCandidatos_F22 = new JLabel(" ");
-			lblCandidatos_F22.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_F22;
-	}
-	private JPanel getPanelValor_F23() {
-		if (panelValor_F23 == null) {
-			panelValor_F23 = new JPanel();
-			panelValor_F23.add(getLblValor_F23());
-		}
-		return panelValor_F23;
-	}
-	private JLabel getLblValor_F23() {
-		if (lblValor_F23 == null) {
-			lblValor_F23 = new JLabel(" ");
-			lblValor_F23.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_F23.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_F23.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_F23;
-	}
-	private JPanel getPanelCandidatos_F23() {
-		if (panelCandidatos_F23 == null) {
-			panelCandidatos_F23 = new JPanel();
-			panelCandidatos_F23.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_F23.add(getLblCandidatos_F23());
-		}
-		return panelCandidatos_F23;
-	}
-	private JLabel getLblCandidatos_F23() {
-		if (lblCandidatos_F23 == null) {
-			lblCandidatos_F23 = new JLabel(" ");
-			lblCandidatos_F23.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_F23;
-	}
-	private JPanel getPanelValor_F31() {
-		if (panelValor_F31 == null) {
-			panelValor_F31 = new JPanel();
-			panelValor_F31.add(getLblValor_F31());
-		}
-		return panelValor_F31;
-	}
-	private JLabel getLblValor_F31() {
-		if (lblValor_F31 == null) {
-			lblValor_F31 = new JLabel(" ");
-			lblValor_F31.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_F31.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_F31.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_F31;
-	}
-	private JPanel getPanelCandidatos_F31() {
-		if (panelCandidatos_F31 == null) {
-			panelCandidatos_F31 = new JPanel();
-			panelCandidatos_F31.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_F31.add(getLblCandidatos_F31());
-		}
-		return panelCandidatos_F31;
-	}
-	private JLabel getLblCandidatos_F31() {
-		if (lblCandidatos_F31 == null) {
-			lblCandidatos_F31 = new JLabel(" ");
-			lblCandidatos_F31.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_F31;
-	}
-	private JPanel getPanelValor_F32() {
-		if (panelValor_F32 == null) {
-			panelValor_F32 = new JPanel();
-			panelValor_F32.add(getLblValor_F32());
-		}
-		return panelValor_F32;
-	}
-	private JLabel getLblValor_F32() {
-		if (lblValor_F32 == null) {
-			lblValor_F32 = new JLabel(" ");
-			lblValor_F32.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_F32.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_F32.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_F32;
-	}
-	private JPanel getPanelCandidatos_F32() {
-		if (panelCandidatos_F32 == null) {
-			panelCandidatos_F32 = new JPanel();
-			panelCandidatos_F32.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_F32.add(getLblCandidatos_F32());
-		}
-		return panelCandidatos_F32;
-	}
-	private JLabel getLblCandidatos_F32() {
-		if (lblCandidatos_F32 == null) {
-			lblCandidatos_F32 = new JLabel(" ");
-			lblCandidatos_F32.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_F32;
-	}
-	private JPanel getPanelValor_F33() {
-		if (panelValor_F33 == null) {
-			panelValor_F33 = new JPanel();
-			panelValor_F33.add(getLblValor_F33());
-		}
-		return panelValor_F33;
-	}
-	private JLabel getLblValor_F33() {
-		if (lblValor_F33 == null) {
-			lblValor_F33 = new JLabel(" ");
-			lblValor_F33.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_F33.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_F33.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_F33;
-	}
-	private JPanel getPanelCandidatos_F33() {
-		if (panelCandidatos_F33 == null) {
-			panelCandidatos_F33 = new JPanel();
-			panelCandidatos_F33.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_F33.add(getLblCandidatos_F33());
-		}
-		return panelCandidatos_F33;
-	}
-	private JLabel getLblCandidatos_F33() {
-		if (lblCandidatos_F33 == null) {
-			lblCandidatos_F33 = new JLabel(" ");
-			lblCandidatos_F33.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_F33;
-	}
-	private JPanel getPanelValor_G11() {
-		if (panelValor_G11 == null) {
-			panelValor_G11 = new JPanel();
-			panelValor_G11.add(getLblValor_G11());
-		}
-		return panelValor_G11;
-	}
-	private JLabel getLblValor_G11() {
-		if (lblValor_G11 == null) {
-			lblValor_G11 = new JLabel(" ");
-			lblValor_G11.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_G11.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_G11.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_G11;
-	}
-	private JPanel getPanelCandidatos_G11() {
-		if (panelCandidatos_G11 == null) {
-			panelCandidatos_G11 = new JPanel();
-			panelCandidatos_G11.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_G11.add(getLblCandidatos_G11());
-		}
-		return panelCandidatos_G11;
-	}
-	private JLabel getLblCandidatos_G11() {
-		if (lblCandidatos_G11 == null) {
-			lblCandidatos_G11 = new JLabel(" ");
-			lblCandidatos_G11.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_G11;
-	}
-	private JPanel getPanelValor_G12() {
-		if (panelValor_G12 == null) {
-			panelValor_G12 = new JPanel();
-			panelValor_G12.add(getLblValor_G12());
-		}
-		return panelValor_G12;
-	}
-	private JLabel getLblValor_G12() {
-		if (lblValor_G12 == null) {
-			lblValor_G12 = new JLabel(" ");
-			lblValor_G12.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_G12.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_G12.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_G12;
-	}
-	private JPanel getPanelCandidatos_G12() {
-		if (panelCandidatos_G12 == null) {
-			panelCandidatos_G12 = new JPanel();
-			panelCandidatos_G12.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_G12.add(getLblCandidatos_G12());
-		}
-		return panelCandidatos_G12;
-	}
-	private JLabel getLblCandidatos_G12() {
-		if (lblCandidatos_G12 == null) {
-			lblCandidatos_G12 = new JLabel(" ");
-			lblCandidatos_G12.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_G12;
-	}
-	private JPanel getPanelValor_G13() {
-		if (panelValor_G13 == null) {
-			panelValor_G13 = new JPanel();
-			panelValor_G13.add(getLblValor_G13());
-		}
-		return panelValor_G13;
-	}
-	private JLabel getLblValor_G13() {
-		if (lblValor_G13 == null) {
-			lblValor_G13 = new JLabel(" ");
-			lblValor_G13.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_G13.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_G13.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_G13;
-	}
-	private JPanel getPanelCandidatos_G13() {
-		if (panelCandidatos_G13 == null) {
-			panelCandidatos_G13 = new JPanel();
-			panelCandidatos_G13.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_G13.add(getLblCandidatos_G13());
-		}
-		return panelCandidatos_G13;
-	}
-	private JLabel getLblCandidatos_G13() {
-		if (lblCandidatos_G13 == null) {
-			lblCandidatos_G13 = new JLabel(" ");
-			lblCandidatos_G13.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_G13;
-	}
-	private JPanel getPanelValor_G21() {
-		if (panelValor_G21 == null) {
-			panelValor_G21 = new JPanel();
-			panelValor_G21.add(getLblValor_G21());
-		}
-		return panelValor_G21;
-	}
-	private JLabel getLblValor_G21() {
-		if (lblValor_G21 == null) {
-			lblValor_G21 = new JLabel(" ");
-			lblValor_G21.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_G21.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_G21.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_G21;
-	}
-	private JPanel getPanelCandidatos_G21() {
-		if (panelCandidatos_G21 == null) {
-			panelCandidatos_G21 = new JPanel();
-			panelCandidatos_G21.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_G21.add(getLblCandidatos_G21());
-		}
-		return panelCandidatos_G21;
-	}
-	private JLabel getLblCandidatos_G21() {
-		if (lblCandidatos_G21 == null) {
-			lblCandidatos_G21 = new JLabel(" ");
-			lblCandidatos_G21.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_G21;
-	}
-	private JPanel getPanelValor_G22() {
-		if (panelValor_G22 == null) {
-			panelValor_G22 = new JPanel();
-			panelValor_G22.add(getLblValor_G22());
-		}
-		return panelValor_G22;
-	}
-	private JLabel getLblValor_G22() {
-		if (lblValor_G22 == null) {
-			lblValor_G22 = new JLabel(" ");
-			lblValor_G22.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_G22.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_G22.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_G22;
-	}
-	private JPanel getPanelCandidatos_G22() {
-		if (panelCandidatos_G22 == null) {
-			panelCandidatos_G22 = new JPanel();
-			panelCandidatos_G22.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_G22.add(getLblCandidatos_G22());
-		}
-		return panelCandidatos_G22;
-	}
-	private JLabel getLblCandidatos_G22() {
-		if (lblCandidatos_G22 == null) {
-			lblCandidatos_G22 = new JLabel(" ");
-			lblCandidatos_G22.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_G22;
-	}
-	private JPanel getPanelValor_G23() {
-		if (panelValor_G23 == null) {
-			panelValor_G23 = new JPanel();
-			panelValor_G23.add(getLblValor_G23());
-		}
-		return panelValor_G23;
-	}
-	private JLabel getLblValor_G23() {
-		if (lblValor_G23 == null) {
-			lblValor_G23 = new JLabel(" ");
-			lblValor_G23.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_G23.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_G23.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_G23;
-	}
-	private JPanel getPanelCandidatos_G23() {
-		if (panelCandidatos_G23 == null) {
-			panelCandidatos_G23 = new JPanel();
-			panelCandidatos_G23.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_G23.add(getLblCandidatos_G23());
-		}
-		return panelCandidatos_G23;
-	}
-	private JLabel getLblCandidatos_G23() {
-		if (lblCandidatos_G23 == null) {
-			lblCandidatos_G23 = new JLabel(" ");
-			lblCandidatos_G23.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_G23;
-	}
-	private JPanel getPanelValor_G31() {
-		if (panelValor_G31 == null) {
-			panelValor_G31 = new JPanel();
-			panelValor_G31.add(getLblValor_G31());
-		}
-		return panelValor_G31;
-	}
-	private JLabel getLblValor_G31() {
-		if (lblValor_G31 == null) {
-			lblValor_G31 = new JLabel(" ");
-			lblValor_G31.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_G31.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_G31.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_G31;
-	}
-	private JPanel getPanelCandidatos_G31() {
-		if (panelCandidatos_G31 == null) {
-			panelCandidatos_G31 = new JPanel();
-			panelCandidatos_G31.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_G31.add(getLblCandidatos_G31());
-		}
-		return panelCandidatos_G31;
-	}
-	private JLabel getLblCandidatos_G31() {
-		if (lblCandidatos_G31 == null) {
-			lblCandidatos_G31 = new JLabel(" ");
-			lblCandidatos_G31.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_G31;
-	}
-	private JPanel getPanelValor_G32() {
-		if (panelValor_G32 == null) {
-			panelValor_G32 = new JPanel();
-			panelValor_G32.add(getLblValor_G32());
-		}
-		return panelValor_G32;
-	}
-	private JLabel getLblValor_G32() {
-		if (lblValor_G32 == null) {
-			lblValor_G32 = new JLabel(" ");
-			lblValor_G32.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_G32.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_G32.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_G32;
-	}
-	private JPanel getPanelCandidatos_G32() {
-		if (panelCandidatos_G32 == null) {
-			panelCandidatos_G32 = new JPanel();
-			panelCandidatos_G32.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_G32.add(getLblCandidatos_G32());
-		}
-		return panelCandidatos_G32;
-	}
-	private JLabel getLblCandidatos_G32() {
-		if (lblCandidatos_G32 == null) {
-			lblCandidatos_G32 = new JLabel(" ");
-			lblCandidatos_G32.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_G32;
-	}
-	private JPanel getPanelValor_G33() {
-		if (panelValor_G33 == null) {
-			panelValor_G33 = new JPanel();
-			panelValor_G33.add(getLblValor_G33());
-		}
-		return panelValor_G33;
-	}
-	private JLabel getLblValor_G33() {
-		if (lblValor_G33 == null) {
-			lblValor_G33 = new JLabel(" ");
-			lblValor_G33.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_G33.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_G33.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_G33;
-	}
-	private JPanel getPanelCandidatos_G33() {
-		if (panelCandidatos_G33 == null) {
-			panelCandidatos_G33 = new JPanel();
-			panelCandidatos_G33.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_G33.add(getLblCandidatos_G33());
-		}
-		return panelCandidatos_G33;
-	}
-	private JLabel getLblCandidatos_G33() {
-		if (lblCandidatos_G33 == null) {
-			lblCandidatos_G33 = new JLabel(" ");
-			lblCandidatos_G33.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_G33;
-	}
-	private JPanel getPanelValor_H11() {
-		if (panelValor_H11 == null) {
-			panelValor_H11 = new JPanel();
-			panelValor_H11.add(getLblValor_H11());
-		}
-		return panelValor_H11;
-	}
-	private JLabel getLblValor_H11() {
-		if (lblValor_H11 == null) {
-			lblValor_H11 = new JLabel(" ");
-			lblValor_H11.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_H11.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_H11.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_H11;
-	}
-	private JPanel getPanelCandidatos_H11() {
-		if (panelCandidatos_H11 == null) {
-			panelCandidatos_H11 = new JPanel();
-			panelCandidatos_H11.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_H11.add(getLblCandidatos_H11());
-		}
-		return panelCandidatos_H11;
-	}
-	private JLabel getLblCandidatos_H11() {
-		if (lblCandidatos_H11 == null) {
-			lblCandidatos_H11 = new JLabel(" ");
-			lblCandidatos_H11.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_H11;
-	}
-	private JPanel getPanelValor_H12() {
-		if (panelValor_H12 == null) {
-			panelValor_H12 = new JPanel();
-			panelValor_H12.add(getLblValor_H12());
-		}
-		return panelValor_H12;
-	}
-	private JLabel getLblValor_H12() {
-		if (lblValor_H12 == null) {
-			lblValor_H12 = new JLabel(" ");
-			lblValor_H12.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_H12.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_H12.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_H12;
-	}
-	private JPanel getPanelCandidatos_H12() {
-		if (panelCandidatos_H12 == null) {
-			panelCandidatos_H12 = new JPanel();
-			panelCandidatos_H12.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_H12.add(getLblCandidatos_H12());
-		}
-		return panelCandidatos_H12;
-	}
-	private JLabel getLblCandidatos_H12() {
-		if (lblCandidatos_H12 == null) {
-			lblCandidatos_H12 = new JLabel(" ");
-			lblCandidatos_H12.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_H12;
-	}
-	private JPanel getPanelValor_H13() {
-		if (panelValor_H13 == null) {
-			panelValor_H13 = new JPanel();
-			panelValor_H13.add(getLblValor_H13());
-		}
-		return panelValor_H13;
-	}
-	private JLabel getLblValor_H13() {
-		if (lblValor_H13 == null) {
-			lblValor_H13 = new JLabel(" ");
-			lblValor_H13.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_H13.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_H13.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_H13;
-	}
-	private JPanel getPanelCandidatos_H13() {
-		if (panelCandidatos_H13 == null) {
-			panelCandidatos_H13 = new JPanel();
-			panelCandidatos_H13.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_H13.add(getLblCandidatos_H13());
-		}
-		return panelCandidatos_H13;
-	}
-	private JLabel getLblCandidatos_H13() {
-		if (lblCandidatos_H13 == null) {
-			lblCandidatos_H13 = new JLabel(" ");
-			lblCandidatos_H13.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_H13;
-	}
-	private JPanel getPanelValor_H21() {
-		if (panelValor_H21 == null) {
-			panelValor_H21 = new JPanel();
-			panelValor_H21.add(getLblValor_H21());
-		}
-		return panelValor_H21;
-	}
-	private JLabel getLblValor_H21() {
-		if (lblValor_H21 == null) {
-			lblValor_H21 = new JLabel(" ");
-			lblValor_H21.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_H21.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_H21.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_H21;
-	}
-	private JPanel getPanelCandidatos_H21() {
-		if (panelCandidatos_H21 == null) {
-			panelCandidatos_H21 = new JPanel();
-			panelCandidatos_H21.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_H21.add(getLblCandidatos_H21());
-		}
-		return panelCandidatos_H21;
-	}
-	private JLabel getLblCandidatos_H21() {
-		if (lblCandidatos_H21 == null) {
-			lblCandidatos_H21 = new JLabel(" ");
-			lblCandidatos_H21.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_H21;
-	}
-	private JPanel getPanelValor_H22() {
-		if (panelValor_H22 == null) {
-			panelValor_H22 = new JPanel();
-			panelValor_H22.add(getLblValor_H22());
-		}
-		return panelValor_H22;
-	}
-	private JLabel getLblValor_H22() {
-		if (lblValor_H22 == null) {
-			lblValor_H22 = new JLabel(" ");
-			lblValor_H22.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_H22.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_H22.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_H22;
-	}
-	private JPanel getPanelCandidatos_H22() {
-		if (panelCandidatos_H22 == null) {
-			panelCandidatos_H22 = new JPanel();
-			panelCandidatos_H22.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_H22.add(getLblCandidatos_H22());
-		}
-		return panelCandidatos_H22;
-	}
-	private JLabel getLblCandidatos_H22() {
-		if (lblCandidatos_H22 == null) {
-			lblCandidatos_H22 = new JLabel(" ");
-			lblCandidatos_H22.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_H22;
-	}
-	private JPanel getPanelValor_H23() {
-		if (panelValor_H23 == null) {
-			panelValor_H23 = new JPanel();
-			panelValor_H23.add(getLblValor_H23());
-		}
-		return panelValor_H23;
-	}
-	private JLabel getLblValor_H23() {
-		if (lblValor_H23 == null) {
-			lblValor_H23 = new JLabel(" ");
-			lblValor_H23.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_H23.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_H23.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_H23;
-	}
-	private JPanel getPanelCandidatos_H23() {
-		if (panelCandidatos_H23 == null) {
-			panelCandidatos_H23 = new JPanel();
-			panelCandidatos_H23.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_H23.add(getLblCandidatos_H23());
-		}
-		return panelCandidatos_H23;
-	}
-	private JLabel getLblCandidatos_H23() {
-		if (lblCandidatos_H23 == null) {
-			lblCandidatos_H23 = new JLabel(" ");
-			lblCandidatos_H23.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_H23;
-	}
-	private JPanel getPanelValor_H31() {
-		if (panelValor_H31 == null) {
-			panelValor_H31 = new JPanel();
-			panelValor_H31.add(getLblValor_H31());
-		}
-		return panelValor_H31;
-	}
-	private JLabel getLblValor_H31() {
-		if (lblValor_H31 == null) {
-			lblValor_H31 = new JLabel(" ");
-			lblValor_H31.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_H31.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_H31.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_H31;
-	}
-	private JPanel getPanelCandidatos_H31() {
-		if (panelCandidatos_H31 == null) {
-			panelCandidatos_H31 = new JPanel();
-			panelCandidatos_H31.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_H31.add(getLblCandidatos_H31());
-		}
-		return panelCandidatos_H31;
-	}
-	private JLabel getLblCandidatos_H31() {
-		if (lblCandidatos_H31 == null) {
-			lblCandidatos_H31 = new JLabel(" ");
-			lblCandidatos_H31.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_H31;
-	}
-	private JPanel getPanelValor_H32() {
-		if (panelValor_H32 == null) {
-			panelValor_H32 = new JPanel();
-			panelValor_H32.add(getLblValor_H32());
-		}
-		return panelValor_H32;
-	}
-	private JLabel getLblValor_H32() {
-		if (lblValor_H32 == null) {
-			lblValor_H32 = new JLabel(" ");
-			lblValor_H32.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_H32.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_H32.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_H32;
-	}
-	private JPanel getPanelCandidatos_H32() {
-		if (panelCandidatos_H32 == null) {
-			panelCandidatos_H32 = new JPanel();
-			panelCandidatos_H32.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_H32.add(getLblCandidatos_H32());
-		}
-		return panelCandidatos_H32;
-	}
-	private JLabel getLblCandidatos_H32() {
-		if (lblCandidatos_H32 == null) {
-			lblCandidatos_H32 = new JLabel(" ");
-			lblCandidatos_H32.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_H32;
-	}
-	private JPanel getPanelValor_H33() {
-		if (panelValor_H33 == null) {
-			panelValor_H33 = new JPanel();
-			panelValor_H33.add(getLblValor_H33());
-		}
-		return panelValor_H33;
-	}
-	private JLabel getLblValor_H33() {
-		if (lblValor_H33 == null) {
-			lblValor_H33 = new JLabel(" ");
-			lblValor_H33.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_H33.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_H33.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_H33;
-	}
-	private JPanel getPanelCandidatos_H33() {
-		if (panelCandidatos_H33 == null) {
-			panelCandidatos_H33 = new JPanel();
-			panelCandidatos_H33.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_H33.add(getLblCandidatos_H33());
-		}
-		return panelCandidatos_H33;
-	}
-	private JLabel getLblCandidatos_H33() {
-		if (lblCandidatos_H33 == null) {
-			lblCandidatos_H33 = new JLabel(" ");
-			lblCandidatos_H33.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_H33;
-	}
-	private JPanel getPanelValor_I11() {
-		if (panelValor_I11 == null) {
-			panelValor_I11 = new JPanel();
-			panelValor_I11.add(getLblValor_I11());
-		}
-		return panelValor_I11;
-	}
-	private JLabel getLblValor_I11() {
-		if (lblValor_I11 == null) {
-			lblValor_I11 = new JLabel(" ");
-			lblValor_I11.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_I11.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_I11.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_I11;
-	}
-	private JPanel getPanelCandidatos_I11() {
-		if (panelCandidatos_I11 == null) {
-			panelCandidatos_I11 = new JPanel();
-			panelCandidatos_I11.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_I11.add(getLblCandidatos_I11());
-		}
-		return panelCandidatos_I11;
-	}
-	private JLabel getLblCandidatos_I11() {
-		if (lblCandidatos_I11 == null) {
-			lblCandidatos_I11 = new JLabel(" ");
-			lblCandidatos_I11.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_I11;
-	}
-	private JPanel getPanelValor_I12() {
-		if (panelValor_I12 == null) {
-			panelValor_I12 = new JPanel();
-			panelValor_I12.add(getLblValor_I12());
-		}
-		return panelValor_I12;
-	}
-	private JLabel getLblValor_I12() {
-		if (lblValor_I12 == null) {
-			lblValor_I12 = new JLabel(" ");
-			lblValor_I12.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_I12.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_I12.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_I12;
-	}
-	private JPanel getPanelCandidatos_I12() {
-		if (panelCandidatos_I12 == null) {
-			panelCandidatos_I12 = new JPanel();
-			panelCandidatos_I12.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_I12.add(getLblCandidatos_I12());
-		}
-		return panelCandidatos_I12;
-	}
-	private JLabel getLblCandidatos_I12() {
-		if (lblCandidatos_I12 == null) {
-			lblCandidatos_I12 = new JLabel(" ");
-			lblCandidatos_I12.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_I12;
-	}
-	private JPanel getPanelValor_I13() {
-		if (panelValor_I13 == null) {
-			panelValor_I13 = new JPanel();
-			panelValor_I13.add(getLblValor_I13());
-		}
-		return panelValor_I13;
-	}
-	private JLabel getLblValor_I13() {
-		if (lblValor_I13 == null) {
-			lblValor_I13 = new JLabel(" ");
-			lblValor_I13.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_I13.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_I13.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_I13;
-	}
-	private JPanel getPanelCandidatos_I13() {
-		if (panelCandidatos_I13 == null) {
-			panelCandidatos_I13 = new JPanel();
-			panelCandidatos_I13.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_I13.add(getLblCandidatos_I13());
-		}
-		return panelCandidatos_I13;
-	}
-	private JLabel getLblCandidatos_I13() {
-		if (lblCandidatos_I13 == null) {
-			lblCandidatos_I13 = new JLabel(" ");
-			lblCandidatos_I13.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_I13;
-	}
-	private JPanel getPanelValor_I21() {
-		if (panelValor_I21 == null) {
-			panelValor_I21 = new JPanel();
-			panelValor_I21.add(getLblValor_I21());
-		}
-		return panelValor_I21;
-	}
-	private JLabel getLblValor_I21() {
-		if (lblValor_I21 == null) {
-			lblValor_I21 = new JLabel(" ");
-			lblValor_I21.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_I21.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_I21.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_I21;
-	}
-	private JPanel getPanelCandidatos_I21() {
-		if (panelCandidatos_I21 == null) {
-			panelCandidatos_I21 = new JPanel();
-			panelCandidatos_I21.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_I21.add(getLblCandidatos_I21());
-		}
-		return panelCandidatos_I21;
-	}
-	private JLabel getLblCandidatos_I21() {
-		if (lblCandidatos_I21 == null) {
-			lblCandidatos_I21 = new JLabel(" ");
-			lblCandidatos_I21.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_I21;
-	}
-	private JPanel getPanelValor_I22() {
-		if (panelValor_I22 == null) {
-			panelValor_I22 = new JPanel();
-			panelValor_I22.add(getLblValor_I22());
-		}
-		return panelValor_I22;
-	}
-	private JLabel getLblValor_I22() {
-		if (lblValor_I22 == null) {
-			lblValor_I22 = new JLabel(" ");
-			lblValor_I22.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_I22.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_I22.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_I22;
-	}
-	private JPanel getPanelCandidatos_I22() {
-		if (panelCandidatos_I22 == null) {
-			panelCandidatos_I22 = new JPanel();
-			panelCandidatos_I22.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_I22.add(getLblCandidatos_I22());
-		}
-		return panelCandidatos_I22;
-	}
-	private JLabel getLblCandidatos_I22() {
-		if (lblCandidatos_I22 == null) {
-			lblCandidatos_I22 = new JLabel(" ");
-			lblCandidatos_I22.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_I22;
-	}
-	private JPanel getPanelValor_I23() {
-		if (panelValor_I23 == null) {
-			panelValor_I23 = new JPanel();
-			panelValor_I23.add(getLblValor_I23());
-		}
-		return panelValor_I23;
-	}
-	private JLabel getLblValor_I23() {
-		if (lblValor_I23 == null) {
-			lblValor_I23 = new JLabel(" ");
-			lblValor_I23.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_I23.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_I23.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_I23;
-	}
-	private JPanel getPanelCandidatos_I23() {
-		if (panelCandidatos_I23 == null) {
-			panelCandidatos_I23 = new JPanel();
-			panelCandidatos_I23.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_I23.add(getLblCandidatos_I23());
-		}
-		return panelCandidatos_I23;
-	}
-	private JLabel getLblCandidatos_I23() {
-		if (lblCandidatos_I23 == null) {
-			lblCandidatos_I23 = new JLabel(" ");
-			lblCandidatos_I23.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_I23;
-	}
-	private JPanel getPanelValor_I31() {
-		if (panelValor_I31 == null) {
-			panelValor_I31 = new JPanel();
-			panelValor_I31.add(getLblValor_I31());
-		}
-		return panelValor_I31;
-	}
-	private JLabel getLblValor_I31() {
-		if (lblValor_I31 == null) {
-			lblValor_I31 = new JLabel(" ");
-			lblValor_I31.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_I31.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_I31.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_I31;
-	}
-	private JPanel getPanelCandidatos_I31() {
-		if (panelCandidatos_I31 == null) {
-			panelCandidatos_I31 = new JPanel();
-			panelCandidatos_I31.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_I31.add(getLblCandidatos_I31());
-		}
-		return panelCandidatos_I31;
-	}
-	private JLabel getLblCandidatos_I31() {
-		if (lblCandidatos_I31 == null) {
-			lblCandidatos_I31 = new JLabel(" ");
-			lblCandidatos_I31.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_I31;
-	}
-	private JPanel getPanelValor_I32() {
-		if (panelValor_I32 == null) {
-			panelValor_I32 = new JPanel();
-			panelValor_I32.add(getLblValor_I32());
-		}
-		return panelValor_I32;
-	}
-	private JLabel getLblValor_I32() {
-		if (lblValor_I32 == null) {
-			lblValor_I32 = new JLabel(" ");
-			lblValor_I32.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_I32.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_I32.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_I32;
-	}
-	private JPanel getPanelCandidatos_I32() {
-		if (panelCandidatos_I32 == null) {
-			panelCandidatos_I32 = new JPanel();
-			panelCandidatos_I32.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_I32.add(getLblCandidatos_I32());
-		}
-		return panelCandidatos_I32;
-	}
-	private JLabel getLblCandidatos_I32() {
-		if (lblCandidatos_I32 == null) {
-			lblCandidatos_I32 = new JLabel(" ");
-			lblCandidatos_I32.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_I32;
-	}
-	private JPanel getPanelValor_I33() {
-		if (panelValor_I33 == null) {
-			panelValor_I33 = new JPanel();
-			panelValor_I33.add(getLblValor_I33());
-		}
-		return panelValor_I33;
-	}
-	private JLabel getLblValor_I33() {
-		if (lblValor_I33 == null) {
-			lblValor_I33 = new JLabel(" ");
-			lblValor_I33.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblValor_I33.setHorizontalAlignment(SwingConstants.LEFT);
-			lblValor_I33.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		}
-		return lblValor_I33;
-	}
-	private JPanel getPanelCandidatos_I33() {
-		if (panelCandidatos_I33 == null) {
-			panelCandidatos_I33 = new JPanel();
-			panelCandidatos_I33.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panelCandidatos_I33.add(getLblCandidatos_I33());
-		}
-		return panelCandidatos_I33;
-	}
-	private JLabel getLblCandidatos_I33() {
-		if (lblCandidatos_I33 == null) {
-			lblCandidatos_I33 = new JLabel(" ");
-			lblCandidatos_I33.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCandidatos_I33;
-	}
-	
-	public JPanel insertarDatosControlador (MouseEvent e, JPanel elegido) {
-		
-	}
-	public JPanel casillaSelect(MouseEvent event, JPanel select) {
+	public JPanel casillaSelect(MouseEvent event) {
 		JPanel seleccionado = (JPanel) event.getSource();
-		if (seleccionado.getBorder().equals(bordeNormal) && select==null){
+		if (!seleccionado.getBorder().equals(bordeGrueso) && select==null){
+			bordeTemp=seleccionado.getBorder();
 			seleccionado.setBorder(bordeGrueso);
 			for (Component x1: seleccionado.getComponents()) {
-				if (x1 instanceof JPanel) {
-					for (Component x2: ((JPanel) x1).getComponents()) {
-						if (x2 instanceof JLabel) {
-							if (((JLabel) x2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))) {
-								textFieldValor.setText(((JLabel) x2).getText());
-							} else {
-								textFieldCandidatos.setText(((JLabel) x2).getText());
-							}
-						}
+				for (Component x2: ((JPanel) x1).getComponents()) {
+					if (((JLabel) x2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))) {
+						textFieldValor.setText(((JLabel) x2).getText());
+					} else {
+						textFieldCandidatos.setText(((JLabel) x2).getText());
 					}
 				}
 			}
 			select=seleccionado;
 		}else if (seleccionado.getBorder().equals(bordeGrueso) && select!=null) {
-			seleccionado.setBorder(bordeNormal);
+			seleccionado.setBorder(bordeTemp);
 			textFieldCandidatos.setText("");
 			textFieldValor.setText("");
 			select=null;
@@ -4704,17 +800,3427 @@ public class Tablero extends JFrame implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		controlador.Casilla[][] t = controlador.Tablero.getTablero().getListaCasillas();
-		//PanelValor_LetraFilaColumna
-		/*int i = 0;
-		while (i < t.length) {
-			int j = 0;
-			while (j < t[0].length) {
-				
-			}
-		}*/
+		// TODO Auto-generated method stub
 		
-		
-		
+	}
+	private JPanel getPanel1_0() {
+		if (panel1 == null) {
+			panel1 = new JPanel();
+			panel1.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1.setBorder(new MatteBorder(4, 4, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1.setLayout(new BorderLayout(0, 0));
+			panel1.add(getPanel_1_1(), BorderLayout.CENTER);
+			panel1.add(getPanelCadidatos(), BorderLayout.NORTH);
+		}
+		return panel1;
+	}
+	private JPanel getPanel_1_1() {
+		if (panelValor == null) {
+			panelValor = new JPanel();
+			panelValor.add(getLblValor1());
+		}
+		return panelValor;
+	}
+	private JPanel getPanelCadidatos() {
+		if (panelCadidatos == null) {
+			panelCadidatos = new JPanel();
+			panelCadidatos.add(getLblCandidatos1());
+		}
+		return panelCadidatos;
+	}
+	private JLabel getLblValor1() {
+		if (lblValor1 == null) {
+			lblValor1 = new JLabel("");
+			lblValor1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1;
+	}
+	private JLabel getLblCandidatos1() {
+		if (lblCandidatos1 == null) {
+			lblCandidatos1 = new JLabel("");
+		}
+		return lblCandidatos1;
+	}
+	private JPanel getPanel1_1() {
+		if (panel1_1 == null) {
+			panel1_1 = new JPanel();
+			panel1_1.setBorder(new MatteBorder(4, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_1.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_1.setLayout(new BorderLayout(0, 0));
+			panel1_1.add(getPanelValor_1(), BorderLayout.CENTER);
+			panel1_1.add(getPanelCadidatos_1(), BorderLayout.NORTH);
+		}
+		return panel1_1;
+	}
+	private JPanel getPanelValor_1() {
+		if (panelValor_1 == null) {
+			panelValor_1 = new JPanel();
+			panelValor_1.add(getLblValor1_1());
+		}
+		return panelValor_1;
+	}
+	private JLabel getLblValor1_1() {
+		if (lblValor1_1 == null) {
+			lblValor1_1 = new JLabel("");
+			lblValor1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_1;
+	}
+	private JPanel getPanelCadidatos_1() {
+		if (panelCadidatos_1 == null) {
+			panelCadidatos_1 = new JPanel();
+			panelCadidatos_1.add(getLblCandidatos1_1());
+		}
+		return panelCadidatos_1;
+	}
+	private JLabel getLblCandidatos1_1() {
+		if (lblCandidatos1_1 == null) {
+			lblCandidatos1_1 = new JLabel("");
+		}
+		return lblCandidatos1_1;
+	}
+	private JPanel getPanel1_2() {
+		if (panel1_2 == null) {
+			panel1_2 = new JPanel();
+			panel1_2.setBorder(new MatteBorder(4, 1, 1, 3, (Color) new Color(0, 0, 0)));
+			panel1_2.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_2.setLayout(new BorderLayout(0, 0));
+			panel1_2.add(getPanelValor_2(), BorderLayout.CENTER);
+			panel1_2.add(getPanelCadidatos_2(), BorderLayout.NORTH);
+		}
+		return panel1_2;
+	}
+	private JPanel getPanelValor_2() {
+		if (panelValor_2 == null) {
+			panelValor_2 = new JPanel();
+			panelValor_2.add(getLblValor1_2());
+		}
+		return panelValor_2;
+	}
+	private JLabel getLblValor1_2() {
+		if (lblValor1_2 == null) {
+			lblValor1_2 = new JLabel("");
+			lblValor1_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_2;
+	}
+	private JPanel getPanelCadidatos_2() {
+		if (panelCadidatos_2 == null) {
+			panelCadidatos_2 = new JPanel();
+			panelCadidatos_2.add(getLblCandidatos1_2());
+		}
+		return panelCadidatos_2;
+	}
+	private JLabel getLblCandidatos1_2() {
+		if (lblCandidatos1_2 == null) {
+			lblCandidatos1_2 = new JLabel("");
+		}
+		return lblCandidatos1_2;
+	}
+	private JPanel getPanel1_3() {
+		if (panel1_3 == null) {
+			panel1_3 = new JPanel();
+			panel1_3.setBorder(new MatteBorder(4, 3, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_3.setLayout(new BorderLayout(0, 0));
+			panel1_3.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_3.add(getPanelValor_3(), BorderLayout.CENTER);
+			panel1_3.add(getPanelCadidatos_3(), BorderLayout.NORTH);
+		}
+		return panel1_3;
+	}
+	private JPanel getPanelValor_3() {
+		if (panelValor_3 == null) {
+			panelValor_3 = new JPanel();
+			panelValor_3.add(getLblValor1_3());
+		}
+		return panelValor_3;
+	}
+	private JLabel getLblValor1_3() {
+		if (lblValor1_3 == null) {
+			lblValor1_3 = new JLabel("");
+			lblValor1_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_3;
+	}
+	private JPanel getPanelCadidatos_3() {
+		if (panelCadidatos_3 == null) {
+			panelCadidatos_3 = new JPanel();
+			panelCadidatos_3.add(getLblCandidatos1_3());
+		}
+		return panelCadidatos_3;
+	}
+	private JLabel getLblCandidatos1_3() {
+		if (lblCandidatos1_3 == null) {
+			lblCandidatos1_3 = new JLabel("");
+		}
+		return lblCandidatos1_3;
+	}
+	private JPanel getPanel1_4() {
+		if (panel1_4 == null) {
+			panel1_4 = new JPanel();
+			panel1_4.setBorder(new MatteBorder(4, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_4.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_4.setLayout(new BorderLayout(0, 0));
+			panel1_4.add(getPanelValor_4(), BorderLayout.CENTER);
+			panel1_4.add(getPanelCadidatos_4(), BorderLayout.NORTH);
+		}
+		return panel1_4;
+	}
+	private JPanel getPanelValor_4() {
+		if (panelValor_4 == null) {
+			panelValor_4 = new JPanel();
+			panelValor_4.add(getLblValor1_4());
+		}
+		return panelValor_4;
+	}
+	private JLabel getLblValor1_4() {
+		if (lblValor1_4 == null) {
+			lblValor1_4 = new JLabel("");
+			lblValor1_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_4;
+	}
+	private JPanel getPanelCadidatos_4() {
+		if (panelCadidatos_4 == null) {
+			panelCadidatos_4 = new JPanel();
+			panelCadidatos_4.add(getLblCandidatos1_4());
+		}
+		return panelCadidatos_4;
+	}
+	private JLabel getLblCandidatos1_4() {
+		if (lblCandidatos1_4 == null) {
+			lblCandidatos1_4 = new JLabel("");
+		}
+		return lblCandidatos1_4;
+	}
+	private JPanel getPanel1_5() {
+		if (panel1_5 == null) {
+			panel1_5 = new JPanel();
+			panel1_5.setBorder(new MatteBorder(4, 1, 1, 3, (Color) new Color(0, 0, 0)));
+			panel1_5.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_5.setLayout(new BorderLayout(0, 0));
+			panel1_5.add(getPanelValor_5(), BorderLayout.CENTER);
+			panel1_5.add(getPanelCadidatos_5(), BorderLayout.NORTH);
+		}
+		return panel1_5;
+	}
+	private JPanel getPanelValor_5() {
+		if (panelValor_5 == null) {
+			panelValor_5 = new JPanel();
+			panelValor_5.add(getLblValor1_5());
+		}
+		return panelValor_5;
+	}
+	private JLabel getLblValor1_5() {
+		if (lblValor1_5 == null) {
+			lblValor1_5 = new JLabel("");
+			lblValor1_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_5;
+	}
+	private JPanel getPanelCadidatos_5() {
+		if (panelCadidatos_5 == null) {
+			panelCadidatos_5 = new JPanel();
+			panelCadidatos_5.add(getLblCandidatos1_5());
+		}
+		return panelCadidatos_5;
+	}
+	private JLabel getLblCandidatos1_5() {
+		if (lblCandidatos1_5 == null) {
+			lblCandidatos1_5 = new JLabel("");
+		}
+		return lblCandidatos1_5;
+	}
+	private JPanel getPanel1_6() {
+		if (panel1_6 == null) {
+			panel1_6 = new JPanel();
+			panel1_6.setBorder(new MatteBorder(4, 3, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_6.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_6.setLayout(new BorderLayout(0, 0));
+			panel1_6.add(getPanelValor_6(), BorderLayout.CENTER);
+			panel1_6.add(getPanelCadidatos_6(), BorderLayout.NORTH);
+		}
+		return panel1_6;
+	}
+	private JPanel getPanelValor_6() {
+		if (panelValor_6 == null) {
+			panelValor_6 = new JPanel();
+			panelValor_6.add(getLblValor1_6());
+		}
+		return panelValor_6;
+	}
+	private JLabel getLblValor1_6() {
+		if (lblValor1_6 == null) {
+			lblValor1_6 = new JLabel("");
+			lblValor1_6.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_6;
+	}
+	private JPanel getPanelCadidatos_6() {
+		if (panelCadidatos_6 == null) {
+			panelCadidatos_6 = new JPanel();
+			panelCadidatos_6.add(getLblCandidatos1_6());
+		}
+		return panelCadidatos_6;
+	}
+	private JLabel getLblCandidatos1_6() {
+		if (lblCandidatos1_6 == null) {
+			lblCandidatos1_6 = new JLabel("");
+		}
+		return lblCandidatos1_6;
+	}
+	private JPanel getPanel1_7() {
+		if (panel1_7 == null) {
+			panel1_7 = new JPanel();
+			panel1_7.setBorder(new MatteBorder(4, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_7.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_7.setLayout(new BorderLayout(0, 0));
+			panel1_7.add(getPanelValor_7(), BorderLayout.CENTER);
+			panel1_7.add(getPanelCadidatos_7(), BorderLayout.NORTH);
+		}
+		return panel1_7;
+	}
+	private JPanel getPanelValor_7() {
+		if (panelValor_7 == null) {
+			panelValor_7 = new JPanel();
+			panelValor_7.add(getLblValor1_7());
+		}
+		return panelValor_7;
+	}
+	private JLabel getLblValor1_7() {
+		if (lblValor1_7 == null) {
+			lblValor1_7 = new JLabel("");
+			lblValor1_7.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_7;
+	}
+	private JPanel getPanelCadidatos_7() {
+		if (panelCadidatos_7 == null) {
+			panelCadidatos_7 = new JPanel();
+			panelCadidatos_7.add(getLblCandidatos1_7());
+		}
+		return panelCadidatos_7;
+	}
+	private JLabel getLblCandidatos1_7() {
+		if (lblCandidatos1_7 == null) {
+			lblCandidatos1_7 = new JLabel("");
+		}
+		return lblCandidatos1_7;
+	}
+	private JPanel getPanel1_8() {
+		if (panel1_8 == null) {
+			panel1_8 = new JPanel();
+			panel1_8.setBorder(new MatteBorder(4, 1, 1, 4, (Color) new Color(0, 0, 0)));
+			panel1_8.setLayout(new BorderLayout(0, 0));
+			panel1_8.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_8.add(getPanelValor_8(), BorderLayout.CENTER);
+			panel1_8.add(getPanelCadidatos_8(), BorderLayout.NORTH);
+		}
+		return panel1_8;
+	}
+	private JPanel getPanelValor_8() {
+		if (panelValor_8 == null) {
+			panelValor_8 = new JPanel();
+			panelValor_8.add(getLblValor1_8());
+		}
+		return panelValor_8;
+	}
+	private JLabel getLblValor1_8() {
+		if (lblValor1_8 == null) {
+			lblValor1_8 = new JLabel("");
+			lblValor1_8.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_8;
+	}
+	private JPanel getPanelCadidatos_8() {
+		if (panelCadidatos_8 == null) {
+			panelCadidatos_8 = new JPanel();
+			panelCadidatos_8.add(getLblCandidatos1_8());
+		}
+		return panelCadidatos_8;
+	}
+	private JLabel getLblCandidatos1_8() {
+		if (lblCandidatos1_8 == null) {
+			lblCandidatos1_8 = new JLabel("");
+		}
+		return lblCandidatos1_8;
+	}
+	private JPanel getPanel1_9() {
+		if (panel1_9 == null) {
+			panel1_9 = new JPanel();
+			panel1_9.setBorder(new MatteBorder(1, 4, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_9.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_9.setLayout(new BorderLayout(0, 0));
+			panel1_9.add(getPanelValor_9(), BorderLayout.CENTER);
+			panel1_9.add(getPanelCadidatos_9(), BorderLayout.NORTH);
+		}
+		return panel1_9;
+	}
+	private JPanel getPanelValor_9() {
+		if (panelValor_9 == null) {
+			panelValor_9 = new JPanel();
+			panelValor_9.add(getLblValor1_9());
+		}
+		return panelValor_9;
+	}
+	private JLabel getLblValor1_9() {
+		if (lblValor1_9 == null) {
+			lblValor1_9 = new JLabel("");
+			lblValor1_9.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_9;
+	}
+	private JPanel getPanelCadidatos_9() {
+		if (panelCadidatos_9 == null) {
+			panelCadidatos_9 = new JPanel();
+			panelCadidatos_9.add(getLblCandidatos1_9());
+		}
+		return panelCadidatos_9;
+	}
+	private JLabel getLblCandidatos1_9() {
+		if (lblCandidatos1_9 == null) {
+			lblCandidatos1_9 = new JLabel("");
+		}
+		return lblCandidatos1_9;
+	}
+	private JPanel getPanel1_10() {
+		if (panel1_10 == null) {
+			panel1_10 = new JPanel();
+			panel1_10.setBorder(bordeNormal);
+			panel1_10.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_10.setLayout(new BorderLayout(0, 0));
+			panel1_10.add(getPanelValor_10(), BorderLayout.CENTER);
+			panel1_10.add(getPanelCadidatos_10(), BorderLayout.NORTH);
+		}
+		return panel1_10;
+	}
+	private JPanel getPanelValor_10() {
+		if (panelValor_10 == null) {
+			panelValor_10 = new JPanel();
+			panelValor_10.add(getLblValor1_10());
+		}
+		return panelValor_10;
+	}
+	private JLabel getLblValor1_10() {
+		if (lblValor1_10 == null) {
+			lblValor1_10 = new JLabel("");
+			lblValor1_10.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_10;
+	}
+	private JPanel getPanelCadidatos_10() {
+		if (panelCadidatos_10 == null) {
+			panelCadidatos_10 = new JPanel();
+			panelCadidatos_10.add(getLblCandidatos1_10());
+		}
+		return panelCadidatos_10;
+	}
+	private JLabel getLblCandidatos1_10() {
+		if (lblCandidatos1_10 == null) {
+			lblCandidatos1_10 = new JLabel("");
+		}
+		return lblCandidatos1_10;
+	}
+	private JPanel getPanel1_11() {
+		if (panel1_11 == null) {
+			panel1_11 = new JPanel();
+			panel1_11.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_11.setBorder(new MatteBorder(1, 1, 1, 3, (Color) new Color(0, 0, 0)));
+			panel1_11.setLayout(new BorderLayout(0, 0));
+			panel1_11.add(getPanelValor_11());
+			panel1_11.add(getPanelCadidatos_11(), BorderLayout.NORTH);
+		}
+		return panel1_11;
+	}
+	private JPanel getPanelValor_11() {
+		if (panelValor_11 == null) {
+			panelValor_11 = new JPanel();
+			panelValor_11.add(getLblValor1_11());
+		}
+		return panelValor_11;
+	}
+	private JLabel getLblValor1_11() {
+		if (lblValor1_11 == null) {
+			lblValor1_11 = new JLabel("");
+			lblValor1_11.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_11;
+	}
+	private JPanel getPanelCadidatos_11() {
+		if (panelCadidatos_11 == null) {
+			panelCadidatos_11 = new JPanel();
+			panelCadidatos_11.add(getLblCandidatos1_11());
+		}
+		return panelCadidatos_11;
+	}
+	private JLabel getLblCandidatos1_11() {
+		if (lblCandidatos1_11 == null) {
+			lblCandidatos1_11 = new JLabel("");
+		}
+		return lblCandidatos1_11;
+	}
+	private JPanel getPanel1_12() {
+		if (panel1_12 == null) {
+			panel1_12 = new JPanel();
+			panel1_12.setBorder(new MatteBorder(1, 3, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_12.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_12.setLayout(new BorderLayout(0, 0));
+			panel1_12.add(getPanelValor_12());
+			panel1_12.add(getPanelCadidatos_12(), BorderLayout.NORTH);
+		}
+		return panel1_12;
+	}
+	private JPanel getPanelValor_12() {
+		if (panelValor_12 == null) {
+			panelValor_12 = new JPanel();
+			panelValor_12.add(getLblValor1_12());
+		}
+		return panelValor_12;
+	}
+	private JLabel getLblValor1_12() {
+		if (lblValor1_12 == null) {
+			lblValor1_12 = new JLabel("");
+			lblValor1_12.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_12;
+	}
+	private JPanel getPanelCadidatos_12() {
+		if (panelCadidatos_12 == null) {
+			panelCadidatos_12 = new JPanel();
+			panelCadidatos_12.add(getLblCandidatos1_12());
+		}
+		return panelCadidatos_12;
+	}
+	private JLabel getLblCandidatos1_12() {
+		if (lblCandidatos1_12 == null) {
+			lblCandidatos1_12 = new JLabel("");
+		}
+		return lblCandidatos1_12;
+	}
+	private JPanel getPanel1_13() {
+		if (panel1_13 == null) {
+			panel1_13 = new JPanel();
+			panel1_13.setBorder(bordeNormal);
+			panel1_13.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_13.setLayout(new BorderLayout(0, 0));
+			panel1_13.add(getPanelValor_13(), BorderLayout.CENTER);
+			panel1_13.add(getPanelCadidatos_13(), BorderLayout.NORTH);
+		}
+		return panel1_13;
+	}
+	private JPanel getPanelValor_13() {
+		if (panelValor_13 == null) {
+			panelValor_13 = new JPanel();
+			panelValor_13.add(getLblValor1_13());
+		}
+		return panelValor_13;
+	}
+	private JLabel getLblValor1_13() {
+		if (lblValor1_13 == null) {
+			lblValor1_13 = new JLabel("");
+			lblValor1_13.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_13;
+	}
+	private JPanel getPanelCadidatos_13() {
+		if (panelCadidatos_13 == null) {
+			panelCadidatos_13 = new JPanel();
+			panelCadidatos_13.add(getLblCandidatos1_13());
+		}
+		return panelCadidatos_13;
+	}
+	private JLabel getLblCandidatos1_13() {
+		if (lblCandidatos1_13 == null) {
+			lblCandidatos1_13 = new JLabel("");
+		}
+		return lblCandidatos1_13;
+	}
+	private JPanel getPanel1_14() {
+		if (panel1_14 == null) {
+			panel1_14 = new JPanel();
+			panel1_14.setBorder(new MatteBorder(1, 1, 1, 3, (Color) new Color(0, 0, 0)));
+			panel1_14.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_14.setLayout(new BorderLayout(0, 0));
+			panel1_14.add(getPanelValor_14(), BorderLayout.CENTER);
+			panel1_14.add(getPanelCadidatos_14(), BorderLayout.NORTH);
+		}
+		return panel1_14;
+	}
+	private JPanel getPanelValor_14() {
+		if (panelValor_14 == null) {
+			panelValor_14 = new JPanel();
+			panelValor_14.add(getLblValor1_14());
+		}
+		return panelValor_14;
+	}
+	private JLabel getLblValor1_14() {
+		if (lblValor1_14 == null) {
+			lblValor1_14 = new JLabel("");
+			lblValor1_14.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_14;
+	}
+	private JPanel getPanelCadidatos_14() {
+		if (panelCadidatos_14 == null) {
+			panelCadidatos_14 = new JPanel();
+			panelCadidatos_14.add(getLblCandidatos1_14());
+		}
+		return panelCadidatos_14;
+	}
+	private JLabel getLblCandidatos1_14() {
+		if (lblCandidatos1_14 == null) {
+			lblCandidatos1_14 = new JLabel("");
+		}
+		return lblCandidatos1_14;
+	}
+	private JPanel getPanel1_15() {
+		if (panel1_15 == null) {
+			panel1_15 = new JPanel();
+			panel1_15.setBorder(new MatteBorder(1, 3, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_15.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_15.setLayout(new BorderLayout(0, 0));
+			panel1_15.add(getPanelValor_15(), BorderLayout.CENTER);
+			panel1_15.add(getPanelCadidatos_15(), BorderLayout.NORTH);
+		}
+		return panel1_15;
+	}
+	private JPanel getPanelValor_15() {
+		if (panelValor_15 == null) {
+			panelValor_15 = new JPanel();
+			panelValor_15.add(getLblValor1_15());
+		}
+		return panelValor_15;
+	}
+	private JLabel getLblValor1_15() {
+		if (lblValor1_15 == null) {
+			lblValor1_15 = new JLabel("");
+			lblValor1_15.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_15;
+	}
+	private JPanel getPanelCadidatos_15() {
+		if (panelCadidatos_15 == null) {
+			panelCadidatos_15 = new JPanel();
+			panelCadidatos_15.add(getLblCandidatos1_15());
+		}
+		return panelCadidatos_15;
+	}
+	private JLabel getLblCandidatos1_15() {
+		if (lblCandidatos1_15 == null) {
+			lblCandidatos1_15 = new JLabel("");
+		}
+		return lblCandidatos1_15;
+	}
+	private JPanel getPanel1_16() {
+		if (panel1_16 == null) {
+			panel1_16 = new JPanel();
+			panel1_16.setBorder(bordeNormal);
+			panel1_15.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_16.setLayout(new BorderLayout(0, 0));
+			panel1_16.add(getPanelValor_16(), BorderLayout.CENTER);
+			panel1_16.add(getPanelCadidatos_16(), BorderLayout.NORTH);
+		}
+		return panel1_16;
+	}
+	private JPanel getPanelValor_16() {
+		if (panelValor_16 == null) {
+			panelValor_16 = new JPanel();
+			panelValor_16.add(getLblValor1_16());
+		}
+		return panelValor_16;
+	}
+	private JLabel getLblValor1_16() {
+		if (lblValor1_16 == null) {
+			lblValor1_16 = new JLabel("");
+			lblValor1_16.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_16;
+	}
+	private JPanel getPanelCadidatos_16() {
+		if (panelCadidatos_16 == null) {
+			panelCadidatos_16 = new JPanel();
+			panelCadidatos_16.add(getLblCandidatos1_16());
+		}
+		return panelCadidatos_16;
+	}
+	private JLabel getLblCandidatos1_16() {
+		if (lblCandidatos1_16 == null) {
+			lblCandidatos1_16 = new JLabel("");
+		}
+		return lblCandidatos1_16;
+	}
+	private JPanel getPanel1_17() {
+		if (panel1_17 == null) {
+			panel1_17 = new JPanel();
+			panel1_17.setBorder(new MatteBorder(1, 1, 1, 4, (Color) new Color(0, 0, 0)));
+			panel1_17.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_17.setLayout(new BorderLayout(0, 0));
+			panel1_17.add(getPanelValor_17());
+			panel1_17.add(getPanelCadidatos_17(), BorderLayout.NORTH);
+		}
+		return panel1_17;
+	}
+	private JPanel getPanelValor_17() {
+		if (panelValor_17 == null) {
+			panelValor_17 = new JPanel();
+			panelValor_17.add(getLblValor1_17());
+		}
+		return panelValor_17;
+	}
+	private JLabel getLblValor1_17() {
+		if (lblValor1_17 == null) {
+			lblValor1_17 = new JLabel("");
+			lblValor1_17.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_17;
+	}
+	private JPanel getPanelCadidatos_17() {
+		if (panelCadidatos_17 == null) {
+			panelCadidatos_17 = new JPanel();
+			panelCadidatos_17.add(getLblCandidatos1_17());
+		}
+		return panelCadidatos_17;
+	}
+	private JLabel getLblCandidatos1_17() {
+		if (lblCandidatos1_17 == null) {
+			lblCandidatos1_17 = new JLabel("");
+		}
+		return lblCandidatos1_17;
+	}
+	private JPanel getPanel1_18() {
+		if (panel1_18 == null) {
+			panel1_18 = new JPanel();
+			panel1_18.setBorder(new MatteBorder(1, 4, 3, 1, (Color) new Color(0, 0, 0)));
+			panel1_18.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_18.setLayout(new BorderLayout(0, 0));
+			panel1_18.add(getPanelValor_18(), BorderLayout.CENTER);
+			panel1_18.add(getPanelCadidatos_18(), BorderLayout.NORTH);
+		}
+		return panel1_18;
+	}
+	private JPanel getPanelValor_18() {
+		if (panelValor_18 == null) {
+			panelValor_18 = new JPanel();
+			panelValor_18.add(getLblValor1_18());
+		}
+		return panelValor_18;
+	}
+	private JLabel getLblValor1_18() {
+		if (lblValor1_18 == null) {
+			lblValor1_18 = new JLabel("");
+			lblValor1_18.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_18;
+	}
+	private JPanel getPanelCadidatos_18() {
+		if (panelCadidatos_18 == null) {
+			panelCadidatos_18 = new JPanel();
+			panelCadidatos_18.add(getLblCandidatos1_18());
+		}
+		return panelCadidatos_18;
+	}
+	private JLabel getLblCandidatos1_18() {
+		if (lblCandidatos1_18 == null) {
+			lblCandidatos1_18 = new JLabel("");
+		}
+		return lblCandidatos1_18;
+	}
+	private JPanel getPanel1_19() {
+		if (panel1_19 == null) {
+			panel1_19 = new JPanel();
+			panel1_19.setBorder(new MatteBorder(1, 1, 3, 1, (Color) new Color(0, 0, 0)));
+			panel1_19.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_19.setLayout(new BorderLayout(0, 0));
+			panel1_19.add(getPanelValor_19(), BorderLayout.CENTER);
+			panel1_19.add(getPanelCadidatos_19(), BorderLayout.NORTH);
+		}
+		return panel1_19;
+	}
+	private JPanel getPanelValor_19() {
+		if (panelValor_19 == null) {
+			panelValor_19 = new JPanel();
+			panelValor_19.add(getLblValor1_19());
+		}
+		return panelValor_19;
+	}
+	private JLabel getLblValor1_19() {
+		if (lblValor1_19 == null) {
+			lblValor1_19 = new JLabel("");
+			lblValor1_19.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_19;
+	}
+	private JPanel getPanelCadidatos_19() {
+		if (panelCadidatos_19 == null) {
+			panelCadidatos_19 = new JPanel();
+			panelCadidatos_19.add(getLblCandidatos1_19());
+		}
+		return panelCadidatos_19;
+	}
+	private JLabel getLblCandidatos1_19() {
+		if (lblCandidatos1_19 == null) {
+			lblCandidatos1_19 = new JLabel("");
+		}
+		return lblCandidatos1_19;
+	}
+	private JPanel getPanel1_20() {
+		if (panel1_20 == null) {
+			panel1_20 = new JPanel();
+			panel1_20.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
+			panel1_20.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_20.setLayout(new BorderLayout(0, 0));
+			panel1_20.add(getPanelValor_20());
+			panel1_20.add(getPanelCadidatos_20(), BorderLayout.NORTH);
+		}
+		return panel1_20;
+	}
+	private JPanel getPanelValor_20() {
+		if (panelValor_20 == null) {
+			panelValor_20 = new JPanel();
+			panelValor_20.add(getLblValor1_20());
+		}
+		return panelValor_20;
+	}
+	private JLabel getLblValor1_20() {
+		if (lblValor1_20 == null) {
+			lblValor1_20 = new JLabel("");
+			lblValor1_20.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_20;
+	}
+	private JPanel getPanelCadidatos_20() {
+		if (panelCadidatos_20 == null) {
+			panelCadidatos_20 = new JPanel();
+			panelCadidatos_20.add(getLblCandidatos1_20());
+		}
+		return panelCadidatos_20;
+	}
+	private JLabel getLblCandidatos1_20() {
+		if (lblCandidatos1_20 == null) {
+			lblCandidatos1_20 = new JLabel("");
+		}
+		return lblCandidatos1_20;
+	}
+	private JPanel getPanel1_21() {
+		if (panel1_21 == null) {
+			panel1_21 = new JPanel();
+			panel1_21.setBorder(new MatteBorder(1, 3, 3, 1, (Color) new Color(0, 0, 0)));
+			panel1_21.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_21.setLayout(new BorderLayout(0, 0));
+			panel1_21.add(getPanelValor_21(), BorderLayout.CENTER);
+			panel1_21.add(getPanelCadidatos_21(), BorderLayout.NORTH);
+		}
+		return panel1_21;
+	}
+	private JPanel getPanelValor_21() {
+		if (panelValor_21 == null) {
+			panelValor_21 = new JPanel();
+			panelValor_21.add(getLblValor1_21());
+		}
+		return panelValor_21;
+	}
+	private JLabel getLblValor1_21() {
+		if (lblValor1_21 == null) {
+			lblValor1_21 = new JLabel("");
+			lblValor1_21.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_21;
+	}
+	private JPanel getPanelCadidatos_21() {
+		if (panelCadidatos_21 == null) {
+			panelCadidatos_21 = new JPanel();
+			panelCadidatos_21.add(getLblCandidatos1_21());
+		}
+		return panelCadidatos_21;
+	}
+	private JLabel getLblCandidatos1_21() {
+		if (lblCandidatos1_21 == null) {
+			lblCandidatos1_21 = new JLabel("");
+		}
+		return lblCandidatos1_21;
+	}
+	private JPanel getPanel1_22() {
+		if (panel1_22 == null) {
+			panel1_22 = new JPanel();
+			panel1_22.setBorder(new MatteBorder(1, 1, 3, 1, (Color) new Color(0, 0, 0)));
+			panel1_22.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_22.setLayout(new BorderLayout(0, 0));
+			panel1_22.add(getPanelValor_22(), BorderLayout.CENTER);
+			panel1_22.add(getPanelCadidatos_22(), BorderLayout.NORTH);
+		}
+		return panel1_22;
+	}
+	private JPanel getPanelValor_22() {
+		if (panelValor_22 == null) {
+			panelValor_22 = new JPanel();
+			panelValor_22.add(getLblValor1_22());
+		}
+		return panelValor_22;
+	}
+	private JLabel getLblValor1_22() {
+		if (lblValor1_22 == null) {
+			lblValor1_22 = new JLabel("");
+			lblValor1_22.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_22;
+	}
+	private JPanel getPanelCadidatos_22() {
+		if (panelCadidatos_22 == null) {
+			panelCadidatos_22 = new JPanel();
+			panelCadidatos_22.add(getLblCandidatos1_22());
+		}
+		return panelCadidatos_22;
+	}
+	private JLabel getLblCandidatos1_22() {
+		if (lblCandidatos1_22 == null) {
+			lblCandidatos1_22 = new JLabel("");
+		}
+		return lblCandidatos1_22;
+	}
+	private JPanel getPanel1_23() {
+		if (panel1_23 == null) {
+			panel1_23 = new JPanel();
+			panel1_23.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
+			panel1_23.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_23.setLayout(new BorderLayout(0, 0));
+			panel1_23.add(getPanelValor_23(), BorderLayout.CENTER);
+			panel1_23.add(getPanelCadidatos_23(), BorderLayout.NORTH);
+		}
+		return panel1_23;
+	}
+	private JPanel getPanelValor_23() {
+		if (panelValor_23 == null) {
+			panelValor_23 = new JPanel();
+			panelValor_23.add(getLblValor1_23());
+		}
+		return panelValor_23;
+	}
+	private JLabel getLblValor1_23() {
+		if (lblValor1_23 == null) {
+			lblValor1_23 = new JLabel("");
+			lblValor1_23.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_23;
+	}
+	private JPanel getPanelCadidatos_23() {
+		if (panelCadidatos_23 == null) {
+			panelCadidatos_23 = new JPanel();
+			panelCadidatos_23.add(getLblCandidatos1_23());
+		}
+		return panelCadidatos_23;
+	}
+	private JLabel getLblCandidatos1_23() {
+		if (lblCandidatos1_23 == null) {
+			lblCandidatos1_23 = new JLabel("");
+		}
+		return lblCandidatos1_23;
+	}
+	private JPanel getPanel1_24() {
+		if (panel1_24 == null) {
+			panel1_24 = new JPanel();
+			panel1_24.setBorder(new MatteBorder(1, 3, 3, 1, (Color) new Color(0, 0, 0)));
+			panel1_24.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_24.setLayout(new BorderLayout(0, 0));
+			panel1_24.add(getPanelValor_24(), BorderLayout.CENTER);
+			panel1_24.add(getPanelCadidatos_24(), BorderLayout.NORTH);
+		}
+		return panel1_24;
+	}
+	private JPanel getPanelValor_24() {
+		if (panelValor_24 == null) {
+			panelValor_24 = new JPanel();
+			panelValor_24.add(getLblValor1_24());
+		}
+		return panelValor_24;
+	}
+	private JLabel getLblValor1_24() {
+		if (lblValor1_24 == null) {
+			lblValor1_24 = new JLabel("");
+			lblValor1_24.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_24;
+	}
+	private JPanel getPanelCadidatos_24() {
+		if (panelCadidatos_24 == null) {
+			panelCadidatos_24 = new JPanel();
+			panelCadidatos_24.add(getLblCandidatos1_24());
+		}
+		return panelCadidatos_24;
+	}
+	private JLabel getLblCandidatos1_24() {
+		if (lblCandidatos1_24 == null) {
+			lblCandidatos1_24 = new JLabel("");
+		}
+		return lblCandidatos1_24;
+	}
+	private JPanel getPanel1_25() {
+		if (panel1_25 == null) {
+			panel1_25 = new JPanel();
+			panel1_25.setBorder(new MatteBorder(1, 1, 3, 1, (Color) new Color(0, 0, 0)));
+			panel1_25.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_25.setLayout(new BorderLayout(0, 0));
+			panel1_25.add(getPanelValor_25(), BorderLayout.CENTER);
+			panel1_25.add(getPanelCadidatos_25(), BorderLayout.NORTH);
+		}
+		return panel1_25;
+	}
+	private JPanel getPanelValor_25() {
+		if (panelValor_25 == null) {
+			panelValor_25 = new JPanel();
+			panelValor_25.add(getLblValor1_25());
+		}
+		return panelValor_25;
+	}
+	private JLabel getLblValor1_25() {
+		if (lblValor1_25 == null) {
+			lblValor1_25 = new JLabel("");
+			lblValor1_25.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_25;
+	}
+	private JPanel getPanelCadidatos_25() {
+		if (panelCadidatos_25 == null) {
+			panelCadidatos_25 = new JPanel();
+			panelCadidatos_25.add(getLblCandidatos1_25());
+		}
+		return panelCadidatos_25;
+	}
+	private JLabel getLblCandidatos1_25() {
+		if (lblCandidatos1_25 == null) {
+			lblCandidatos1_25 = new JLabel("");
+		}
+		return lblCandidatos1_25;
+	}
+	private JPanel getPanel1_26() {
+		if (panel1_26 == null) {
+			panel1_26 = new JPanel();
+			panel1_26.setBorder(new MatteBorder(1, 1, 3, 4, (Color) new Color(0, 0, 0)));
+			panel1_26.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_26.setLayout(new BorderLayout(0, 0));
+			panel1_26.add(getPanelValor_26(), BorderLayout.CENTER);
+			panel1_26.add(getPanelCadidatos_26(), BorderLayout.NORTH);
+		}
+		return panel1_26;
+	}
+	private JPanel getPanelValor_26() {
+		if (panelValor_26 == null) {
+			panelValor_26 = new JPanel();
+			panelValor_26.add(getLblValor1_26());
+		}
+		return panelValor_26;
+	}
+	private JLabel getLblValor1_26() {
+		if (lblValor1_26 == null) {
+			lblValor1_26 = new JLabel("");
+			lblValor1_26.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_26;
+	}
+	private JPanel getPanelCadidatos_26() {
+		if (panelCadidatos_26 == null) {
+			panelCadidatos_26 = new JPanel();
+			panelCadidatos_26.add(getLblCandidatos1_26());
+		}
+		return panelCadidatos_26;
+	}
+	private JLabel getLblCandidatos1_26() {
+		if (lblCandidatos1_26 == null) {
+			lblCandidatos1_26 = new JLabel("");
+		}
+		return lblCandidatos1_26;
+	}
+	private JPanel getPanel1_27() {
+		if (panel1_27 == null) {
+			panel1_27 = new JPanel();
+			panel1_27.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_27.setBorder(new MatteBorder(3, 4, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_27.setLayout(new BorderLayout(0, 0));
+			panel1_27.add(getPanelValor_27(), BorderLayout.CENTER);
+			panel1_27.add(getPanelCadidatos_27(), BorderLayout.NORTH);
+		}
+		return panel1_27;
+	}
+	private JPanel getPanelValor_27() {
+		if (panelValor_27 == null) {
+			panelValor_27 = new JPanel();
+			panelValor_27.add(getLblValor1_27());
+		}
+		return panelValor_27;
+	}
+	private JLabel getLblValor1_27() {
+		if (lblValor1_27 == null) {
+			lblValor1_27 = new JLabel("");
+			lblValor1_27.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_27;
+	}
+	private JPanel getPanelCadidatos_27() {
+		if (panelCadidatos_27 == null) {
+			panelCadidatos_27 = new JPanel();
+			panelCadidatos_27.add(getLblCandidatos1_27());
+		}
+		return panelCadidatos_27;
+	}
+	private JLabel getLblCandidatos1_27() {
+		if (lblCandidatos1_27 == null) {
+			lblCandidatos1_27 = new JLabel("");
+		}
+		return lblCandidatos1_27;
+	}
+	private JPanel getPanel1_28() {
+		if (panel1_28 == null) {
+			panel1_28 = new JPanel();
+			panel1_28.setBorder(new MatteBorder(3, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_28.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_28.setLayout(new BorderLayout(0, 0));
+			panel1_28.add(getPanelValor_28(), BorderLayout.CENTER);
+			panel1_28.add(getPanelCadidatos_28(), BorderLayout.NORTH);
+		}
+		return panel1_28;
+	}
+	private JPanel getPanelValor_28() {
+		if (panelValor_28 == null) {
+			panelValor_28 = new JPanel();
+			panelValor_28.add(getLblValor1_28());
+		}
+		return panelValor_28;
+	}
+	private JLabel getLblValor1_28() {
+		if (lblValor1_28 == null) {
+			lblValor1_28 = new JLabel("");
+			lblValor1_28.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_28;
+	}
+	private JPanel getPanelCadidatos_28() {
+		if (panelCadidatos_28 == null) {
+			panelCadidatos_28 = new JPanel();
+			panelCadidatos_28.add(getLblCandidatos1_28());
+		}
+		return panelCadidatos_28;
+	}
+	private JLabel getLblCandidatos1_28() {
+		if (lblCandidatos1_28 == null) {
+			lblCandidatos1_28 = new JLabel("");
+		}
+		return lblCandidatos1_28;
+	}
+	private JPanel getPanel1_29() {
+		if (panel1_29 == null) {
+			panel1_29 = new JPanel();
+			panel1_29.setBorder(new MatteBorder(3, 1, 1, 3, (Color) new Color(0, 0, 0)));
+			panel1_29.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_29.setLayout(new BorderLayout(0, 0));
+			panel1_29.add(getPanelValor_29(), BorderLayout.CENTER);
+			panel1_29.add(getPanelCadidatos_29(), BorderLayout.NORTH);
+		}
+		return panel1_29;
+	}
+	private JPanel getPanelValor_29() {
+		if (panelValor_29 == null) {
+			panelValor_29 = new JPanel();
+			panelValor_29.add(getLblValor1_29());
+		}
+		return panelValor_29;
+	}
+	private JLabel getLblValor1_29() {
+		if (lblValor1_29 == null) {
+			lblValor1_29 = new JLabel("");
+			lblValor1_29.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_29;
+	}
+	private JPanel getPanelCadidatos_29() {
+		if (panelCadidatos_29 == null) {
+			panelCadidatos_29 = new JPanel();
+			panelCadidatos_29.add(getLblCandidatos1_29());
+		}
+		return panelCadidatos_29;
+	}
+	private JLabel getLblCandidatos1_29() {
+		if (lblCandidatos1_29 == null) {
+			lblCandidatos1_29 = new JLabel("");
+		}
+		return lblCandidatos1_29;
+	}
+	private JPanel getPanel1_30() {
+		if (panel1_30 == null) {
+			panel1_30 = new JPanel();
+			panel1_30.setBorder(new MatteBorder(3, 3, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_30.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_30.setLayout(new BorderLayout(0, 0));
+			panel1_30.add(getPanelValor_30(), BorderLayout.CENTER);
+			panel1_30.add(getPanelCadidatos_30(), BorderLayout.NORTH);
+		}
+		return panel1_30;
+	}
+	private JPanel getPanelValor_30() {
+		if (panelValor_30 == null) {
+			panelValor_30 = new JPanel();
+			panelValor_30.add(getLblValor1_30());
+		}
+		return panelValor_30;
+	}
+	private JLabel getLblValor1_30() {
+		if (lblValor1_30 == null) {
+			lblValor1_30 = new JLabel("");
+			lblValor1_30.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_30;
+	}
+	private JPanel getPanelCadidatos_30() {
+		if (panelCadidatos_30 == null) {
+			panelCadidatos_30 = new JPanel();
+			panelCadidatos_30.add(getLblCandidatos1_30());
+		}
+		return panelCadidatos_30;
+	}
+	private JLabel getLblCandidatos1_30() {
+		if (lblCandidatos1_30 == null) {
+			lblCandidatos1_30 = new JLabel("");
+		}
+		return lblCandidatos1_30;
+	}
+	private JPanel getPanel1_31() {
+		if (panel1_31 == null) {
+			panel1_31 = new JPanel();
+			panel1_31.setBorder(new MatteBorder(3, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_31.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_31.setLayout(new BorderLayout(0, 0));
+			panel1_31.add(getPanelValor_31(), BorderLayout.CENTER);
+			panel1_31.add(getPanelCadidatos_31(), BorderLayout.NORTH);
+		}
+		return panel1_31;
+	}
+	private JPanel getPanelValor_31() {
+		if (panelValor_31 == null) {
+			panelValor_31 = new JPanel();
+			panelValor_31.add(getLblValor1_31());
+		}
+		return panelValor_31;
+	}
+	private JLabel getLblValor1_31() {
+		if (lblValor1_31 == null) {
+			lblValor1_31 = new JLabel("");
+			lblValor1_31.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_31;
+	}
+	private JPanel getPanelCadidatos_31() {
+		if (panelCadidatos_31 == null) {
+			panelCadidatos_31 = new JPanel();
+			panelCadidatos_31.add(getLblCandidatos1_31());
+		}
+		return panelCadidatos_31;
+	}
+	private JLabel getLblCandidatos1_31() {
+		if (lblCandidatos1_31 == null) {
+			lblCandidatos1_31 = new JLabel("");
+		}
+		return lblCandidatos1_31;
+	}
+	private JPanel getPanel1_32() {
+		if (panel1_32 == null) {
+			panel1_32 = new JPanel();
+			panel1_32.setBorder(new MatteBorder(3, 1, 1, 3, (Color) new Color(0, 0, 0)));
+			panel1_32.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_32.setLayout(new BorderLayout(0, 0));
+			panel1_32.add(getPanelValor_32(), BorderLayout.CENTER);
+			panel1_32.add(getPanelCadidatos_32(), BorderLayout.NORTH);
+		}
+		return panel1_32;
+	}
+	private JPanel getPanelValor_32() {
+		if (panelValor_32 == null) {
+			panelValor_32 = new JPanel();
+			panelValor_32.add(getLblValor1_32());
+		}
+		return panelValor_32;
+	}
+	private JLabel getLblValor1_32() {
+		if (lblValor1_32 == null) {
+			lblValor1_32 = new JLabel("");
+			lblValor1_32.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_32;
+	}
+	private JPanel getPanelCadidatos_32() {
+		if (panelCadidatos_32 == null) {
+			panelCadidatos_32 = new JPanel();
+			panelCadidatos_32.add(getLblCandidatos1_32());
+		}
+		return panelCadidatos_32;
+	}
+	private JLabel getLblCandidatos1_32() {
+		if (lblCandidatos1_32 == null) {
+			lblCandidatos1_32 = new JLabel("");
+		}
+		return lblCandidatos1_32;
+	}
+	private JPanel getPanel1_33() {
+		if (panel1_33 == null) {
+			panel1_33 = new JPanel();
+			panel1_33.setBorder(new MatteBorder(3, 3, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_33.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_33.setLayout(new BorderLayout(0, 0));
+			panel1_33.add(getPanelValor_33(), BorderLayout.CENTER);
+			panel1_33.add(getPanelCadidatos_33(), BorderLayout.NORTH);
+		}
+		return panel1_33;
+	}
+	private JPanel getPanelValor_33() {
+		if (panelValor_33 == null) {
+			panelValor_33 = new JPanel();
+			panelValor_33.add(getLblValor1_33());
+		}
+		return panelValor_33;
+	}
+	private JLabel getLblValor1_33() {
+		if (lblValor1_33 == null) {
+			lblValor1_33 = new JLabel("");
+			lblValor1_33.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_33;
+	}
+	private JPanel getPanelCadidatos_33() {
+		if (panelCadidatos_33 == null) {
+			panelCadidatos_33 = new JPanel();
+			panelCadidatos_33.add(getLblCandidatos1_33());
+		}
+		return panelCadidatos_33;
+	}
+	private JLabel getLblCandidatos1_33() {
+		if (lblCandidatos1_33 == null) {
+			lblCandidatos1_33 = new JLabel("");
+		}
+		return lblCandidatos1_33;
+	}
+	private JPanel getPanel1_34() {
+		if (panel1_34 == null) {
+			panel1_34 = new JPanel();
+			panel1_34.setBorder(new MatteBorder(3, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_34.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_34.setLayout(new BorderLayout(0, 0));
+			panel1_34.add(getPanelValor_34(), BorderLayout.CENTER);
+			panel1_34.add(getPanelCadidatos_34(), BorderLayout.NORTH);
+		}
+		return panel1_34;
+	}
+	private JPanel getPanelValor_34() {
+		if (panelValor_34 == null) {
+			panelValor_34 = new JPanel();
+			panelValor_34.add(getLblValor1_34());
+		}
+		return panelValor_34;
+	}
+	private JLabel getLblValor1_34() {
+		if (lblValor1_34 == null) {
+			lblValor1_34 = new JLabel("");
+			lblValor1_34.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_34;
+	}
+	private JPanel getPanelCadidatos_34() {
+		if (panelCadidatos_34 == null) {
+			panelCadidatos_34 = new JPanel();
+			panelCadidatos_34.add(getLblCandidatos1_34());
+		}
+		return panelCadidatos_34;
+	}
+	private JLabel getLblCandidatos1_34() {
+		if (lblCandidatos1_34 == null) {
+			lblCandidatos1_34 = new JLabel("");
+		}
+		return lblCandidatos1_34;
+	}
+	private JPanel getPanel1_35() {
+		if (panel1_35 == null) {
+			panel1_35 = new JPanel();
+			panel1_35.setBorder(new MatteBorder(3, 1, 1, 4, (Color) new Color(0, 0, 0)));
+			panel1_35.setLayout(new BorderLayout(0, 0));
+			panel1_35.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_35.add(getPanelValor_35(), BorderLayout.CENTER);
+			panel1_35.add(getPanelCadidatos_35(), BorderLayout.NORTH);
+		}
+		return panel1_35;
+	}
+	private JPanel getPanelValor_35() {
+		if (panelValor_35 == null) {
+			panelValor_35 = new JPanel();
+			panelValor_35.add(getLblValor1_35());
+		}
+		return panelValor_35;
+	}
+	private JLabel getLblValor1_35() {
+		if (lblValor1_35 == null) {
+			lblValor1_35 = new JLabel("");
+			lblValor1_35.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_35;
+	}
+	private JPanel getPanelCadidatos_35() {
+		if (panelCadidatos_35 == null) {
+			panelCadidatos_35 = new JPanel();
+			panelCadidatos_35.add(getLblCandidatos1_35());
+		}
+		return panelCadidatos_35;
+	}
+	private JLabel getLblCandidatos1_35() {
+		if (lblCandidatos1_35 == null) {
+			lblCandidatos1_35 = new JLabel("");
+		}
+		return lblCandidatos1_35;
+	}
+	private JPanel getPanel1_36() {
+		if (panel1_36 == null) {
+			panel1_36 = new JPanel();
+			panel1_36.setBorder(new MatteBorder(1, 4, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_36.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_36.setLayout(new BorderLayout(0, 0));
+			panel1_36.add(getPanelValor_36(), BorderLayout.CENTER);
+			panel1_36.add(getPanelCadidatos_36(), BorderLayout.NORTH);
+		}
+		return panel1_36;
+	}
+	private JPanel getPanelValor_36() {
+		if (panelValor_36 == null) {
+			panelValor_36 = new JPanel();
+			panelValor_36.add(getLblValor1_36());
+		}
+		return panelValor_36;
+	}
+	private JLabel getLblValor1_36() {
+		if (lblValor1_36 == null) {
+			lblValor1_36 = new JLabel("");
+			lblValor1_36.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_36;
+	}
+	private JPanel getPanelCadidatos_36() {
+		if (panelCadidatos_36 == null) {
+			panelCadidatos_36 = new JPanel();
+			panelCadidatos_36.add(getLblCandidatos1_36());
+		}
+		return panelCadidatos_36;
+	}
+	private JLabel getLblCandidatos1_36() {
+		if (lblCandidatos1_36 == null) {
+			lblCandidatos1_36 = new JLabel("");
+		}
+		return lblCandidatos1_36;
+	}
+	private JPanel getPanel1_37() {
+		if (panel1_37 == null) {
+			panel1_37 = new JPanel();
+			panel1_37.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_37.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_37.setLayout(new BorderLayout(0, 0));
+			panel1_37.add(getPanelValor_37(), BorderLayout.CENTER);
+			panel1_37.add(getPanelCadidatos_37(), BorderLayout.NORTH);
+		}
+		return panel1_37;
+	}
+	private JPanel getPanelValor_37() {
+		if (panelValor_37 == null) {
+			panelValor_37 = new JPanel();
+			panelValor_37.add(getLblValor1_37());
+		}
+		return panelValor_37;
+	}
+	private JLabel getLblValor1_37() {
+		if (lblValor1_37 == null) {
+			lblValor1_37 = new JLabel("");
+			lblValor1_37.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_37;
+	}
+	private JPanel getPanelCadidatos_37() {
+		if (panelCadidatos_37 == null) {
+			panelCadidatos_37 = new JPanel();
+			panelCadidatos_37.add(getLblCandidatos1_37());
+		}
+		return panelCadidatos_37;
+	}
+	private JLabel getLblCandidatos1_37() {
+		if (lblCandidatos1_37 == null) {
+			lblCandidatos1_37 = new JLabel("");
+		}
+		return lblCandidatos1_37;
+	}
+	private JPanel getPanel1_38() {
+		if (panel1_38 == null) {
+			panel1_38 = new JPanel();
+			panel1_38.setBorder(new MatteBorder(1, 1, 1, 3, (Color) new Color(0, 0, 0)));
+			panel1_38.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_38.setLayout(new BorderLayout(0, 0));
+			panel1_38.add(getPanelValor_38(), BorderLayout.CENTER);
+			panel1_38.add(getPanelCadidatos_38(), BorderLayout.NORTH);
+		}
+		return panel1_38;
+	}
+	private JPanel getPanelValor_38() {
+		if (panelValor_38 == null) {
+			panelValor_38 = new JPanel();
+			panelValor_38.add(getLblValor1_38());
+		}
+		return panelValor_38;
+	}
+	private JLabel getLblValor1_38() {
+		if (lblValor1_38 == null) {
+			lblValor1_38 = new JLabel("");
+			lblValor1_38.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_38;
+	}
+	private JPanel getPanelCadidatos_38() {
+		if (panelCadidatos_38 == null) {
+			panelCadidatos_38 = new JPanel();
+			panelCadidatos_38.add(getLblCandidatos1_38());
+		}
+		return panelCadidatos_38;
+	}
+	private JLabel getLblCandidatos1_38() {
+		if (lblCandidatos1_38 == null) {
+			lblCandidatos1_38 = new JLabel("");
+		}
+		return lblCandidatos1_38;
+	}
+	private JPanel getPanel1_39() {
+		if (panel1_39 == null) {
+			panel1_39 = new JPanel();
+			panel1_39.setBorder(new MatteBorder(1, 3, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_39.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_39.setLayout(new BorderLayout(0, 0));
+			panel1_39.add(getPanelValor_39(), BorderLayout.CENTER);
+			panel1_39.add(getPanelCadidatos_39(), BorderLayout.NORTH);
+		}
+		return panel1_39;
+	}
+	private JPanel getPanelValor_39() {
+		if (panelValor_39 == null) {
+			panelValor_39 = new JPanel();
+			panelValor_39.add(getLblValor1_39());
+		}
+		return panelValor_39;
+	}
+	private JLabel getLblValor1_39() {
+		if (lblValor1_39 == null) {
+			lblValor1_39 = new JLabel("");
+			lblValor1_39.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_39;
+	}
+	private JPanel getPanelCadidatos_39() {
+		if (panelCadidatos_39 == null) {
+			panelCadidatos_39 = new JPanel();
+			panelCadidatos_39.add(getLblCandidatos1_39());
+		}
+		return panelCadidatos_39;
+	}
+	private JLabel getLblCandidatos1_39() {
+		if (lblCandidatos1_39 == null) {
+			lblCandidatos1_39 = new JLabel("");
+		}
+		return lblCandidatos1_39;
+	}
+	private JPanel getPanel1_40() {
+		if (panel1_40 == null) {
+			panel1_40 = new JPanel();
+			panel1_40.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_40.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_40.setLayout(new BorderLayout(0, 0));
+			panel1_40.add(getPanelValor_40(), BorderLayout.CENTER);
+			panel1_40.add(getPanelCadidatos_40(), BorderLayout.NORTH);
+		}
+		return panel1_40;
+	}
+	private JPanel getPanelValor_40() {
+		if (panelValor_40 == null) {
+			panelValor_40 = new JPanel();
+			panelValor_40.add(getLblValor1_40());
+		}
+		return panelValor_40;
+	}
+	private JLabel getLblValor1_40() {
+		if (lblValor1_40 == null) {
+			lblValor1_40 = new JLabel("");
+			lblValor1_40.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_40;
+	}
+	private JPanel getPanelCadidatos_40() {
+		if (panelCadidatos_40 == null) {
+			panelCadidatos_40 = new JPanel();
+			panelCadidatos_40.add(getLblCandidatos1_40());
+		}
+		return panelCadidatos_40;
+	}
+	private JLabel getLblCandidatos1_40() {
+		if (lblCandidatos1_40 == null) {
+			lblCandidatos1_40 = new JLabel("");
+		}
+		return lblCandidatos1_40;
+	}
+	private JPanel getPanel1_41() {
+		if (panel1_41 == null) {
+			panel1_41 = new JPanel();
+			panel1_41.setBorder(new MatteBorder(1, 1, 1, 3, (Color) new Color(0, 0, 0)));
+			panel1_41.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_41.setLayout(new BorderLayout(0, 0));
+			panel1_41.add(getPanelValor_41(), BorderLayout.CENTER);
+			panel1_41.add(getPanelCadidatos_41(), BorderLayout.NORTH);
+		}
+		return panel1_41;
+	}
+	private JPanel getPanelValor_41() {
+		if (panelValor_41 == null) {
+			panelValor_41 = new JPanel();
+			panelValor_41.add(getLblValor1_41());
+		}
+		return panelValor_41;
+	}
+	private JLabel getLblValor1_41() {
+		if (lblValor1_41 == null) {
+			lblValor1_41 = new JLabel("");
+			lblValor1_41.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_41;
+	}
+	private JPanel getPanelCadidatos_41() {
+		if (panelCadidatos_41 == null) {
+			panelCadidatos_41 = new JPanel();
+			panelCadidatos_41.add(getLblCandidatos1_41());
+		}
+		return panelCadidatos_41;
+	}
+	private JLabel getLblCandidatos1_41() {
+		if (lblCandidatos1_41 == null) {
+			lblCandidatos1_41 = new JLabel("");
+		}
+		return lblCandidatos1_41;
+	}
+	private JPanel getPanel1_42() {
+		if (panel1_42 == null) {
+			panel1_42 = new JPanel();
+			panel1_42.setBorder(new MatteBorder(1, 3, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_42.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_42.setLayout(new BorderLayout(0, 0));
+			panel1_42.add(getPanelValor_42(), BorderLayout.CENTER);
+			panel1_42.add(getPanelCadidatos_42(), BorderLayout.NORTH);
+		}
+		return panel1_42;
+	}
+	private JPanel getPanelValor_42() {
+		if (panelValor_42 == null) {
+			panelValor_42 = new JPanel();
+			panelValor_42.add(getLblValor1_42());
+		}
+		return panelValor_42;
+	}
+	private JLabel getLblValor1_42() {
+		if (lblValor1_42 == null) {
+			lblValor1_42 = new JLabel("");
+			lblValor1_42.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_42;
+	}
+	private JPanel getPanelCadidatos_42() {
+		if (panelCadidatos_42 == null) {
+			panelCadidatos_42 = new JPanel();
+			panelCadidatos_42.add(getLblCandidatos1_42());
+		}
+		return panelCadidatos_42;
+	}
+	private JLabel getLblCandidatos1_42() {
+		if (lblCandidatos1_42 == null) {
+			lblCandidatos1_42 = new JLabel("");
+		}
+		return lblCandidatos1_42;
+	}
+	private JPanel getPanel1_43() {
+		if (panel1_43 == null) {
+			panel1_43 = new JPanel();
+			panel1_43.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_43.setLayout(new BorderLayout(0, 0));
+			panel1_43.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_43.add(getPanelValor_43(), BorderLayout.CENTER);
+			panel1_43.add(getPanelCadidatos_43(), BorderLayout.NORTH);
+		}
+		return panel1_43;
+	}
+	private JPanel getPanelValor_43() {
+		if (panelValor_43 == null) {
+			panelValor_43 = new JPanel();
+			panelValor_43.add(getLblValor1_43());
+		}
+		return panelValor_43;
+	}
+	private JLabel getLblValor1_43() {
+		if (lblValor1_43 == null) {
+			lblValor1_43 = new JLabel("");
+			lblValor1_43.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_43;
+	}
+	private JPanel getPanelCadidatos_43() {
+		if (panelCadidatos_43 == null) {
+			panelCadidatos_43 = new JPanel();
+			panelCadidatos_43.add(getLblCandidatos1_43());
+		}
+		return panelCadidatos_43;
+	}
+	private JLabel getLblCandidatos1_43() {
+		if (lblCandidatos1_43 == null) {
+			lblCandidatos1_43 = new JLabel("");
+		}
+		return lblCandidatos1_43;
+	}
+	private JPanel getPanel1_44() {
+		if (panel1_44 == null) {
+			panel1_44 = new JPanel();
+			panel1_44.setBorder(new MatteBorder(1, 1, 1, 4, (Color) new Color(0, 0, 0)));
+			panel1_44.setLayout(new BorderLayout(0, 0));
+			panel1_44.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_44.add(getPanelValor_44(), BorderLayout.CENTER);
+			panel1_44.add(getPanelCadidatos_44(), BorderLayout.NORTH);
+		}
+		return panel1_44;
+	}
+	private JPanel getPanelValor_44() {
+		if (panelValor_44 == null) {
+			panelValor_44 = new JPanel();
+			panelValor_44.add(getLblValor1_44());
+		}
+		return panelValor_44;
+	}
+	private JLabel getLblValor1_44() {
+		if (lblValor1_44 == null) {
+			lblValor1_44 = new JLabel("");
+			lblValor1_44.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_44;
+	}
+	private JPanel getPanelCadidatos_44() {
+		if (panelCadidatos_44 == null) {
+			panelCadidatos_44 = new JPanel();
+			panelCadidatos_44.add(getLblCandidatos1_44());
+		}
+		return panelCadidatos_44;
+	}
+	private JLabel getLblCandidatos1_44() {
+		if (lblCandidatos1_44 == null) {
+			lblCandidatos1_44 = new JLabel("");
+		}
+		return lblCandidatos1_44;
+	}
+	private JPanel getPanel1_45() {
+		if (panel1_45 == null) {
+			panel1_45 = new JPanel();
+			panel1_45.setBorder(new MatteBorder(1, 4, 3, 1, (Color) new Color(0, 0, 0)));
+			panel1_45.setLayout(new BorderLayout(0, 0));
+			panel1_45.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_45.add(getPanelValor_45(), BorderLayout.CENTER);
+			panel1_45.add(getPanelCadidatos_45(), BorderLayout.NORTH);
+		}
+		return panel1_45;
+	}
+	private JPanel getPanelValor_45() {
+		if (panelValor_45 == null) {
+			panelValor_45 = new JPanel();
+			panelValor_45.add(getLblValor1_45());
+		}
+		return panelValor_45;
+	}
+	private JLabel getLblValor1_45() {
+		if (lblValor1_45 == null) {
+			lblValor1_45 = new JLabel("");
+			lblValor1_45.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_45;
+	}
+	private JPanel getPanelCadidatos_45() {
+		if (panelCadidatos_45 == null) {
+			panelCadidatos_45 = new JPanel();
+			panelCadidatos_45.add(getLblCandidatos1_45());
+		}
+		return panelCadidatos_45;
+	}
+	private JLabel getLblCandidatos1_45() {
+		if (lblCandidatos1_45 == null) {
+			lblCandidatos1_45 = new JLabel("");
+		}
+		return lblCandidatos1_45;
+	}
+	private JPanel getPanel1_46() {
+		if (panel1_46 == null) {
+			panel1_46 = new JPanel();
+			panel1_46.setBorder(new MatteBorder(1, 1, 3, 1, (Color) new Color(0, 0, 0)));
+			panel1_46.setLayout(new BorderLayout(0, 0));
+			panel1_46.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_46.add(getPanelValor_46(), BorderLayout.CENTER);
+			panel1_46.add(getPanelCadidatos_46(), BorderLayout.NORTH);
+		}
+		return panel1_46;
+	}
+	private JPanel getPanelValor_46() {
+		if (panelValor_46 == null) {
+			panelValor_46 = new JPanel();
+			panelValor_46.add(getLblValor1_46());
+		}
+		return panelValor_46;
+	}
+	private JLabel getLblValor1_46() {
+		if (lblValor1_46 == null) {
+			lblValor1_46 = new JLabel("");
+			lblValor1_46.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_46;
+	}
+	private JPanel getPanelCadidatos_46() {
+		if (panelCadidatos_46 == null) {
+			panelCadidatos_46 = new JPanel();
+			panelCadidatos_46.add(getLblCandidatos1_46());
+		}
+		return panelCadidatos_46;
+	}
+	private JLabel getLblCandidatos1_46() {
+		if (lblCandidatos1_46 == null) {
+			lblCandidatos1_46 = new JLabel("");
+		}
+		return lblCandidatos1_46;
+	}
+	private JPanel getPanel1_47() {
+		if (panel1_47 == null) {
+			panel1_47 = new JPanel();
+			panel1_47.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
+			panel1_47.setLayout(new BorderLayout(0, 0));
+			panel1_47.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_47.add(getPanelValor_47(), BorderLayout.CENTER);
+			panel1_47.add(getPanelCadidatos_47(), BorderLayout.NORTH);
+		}
+		return panel1_47;
+	}
+	private JPanel getPanelValor_47() {
+		if (panelValor_47 == null) {
+			panelValor_47 = new JPanel();
+			panelValor_47.add(getLblValor1_47());
+		}
+		return panelValor_47;
+	}
+	private JLabel getLblValor1_47() {
+		if (lblValor1_47 == null) {
+			lblValor1_47 = new JLabel("");
+			lblValor1_47.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_47;
+	}
+	private JPanel getPanelCadidatos_47() {
+		if (panelCadidatos_47 == null) {
+			panelCadidatos_47 = new JPanel();
+			panelCadidatos_47.add(getLblCandidatos1_47());
+		}
+		return panelCadidatos_47;
+	}
+	private JLabel getLblCandidatos1_47() {
+		if (lblCandidatos1_47 == null) {
+			lblCandidatos1_47 = new JLabel("");
+		}
+		return lblCandidatos1_47;
+	}
+	private JPanel getPanel1_48() {
+		if (panel1_48 == null) {
+			panel1_48 = new JPanel();
+			panel1_48.setBorder(new MatteBorder(1, 3, 3, 1, (Color) new Color(0, 0, 0)));
+			panel1_48.setLayout(new BorderLayout(0, 0));
+			panel1_48.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_48.add(getPanelValor_48(), BorderLayout.CENTER);
+			panel1_48.add(getPanelCadidatos_48(), BorderLayout.NORTH);
+		}
+		return panel1_48;
+	}
+	private JPanel getPanelValor_48() {
+		if (panelValor_48 == null) {
+			panelValor_48 = new JPanel();
+			panelValor_48.add(getLblValor1_48());
+		}
+		return panelValor_48;
+	}
+	private JLabel getLblValor1_48() {
+		if (lblValor1_48 == null) {
+			lblValor1_48 = new JLabel("");
+			lblValor1_48.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_48;
+	}
+	private JPanel getPanelCadidatos_48() {
+		if (panelCadidatos_48 == null) {
+			panelCadidatos_48 = new JPanel();
+			panelCadidatos_48.add(getLblCandidatos1_48());
+		}
+		return panelCadidatos_48;
+	}
+	private JLabel getLblCandidatos1_48() {
+		if (lblCandidatos1_48 == null) {
+			lblCandidatos1_48 = new JLabel("");
+		}
+		return lblCandidatos1_48;
+	}
+	private JPanel getPanel1_49() {
+		if (panel1_49 == null) {
+			panel1_49 = new JPanel();
+			panel1_49.setBorder(new MatteBorder(1, 1, 3, 1, (Color) new Color(0, 0, 0)));
+			panel1_49.setLayout(new BorderLayout(0, 0));
+			panel1_49.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_49.add(getPanelValor_49(), BorderLayout.CENTER);
+			panel1_49.add(getPanelCadidatos_49(), BorderLayout.NORTH);
+		}
+		return panel1_49;
+	}
+	private JPanel getPanelValor_49() {
+		if (panelValor_49 == null) {
+			panelValor_49 = new JPanel();
+			panelValor_49.add(getLblValor1_49());
+		}
+		return panelValor_49;
+	}
+	private JLabel getLblValor1_49() {
+		if (lblValor1_49 == null) {
+			lblValor1_49 = new JLabel("");
+			lblValor1_49.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_49;
+	}
+	private JPanel getPanelCadidatos_49() {
+		if (panelCadidatos_49 == null) {
+			panelCadidatos_49 = new JPanel();
+			panelCadidatos_49.add(getLblCandidatos1_49());
+		}
+		return panelCadidatos_49;
+	}
+	private JLabel getLblCandidatos1_49() {
+		if (lblCandidatos1_49 == null) {
+			lblCandidatos1_49 = new JLabel("");
+		}
+		return lblCandidatos1_49;
+	}
+	private JPanel getPanel1_50() {
+		if (panel1_50 == null) {
+			panel1_50 = new JPanel();
+			panel1_50.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
+			panel1_50.setLayout(new BorderLayout(0, 0));
+			panel1_50.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_50.add(getPanelValor_50(), BorderLayout.CENTER);
+			panel1_50.add(getPanelCadidatos_50(), BorderLayout.NORTH);
+		}
+		return panel1_50;
+	}
+	private JPanel getPanelValor_50() {
+		if (panelValor_50 == null) {
+			panelValor_50 = new JPanel();
+			panelValor_50.add(getLblValor1_50());
+		}
+		return panelValor_50;
+	}
+	private JLabel getLblValor1_50() {
+		if (lblValor1_50 == null) {
+			lblValor1_50 = new JLabel("");
+			lblValor1_50.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_50;
+	}
+	private JPanel getPanelCadidatos_50() {
+		if (panelCadidatos_50 == null) {
+			panelCadidatos_50 = new JPanel();
+			panelCadidatos_50.add(getLblCandidatos1_50());
+		}
+		return panelCadidatos_50;
+	}
+	private JLabel getLblCandidatos1_50() {
+		if (lblCandidatos1_50 == null) {
+			lblCandidatos1_50 = new JLabel("");
+		}
+		return lblCandidatos1_50;
+	}
+	private JPanel getPanel1_51() {
+		if (panel1_51 == null) {
+			panel1_51 = new JPanel();
+			panel1_51.setBorder(new MatteBorder(1, 3, 3, 1, (Color) new Color(0, 0, 0)));
+			panel1_51.setLayout(new BorderLayout(0, 0));
+			panel1_51.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_51.add(getPanelValor_51(), BorderLayout.CENTER);
+			panel1_51.add(getPanelCadidatos_51(), BorderLayout.NORTH);
+		}
+		return panel1_51;
+	}
+	private JPanel getPanelValor_51() {
+		if (panelValor_51 == null) {
+			panelValor_51 = new JPanel();
+			panelValor_51.add(getLblValor1_51());
+		}
+		return panelValor_51;
+	}
+	private JLabel getLblValor1_51() {
+		if (lblValor1_51 == null) {
+			lblValor1_51 = new JLabel("");
+			lblValor1_51.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_51;
+	}
+	private JPanel getPanelCadidatos_51() {
+		if (panelCadidatos_51 == null) {
+			panelCadidatos_51 = new JPanel();
+			panelCadidatos_51.add(getLblCandidatos1_51());
+		}
+		return panelCadidatos_51;
+	}
+	private JLabel getLblCandidatos1_51() {
+		if (lblCandidatos1_51 == null) {
+			lblCandidatos1_51 = new JLabel("");
+		}
+		return lblCandidatos1_51;
+	}
+	private JPanel getPanel1_52() {
+		if (panel1_52 == null) {
+			panel1_52 = new JPanel();
+			panel1_52.setBorder(new MatteBorder(1, 1, 3, 1, (Color) new Color(0, 0, 0)));
+			panel1_52.setLayout(new BorderLayout(0, 0));
+			panel1_52.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_52.add(getPanelValor_52(), BorderLayout.CENTER);
+			panel1_52.add(getPanelCadidatos_52(), BorderLayout.NORTH);
+		}
+		return panel1_52;
+	}
+	private JPanel getPanelValor_52() {
+		if (panelValor_52 == null) {
+			panelValor_52 = new JPanel();
+			panelValor_52.add(getLblValor1_52());
+		}
+		return panelValor_52;
+	}
+	private JLabel getLblValor1_52() {
+		if (lblValor1_52 == null) {
+			lblValor1_52 = new JLabel("");
+			lblValor1_52.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_52;
+	}
+	private JPanel getPanelCadidatos_52() {
+		if (panelCadidatos_52 == null) {
+			panelCadidatos_52 = new JPanel();
+			panelCadidatos_52.add(getLblCandidatos1_52());
+		}
+		return panelCadidatos_52;
+	}
+	private JLabel getLblCandidatos1_52() {
+		if (lblCandidatos1_52 == null) {
+			lblCandidatos1_52 = new JLabel("");
+		}
+		return lblCandidatos1_52;
+	}
+	private JPanel getPanel1_53() {
+		if (panel1_53 == null) {
+			panel1_53 = new JPanel();
+			panel1_53.setBorder(new MatteBorder(1, 1, 3, 4, (Color) new Color(0, 0, 0)));
+			panel1_53.setLayout(new BorderLayout(0, 0));
+			panel1_53.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_53.add(getPanelValor_53(), BorderLayout.CENTER);
+			panel1_53.add(getPanelCadidatos_53(), BorderLayout.NORTH);
+		}
+		return panel1_53;
+	}
+	private JPanel getPanelValor_53() {
+		if (panelValor_53 == null) {
+			panelValor_53 = new JPanel();
+			panelValor_53.add(getLblValor1_53());
+		}
+		return panelValor_53;
+	}
+	private JLabel getLblValor1_53() {
+		if (lblValor1_53 == null) {
+			lblValor1_53 = new JLabel("");
+			lblValor1_53.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_53;
+	}
+	private JPanel getPanelCadidatos_53() {
+		if (panelCadidatos_53 == null) {
+			panelCadidatos_53 = new JPanel();
+			panelCadidatos_53.add(getLblCandidatos1_53());
+		}
+		return panelCadidatos_53;
+	}
+	private JLabel getLblCandidatos1_53() {
+		if (lblCandidatos1_53 == null) {
+			lblCandidatos1_53 = new JLabel("");
+		}
+		return lblCandidatos1_53;
+	}
+	private JPanel getPanel1_54() {
+		if (panel1_54 == null) {
+			panel1_54 = new JPanel();
+			panel1_54.setBorder(new MatteBorder(3, 4, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_54.setLayout(new BorderLayout(0, 0));
+			panel1_54.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_54.add(getPanelValor_54(), BorderLayout.CENTER);
+			panel1_54.add(getPanelCadidatos_54(), BorderLayout.NORTH);
+		}
+		return panel1_54;
+	}
+	private JPanel getPanelValor_54() {
+		if (panelValor_54 == null) {
+			panelValor_54 = new JPanel();
+			panelValor_54.add(getLblValor1_54());
+		}
+		return panelValor_54;
+	}
+	private JLabel getLblValor1_54() {
+		if (lblValor1_54 == null) {
+			lblValor1_54 = new JLabel("");
+			lblValor1_54.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_54;
+	}
+	private JPanel getPanelCadidatos_54() {
+		if (panelCadidatos_54 == null) {
+			panelCadidatos_54 = new JPanel();
+			panelCadidatos_54.add(getLblCandidatos1_54());
+		}
+		return panelCadidatos_54;
+	}
+	private JLabel getLblCandidatos1_54() {
+		if (lblCandidatos1_54 == null) {
+			lblCandidatos1_54 = new JLabel("");
+		}
+		return lblCandidatos1_54;
+	}
+	private JPanel getPanel1_55() {
+		if (panel1_55 == null) {
+			panel1_55 = new JPanel();
+			panel1_55.setBorder(new MatteBorder(3, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_55.setLayout(new BorderLayout(0, 0));
+			panel1_55.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_55.add(getPanelValor_55(), BorderLayout.CENTER);
+			panel1_55.add(getPanelCadidatos_55(), BorderLayout.NORTH);
+		}
+		return panel1_55;
+	}
+	private JPanel getPanelValor_55() {
+		if (panelValor_55 == null) {
+			panelValor_55 = new JPanel();
+			panelValor_55.add(getLblValor1_55());
+		}
+		return panelValor_55;
+	}
+	private JLabel getLblValor1_55() {
+		if (lblValor1_55 == null) {
+			lblValor1_55 = new JLabel("");
+			lblValor1_55.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_55;
+	}
+	private JPanel getPanelCadidatos_55() {
+		if (panelCadidatos_55 == null) {
+			panelCadidatos_55 = new JPanel();
+			panelCadidatos_55.add(getLblCandidatos1_55());
+		}
+		return panelCadidatos_55;
+	}
+	private JLabel getLblCandidatos1_55() {
+		if (lblCandidatos1_55 == null) {
+			lblCandidatos1_55 = new JLabel("");
+		}
+		return lblCandidatos1_55;
+	}
+	private JPanel getPanel1_56() {
+		if (panel1_56 == null) {
+			panel1_56 = new JPanel();
+			panel1_56.setBorder(new MatteBorder(3, 1, 1, 3, (Color) new Color(0, 0, 0)));
+			panel1_56.setLayout(new BorderLayout(0, 0));
+			panel1_56.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_56.add(getPanelValor_56(), BorderLayout.CENTER);
+			panel1_56.add(getPanelCadidatos_56(), BorderLayout.NORTH);
+		}
+		return panel1_56;
+	}
+	private JPanel getPanelValor_56() {
+		if (panelValor_56 == null) {
+			panelValor_56 = new JPanel();
+			panelValor_56.add(getLblValor1_56());
+		}
+		return panelValor_56;
+	}
+	private JLabel getLblValor1_56() {
+		if (lblValor1_56 == null) {
+			lblValor1_56 = new JLabel("");
+			lblValor1_56.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_56;
+	}
+	private JPanel getPanelCadidatos_56() {
+		if (panelCadidatos_56 == null) {
+			panelCadidatos_56 = new JPanel();
+			panelCadidatos_56.add(getLblCandidatos1_56());
+		}
+		return panelCadidatos_56;
+	}
+	private JLabel getLblCandidatos1_56() {
+		if (lblCandidatos1_56 == null) {
+			lblCandidatos1_56 = new JLabel("");
+		}
+		return lblCandidatos1_56;
+	}
+	private JPanel getPanel1_57() {
+		if (panel1_57 == null) {
+			panel1_57 = new JPanel();
+			panel1_57.setBorder(new MatteBorder(3, 3, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_57.setLayout(new BorderLayout(0, 0));
+			panel1_57.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_57.add(getPanelValor_57(), BorderLayout.CENTER);
+			panel1_57.add(getPanelCadidatos_57(), BorderLayout.NORTH);
+		}
+		return panel1_57;
+	}
+	private JPanel getPanelValor_57() {
+		if (panelValor_57 == null) {
+			panelValor_57 = new JPanel();
+			panelValor_57.add(getLblValor1_57());
+		}
+		return panelValor_57;
+	}
+	private JLabel getLblValor1_57() {
+		if (lblValor1_57 == null) {
+			lblValor1_57 = new JLabel("");
+			lblValor1_57.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_57;
+	}
+	private JPanel getPanelCadidatos_57() {
+		if (panelCadidatos_57 == null) {
+			panelCadidatos_57 = new JPanel();
+			panelCadidatos_57.add(getLblCandidatos1_57());
+		}
+		return panelCadidatos_57;
+	}
+	private JLabel getLblCandidatos1_57() {
+		if (lblCandidatos1_57 == null) {
+			lblCandidatos1_57 = new JLabel("");
+		}
+		return lblCandidatos1_57;
+	}
+	private JPanel getPanel1_58() {
+		if (panel1_58 == null) {
+			panel1_58 = new JPanel();
+			panel1_58.setBorder(new MatteBorder(3, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_58.setLayout(new BorderLayout(0, 0));
+			panel1_58.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_58.add(getPanelValor_58(), BorderLayout.CENTER);
+			panel1_58.add(getPanelCadidatos_58(), BorderLayout.NORTH);
+		}
+		return panel1_58;
+	}
+	private JPanel getPanelValor_58() {
+		if (panelValor_58 == null) {
+			panelValor_58 = new JPanel();
+			panelValor_58.add(getLblValor1_58());
+		}
+		return panelValor_58;
+	}
+	private JLabel getLblValor1_58() {
+		if (lblValor1_58 == null) {
+			lblValor1_58 = new JLabel("");
+			lblValor1_58.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_58;
+	}
+	private JPanel getPanelCadidatos_58() {
+		if (panelCadidatos_58 == null) {
+			panelCadidatos_58 = new JPanel();
+			panelCadidatos_58.add(getLblCandidatos1_58());
+		}
+		return panelCadidatos_58;
+	}
+	private JLabel getLblCandidatos1_58() {
+		if (lblCandidatos1_58 == null) {
+			lblCandidatos1_58 = new JLabel("");
+		}
+		return lblCandidatos1_58;
+	}
+	private JPanel getPanel1_59() {
+		if (panel1_59 == null) {
+			panel1_59 = new JPanel();
+			panel1_59.setBorder(new MatteBorder(3, 1, 1, 3, (Color) new Color(0, 0, 0)));
+			panel1_59.setLayout(new BorderLayout(0, 0));
+			panel1_59.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_59.add(getPanelValor_59(), BorderLayout.CENTER);
+			panel1_59.add(getPanelCadidatos_59(), BorderLayout.NORTH);
+		}
+		return panel1_59;
+	}
+	private JPanel getPanelValor_59() {
+		if (panelValor_59 == null) {
+			panelValor_59 = new JPanel();
+			panelValor_59.add(getLblValor1_59());
+		}
+		return panelValor_59;
+	}
+	private JLabel getLblValor1_59() {
+		if (lblValor1_59 == null) {
+			lblValor1_59 = new JLabel("");
+			lblValor1_59.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_59;
+	}
+	private JPanel getPanelCadidatos_59() {
+		if (panelCadidatos_59 == null) {
+			panelCadidatos_59 = new JPanel();
+			panelCadidatos_59.add(getLblCandidatos1_59());
+		}
+		return panelCadidatos_59;
+	}
+	private JLabel getLblCandidatos1_59() {
+		if (lblCandidatos1_59 == null) {
+			lblCandidatos1_59 = new JLabel("");
+		}
+		return lblCandidatos1_59;
+	}
+	private JPanel getPanel1_60() {
+		if (panel1_60 == null) {
+			panel1_60 = new JPanel();
+			panel1_60.setBorder(new MatteBorder(3, 3, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_60.setLayout(new BorderLayout(0, 0));
+			panel1_60.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_60.add(getPanelValor_60(), BorderLayout.CENTER);
+			panel1_60.add(getPanelCadidatos_60(), BorderLayout.NORTH);
+		}
+		return panel1_60;
+	}
+	private JPanel getPanelValor_60() {
+		if (panelValor_60 == null) {
+			panelValor_60 = new JPanel();
+			panelValor_60.add(getLblValor1_60());
+		}
+		return panelValor_60;
+	}
+	private JLabel getLblValor1_60() {
+		if (lblValor1_60 == null) {
+			lblValor1_60 = new JLabel("");
+			lblValor1_60.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_60;
+	}
+	private JPanel getPanelCadidatos_60() {
+		if (panelCadidatos_60 == null) {
+			panelCadidatos_60 = new JPanel();
+			panelCadidatos_60.add(getLblCandidatos1_60());
+		}
+		return panelCadidatos_60;
+	}
+	private JLabel getLblCandidatos1_60() {
+		if (lblCandidatos1_60 == null) {
+			lblCandidatos1_60 = new JLabel("");
+		}
+		return lblCandidatos1_60;
+	}
+	private JPanel getPanel1_61() {
+		if (panel1_61 == null) {
+			panel1_61 = new JPanel();
+			panel1_61.setBorder(new MatteBorder(3, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_61.setLayout(new BorderLayout(0, 0));
+			panel1_61.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_61.add(getPanelValor_61(), BorderLayout.CENTER);
+			panel1_61.add(getPanelCadidatos_61(), BorderLayout.NORTH);
+		}
+		return panel1_61;
+	}
+	private JPanel getPanelValor_61() {
+		if (panelValor_61 == null) {
+			panelValor_61 = new JPanel();
+			panelValor_61.add(getLblValor1_61());
+		}
+		return panelValor_61;
+	}
+	private JLabel getLblValor1_61() {
+		if (lblValor1_61 == null) {
+			lblValor1_61 = new JLabel("");
+			lblValor1_61.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_61;
+	}
+	private JPanel getPanelCadidatos_61() {
+		if (panelCadidatos_61 == null) {
+			panelCadidatos_61 = new JPanel();
+			panelCadidatos_61.add(getLblCandidatos1_61());
+		}
+		return panelCadidatos_61;
+	}
+	private JLabel getLblCandidatos1_61() {
+		if (lblCandidatos1_61 == null) {
+			lblCandidatos1_61 = new JLabel("");
+		}
+		return lblCandidatos1_61;
+	}
+	private JPanel getPanel1_62() {
+		if (panel1_62 == null) {
+			panel1_62 = new JPanel();
+			panel1_62.setBorder(new MatteBorder(3, 1, 1, 4, (Color) new Color(0, 0, 0)));
+			panel1_62.setLayout(new BorderLayout(0, 0));
+			panel1_62.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_62.add(getPanelValor_62());
+			panel1_62.add(getPanelCadidatos_62(), BorderLayout.NORTH);
+		}
+		return panel1_62;
+	}
+	private JPanel getPanelValor_62() {
+		if (panelValor_62 == null) {
+			panelValor_62 = new JPanel();
+			panelValor_62.add(getLblValor1_62());
+		}
+		return panelValor_62;
+	}
+	private JLabel getLblValor1_62() {
+		if (lblValor1_62 == null) {
+			lblValor1_62 = new JLabel("");
+			lblValor1_62.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_62;
+	}
+	private JPanel getPanelCadidatos_62() {
+		if (panelCadidatos_62 == null) {
+			panelCadidatos_62 = new JPanel();
+			panelCadidatos_62.add(getLblCandidatos1_62());
+		}
+		return panelCadidatos_62;
+	}
+	private JLabel getLblCandidatos1_62() {
+		if (lblCandidatos1_62 == null) {
+			lblCandidatos1_62 = new JLabel("");
+		}
+		return lblCandidatos1_62;
+	}
+	private JPanel getPanel1_63() {
+		if (panel1_63 == null) {
+			panel1_63 = new JPanel();
+			panel1_63.setBorder(new MatteBorder(1, 4, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_63.setLayout(new BorderLayout(0, 0));
+			panel1_63.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_63.add(getPanelValor_63());
+			panel1_63.add(getPanelCadidatos_63(), BorderLayout.NORTH);
+		}
+		return panel1_63;
+	}
+	private JPanel getPanelValor_63() {
+		if (panelValor_63 == null) {
+			panelValor_63 = new JPanel();
+			panelValor_63.add(getLblValor1_63());
+		}
+		return panelValor_63;
+	}
+	private JLabel getLblValor1_63() {
+		if (lblValor1_63 == null) {
+			lblValor1_63 = new JLabel("");
+			lblValor1_63.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_63;
+	}
+	private JPanel getPanelCadidatos_63() {
+		if (panelCadidatos_63 == null) {
+			panelCadidatos_63 = new JPanel();
+			panelCadidatos_63.add(getLblCandidatos1_63());
+		}
+		return panelCadidatos_63;
+	}
+	private JLabel getLblCandidatos1_63() {
+		if (lblCandidatos1_63 == null) {
+			lblCandidatos1_63 = new JLabel("");
+		}
+		return lblCandidatos1_63;
+	}
+	private JPanel getPanel1_64() {
+		if (panel1_64 == null) {
+			panel1_64 = new JPanel();
+			panel1_64.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_64.setLayout(new BorderLayout(0, 0));
+			panel1_64.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_64.add(getPanelValor_64());
+			panel1_64.add(getPanelCadidatos_64(), BorderLayout.NORTH);
+		}
+		return panel1_64;
+	}
+	private JPanel getPanelValor_64() {
+		if (panelValor_64 == null) {
+			panelValor_64 = new JPanel();
+			panelValor_64.add(getLblValor1_64());
+		}
+		return panelValor_64;
+	}
+	private JLabel getLblValor1_64() {
+		if (lblValor1_64 == null) {
+			lblValor1_64 = new JLabel("");
+			lblValor1_64.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_64;
+	}
+	private JPanel getPanelCadidatos_64() {
+		if (panelCadidatos_64 == null) {
+			panelCadidatos_64 = new JPanel();
+			panelCadidatos_64.add(getLblCandidatos1_64());
+		}
+		return panelCadidatos_64;
+	}
+	private JLabel getLblCandidatos1_64() {
+		if (lblCandidatos1_64 == null) {
+			lblCandidatos1_64 = new JLabel("");
+		}
+		return lblCandidatos1_64;
+	}
+	private JPanel getPanel1_65() {
+		if (panel1_65 == null) {
+			panel1_65 = new JPanel();
+			panel1_65.setBorder(new MatteBorder(1, 1, 1, 3, (Color) new Color(0, 0, 0)));
+			panel1_65.setLayout(new BorderLayout(0, 0));
+			panel1_65.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_65.add(getPanelValor_65());
+			panel1_65.add(getPanelCadidatos_65(), BorderLayout.NORTH);
+		}
+		return panel1_65;
+	}
+	private JPanel getPanelValor_65() {
+		if (panelValor_65 == null) {
+			panelValor_65 = new JPanel();
+			panelValor_65.add(getLblValor1_65());
+		}
+		return panelValor_65;
+	}
+	private JLabel getLblValor1_65() {
+		if (lblValor1_65 == null) {
+			lblValor1_65 = new JLabel("");
+			lblValor1_65.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_65;
+	}
+	private JPanel getPanelCadidatos_65() {
+		if (panelCadidatos_65 == null) {
+			panelCadidatos_65 = new JPanel();
+			panelCadidatos_65.add(getLblCandidatos1_65());
+		}
+		return panelCadidatos_65;
+	}
+	private JLabel getLblCandidatos1_65() {
+		if (lblCandidatos1_65 == null) {
+			lblCandidatos1_65 = new JLabel("");
+		}
+		return lblCandidatos1_65;
+	}
+	private JPanel getPanel1_66() {
+		if (panel1_66 == null) {
+			panel1_66 = new JPanel();
+			panel1_66.setBorder(new MatteBorder(1, 3, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_66.setLayout(new BorderLayout(0, 0));
+			panel1_66.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_66.add(getPanelValor_66());
+			panel1_66.add(getPanelCadidatos_66(), BorderLayout.NORTH);
+		}
+		return panel1_66;
+	}
+	private JPanel getPanelValor_66() {
+		if (panelValor_66 == null) {
+			panelValor_66 = new JPanel();
+			panelValor_66.add(getLblValor1_66());
+		}
+		return panelValor_66;
+	}
+	private JLabel getLblValor1_66() {
+		if (lblValor1_66 == null) {
+			lblValor1_66 = new JLabel("");
+			lblValor1_66.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_66;
+	}
+	private JPanel getPanelCadidatos_66() {
+		if (panelCadidatos_66 == null) {
+			panelCadidatos_66 = new JPanel();
+			panelCadidatos_66.add(getLblCandidatos1_66());
+		}
+		return panelCadidatos_66;
+	}
+	private JLabel getLblCandidatos1_66() {
+		if (lblCandidatos1_66 == null) {
+			lblCandidatos1_66 = new JLabel("");
+		}
+		return lblCandidatos1_66;
+	}
+	private JPanel getPanel1_67() {
+		if (panel1_67 == null) {
+			panel1_67 = new JPanel();
+			panel1_67.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_67.setLayout(new BorderLayout(0, 0));
+			panel1_67.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_67.add(getPanelValor_67());
+			panel1_67.add(getPanelCadidatos_67(), BorderLayout.NORTH);
+		}
+		return panel1_67;
+	}
+	private JPanel getPanelValor_67() {
+		if (panelValor_67 == null) {
+			panelValor_67 = new JPanel();
+			panelValor_67.add(getLblValor1_67());
+		}
+		return panelValor_67;
+	}
+	private JLabel getLblValor1_67() {
+		if (lblValor1_67 == null) {
+			lblValor1_67 = new JLabel("");
+			lblValor1_67.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_67;
+	}
+	private JPanel getPanelCadidatos_67() {
+		if (panelCadidatos_67 == null) {
+			panelCadidatos_67 = new JPanel();
+			panelCadidatos_67.add(getLblCandidatos1_67());
+		}
+		return panelCadidatos_67;
+	}
+	private JLabel getLblCandidatos1_67() {
+		if (lblCandidatos1_67 == null) {
+			lblCandidatos1_67 = new JLabel("");
+		}
+		return lblCandidatos1_67;
+	}
+	private JPanel getPanel1_68() {
+		if (panel1_68 == null) {
+			panel1_68 = new JPanel();
+			panel1_68.setBorder(new MatteBorder(1, 1, 1, 3, (Color) new Color(0, 0, 0)));
+			panel1_68.setLayout(new BorderLayout(0, 0));
+			panel1_68.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_68.add(getPanelValor_68());
+			panel1_68.add(getPanelCadidatos_68(), BorderLayout.NORTH);
+		}
+		return panel1_68;
+	}
+	private JPanel getPanelValor_68() {
+		if (panelValor_68 == null) {
+			panelValor_68 = new JPanel();
+			panelValor_68.add(getLblValor1_68());
+		}
+		return panelValor_68;
+	}
+	private JLabel getLblValor1_68() {
+		if (lblValor1_68 == null) {
+			lblValor1_68 = new JLabel("");
+			lblValor1_68.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_68;
+	}
+	private JPanel getPanelCadidatos_68() {
+		if (panelCadidatos_68 == null) {
+			panelCadidatos_68 = new JPanel();
+			panelCadidatos_68.add(getLblCandidatos1_68());
+		}
+		return panelCadidatos_68;
+	}
+	private JLabel getLblCandidatos1_68() {
+		if (lblCandidatos1_68 == null) {
+			lblCandidatos1_68 = new JLabel("");
+		}
+		return lblCandidatos1_68;
+	}
+	private JPanel getPanel1_69() {
+		if (panel1_69 == null) {
+			panel1_69 = new JPanel();
+			panel1_69.setBorder(new MatteBorder(1, 3, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_69.setLayout(new BorderLayout(0, 0));
+			panel1_69.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_69.add(getPanelValor_69());
+			panel1_69.add(getPanelCadidatos_69(), BorderLayout.NORTH);
+		}
+		return panel1_69;
+	}
+	private JPanel getPanelValor_69() {
+		if (panelValor_69 == null) {
+			panelValor_69 = new JPanel();
+			panelValor_69.add(getLblValor1_69());
+		}
+		return panelValor_69;
+	}
+	private JLabel getLblValor1_69() {
+		if (lblValor1_69 == null) {
+			lblValor1_69 = new JLabel("");
+			lblValor1_69.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_69;
+	}
+	private JPanel getPanelCadidatos_69() {
+		if (panelCadidatos_69 == null) {
+			panelCadidatos_69 = new JPanel();
+			panelCadidatos_69.add(getLblCandidatos1_69());
+		}
+		return panelCadidatos_69;
+	}
+	private JLabel getLblCandidatos1_69() {
+		if (lblCandidatos1_69 == null) {
+			lblCandidatos1_69 = new JLabel("");
+		}
+		return lblCandidatos1_69;
+	}
+	private JPanel getPanel1_70() {
+		if (panel1_70 == null) {
+			panel1_70 = new JPanel();
+			panel1_70.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			panel1_70.setLayout(new BorderLayout(0, 0));
+			panel1_70.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_70.add(getPanelValor_70());
+			panel1_70.add(getPanelCadidatos_70(), BorderLayout.NORTH);
+		}
+		return panel1_70;
+	}
+	private JPanel getPanelValor_70() {
+		if (panelValor_70 == null) {
+			panelValor_70 = new JPanel();
+			panelValor_70.add(getLblValor1_70());
+		}
+		return panelValor_70;
+	}
+	private JLabel getLblValor1_70() {
+		if (lblValor1_70 == null) {
+			lblValor1_70 = new JLabel("");
+			lblValor1_70.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_70;
+	}
+	private JPanel getPanelCadidatos_70() {
+		if (panelCadidatos_70 == null) {
+			panelCadidatos_70 = new JPanel();
+			panelCadidatos_70.add(getLblCandidatos1_70());
+		}
+		return panelCadidatos_70;
+	}
+	private JLabel getLblCandidatos1_70() {
+		if (lblCandidatos1_70 == null) {
+			lblCandidatos1_70 = new JLabel("");
+		}
+		return lblCandidatos1_70;
+	}
+	private JPanel getPanel1_71() {
+		if (panel1_71 == null) {
+			panel1_71 = new JPanel();
+			panel1_71.setBorder(new MatteBorder(1, 1, 1, 4, (Color) new Color(0, 0, 0)));
+			panel1_71.setLayout(new BorderLayout(0, 0));
+			panel1_71.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_71.add(getPanelValor_71());
+			panel1_71.add(getPanelCadidatos_71(), BorderLayout.NORTH);
+		}
+		return panel1_71;
+	}
+	private JPanel getPanelValor_71() {
+		if (panelValor_71 == null) {
+			panelValor_71 = new JPanel();
+			panelValor_71.add(getLblValor1_71());
+		}
+		return panelValor_71;
+	}
+	private JLabel getLblValor1_71() {
+		if (lblValor1_71 == null) {
+			lblValor1_71 = new JLabel("");
+			lblValor1_71.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_71;
+	}
+	private JPanel getPanelCadidatos_71() {
+		if (panelCadidatos_71 == null) {
+			panelCadidatos_71 = new JPanel();
+			panelCadidatos_71.add(getLblCandidatos1_71());
+		}
+		return panelCadidatos_71;
+	}
+	private JLabel getLblCandidatos1_71() {
+		if (lblCandidatos1_71 == null) {
+			lblCandidatos1_71 = new JLabel("");
+		}
+		return lblCandidatos1_71;
+	}
+	private JPanel getPanel1_72() {
+		if (panel1_72 == null) {
+			panel1_72 = new JPanel();
+			panel1_72.setBorder(new MatteBorder(1, 4, 4, 1, (Color) new Color(0, 0, 0)));
+			panel1_72.setLayout(new BorderLayout(0, 0));
+			panel1_72.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_72.add(getPanelValor_72());
+			panel1_72.add(getPanelCadidatos_72(), BorderLayout.NORTH);
+		}
+		return panel1_72;
+	}
+	private JPanel getPanelValor_72() {
+		if (panelValor_72 == null) {
+			panelValor_72 = new JPanel();
+			panelValor_72.add(getLblValor1_72());
+		}
+		return panelValor_72;
+	}
+	private JLabel getLblValor1_72() {
+		if (lblValor1_72 == null) {
+			lblValor1_72 = new JLabel("");
+			lblValor1_72.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_72;
+	}
+	private JPanel getPanelCadidatos_72() {
+		if (panelCadidatos_72 == null) {
+			panelCadidatos_72 = new JPanel();
+			panelCadidatos_72.add(getLblCandidatos1_72());
+		}
+		return panelCadidatos_72;
+	}
+	private JLabel getLblCandidatos1_72() {
+		if (lblCandidatos1_72 == null) {
+			lblCandidatos1_72 = new JLabel("");
+		}
+		return lblCandidatos1_72;
+	}
+	private JPanel getPanel1_73() {
+		if (panel1_73 == null) {
+			panel1_73 = new JPanel();
+			panel1_73.setBorder(new MatteBorder(1, 1, 4, 1, (Color) new Color(0, 0, 0)));
+			panel1_73.setLayout(new BorderLayout(0, 0));
+			panel1_73.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_73.add(getPanelValor_73());
+			panel1_73.add(getPanelCadidatos_73(), BorderLayout.NORTH);
+		}
+		return panel1_73;
+	}
+	private JPanel getPanelValor_73() {
+		if (panelValor_73 == null) {
+			panelValor_73 = new JPanel();
+			panelValor_73.add(getLblValor1_73());
+		}
+		return panelValor_73;
+	}
+	private JLabel getLblValor1_73() {
+		if (lblValor1_73 == null) {
+			lblValor1_73 = new JLabel("");
+			lblValor1_73.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_73;
+	}
+	private JPanel getPanelCadidatos_73() {
+		if (panelCadidatos_73 == null) {
+			panelCadidatos_73 = new JPanel();
+			panelCadidatos_73.add(getLblCandidatos1_73());
+		}
+		return panelCadidatos_73;
+	}
+	private JLabel getLblCandidatos1_73() {
+		if (lblCandidatos1_73 == null) {
+			lblCandidatos1_73 = new JLabel("");
+		}
+		return lblCandidatos1_73;
+	}
+	private JPanel getPanel1_74() {
+		if (panel1_74 == null) {
+			panel1_74 = new JPanel();
+			panel1_74.setBorder(new MatteBorder(1, 1, 4, 3, (Color) new Color(0, 0, 0)));
+			panel1_74.setLayout(new BorderLayout(0, 0));
+			panel1_74.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_74.add(getPanelValor_74());
+			panel1_74.add(getPanelCadidatos_74(), BorderLayout.NORTH);
+		}
+		return panel1_74;
+	}
+	private JPanel getPanelValor_74() {
+		if (panelValor_74 == null) {
+			panelValor_74 = new JPanel();
+			panelValor_74.add(getLblValor1_74());
+		}
+		return panelValor_74;
+	}
+	private JLabel getLblValor1_74() {
+		if (lblValor1_74 == null) {
+			lblValor1_74 = new JLabel("");
+			lblValor1_74.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_74;
+	}
+	private JPanel getPanelCadidatos_74() {
+		if (panelCadidatos_74 == null) {
+			panelCadidatos_74 = new JPanel();
+			panelCadidatos_74.add(getLblCandidatos1_74());
+		}
+		return panelCadidatos_74;
+	}
+	private JLabel getLblCandidatos1_74() {
+		if (lblCandidatos1_74 == null) {
+			lblCandidatos1_74 = new JLabel("");
+		}
+		return lblCandidatos1_74;
+	}
+	private JPanel getPanel1_75() {
+		if (panel1_75 == null) {
+			panel1_75 = new JPanel();
+			panel1_75.setBorder(new MatteBorder(1, 3, 4, 1, (Color) new Color(0, 0, 0)));
+			panel1_75.setLayout(new BorderLayout(0, 0));
+			panel1_75.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_75.add(getPanelValor_75());
+			panel1_75.add(getPanelCadidatos_75(), BorderLayout.NORTH);
+		}
+		return panel1_75;
+	}
+	private JPanel getPanelValor_75() {
+		if (panelValor_75 == null) {
+			panelValor_75 = new JPanel();
+			panelValor_75.add(getLblValor1_75());
+		}
+		return panelValor_75;
+	}
+	private JLabel getLblValor1_75() {
+		if (lblValor1_75 == null) {
+			lblValor1_75 = new JLabel("");
+			lblValor1_75.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_75;
+	}
+	private JPanel getPanelCadidatos_75() {
+		if (panelCadidatos_75 == null) {
+			panelCadidatos_75 = new JPanel();
+			panelCadidatos_75.add(getLblCandidatos1_75());
+		}
+		return panelCadidatos_75;
+	}
+	private JLabel getLblCandidatos1_75() {
+		if (lblCandidatos1_75 == null) {
+			lblCandidatos1_75 = new JLabel("");
+		}
+		return lblCandidatos1_75;
+	}
+	private JPanel getPanel1_76() {
+		if (panel1_76 == null) {
+			panel1_76 = new JPanel();
+			panel1_76.setBorder(new MatteBorder(1, 1, 4, 1, (Color) new Color(0, 0, 0)));
+			panel1_76.setLayout(new BorderLayout(0, 0));
+			panel1_76.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_76.add(getPanelValor_76());
+			panel1_76.add(getPanelCadidatos_76(), BorderLayout.NORTH);
+		}
+		return panel1_76;
+	}
+	private JPanel getPanelValor_76() {
+		if (panelValor_76 == null) {
+			panelValor_76 = new JPanel();
+			panelValor_76.add(getLblValor1_76());
+		}
+		return panelValor_76;
+	}
+	private JLabel getLblValor1_76() {
+		if (lblValor1_76 == null) {
+			lblValor1_76 = new JLabel("");
+			lblValor1_76.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_76;
+	}
+	private JPanel getPanelCadidatos_76() {
+		if (panelCadidatos_76 == null) {
+			panelCadidatos_76 = new JPanel();
+			panelCadidatos_76.add(getLblCandidatos1_76());
+		}
+		return panelCadidatos_76;
+	}
+	private JLabel getLblCandidatos1_76() {
+		if (lblCandidatos1_76 == null) {
+			lblCandidatos1_76 = new JLabel("");
+		}
+		return lblCandidatos1_76;
+	}
+	private JPanel getPanel1_77() {
+		if (panel1_77 == null) {
+			panel1_77 = new JPanel();
+			panel1_77.setBorder(new MatteBorder(1, 1, 4, 3, (Color) new Color(0, 0, 0)));
+			panel1_77.setLayout(new BorderLayout(0, 0));
+			panel1_77.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_77.add(getPanelValor_77());
+			panel1_77.add(getPanelCadidatos_77(), BorderLayout.NORTH);
+		}
+		return panel1_77;
+	}
+	private JPanel getPanelValor_77() {
+		if (panelValor_77 == null) {
+			panelValor_77 = new JPanel();
+			panelValor_77.add(getLblValor1_77());
+		}
+		return panelValor_77;
+	}
+	private JLabel getLblValor1_77() {
+		if (lblValor1_77 == null) {
+			lblValor1_77 = new JLabel("");
+			lblValor1_77.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_77;
+	}
+	private JPanel getPanelCadidatos_77() {
+		if (panelCadidatos_77 == null) {
+			panelCadidatos_77 = new JPanel();
+			panelCadidatos_77.add(getLblCandidatos1_77());
+		}
+		return panelCadidatos_77;
+	}
+	private JLabel getLblCandidatos1_77() {
+		if (lblCandidatos1_77 == null) {
+			lblCandidatos1_77 = new JLabel("");
+		}
+		return lblCandidatos1_77;
+	}
+	private JPanel getPanel1_78() {
+		if (panel1_78 == null) {
+			panel1_78 = new JPanel();
+			panel1_78.setBorder(new MatteBorder(1, 3, 4, 1, (Color) new Color(0, 0, 0)));
+			panel1_78.setLayout(new BorderLayout(0, 0));
+			panel1_78.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_78.add(getPanelValor_78());
+			panel1_78.add(getPanelCadidatos_78(), BorderLayout.NORTH);
+		}
+		return panel1_78;
+	}
+	private JPanel getPanelValor_78() {
+		if (panelValor_78 == null) {
+			panelValor_78 = new JPanel();
+			panelValor_78.add(getLblValor1_78());
+		}
+		return panelValor_78;
+	}
+	private JLabel getLblValor1_78() {
+		if (lblValor1_78 == null) {
+			lblValor1_78 = new JLabel("");
+			lblValor1_78.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_78;
+	}
+	private JPanel getPanelCadidatos_78() {
+		if (panelCadidatos_78 == null) {
+			panelCadidatos_78 = new JPanel();
+			panelCadidatos_78.add(getLblCandidatos1_78());
+		}
+		return panelCadidatos_78;
+	}
+	private JLabel getLblCandidatos1_78() {
+		if (lblCandidatos1_78 == null) {
+			lblCandidatos1_78 = new JLabel("");
+		}
+		return lblCandidatos1_78;
+	}
+	private JPanel getPanel1_79() {
+		if (panel1_79 == null) {
+			panel1_79 = new JPanel();
+			panel1_79.setBorder(new MatteBorder(1, 1, 4, 1, (Color) new Color(0, 0, 0)));
+			panel1_79.setLayout(new BorderLayout(0, 0));
+			panel1_79.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_79.add(getPanelValor_79());
+			panel1_79.add(getPanelCadidatos_79(), BorderLayout.NORTH);
+		}
+		return panel1_79;
+	}
+	private JPanel getPanelValor_79() {
+		if (panelValor_79 == null) {
+			panelValor_79 = new JPanel();
+			panelValor_79.add(getLblValor1_79());
+		}
+		return panelValor_79;
+	}
+	private JLabel getLblValor1_79() {
+		if (lblValor1_79 == null) {
+			lblValor1_79 = new JLabel("");
+			lblValor1_79.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_79;
+	}
+	private JPanel getPanelCadidatos_79() {
+		if (panelCadidatos_79 == null) {
+			panelCadidatos_79 = new JPanel();
+			panelCadidatos_79.add(getLblCandidatos1_79());
+		}
+		return panelCadidatos_79;
+	}
+	private JLabel getLblCandidatos1_79() {
+		if (lblCandidatos1_79 == null) {
+			lblCandidatos1_79 = new JLabel("");
+		}
+		return lblCandidatos1_79;
+	}
+	private JPanel getPanel1_80() {
+		if (panel1_80 == null) {
+			panel1_80 = new JPanel();
+			panel1_80.setBorder(new MatteBorder(1, 1, 4, 4, (Color) new Color(0, 0, 0)));
+			panel1_80.setLayout(new BorderLayout(0, 0));
+			panel1_80.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					select=casillaSelect(e);
+				}
+			});
+			panel1_80.add(getPanelValor_80());
+			panel1_80.add(getPanelCadidatos_80(), BorderLayout.NORTH);
+		}
+		return panel1_80;
+	}
+	private JPanel getPanelValor_80() {
+		if (panelValor_80 == null) {
+			panelValor_80 = new JPanel();
+			panelValor_80.add(getLblValor1_80());
+		}
+		return panelValor_80;
+	}
+	private JLabel getLblValor1_80() {
+		if (lblValor1_80 == null) {
+			lblValor1_80 = new JLabel("");
+			lblValor1_80.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		}
+		return lblValor1_80;
+	}
+	private JPanel getPanelCadidatos_80() {
+		if (panelCadidatos_80 == null) {
+			panelCadidatos_80 = new JPanel();
+			panelCadidatos_80.add(getLblCandidatos1_80());
+		}
+		return panelCadidatos_80;
+	}
+	private JLabel getLblCandidatos1_80() {
+		if (lblCandidatos1_80 == null) {
+			lblCandidatos1_80 = new JLabel("");
+		}
+		return lblCandidatos1_80;
+	}
+	
+	private JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setLayout(new BorderLayout(0, 0));
+			panel.add(getLblCrono());
+		}
+		return panel;
+	}
+	private JLabel getLblCrono() {
+		if (lblCrono == null) {
+			lblCrono = new JLabel("00:00");
+			lblCrono.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			lblCrono.setHorizontalAlignment( JLabel.CENTER );
+
+		}
+		return lblCrono;	
 	}
 }
