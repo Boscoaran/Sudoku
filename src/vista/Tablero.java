@@ -12,6 +12,7 @@ import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
 import java.awt.Insets;
+import java.awt.Window;
 import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
@@ -486,7 +487,9 @@ public class Tablero extends JFrame implements Observer{
 	 * Create the application.
 	 */
 	public Tablero() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initialize();
+		controlador.Tablero.getTablero().addObserver(this);
 	}
 
 	/**
@@ -502,6 +505,7 @@ public class Tablero extends JFrame implements Observer{
 		frame.getContentPane().add(getPanelDatos(), BorderLayout.EAST);
 		frame.getContentPane().add(getPanelTablero(), BorderLayout.CENTER);
 		frame.getContentPane().add(getPanelNorth(), BorderLayout.NORTH);
+		this.frame.setVisible(true);
 	}
 
 	private JPanel getPanelDatos() {
@@ -619,6 +623,7 @@ public class Tablero extends JFrame implements Observer{
 							for (Component x2: ((JPanel) x1).getComponents()) {
 								if (((JLabel) x2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))){
 									((JLabel) x2).setText(textFieldValor.getText());
+									controlador.Tablero.getTablero().setValor(x2.getName(), ABORT, getWarningString());
 								} else {
 									((JLabel) x2).setText(textFieldCandidatos.getText());
 								}
@@ -4666,6 +4671,10 @@ public class Tablero extends JFrame implements Observer{
 		}
 		return lblCandidatos_I33;
 	}
+	
+	public JPanel insertarDatosControlador (MouseEvent e, JPanel elegido) {
+		
+	}
 	public JPanel casillaSelect(MouseEvent event, JPanel select) {
 		JPanel seleccionado = (JPanel) event.getSource();
 		if (seleccionado.getBorder().equals(bordeNormal) && select==null){
@@ -4697,13 +4706,14 @@ public class Tablero extends JFrame implements Observer{
 	public void update(Observable o, Object arg) {
 		controlador.Casilla[][] t = controlador.Tablero.getTablero().getListaCasillas();
 		//PanelValor_LetraFilaColumna
-		int i = 0;
+		/*int i = 0;
 		while (i < t.length) {
 			int j = 0;
 			while (j < t[0].length) {
 				
 			}
-		}
+		}*/
+		
 		
 		
 	}

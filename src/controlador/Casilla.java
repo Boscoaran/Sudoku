@@ -12,8 +12,15 @@ public class Casilla {
 	private int origenY;
 	
 	public Casilla(boolean pFijo, int pNumero, int pX, int pY) {
+		fijo = pFijo;
+		numero = pNumero;
+		coordenadaX = pX;
+		coordenadaY = pY;
 		
-		
+	}
+	
+	public void setValor(int i) {
+		this.numero = i;
 	}
 	
 }

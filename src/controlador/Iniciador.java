@@ -2,6 +2,9 @@ package controlador;
 
 import java.util.Scanner;
 
+import vista.Tablero;
+
+
 public class Iniciador {
 	public static void main(String[] args) {
 		Iniciador i = new Iniciador();
@@ -22,15 +25,12 @@ public class Iniciador {
 				case 1: {
 					ListaSudokus.getListaSudokus();
 					int[][] a = ListaSudokus.getListaSudokus().getLSudokus(0);
-					int j = 0;
-					while (j<a.length) {
-						int k = 0;
-						while (k<a[0].length) {
-							System.out.println(a[j][k]);
-							k++;
-						}
-						j++;
-					}
+					controlador.Tablero t = controlador.Tablero.getTablero();
+					System.out.println(a[0][0]);
+					vista.Tablero v = new vista.Tablero();
+					System.out.println("hola");
+					t.cargarTablero(1);
+					System.out.println("hola");
 				}
 			}
 		} while (i!=0);
