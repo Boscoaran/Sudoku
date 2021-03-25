@@ -7,6 +7,8 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
@@ -28,6 +30,8 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings({ "serial", "deprecation" })
 public class Tablero extends JFrame implements Observer{
@@ -458,6 +462,7 @@ public class Tablero extends JFrame implements Observer{
 	private JPanel panel;
 	private JLabel lblCrono;
 	private JPanel matrizPaneles[][];
+	private JButton btnComprobar;
 
 	/**
 	 * Launch the application.
@@ -542,14 +547,19 @@ public class Tablero extends JFrame implements Observer{
 			gbc_lblValor.anchor = GridBagConstraints.ABOVE_BASELINE_TRAILING;
 			gbc_lblValor.insets = new Insets(0, 0, 5, 5);
 			gbc_lblValor.gridx = 1;
-			gbc_lblValor.gridy = 4;
+			gbc_lblValor.gridy = 3;
 			panelDatos.add(getLblValor(), gbc_lblValor);
 			GridBagConstraints gbc_textFieldValor = new GridBagConstraints();
 			gbc_textFieldValor.anchor = GridBagConstraints.WEST;
 			gbc_textFieldValor.insets = new Insets(0, 0, 5, 5);
 			gbc_textFieldValor.gridx = 2;
-			gbc_textFieldValor.gridy = 4;
+			gbc_textFieldValor.gridy = 3;
 			panelDatos.add(getTextFieldValor(), gbc_textFieldValor);
+			GridBagConstraints gbc_btnComprobar = new GridBagConstraints();
+			gbc_btnComprobar.insets = new Insets(0, 0, 5, 5);
+			gbc_btnComprobar.gridx = 2;
+			gbc_btnComprobar.gridy = 4;
+			panelDatos.add(getBtnComprobar(), gbc_btnComprobar);
 			GridBagConstraints gbc_btnModificar = new GridBagConstraints();
 			gbc_btnModificar.insets = new Insets(0, 0, 5, 5);
 			gbc_btnModificar.gridx = 1;
@@ -4360,4 +4370,37 @@ public class Tablero extends JFrame implements Observer{
 	}
 	
 	
+	private JButton getBtnComprobar() {
+		if (btnComprobar == null) {
+			btnComprobar = new JButton("Comprobar");
+			btnComprobar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
+			btnComprobar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int[][] t = controlador.ListaSudokus.getListaSudokus().getLSoluciones(1);
+					boolean correcto = true;
+					int i = 0;
+					while (correcto && i < t.length) {
+						int num;
+						int j = 0;
+						while (correcto && j < t[0].length) {
+							if (((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).getText().equals("")) {
+									num = 0;
+									correcto = false;
+							} else if (t[i][j] != Integer.parseInt(((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).getText())) {
+									correcto = false;
+							}	
+							j++;
+						}
+						i++;
+					}
+					if (!correcto) {
+						 JOptionPane.showMessageDialog(panel, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, "¡De locos! Es correcto, pero ahora recuerda visionar Vikingos");
+					}
+				}
+			});
+		}
+		return btnComprobar;
+	}
 }

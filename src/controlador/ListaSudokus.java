@@ -54,6 +54,10 @@ public class ListaSudokus {
 		return miListaSudokus;
 	}
 	
+	public int[][] getLSoluciones(int pos) {
+		return lSoluciones.get(pos);
+	}
+	
 	public int[][] getLSudokus(int pos) {
 		return lSudokus.get(pos);
 	}
