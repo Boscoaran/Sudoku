@@ -657,7 +657,12 @@ public class Tablero extends JFrame implements Observer{
 									}
 									t.setValor(i-1, j-1, ((JLabel) x2).getText());
 								} else {
+									if (textFieldCandidatos.getText().equals("")) {
+										((JLabel) x2).setText(" ");
+									}
+									else {
 									((JLabel) x2).setText(textFieldCandidatos.getText());
+									}
 								}
 							}
 						}
