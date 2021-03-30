@@ -8,7 +8,6 @@ import vista.Tablero;
 public class Iniciador {
 	public static void main(String[] args) {
 		Iniciador i = new Iniciador();
-		System.out.println("buenas tardes");
 		i.menu();
 		
 	}
@@ -17,12 +16,16 @@ public class Iniciador {
 	
 	public void menu() {
 		int i;
-		do {
+		vista.VentanaInicio v = new vista.VentanaInicio();
+		/*do {
 			Scanner s = new Scanner(System.in);
 			i = s.nextInt();
-		
+			i = 1;
+			
 			switch (i) {
 				case 1: {
+					
+					
 					ListaSudokus.getListaSudokus();
 					int[][] a = ListaSudokus.getListaSudokus().getLSudokus(0);
 					controlador.Tablero t = controlador.Tablero.getTablero();
@@ -33,7 +36,7 @@ public class Iniciador {
 					System.out.println("hola");
 				}
 			}
-		} while (i!=0);
+		} while (i!=0);*/
 	}
 	
 }
