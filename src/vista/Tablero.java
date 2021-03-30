@@ -672,6 +672,9 @@ public class Tablero extends JFrame implements Observer{
 						textFieldValor.setText("");
 						select.setBorder(bordeTemp);
 						select=null;
+						btnModificar.setEnabled(false);
+						textFieldCandidatos.setEnabled(false);
+						textFieldValor.setEnabled(false);
 					}
 				}
 			});
@@ -688,7 +691,7 @@ public class Tablero extends JFrame implements Observer{
 	private JPanelBackground getPanelNorth() {
 		if (panelNorth == null) {
 			panelNorth = new JPanelBackground();
-			panelNorth.setBackground("39605wide.jpg");
+			panelNorth.setBackground("resources/39605wide.jpg");
 			GridBagLayout gbl_panelNorth = new GridBagLayout();
 			gbl_panelNorth.columnWidths = new int[]{923, 0};
 			gbl_panelNorth.rowHeights = new int[]{21, 14, 0, 10, 0};
@@ -820,6 +823,7 @@ public class Tablero extends JFrame implements Observer{
 			bordeTemp=seleccionado.getBorder();
 			textFieldCandidatos.setEnabled(true);
 			textFieldValor.setEnabled(true);
+			textFieldValor.requestFocusInWindow();
 			btnModificar.setEnabled(true);
 			seleccionado.setBorder(bordeGrueso);
 			for (Component x1: seleccionado.getComponents()) {

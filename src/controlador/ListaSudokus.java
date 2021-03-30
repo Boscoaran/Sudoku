@@ -15,7 +15,7 @@ public class ListaSudokus {
 		lSudokus = new ArrayList<int[][]>();
 		lSoluciones = new ArrayList<int[][]>();
 	try {
-		Scanner entrada = new Scanner (new FileReader("sudoku.txt"));
+		Scanner entrada = new Scanner (new FileReader("resources/sudoku.txt"));
 		String val;
 		int[][] a = null;
 		int l = 0;

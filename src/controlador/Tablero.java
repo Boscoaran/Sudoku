@@ -8,6 +8,7 @@ public class Tablero extends Observable{
 	private Casilla tablero[][];
 	private int tiempo;
 	private int numAyudas;
+	private int dificultad;
 	
 	private Tablero() {
 		tablero = new Casilla[9][9];
@@ -24,6 +25,7 @@ public class Tablero extends Observable{
 	
 	public void cargarTablero (int dif) {
 		int[][] a = ListaSudokus.getListaSudokus().getLSudokus(dif);
+		dificultad = dif;
 		int i = 0;
 		while (i< tablero.length) {
 			int j = 0;
@@ -57,7 +59,7 @@ public class Tablero extends Observable{
 	}
 	
 	public boolean comprobarResultado() {
-		int[][] res = ListaSudokus.getListaSudokus().getLSoluciones(1);
+		int[][] res = ListaSudokus.getListaSudokus().getLSoluciones(dificultad);
 		boolean correcto = true;
 		int j, i;
 		i = 0;
