@@ -56,5 +56,21 @@ public class Tablero extends Observable{
 		
 	}
 	
+	public boolean comprobarResultado() {
+		int[][] res = ListaSudokus.getListaSudokus().getLSoluciones(1);
+		boolean correcto = true;
+		int j, i;
+		i = 0;
+		while (i < res.length && correcto) {
+			j = 0;
+			while (j < res[0].length && correcto) {
+				if (this.tablero[i][j].getValor() != res[i][j]) correcto = false;
+				j++;
+			}
+			i++;
+		}
+		return correcto;
+	}
+	
 
 }
