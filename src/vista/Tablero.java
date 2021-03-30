@@ -14,7 +14,6 @@ import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
-import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -467,7 +466,7 @@ public class Tablero extends JFrame implements Observer{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -478,7 +477,7 @@ public class Tablero extends JFrame implements Observer{
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
@@ -555,16 +554,16 @@ public class Tablero extends JFrame implements Observer{
 			gbc_textFieldValor.gridx = 2;
 			gbc_textFieldValor.gridy = 3;
 			panelDatos.add(getTextFieldValor(), gbc_textFieldValor);
-			GridBagConstraints gbc_btnComprobar = new GridBagConstraints();
-			gbc_btnComprobar.insets = new Insets(0, 0, 5, 5);
-			gbc_btnComprobar.gridx = 2;
-			gbc_btnComprobar.gridy = 4;
-			panelDatos.add(getBtnComprobar(), gbc_btnComprobar);
 			GridBagConstraints gbc_btnModificar = new GridBagConstraints();
 			gbc_btnModificar.insets = new Insets(0, 0, 5, 5);
-			gbc_btnModificar.gridx = 1;
-			gbc_btnModificar.gridy = 6;
+			gbc_btnModificar.gridx = 2;
+			gbc_btnModificar.gridy = 4;
 			panelDatos.add(getBtnModificar(), gbc_btnModificar);
+			GridBagConstraints gbc_btnComprobar = new GridBagConstraints();
+			gbc_btnComprobar.insets = new Insets(0, 0, 5, 5);
+			gbc_btnComprobar.gridx = 1;
+			gbc_btnComprobar.gridy = 6;
+			panelDatos.add(getBtnComprobar(), gbc_btnComprobar);
 			GridBagConstraints gbc_btnAyuda = new GridBagConstraints();
 			gbc_btnAyuda.insets = new Insets(0, 0, 5, 5);
 			gbc_btnAyuda.gridx = 2;
@@ -603,6 +602,7 @@ public class Tablero extends JFrame implements Observer{
 		if (textFieldCandidatos == null) {
 			textFieldCandidatos = new JTextField();
 			textFieldCandidatos.setColumns(10);
+			textFieldCandidatos.setEnabled(false);
 		}
 		return textFieldCandidatos;
 	}
@@ -626,6 +626,7 @@ public class Tablero extends JFrame implements Observer{
 		if (textFieldValor == null) {
 			textFieldValor = new JTextField();
 			textFieldValor.setColumns(10);
+			textFieldValor.setEnabled(false);
 		}
 		return textFieldValor;
 	}
@@ -633,6 +634,7 @@ public class Tablero extends JFrame implements Observer{
 		if (btnModificar == null) {
 			btnModificar = new JButton("Modificar");
 			btnModificar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
+			btnModificar.setEnabled(false);
 			btnModificar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -816,6 +818,9 @@ public class Tablero extends JFrame implements Observer{
 		JPanel seleccionado = (JPanel) event.getSource();
 		if (!seleccionado.getBorder().equals(bordeGrueso) && select==null && seleccionado.isEnabled()){
 			bordeTemp=seleccionado.getBorder();
+			textFieldCandidatos.setEnabled(true);
+			textFieldValor.setEnabled(true);
+			btnModificar.setEnabled(true);
 			seleccionado.setBorder(bordeGrueso);
 			for (Component x1: seleccionado.getComponents()) {
 				for (Component x2: ((JPanel) x1).getComponents()) {
@@ -833,6 +838,9 @@ public class Tablero extends JFrame implements Observer{
 			textFieldCandidatos.setText("");
 			textFieldValor.setText("");
 			select=null;
+			textFieldCandidatos.setEnabled(false);
+			textFieldValor.setEnabled(false);
+			btnModificar.setEnabled(false);
 		}
 		return(select);
 	}
@@ -4381,27 +4389,12 @@ public class Tablero extends JFrame implements Observer{
 			btnComprobar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 			btnComprobar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					int[][] t = controlador.ListaSudokus.getListaSudokus().getLSoluciones(1);
-					boolean correcto = true;
-					int i = 0;
-					while (correcto && i < t.length) {
-						int num;
-						int j = 0;
-						while (correcto && j < t[0].length) {
-							if (((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).getText().equals("")) {
-									num = 0;
-									correcto = false;
-							} else if (t[i][j] != Integer.parseInt(((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).getText())) {
-									correcto = false;
-							}	
-							j++;
-						}
-						i++;
-					}
+					boolean correcto = controlador.Tablero.getTablero().comprobarResultado();
+					
 					if (!correcto) {
 						 JOptionPane.showMessageDialog(panel, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
 					} else {
-						JOptionPane.showMessageDialog(null, "¡De locos! Es correcto, pero ahora recuerda visionar Vikingos");
+						JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
 					}
 				}
 			});

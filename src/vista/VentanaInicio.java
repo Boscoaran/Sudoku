@@ -27,12 +27,12 @@ public class VentanaInicio {
 	private JLabel lblNombre;
 	private JTextField textFieldNombre;
 	private JLabel lblNewLabel_1;
-	private JComboBox comboBoxNivel;
+	private JComboBox<String> comboBoxNivel;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -43,7 +43,7 @@ public class VentanaInicio {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
@@ -55,6 +55,8 @@ public class VentanaInicio {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
+	
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 429, 206);
@@ -63,6 +65,8 @@ public class VentanaInicio {
 		frame.getContentPane().add(getPanelNorth(), BorderLayout.NORTH);
 		frame.getContentPane().add(getPanelSouth(), BorderLayout.SOUTH);
 		frame.getContentPane().add(getPanelCentro(), BorderLayout.CENTER);
+		frame.setLocationRelativeTo(null);
+		this.frame.setVisible(true);
 	}
 
 	private JPanel getPanelNorth() {
@@ -129,9 +133,8 @@ public class VentanaInicio {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					int nivel = comboBoxNivel.getSelectedIndex();
-					if (nivel==-1) {
-						nivel=0;
-					}
+					vista.Tablero y = new vista.Tablero();
+					controlador.Tablero.getTablero().cargarTablero(nivel);
 					frame.dispose();
 				}
 			});
@@ -157,10 +160,10 @@ public class VentanaInicio {
 		}
 		return lblNewLabel_1;
 	}
-	private JComboBox getComboBoxNivel() {
+	private JComboBox<String> getComboBoxNivel() {
 		if (comboBoxNivel == null) {
-			comboBoxNivel = new JComboBox();
-			comboBoxNivel.setModel(new DefaultComboBoxModel(new String[] {"F\u00E1cil", "Medio", "Dif\u00EDcil"}));
+			comboBoxNivel = new JComboBox<String>();
+			comboBoxNivel.setModel(new DefaultComboBoxModel<String>(new String[] {"F\u00E1cil", "Medio", "Dif\u00EDcil"}));
 		}
 		return comboBoxNivel;
 	}
