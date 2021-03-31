@@ -50,10 +50,8 @@ public class Tablero extends JFrame implements Observer{
 	private JButton btnModificar;
 	private JButton btnAyuda;
 	private JPanelBackground panelNorth;
-	private JPanel panelSouth;
-	private JPanel panelWest;
-	private JLabel lblTitulo;
-	private JLabel lblNombres;
+	private JPanelBackground panelSouth;
+	private JPanelBackground panelWest;
 	private JPanel panel1_0;
 	private JPanel panelValor;
 	private JPanel panelCadidatos;
@@ -511,7 +509,7 @@ public class Tablero extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.setBackground(Color.BLACK);
 		frmSudokuRoyaleMaster.setTitle("SUDOKU ROYALE MASTER");
 		frmSudokuRoyaleMaster.setResizable(false);
-		frmSudokuRoyaleMaster.setBounds(100, 100, 939, 733);
+		frmSudokuRoyaleMaster.setBounds(100, 100, 1000, 800);
 		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSudokuRoyaleMaster.getContentPane().setLayout(new BorderLayout(0, 0));
 		frmSudokuRoyaleMaster.getContentPane().add(getPanelWest(), BorderLayout.WEST);
@@ -583,25 +581,6 @@ public class Tablero extends JFrame implements Observer{
 		}
 		return panelDatos;
 	}	
-	private JLabel getLblTitulo() {
-		if (lblTitulo == null) {
-			lblTitulo = new JLabel("SUDOKU-ROYALE-MASTER");
-			lblTitulo.setForeground(Color.WHITE);
-			lblTitulo.setFont(new Font("Kamikaze 3D Gradient", Font.PLAIN, 40));
-			lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
-			lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		}
-		return lblTitulo;
-	}
-	private JLabel getLblNombres() {
-		if (lblNombres == null) {
-			lblNombres = new JLabel("Vicente Ayarza - I\u00F1igo Landeta - Joel Bra - Bosco Aranguren - Diego Marta");
-			lblNombres.setForeground(Color.WHITE);
-			lblNombres.setFont(new Font("Gang of Three", Font.PLAIN, 20));
-			lblNombres.setHorizontalAlignment(SwingConstants.CENTER);
-		}
-		return lblNombres;
-	}
 	private JTextField getTextFieldCandidatos() {
 		if (textFieldCandidatos == null) {
 			textFieldCandidatos = new JTextField();
@@ -614,7 +593,7 @@ public class Tablero extends JFrame implements Observer{
 		if (lblCandidatos == null) {
 			lblCandidatos = new JLabel("Candidatos:");
 			lblCandidatos.setFont(new Font("Gang of Three", Font.PLAIN, 15));
-			lblCandidatos.setForeground(Color.WHITE);
+			lblCandidatos.setForeground(new Color(204, 153, 0));
 		}
 		return lblCandidatos;
 	}
@@ -622,7 +601,7 @@ public class Tablero extends JFrame implements Observer{
 		if (lblValor == null) {
 			lblValor = new JLabel("Valor:");
 			lblValor.setFont(new Font("Gang of Three", Font.PLAIN, 15));
-			lblValor.setForeground(Color.WHITE);
+			lblValor.setForeground(new Color(204, 153, 0));
 		}
 		return lblValor;
 	}
@@ -695,39 +674,27 @@ public class Tablero extends JFrame implements Observer{
 	private JPanelBackground getPanelNorth() {
 		if (panelNorth == null) {
 			panelNorth = new JPanelBackground();
-			panelNorth.setBackground("resources/39605wide.jpg");
+			panelNorth.setBackground("resources/fondo titulo.jpg");
 			GridBagLayout gbl_panelNorth = new GridBagLayout();
 			gbl_panelNorth.columnWidths = new int[]{923, 0};
-			gbl_panelNorth.rowHeights = new int[]{21, 14, 0, 10, 0};
+			gbl_panelNorth.rowHeights = new int[]{170, 0};
 			gbl_panelNorth.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-			gbl_panelNorth.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panelNorth.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 			panelNorth.setLayout(gbl_panelNorth);
-			GridBagConstraints gbc_lblTitulo = new GridBagConstraints();
-			gbc_lblTitulo.fill = GridBagConstraints.BOTH;
-			gbc_lblTitulo.insets = new Insets(0, 0, 5, 0);
-			gbc_lblTitulo.gridx = 0;
-			gbc_lblTitulo.gridy = 1;
-			panelNorth.add(getLblTitulo(), gbc_lblTitulo);
-			GridBagConstraints gbc_lblNombres = new GridBagConstraints();
-			gbc_lblNombres.insets = new Insets(0, 0, 5, 0);
-			gbc_lblNombres.fill = GridBagConstraints.BOTH;
-			gbc_lblNombres.gridx = 0;
-			gbc_lblNombres.gridy = 2;
-			panelNorth.add(getLblNombres(), gbc_lblNombres);
 		}
 		return panelNorth;
 	}
-	private JPanel getPanelSouth() {
+	private JPanelBackground getPanelSouth() {
 		if (panelSouth == null) {
-			panelSouth = new JPanel();
-			panelSouth.setBackground(new Color(255, 0, 51));
+			panelSouth = new JPanelBackground();
+			panelSouth.setBackground("resources/fondo sudoku south.jpg");
 		}
 		return panelSouth;
 	}
-	private JPanel getPanelWest() {
+	private JPanelBackground getPanelWest() {
 		if (panelWest == null) {
-			panelWest = new JPanel();
-			panelWest.setBackground(new Color(255, 0, 51));
+			panelWest = new JPanelBackground();
+			panelWest.setBackground("resources/fondo sudoku west.jpg");
 		}
 		return panelWest;
 	}
