@@ -31,12 +31,13 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Window.Type;
 
 @SuppressWarnings({ "serial", "deprecation" })
 public class Tablero extends JFrame implements Observer{
 
-	private JFrame frame;
-	private JPanel panelDatos;
+	private JFrame frmSudokuRoyaleMaster;
+	private JPanelBackground panelDatos;
 	private JPanel panelTablero;
 	private Border bordeNormal = new LineBorder(Color.BLACK, 1);
 	private Border bordeGrueso = new LineBorder(Color.BLUE, 3);
@@ -506,24 +507,27 @@ public class Tablero extends JFrame implements Observer{
 	}
 	
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 939, 733);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		frame.getContentPane().add(getPanelWest(), BorderLayout.WEST);
-		frame.getContentPane().add(getPanelSouth(), BorderLayout.SOUTH);
-		frame.getContentPane().add(getPanelDatos(), BorderLayout.EAST);
-		frame.getContentPane().add(getPanelTablero(), BorderLayout.CENTER);
-		frame.getContentPane().add(getPanelNorth(), BorderLayout.NORTH);
+		frmSudokuRoyaleMaster = new JFrame();
+		frmSudokuRoyaleMaster.setBackground(Color.BLACK);
+		frmSudokuRoyaleMaster.setTitle("SUDOKU ROYALE MASTER");
+		frmSudokuRoyaleMaster.setResizable(false);
+		frmSudokuRoyaleMaster.setBounds(100, 100, 939, 733);
+		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSudokuRoyaleMaster.getContentPane().setLayout(new BorderLayout(0, 0));
+		frmSudokuRoyaleMaster.getContentPane().add(getPanelWest(), BorderLayout.WEST);
+		frmSudokuRoyaleMaster.getContentPane().add(getPanelSouth(), BorderLayout.SOUTH);
+		frmSudokuRoyaleMaster.getContentPane().add(getPanelDatos(), BorderLayout.EAST);
+		frmSudokuRoyaleMaster.getContentPane().add(getPanelTablero(), BorderLayout.CENTER);
+		frmSudokuRoyaleMaster.getContentPane().add(getPanelNorth(), BorderLayout.NORTH);
 		this.anadirAlArray();
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
+		frmSudokuRoyaleMaster.setLocationRelativeTo(null);
+		frmSudokuRoyaleMaster.setVisible(true);
 	}
 
-	private JPanel getPanelDatos() {
+	private JPanelBackground getPanelDatos() {
 		if (panelDatos == null) {
-			panelDatos = new JPanel();
-			panelDatos.setBackground(new Color(255, 0, 51));
+			panelDatos = new JPanelBackground();
+			panelDatos.setBackground("resources/fondo sudoku datos.jpg");
 			GridBagLayout gbl_panelDatos = new GridBagLayout();
 			gbl_panelDatos.columnWidths = new int[]{18, 0, 117, 0, 0};
 			gbl_panelDatos.rowHeights = new int[]{20, 0, 0, 0, 0, 0, 0, 0, 110, 11, 0};
