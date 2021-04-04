@@ -625,28 +625,41 @@ public class Tablero extends JFrame implements Observer{
 						for (Component x1: select.getComponents()) {
 							for (Component x2: ((JPanel) x1).getComponents()) {
 								if (((JLabel) x2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))){
-									((JLabel) x2).setText(textFieldValor.getText());
-									controlador.Tablero t = controlador.Tablero.getTablero();
-									boolean enc = false;
-									int i = 0;
-									int j = 0;
-									while (!enc && i < matrizPaneles.length) {
-										j = 0;
-										while (!enc && j < matrizPaneles[0].length) {
-											if (select.equals(matrizPaneles[i][j])) {
-												enc = true;
+									String numValor = textFieldValor.getText();
+									char[] numValorL = numValor.toCharArray();
+									if (numValorL.length!=1) {
+										JOptionPane.showMessageDialog(null, "Tan solo puede introducir un número", "Error Valor", JOptionPane.ERROR_MESSAGE);
+										textFieldValor.setText("");
+									}
+									else if (!Character.isDigit(numValorL[0])) {
+										JOptionPane.showMessageDialog(null, "Debe introducir un número", "Error Valor", JOptionPane.ERROR_MESSAGE);
+										textFieldValor.setText("");
+									}
+									else {	
+										((JLabel) x2).setText(textFieldValor.getText());
+										controlador.Tablero t = controlador.Tablero.getTablero();
+										boolean enc = false;
+										int i = 0;
+										int j = 0;
+										while (!enc && i < matrizPaneles.length) {
+											j = 0;
+											while (!enc && j < matrizPaneles[0].length) {
+												if (select.equals(matrizPaneles[i][j])) {
+													enc = true;
+												}
+												j++;
 											}
-											j++;
+											i++;
 										}
-										i++;
-									}
-									t.setValor(i-1, j-1, ((JLabel) x2).getText());
-								} else {
-									if (textFieldCandidatos.getText().equals("")) {
-										((JLabel) x2).setText(" ");
-									}
-									else {
-									((JLabel) x2).setText(textFieldCandidatos.getText());
+										t.setValor(i-1, j-1, ((JLabel) x2).getText());
+										} 
+									}else {
+										if (textFieldCandidatos.getText().equals("")) {
+											((JLabel) x2).setText(" ");
+										}
+										else {
+										((JLabel) x2).setText(textFieldCandidatos.getText());
+										}
 									}
 								}
 							}
@@ -659,7 +672,6 @@ public class Tablero extends JFrame implements Observer{
 						textFieldCandidatos.setEnabled(false);
 						textFieldValor.setEnabled(false);
 					}
-				}
 			});
 		}
 		return btnModificar;
@@ -823,22 +835,16 @@ public class Tablero extends JFrame implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		controlador.Casilla[][] t = controlador.Tablero.getTablero().getListaCasillas();
-		int[] a = (int[]) arg;
-		if (a[0] == 1) {
-			if (a[1] == 0) JOptionPane.showMessageDialog(panel, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
-			else JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
-		} else if (a[0] == 0) {
-			for (int i = 0; i < t.length; i++) {
-				for (int j = 0; j < t[0].length; j++) {
-					if (t[i][j].getValor() != 0) {
-						((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(Integer.toString(t[i][j].getValor()));
-						((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setForeground(Color.RED);
-						matrizPaneles[i][j].setEnabled(false);
-					}
-					
-				}
-			}
 		
+		for (int i = 0; i < t.length; i++) {
+			for (int j = 0; j < t[0].length; j++) {
+				if (t[i][j].getValor() != 0) {
+					((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(Integer.toString(t[i][j].getValor()));
+					((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setForeground(Color.RED);
+					matrizPaneles[i][j].setEnabled(false);
+				}
+				
+			}
 		}
 		
 		
@@ -4370,11 +4376,15 @@ public class Tablero extends JFrame implements Observer{
 			btnComprobar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 			btnComprobar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					controlador.Tablero.getTablero().comprobarResultado();
+					/*boolean correcto = controlador.Tablero.getTablero().comprobarResultado();
+					if (!correcto) {
+						 JOptionPane.showMessageDialog(panel, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
+					}*/
 				}
 			});
 		}
 		return btnComprobar;
 	}
 }
-		
