@@ -823,16 +823,22 @@ public class Tablero extends JFrame implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		controlador.Casilla[][] t = controlador.Tablero.getTablero().getListaCasillas();
-		
-		for (int i = 0; i < t.length; i++) {
-			for (int j = 0; j < t[0].length; j++) {
-				if (t[i][j].getValor() != 0) {
-					((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(Integer.toString(t[i][j].getValor()));
-					((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setForeground(Color.RED);
-					matrizPaneles[i][j].setEnabled(false);
+		int[] a = (int[]) arg;
+		if (a[0] == 1) {
+			if (a[1] == 0) JOptionPane.showMessageDialog(panel, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
+			else JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
+		} else if (a[0] == 0) {
+			for (int i = 0; i < t.length; i++) {
+				for (int j = 0; j < t[0].length; j++) {
+					if (t[i][j].getValor() != 0) {
+						((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(Integer.toString(t[i][j].getValor()));
+						((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setForeground(Color.RED);
+						matrizPaneles[i][j].setEnabled(false);
+					}
+					
 				}
-				
 			}
+		
 		}
 		
 		
@@ -4364,16 +4370,11 @@ public class Tablero extends JFrame implements Observer{
 			btnComprobar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 			btnComprobar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					boolean correcto = controlador.Tablero.getTablero().comprobarResultado();
-					
-					if (!correcto) {
-						 JOptionPane.showMessageDialog(panel, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
-					} else {
-						JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
-					}
+					controlador.Tablero.getTablero().comprobarResultado();
 				}
 			});
 		}
 		return btnComprobar;
 	}
 }
+		

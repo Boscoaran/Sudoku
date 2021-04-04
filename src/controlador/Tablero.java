@@ -24,6 +24,7 @@ public class Tablero extends Observable{
 	}
 	
 	public void cargarTablero (int dif) {
+		ListaSudokus.getListaSudokus().obtenerListas();
 		int[][] a = ListaSudokus.getListaSudokus().getLSudokus(dif);
 		dificultad = dif;
 		int i = 0;
@@ -41,8 +42,9 @@ public class Tablero extends Observable{
 			}
 			i++;
 		}
+		int [] arg = {0};
 		this.setChanged();
-		this.notifyObservers();
+		this.notifyObservers(arg);
 		
 	}
 	
@@ -58,7 +60,9 @@ public class Tablero extends Observable{
 		
 	}
 	
-	public boolean comprobarResultado() {
+	public void comprobarResultado() {
+		int[] arg = new int[2];
+		arg[0] = 1; //identifica el proceso del resultado
 		int[][] res = ListaSudokus.getListaSudokus().getLSoluciones(dificultad);
 		boolean correcto = true;
 		int j, i;
@@ -71,7 +75,13 @@ public class Tablero extends Observable{
 			}
 			i++;
 		}
-		return correcto;
+		if (correcto) {
+			arg[1] = 1;
+		} else {
+			arg[1] = 0;
+		}
+		this.setChanged();
+		this.notifyObservers(arg);
 	}
 	
 
