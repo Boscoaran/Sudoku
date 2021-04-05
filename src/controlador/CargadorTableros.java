@@ -17,7 +17,7 @@ public class CargadorTableros {
 	}
 	
 	public ArrayList<ArrayList<ArrayList<int[][]>>> cargarTableros() {
-		ArrayList<ArrayList<ArrayList<int[][]>>> res = new ArrayList<ArrayList<ArrayList<int[][]>>>(); //Para devolver el resultado
+		ArrayList<ArrayList<ArrayList<int[][]>>> res = new ArrayList<ArrayList<ArrayList<int[][]>>>(3); //Para devolver el resultado
 		ArrayList<ArrayList<int[][]>> lSudokus = new ArrayList<ArrayList<int[][]>>(3);
 		ArrayList<ArrayList<int[][]>> lSoluciones = new ArrayList<ArrayList<int[][]>>(3);
 	try {
