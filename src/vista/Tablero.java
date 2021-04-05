@@ -29,6 +29,8 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
+
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Window.Type;
@@ -627,11 +629,11 @@ public class Tablero extends JFrame implements Observer{
 								if (((JLabel) x2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))){
 									String numValor = textFieldValor.getText();
 									char[] numValorL = numValor.toCharArray();
-									if (numValorL.length!=1) {
+									if (numValorL.length>1) {
 										JOptionPane.showMessageDialog(null, "Tan solo puede introducir un número", "Error Valor", JOptionPane.ERROR_MESSAGE);
 										textFieldValor.setText("");
 									}
-									else if (!Character.isDigit(numValorL[0])) {
+									else if (numValorL.length!=0 && !Character.isDigit(numValorL[0])) {
 										JOptionPane.showMessageDialog(null, "Debe introducir un número", "Error Valor", JOptionPane.ERROR_MESSAGE);
 										textFieldValor.setText("");
 									}
@@ -654,8 +656,18 @@ public class Tablero extends JFrame implements Observer{
 										t.setValor(i-1, j-1, ((JLabel) x2).getText());
 										} 
 									}else {
+										String numCandidatos = textFieldCandidatos.getText();
+										char[] numCandidatosL = numCandidatos.toCharArray();
+										boolean esNum = true;
+										for (char c: numCandidatosL)
+											if (Character.isAlphabetic(c)) {
+												esNum=false;
+											}
 										if (textFieldCandidatos.getText().equals("")) {
 											((JLabel) x2).setText(" ");
+										}
+										else if (!esNum) {
+											JOptionPane.showMessageDialog(null, "Los candidatos deben de ser números", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
 										}
 										else {
 										((JLabel) x2).setText(textFieldCandidatos.getText());
