@@ -636,26 +636,23 @@ public class Tablero extends JFrame implements Observer{
 									else if (numValorL.length!=0 && !Character.isDigit(numValorL[0])) {
 										JOptionPane.showMessageDialog(null, "Debe introducir un número", "Error Valor", JOptionPane.ERROR_MESSAGE);
 										textFieldValor.setText("");
-									}
-									else {	
-										((JLabel) x2).setText(textFieldValor.getText());
-										modelo.Tablero t = modelo.Tablero.getTablero();
-										boolean enc = false;
-										int i = 0;
-										int j = 0;
-										while (!enc && i < matrizPaneles.length) {
-											j = 0;
-											while (!enc && j < matrizPaneles[0].length) {
-												if (select.equals(matrizPaneles[i][j])) {
-													enc = true;
+									} else {
+											boolean enc = false;
+											int i = 0;
+											int j = 0;
+											while (!enc && i < matrizPaneles.length) {
+												j = 0;
+												while (!enc && j < matrizPaneles[0].length) {
+													if (select.equals(matrizPaneles[i][j])) {
+														enc = true;
+													}
+													j++;
 												}
-												j++;
+												i++;
 											}
-											i++;
-										}
-										t.setValor(i-1, j-1, ((JLabel) x2).getText());
+											modelo.Tablero.getTablero().setValor(i-1,j-1,textFieldValor.getText());
 										} 
-									}else {
+									} else {
 										String numCandidatos = textFieldCandidatos.getText();
 										char[] numCandidatosL = numCandidatos.toCharArray();
 										boolean esNum = true;
@@ -846,21 +843,28 @@ public class Tablero extends JFrame implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		modelo.Casilla[][] t = modelo.Tablero.getTablero().getListaCasillas();
-		
-		for (int i = 0; i < t.length; i++) {
-			for (int j = 0; j < t[0].length; j++) {
-				if (t[i][j].getValor() != 0) {
-					((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(Integer.toString(t[i][j].getValor()));
-					((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setForeground(Color.RED);
-					matrizPaneles[i][j].setEnabled(false);
+		int[] a = (int[]) arg;
+		if (a[0] == 1) {
+			if (a[1] == 0) JOptionPane.showMessageDialog(panel, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
+			else JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
+		} else if (a[0] == 0) {
+			modelo.Casilla[][] t = modelo.Tablero.getTablero().getListaCasillas();
+			for (int i = 0; i < t.length; i++) {
+				for (int j = 0; j < t[0].length; j++) {
+					if (t[i][j].getValor() != 0) {
+						((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(Integer.toString(t[i][j].getValor()));
+						((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setForeground(Color.RED);
+						matrizPaneles[i][j].setEnabled(false);
+					}
 				}
-				
 			}
+		
+		} else if (a[0] == 2) {
+			((JLabel)((JPanel)matrizPaneles[a[1]][a[2]].getComponent(0)).getComponent(0)).setText(Integer.toString(a[3]));
 		}
-		
-		
 	}
+		
+		
 	private JPanel getPanel1_0() {
 		if (panel1_0 == null) {
 			panel1_0 = new JPanel();
@@ -4388,12 +4392,7 @@ public class Tablero extends JFrame implements Observer{
 			btnComprobar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 			btnComprobar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					/*boolean correcto = controlador.Tablero.getTablero().comprobarResultado();
-					if (!correcto) {
-						 JOptionPane.showMessageDialog(panel, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
-					} else {
-						JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
-					}*/
+					modelo.Tablero.getTablero().comprobarResultado();
 				}
 			});
 		}

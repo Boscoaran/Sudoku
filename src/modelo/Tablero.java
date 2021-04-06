@@ -56,6 +56,9 @@ public class Tablero extends Observable{
 		if (!s.equals("")) {
 			int n = Integer.parseInt(s);
 			tablero[x][y].setValor(n);
+			int[] arg = {2,x,y,n};
+			setChanged();
+			notifyObservers(arg);
 		}
 		
 	}
@@ -83,6 +86,7 @@ public class Tablero extends Observable{
 		this.setChanged();
 		this.notifyObservers(arg);
 	}
+	
 	
 
 }
