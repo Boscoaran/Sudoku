@@ -3,6 +3,11 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,6 +16,10 @@ import javax.swing.border.MatteBorder;
 
 public class Casilla extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel casilla;
 	private JPanel valorPanel;
 	private JPanel candidatosPanel;
@@ -25,32 +34,41 @@ public class Casilla extends JPanel{
 	}
 	
 	public JPanel getCasilla() {
-		casilla = new JPanel();
-		casilla.setLayout(new BorderLayout(0,0));
-		casilla.add(getCandidatosPanel(), BorderLayout.NORTH);
-		casilla.add(getValorPanel(), BorderLayout.CENTER);
-		casilla.setBorder(borde());
+			casilla = new JPanel();
+			casilla.setLayout(new BorderLayout(0,0));
+			casilla.add(getCandidatosPanel(), BorderLayout.NORTH);
+			casilla.add(getValorPanel(), BorderLayout.CENTER);
+			casilla.setBorder(borde());
+			casilla.setName("Casilla " + x + " " + y);
+			casilla.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					Tablero.getTablero().casillaSelect(e);
+					
+				}
+			});
 		return casilla;
 	}
 	public JPanel getCandidatosPanel() {
-		candidatosPanel = new JPanel();
-		candidatosPanel.add(getCandidatosLabel());
+			candidatosPanel = new JPanel();
+			candidatosPanel.add(getCandidatosLabel());
+			candidatosPanel.setName("Panel candidatos " + x + " " + y );
 		return candidatosPanel;
 	}
 	public JLabel getCandidatosLabel() {
-		candidatosLabel = new JLabel();
-		candidatosLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		candidatosLabel.setText(" ");
+			candidatosLabel = new JLabel();
+			candidatosLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			candidatosLabel.setText(" ");
 		return candidatosLabel;
 	}
 	public JPanel getValorPanel() {
-		valorPanel = new JPanel();
-		valorPanel.add(getValorLabel());
+			valorPanel = new JPanel();
+			valorPanel.add(getValorLabel());
 		return valorPanel;
 	}
 	public JLabel getValorLabel() {
-		valorLabel= new JLabel();
-		valorLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			valorLabel= new JLabel();
+			valorLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		return valorLabel;
 	}
 	

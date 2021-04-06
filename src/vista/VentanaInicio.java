@@ -131,7 +131,7 @@ public class VentanaInicio {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					int nivel = comboBoxNivel.getSelectedIndex();
-					vista.Tablero y = new vista.Tablero();
+					Tablero.getTablero();
 					modelo.Tablero.getTablero().cargarTablero(nivel);
 					frame.dispose();
 				}

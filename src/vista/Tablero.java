@@ -1,6 +1,5 @@
 package vista;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
@@ -24,24 +23,22 @@ import javax.swing.border.LineBorder;
 
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.SwingConstants;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.MatteBorder;
 
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Window.Type;
 
 @SuppressWarnings({ "serial", "deprecation" })
 public class Tablero extends JFrame implements Observer{
 
 	private JFrame frmSudokuRoyaleMaster;
+	private static Tablero mTablero;
 	private JPanelBackground panelDatos;
 	private JPanel panelTablero;
-	private Border bordeNormal = new LineBorder(Color.BLACK, 1);
+	//private Border bordeNormal = new LineBorder(Color.BLACK, 1);
 	private Border bordeGrueso = new LineBorder(Color.BLUE, 3);
 	private JPanel select = null;
 	private Border bordeTemp;
@@ -57,7 +54,7 @@ public class Tablero extends JFrame implements Observer{
 	private JPanel matrizPaneles[][];
 	private JButton btnComprobar;
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -68,9 +65,13 @@ public class Tablero extends JFrame implements Observer{
 				}
 			}
 		});
+	}*/
+	
+	public static Tablero getTablero() {
+		if (mTablero == null) mTablero = new Tablero();
+		return mTablero;
 	}
-
-	public Tablero() {
+	private Tablero() {
 		matrizPaneles = new JPanel[9][9];
 		initialize();
 		System.out.println();
@@ -92,7 +93,6 @@ public class Tablero extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.getContentPane().add(getPanelDatos(), BorderLayout.EAST);
 		frmSudokuRoyaleMaster.getContentPane().add(getPanelTablero(), BorderLayout.CENTER);
 		frmSudokuRoyaleMaster.getContentPane().add(getPanelNorth(), BorderLayout.NORTH);
-		this.anadirAlArray();
 		frmSudokuRoyaleMaster.setLocationRelativeTo(null);
 		frmSudokuRoyaleMaster.setVisible(true);
 	}
@@ -336,7 +336,9 @@ public class Tablero extends JFrame implements Observer{
 			for (int i=1; i<10; i++) {
 				for (int j=1; j<10; j++) {
 					Casilla casilla = new Casilla(i,j);
-					panelTablero.add(casilla.getCasilla());
+					JPanel c = casilla.getCasilla();
+					panelTablero.add(c);
+					matrizPaneles[i-1][j-1] = c;
 				}
 			}
 		}
@@ -389,35 +391,15 @@ public class Tablero extends JFrame implements Observer{
 			for (int i = 0; i < t.length; i++) {
 				for (int j = 0; j < t[0].length; j++) {
 					if (t[i][j].getValor() != 0) {
-						((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(Integer.toString(t[i][j].getValor()));
-						((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setForeground(Color.RED);
+						((JLabel)((JPanel)matrizPaneles[i][j].getComponent(1)).getComponent(0)).setText(Integer.toString(t[i][j].getValor()));
+						((JLabel)((JPanel)matrizPaneles[i][j].getComponent(1)).getComponent(0)).setForeground(Color.RED);
 						matrizPaneles[i][j].setEnabled(false);
 					}
 				}
 			}
 		
 		} else if (a[0] == 2) {
-			((JLabel)((JPanel)matrizPaneles[a[1]][a[2]].getComponent(0)).getComponent(0)).setText(Integer.toString(a[3]));
+			((JLabel)((JPanel)matrizPaneles[a[1]][a[2]].getComponent(1)).getComponent(0)).setText(Integer.toString(a[3]));
 		}
 	}
-	
-	private void anadirAlArray() {
-		int n = 0;
-		for (int i = 0; i < matrizPaneles.length; i++) {
-			for (int j = 0; j < matrizPaneles[0].length; j++) {
-				matrizPaneles[i][j] = devolverPanel(n);
-				n++;
-			}
-		}
-	}
-	
-	private JPanel devolverPanel (int n) {
-		switch (n) {
-			
-		}
-		return null;
-	}
-	
-	
-	
 }
