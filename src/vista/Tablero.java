@@ -38,7 +38,6 @@ public class Tablero extends JFrame implements Observer{
 	private static Tablero mTablero;
 	private JPanelBackground panelDatos;
 	private JPanel panelTablero;
-	//private Border bordeNormal = new LineBorder(Color.BLACK, 1);
 	private Border bordeGrueso = new LineBorder(Color.BLUE, 3);
 	private JPanel select = null;
 	private JTextField textFieldCandidatos;

@@ -1,8 +1,5 @@
 package modelo;
 
-import java.util.Scanner;
-
-import vista.Tablero;
 
 
 public class Iniciador {
@@ -15,7 +12,7 @@ public class Iniciador {
 	public Iniciador() {}
 	
 	public void menu() {
-		int i;
+		//int i;
 		vista.VentanaInicio v = new vista.VentanaInicio();
 		/*do {
 			Scanner s = new Scanner(System.in);
