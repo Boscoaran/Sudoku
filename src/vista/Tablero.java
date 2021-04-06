@@ -53,6 +53,7 @@ public class Tablero extends JFrame implements Observer{
 	private JPanelBackground panelWest;
 	private JPanel matrizPaneles[][];
 	private JButton btnComprobar;
+	private Border bordeAct;
 
 	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -348,7 +349,7 @@ public class Tablero extends JFrame implements Observer{
 	public JPanel casillaSelect(MouseEvent event) {
 		JPanel seleccionado = (JPanel) event.getSource();
 		if (!seleccionado.getBorder().equals(bordeGrueso) && select==null && seleccionado.isEnabled()){
-			bordeTemp=seleccionado.getBorder();
+			bordeAct=seleccionado.getBorder();
 			textFieldCandidatos.setEnabled(true);
 			textFieldValor.setEnabled(true);
 			textFieldValor.requestFocusInWindow();
@@ -365,8 +366,26 @@ public class Tablero extends JFrame implements Observer{
 				}
 			}
 			select=seleccionado;
-		}else if (seleccionado.getBorder().equals(bordeGrueso) && select!=null) {
-			seleccionado.setBorder(bordeTemp);
+		} else if (!seleccionado.getBorder().equals(bordeGrueso) && select != null && seleccionado.isEnabled()) {
+			select.setBorder(bordeAct);
+			bordeAct = seleccionado.getBorder();
+			textFieldCandidatos.setText("");
+			textFieldValor.setText("");
+			seleccionado.setBorder(bordeGrueso);
+			for (Component x1: seleccionado.getComponents()) {
+				for (Component x2: ((JPanel) x1).getComponents()) {
+					if (((JLabel) x2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))) {
+						textFieldValor.setText(((JLabel) x2).getText());
+						
+					} else {
+						textFieldCandidatos.setText(((JLabel) x2).getText());
+					}
+				}
+			}
+			select=seleccionado;
+		} else if (seleccionado.getBorder().equals(bordeGrueso)) {
+			select.setBorder(bordeAct);
+			bordeAct = null;
 			textFieldCandidatos.setText("");
 			textFieldValor.setText("");
 			select=null;
