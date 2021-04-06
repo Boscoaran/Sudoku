@@ -41,7 +41,6 @@ public class Tablero extends JFrame implements Observer{
 	//private Border bordeNormal = new LineBorder(Color.BLACK, 1);
 	private Border bordeGrueso = new LineBorder(Color.BLUE, 3);
 	private JPanel select = null;
-	private Border bordeTemp;
 	private JTextField textFieldCandidatos;
 	private JLabel lblCandidatos;
 	private JLabel lblValor;
@@ -204,6 +203,14 @@ public class Tablero extends JFrame implements Observer{
 		return btnComprobar;
 	}
 	
+	private boolean isInteger(String num) { //Metodo para comprobar que es un número
+		try {
+			Integer.parseInt(num);
+			return true;
+		} catch(NumberFormatException e) {
+			return false;
+		}
+	}
 	private JButton getBtnModificar() {
 		if (btnModificar == null) {
 			btnModificar = new JButton("Modificar");
@@ -217,14 +224,15 @@ public class Tablero extends JFrame implements Observer{
 							for (Component x2: ((JPanel) x1).getComponents()) {
 								if (((JLabel) x2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))){
 									String numValor = textFieldValor.getText();
-									char[] numValorL = numValor.toCharArray();
-									if (numValorL.length>1) {
-										JOptionPane.showMessageDialog(null, "Tan solo puede introducir un número", "Error Valor", JOptionPane.ERROR_MESSAGE);
+									if ((isInteger(numValor) && numValor.length() > 1) || (isInteger(numValor) && Integer.parseInt(numValor) == 0)) {
+										JOptionPane.showMessageDialog(null, "Tan solo puede introducir un número distinto de 0", "Error Valor", JOptionPane.ERROR_MESSAGE);
 										textFieldValor.setText("");
+										return;
 									}
-									else if (numValorL.length!=0 && !Character.isDigit(numValorL[0])) {
+									else if (!isInteger(numValor)) {
 										JOptionPane.showMessageDialog(null, "Debe introducir un número", "Error Valor", JOptionPane.ERROR_MESSAGE);
 										textFieldValor.setText("");
+										return;
 									} else {
 											boolean enc = false;
 											int i = 0;
@@ -264,7 +272,7 @@ public class Tablero extends JFrame implements Observer{
 						}
 						textFieldCandidatos.setText("");
 						textFieldValor.setText("");
-						select.setBorder(bordeTemp);
+						select.setBorder(bordeAct);
 						select=null;
 						btnModificar.setEnabled(false);
 						textFieldCandidatos.setEnabled(false);
