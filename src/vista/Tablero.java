@@ -488,7 +488,7 @@ public class Tablero extends JFrame implements Observer{
 		initialize();
 		System.out.println();
 		ponerTamañoCandidatos();
-		controlador.Tablero.getTablero().addObserver(this);
+		modelo.Tablero.getTablero().addObserver(this);
 		
 	}
 	/**
@@ -639,7 +639,7 @@ public class Tablero extends JFrame implements Observer{
 									}
 									else {	
 										((JLabel) x2).setText(textFieldValor.getText());
-										controlador.Tablero t = controlador.Tablero.getTablero();
+										modelo.Tablero t = modelo.Tablero.getTablero();
 										boolean enc = false;
 										int i = 0;
 										int j = 0;
@@ -846,7 +846,7 @@ public class Tablero extends JFrame implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		controlador.Casilla[][] t = controlador.Tablero.getTablero().getListaCasillas();
+		modelo.Casilla[][] t = modelo.Tablero.getTablero().getListaCasillas();
 		
 		for (int i = 0; i < t.length; i++) {
 			for (int j = 0; j < t[0].length; j++) {

@@ -1,4 +1,4 @@
-package controlador;
+package modelo;
 
 import java.io.FileReader;
 import java.io.IOException;
