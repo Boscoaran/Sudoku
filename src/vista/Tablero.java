@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Panel;
 import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
@@ -38,7 +39,7 @@ public class Tablero extends JFrame implements Observer{
 	private static Tablero mTablero;
 	private JPanelBackground panelDatos;
 	private JPanel panelTablero;
-	private Border bordeGrueso = new LineBorder(Color.BLUE, 3);
+	private Border bordeGrueso = new LineBorder(Color.BLUE, 5);
 	private JPanel select = null;
 	private JTextField textFieldCandidatos;
 	private JLabel lblCandidatos;
@@ -52,6 +53,7 @@ public class Tablero extends JFrame implements Observer{
 	private JPanel matrizPaneles[][];
 	private JButton btnComprobar;
 	private Border bordeAct;
+	private Border bordeTemp;
 
 	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -219,20 +221,18 @@ public class Tablero extends JFrame implements Observer{
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					if (select!=null) {
-						for (Component x1: select.getComponents()) {
-							for (Component x2: ((JPanel) x1).getComponents()) {
-								if (((JLabel) x2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))){
-									String numValor = textFieldValor.getText();
-									if ((isInteger(numValor) && numValor.length() > 1) || (isInteger(numValor) && Integer.parseInt(numValor) == 0)) {
-										JOptionPane.showMessageDialog(null, "Tan solo puede introducir un número distinto de 0", "Error Valor", JOptionPane.ERROR_MESSAGE);
-										textFieldValor.setText("");
-										return;
+						int colocar = 2;
+						JLabel candidatos = null;
+						JLabel valor = null;
+						for (Component c1: select.getComponents()) {
+							for (Component c2: ((JPanel) c1).getComponents()) {
+								if (((JLabel) c2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))){
+									if (!(((JLabel) c2).getText().equals("") || ((JLabel) c2).getText().equals(" "))) {
+										valor = (JLabel) c2;
 									}
-									else if (!isInteger(numValor)) {
-										JOptionPane.showMessageDialog(null, "Debe introducir un número", "Error Valor", JOptionPane.ERROR_MESSAGE);
-										textFieldValor.setText("");
-										return;
-									} else {
+									String numValor = textFieldValor.getText();
+									boolean valorCorrecto= compValor(numValor);
+									if (valorCorrecto) {
 											boolean enc = false;
 											int i = 0;
 											int j = 0;
@@ -250,24 +250,22 @@ public class Tablero extends JFrame implements Observer{
 										} 
 									} else {
 										String numCandidatos = textFieldCandidatos.getText();
-										char[] numCandidatosL = numCandidatos.toCharArray();
-										boolean esNum = true;
-										for (char c: numCandidatosL)
-											if (Character.isAlphabetic(c)) {
-												esNum=false;
-											}
+										boolean esNum = compCandidatos(numCandidatos);
 										if (textFieldCandidatos.getText().equals("")) {
-											((JLabel) x2).setText(" ");
-										}
-										else if (!esNum) {
-											JOptionPane.showMessageDialog(null, "Los candidatos deben de ser números", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
-										}
-										else {
-										((JLabel) x2).setText(textFieldCandidatos.getText());
+											((JLabel) c2).setText(" ");
+										}else if (esNum) {
+											if (!(((JLabel) c2).getText().equals("") || ((JLabel) c2).getText().equals(" "))) {
+												candidatos = (JLabel) c2;
+											}
+											((JLabel) c2).setText(textFieldCandidatos.getText());
 										}
 									}
 								}
 							}
+						if (candidatos!=null && valor!=null) {
+							String[] elegir = {"Valor", "Candidatos"};
+							colocar=JOptionPane.showOptionDialog(null, "No puede haber candidatos y valor, seleccione que quiere colocar", "Valor o Candidatos", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, elegir, elegir[0]);
+						}
 						}
 						textFieldCandidatos.setText("");
 						textFieldValor.setText("");
@@ -280,6 +278,31 @@ public class Tablero extends JFrame implements Observer{
 			});
 		}
 		return btnModificar;
+	}
+	
+	private boolean compValor(String num) {
+		boolean correcto = true;
+		if ((isInteger(num) && num.length() > 1) || (isInteger(num) && Integer.parseInt(num) == 0)) {
+			JOptionPane.showMessageDialog(null, "Tan solo puede introducir un número distinto de 0", "Error Valor", JOptionPane.ERROR_MESSAGE);
+			textFieldValor.setText("");
+			correcto=false;
+		}else if (!isInteger(num) && num.length()!=0) {
+			JOptionPane.showMessageDialog(null, "Debe introducir un número", "Error Valor", JOptionPane.ERROR_MESSAGE);
+			textFieldValor.setText("");
+			correcto=false;
+		}
+		return correcto;
+	}
+	
+	private boolean compCandidatos(String num) {
+		char[] numL = num.toCharArray();
+		boolean correcto = true;
+		for (char c: numL)
+			if (Character.isAlphabetic(c)) {
+				JOptionPane.showMessageDialog(null, "Los candidatos deben de ser números", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
+				correcto=false;
+			}
+		return correcto;
 	}
 	
 	private JButton getBtnAyuda() {
@@ -402,8 +425,6 @@ public class Tablero extends JFrame implements Observer{
 		}
 		return(select);
 	}
-
-	
 	
 //////////////////////////////METODOS MODELO-VISTA/////////////////////////////////
 	@Override

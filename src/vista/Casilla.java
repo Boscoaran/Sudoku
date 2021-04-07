@@ -41,7 +41,6 @@ public class Casilla extends JPanel{
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					Tablero.getTablero().casillaSelect(e);
-					
 				}
 			});
 		return casilla;
@@ -66,6 +65,7 @@ public class Casilla extends JPanel{
 	public JLabel getValorLabel() {
 			valorLabel= new JLabel();
 			valorLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			valorLabel.setText("");
 		return valorLabel;
 	}
 	
@@ -108,6 +108,11 @@ public class Casilla extends JPanel{
 		return borde;
 	}
 	
-	
+	public String getCandidatos() {
+		return candidatosLabel.getText();
+	}
+	public String getValor() {
+		return valorLabel.getText();
+	}
 }
 	
