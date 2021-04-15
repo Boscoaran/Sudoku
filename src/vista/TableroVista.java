@@ -14,6 +14,9 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Panel;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -40,7 +43,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JPanelBackground panelDatos;
 	private JPanel panelTablero;
 	private Border bordeGrueso = new LineBorder(Color.BLUE, 5);
-	private JPanel select = null;
+	private CasillaVista select = null;
 	private JTextField textFieldCandidatos;
 	private JLabel lblCandidatos;
 	private JLabel lblValor;
@@ -50,10 +53,9 @@ public class TableroVista extends JFrame implements Observer{
 	private JPanelBackground panelNorth;
 	private JPanelBackground panelSouth;
 	private JPanelBackground panelWest;
-	private JPanel matrizPaneles[][];
+	private CasillaVista matrizPaneles[][];
 	private JButton btnComprobar;
 	private Border bordeAct;
-	private Border bordeTemp;
 
 	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -73,7 +75,7 @@ public class TableroVista extends JFrame implements Observer{
 		return mTablero;
 	}
 	private TableroVista() {
-		matrizPaneles = new JPanel[9][9];
+		matrizPaneles = new CasillaVista[9][9];
 		initialize();
 		System.out.println();
 		modelo.TableroModelo.getTablero().addObserver(this);
@@ -221,52 +223,42 @@ public class TableroVista extends JFrame implements Observer{
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					if (select!=null) {
-						int colocar = 2;
-						JLabel candidatos = null;
-						JLabel valor = null;
-						for (Component c1: select.getComponents()) {
-							for (Component c2: ((JPanel) c1).getComponents()) {
-								if (((JLabel) c2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))){
-									if (!(((JLabel) c2).getText().equals("") || ((JLabel) c2).getText().equals(" "))) {
-										valor = (JLabel) c2;
-									}
-									String numValor = textFieldValor.getText();
-									boolean valorCorrecto= compValor(numValor);
-									if (valorCorrecto) {
-											boolean enc = false;
-											int i = 0;
-											int j = 0;
-											while (!enc && i < matrizPaneles.length) {
-												j = 0;
-												while (!enc && j < matrizPaneles[0].length) {
-													if (select.equals(matrizPaneles[i][j])) {
-														enc = true;
-													}
-													j++;
-												}
-												i++;
-											}
-											modelo.TableroModelo.getTablero().setValor(i-1,j-1,textFieldValor.getText());
-										} 
-									} else {
-										String numCandidatos = textFieldCandidatos.getText();
-										boolean esNum = compCandidatos(numCandidatos);
-										if (textFieldCandidatos.getText().equals("")) {
-											((JLabel) c2).setText(" ");
-										}else if (esNum) {
-											if (!(((JLabel) c2).getText().equals("") || ((JLabel) c2).getText().equals(" "))) {
-												candidatos = (JLabel) c2;
-											}
-											((JLabel) c2).setText(textFieldCandidatos.getText());
-										}
-									}
+						int cont= 1;
+						boolean completed = false;
+						while (cont != -1) {
+							if (cont == 1) {
+								String s = textFieldValor.getText();
+								if (compValor(s)) {
+									int[] coords = select.getCoords();
+									modelo.TableroModelo.getTablero().setValor(coords[0]-1, coords[1]-1, s);
+								} else if (s.equals("")) {
+									int[] coords = select.getCoords();
+									modelo.TableroModelo.getTablero().setValor(coords[0]-1, coords[1]-1, "0");
 								}
+							} else {
+								if (textFieldValor.getText().equals("") || textFieldCandidatos.getText().equals("")) {
+									String numCandidatos = textFieldCandidatos.getText();
+									if (textFieldCandidatos.getText().equals("")) {
+										((JLabel)((JPanel)select.getComponent(0)).getComponent(0)).setText(" "); //Para que no se descuadre el tema
+										completed = true;
+									} else if (!compCandidatos(numCandidatos)) {
+										((JLabel)((JPanel)select.getComponent(0)).getComponent(0)).setText(textFieldCandidatos.getText());
+										completed = true;
+									}
+								} else {
+									if (!((JLabel)((JPanel)select.getComponent(1)).getComponent(0)).getText().equals("") && ((JLabel)((JPanel)select.getComponent(0)).getComponent(0)).getText().equals(" ")) { 
+										JOptionPane.showMessageDialog(null, "No se puede introducir candidatos si se ha introducido un valor, por favor, elimina los candidatos", "Error Candidatos", JOptionPane.ERROR_MESSAGE);
+									} else {
+										((JLabel)((JPanel)select.getComponent(0)).getComponent(0)).setText(" ");
+										JOptionPane.showMessageDialog(null, "Se han eliminado los candidatos", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+										completed = true;
+									}
+									
+								}	
 							}
-						if (candidatos!=null && valor!=null) {
-							String[] elegir = {"Valor", "Candidatos"};
-							colocar=JOptionPane.showOptionDialog(null, "No puede haber candidatos y valor, seleccione que quiere colocar", "Valor o Candidatos", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, elegir, elegir[0]);
-						}
-						}
+							cont--;
+					}
+					if (completed) {
 						textFieldCandidatos.setText("");
 						textFieldValor.setText("");
 						select.setBorder(bordeAct);
@@ -275,6 +267,8 @@ public class TableroVista extends JFrame implements Observer{
 						textFieldCandidatos.setEnabled(false);
 						textFieldValor.setEnabled(false);
 					}
+					}
+				}
 			});
 		}
 		return btnModificar;
@@ -282,27 +276,50 @@ public class TableroVista extends JFrame implements Observer{
 	
 	private boolean compValor(String num) {
 		boolean correcto = true;
-		if ((isInteger(num) && num.length() > 1) || (isInteger(num) && Integer.parseInt(num) == 0)) {
-			JOptionPane.showMessageDialog(null, "Tan solo puede introducir un número distinto de 0", "Error Valor", JOptionPane.ERROR_MESSAGE);
-			textFieldValor.setText("");
-			correcto=false;
-		}else if (!isInteger(num) && num.length()!=0) {
-			JOptionPane.showMessageDialog(null, "Debe introducir un número", "Error Valor", JOptionPane.ERROR_MESSAGE);
-			textFieldValor.setText("");
-			correcto=false;
+		if (!num.equals("")) {
+			if ((isInteger(num) && num.length() > 1) || (isInteger(num) && Integer.parseInt(num) == 0)) {
+				JOptionPane.showMessageDialog(null, "Tan solo puede introducir un número distinto de 0", "Error Valor", JOptionPane.ERROR_MESSAGE);
+				textFieldValor.setText("");
+				correcto=false;
+			}else if (!isInteger(num) && num.length()!=0) {
+				JOptionPane.showMessageDialog(null, "Debe introducir un número", "Error Valor", JOptionPane.ERROR_MESSAGE);
+				textFieldValor.setText("");
+				correcto=false;
+			}
+		} else {
+			correcto = false;
 		}
 		return correcto;
 	}
 	
 	private boolean compCandidatos(String num) {
-		char[] numL = num.toCharArray();
+		ArrayList<Integer> repes = new ArrayList<>();
+		int i = 0;
+		boolean repetido = false;
 		boolean correcto = true;
-		for (char c: numL)
-			if (Character.isAlphabetic(c)) {
-				JOptionPane.showMessageDialog(null, "Los candidatos deben de ser números", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
-				correcto=false;
+		while (i<num.length() && correcto) {
+			if (num.charAt(i) != ',' && num.charAt(i) != '/' && num.charAt(i) != '-' && num.charAt(i) != ' ') {
+				if (!Character.isDigit(num.charAt(i))) {
+					correcto = false;
+				} else {
+					repes.add((int)num.charAt(i));
+				}
 			}
-		return correcto;
+			i++;
+		}
+		if (correcto) {
+			for (int j = 0; j < repes.size(); j++) {
+				for (int j2 = 0; j2 < repes.size(); j2++) {
+					if(repes.get(j) == repes.get(j2) && j != j2) repetido = true;
+				}
+			}
+			if (repetido) {
+				JOptionPane.showMessageDialog(null, "Los candidatos no se pueden repetir", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Los candidatos deben de ser números", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
+		}
+		return repetido;
 	}
 	
 	private JButton getBtnAyuda() {
@@ -367,9 +384,15 @@ public class TableroVista extends JFrame implements Observer{
 			for (int i=1; i<10; i++) {
 				for (int j=1; j<10; j++) {
 					CasillaVista casilla = new CasillaVista(i,j);
-					JPanel c = casilla.getCasilla();
-					panelTablero.add(c);
-					matrizPaneles[i-1][j-1] = c;
+					panelTablero.add(casilla);
+					casilla.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							casillaSelect(e);
+						}
+					});
+					
+					matrizPaneles[i-1][j-1] = casilla;
 				}
 			}
 		}
@@ -377,7 +400,7 @@ public class TableroVista extends JFrame implements Observer{
 	}
 	
 	public JPanel casillaSelect(MouseEvent event) {
-		JPanel seleccionado = (JPanel) event.getSource();
+		CasillaVista seleccionado = (CasillaVista) event.getSource();
 		if (!seleccionado.getBorder().equals(bordeGrueso) && select==null && seleccionado.isEnabled()){
 			bordeAct=seleccionado.getBorder();
 			textFieldCandidatos.setEnabled(true);
@@ -392,6 +415,9 @@ public class TableroVista extends JFrame implements Observer{
 						
 					} else {
 						textFieldCandidatos.setText(((JLabel) x2).getText());
+						if (((JLabel)x2).getText().equals(" ")) {
+							textFieldCandidatos.setText("");
+						}
 					}
 				}
 			}
@@ -409,6 +435,9 @@ public class TableroVista extends JFrame implements Observer{
 						
 					} else {
 						textFieldCandidatos.setText(((JLabel) x2).getText());
+						if (((JLabel)x2).getText().equals(" ")) {
+							textFieldCandidatos.setText("");
+						}
 					}
 				}
 			}
@@ -446,7 +475,8 @@ public class TableroVista extends JFrame implements Observer{
 			}
 		
 		} else if (a[0] == 2) {
-			((JLabel)((JPanel)matrizPaneles[a[1]][a[2]].getComponent(1)).getComponent(0)).setText(Integer.toString(a[3]));
+			if (a[3] == 0) ((JLabel)((JPanel)matrizPaneles[a[1]][a[2]].getComponent(1)).getComponent(0)).setText("");
+			else ((JLabel)((JPanel)matrizPaneles[a[1]][a[2]].getComponent(1)).getComponent(0)).setText(Integer.toString(a[3]));
 		}
 	}
 }

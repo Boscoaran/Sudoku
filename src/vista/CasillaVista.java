@@ -3,8 +3,6 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,7 +15,6 @@ public class CasillaVista extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel casilla;
 	private JPanel valorPanel;
 	private JPanel candidatosPanel;
 	private JLabel valorLabel;
@@ -28,29 +25,29 @@ public class CasillaVista extends JPanel{
 	public CasillaVista(int pX, int pY) {
 		x=pX;
 		y=pY;
+		inicializar();
 	}
 	
-	public JPanel getCasilla() {
-			casilla = new JPanel();
-			casilla.setLayout(new BorderLayout(0,0));
-			casilla.add(getCandidatosPanel(), BorderLayout.NORTH);
-			casilla.add(getValorPanel(), BorderLayout.CENTER);
-			casilla.setBorder(borde());
-			casilla.setName("Casilla " + x + " " + y);
-			casilla.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					TableroVista.getTablero().casillaSelect(e);
-				}
-			});
-		return casilla;
+	public int[] getCoords() {
+		int[] coords = {x,y};
+		return coords;
 	}
+	
+	public void inicializar() {
+			this.setLayout(new BorderLayout(0,0));
+			this.add(getCandidatosPanel(), BorderLayout.NORTH);
+			this.add(getValorPanel(), BorderLayout.CENTER);
+			this.setBorder(borde());
+			this.setName("Casilla " + x + " " + y);
+	}
+	
 	public JPanel getCandidatosPanel() {
 			candidatosPanel = new JPanel();
 			candidatosPanel.add(getCandidatosLabel());
 			candidatosPanel.setName("Panel candidatos " + x + " " + y );
 		return candidatosPanel;
 	}
+	
 	public JLabel getCandidatosLabel() {
 			candidatosLabel = new JLabel();
 			candidatosLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
