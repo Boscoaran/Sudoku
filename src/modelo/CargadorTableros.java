@@ -17,16 +17,17 @@ public class CargadorTableros {
 		return miCargadorTableros;
 	}
 	
-	public ArrayList<ArrayList<ArrayList<int[][]>>> cargarTableros() {
-		ArrayList<ArrayList<ArrayList<int[][]>>> res = new ArrayList<ArrayList<ArrayList<int[][]>>>(3); //Para devolver el resultado
-		ArrayList<ArrayList<int[][]>> lSudokus = new ArrayList<ArrayList<int[][]>>(3);
-		ArrayList<ArrayList<int[][]>> lSoluciones = new ArrayList<ArrayList<int[][]>>(3);
+	public ArrayList<Dificultad> cargarTableros() {
+		ArrayList<Dificultad> lSudokus = new ArrayList<Dificultad>();
 	try {
 		Scanner entrada = new Scanner (new FileReader("resources/sudoku.txt"));
 		String val;
 		int[][] a = null;
 		int l = 0;
 		int dif = 0;
+		int id = 0;
+		Dificultad d = null;
+		Sudoku s = null;
 		while (entrada.hasNext()) {
 			val = entrada.nextLine();
 			if (val.length() == 9) {
@@ -44,29 +45,34 @@ public class CargadorTableros {
 				}
 			} else if (val.length() == 1) {
 				dif = Integer.parseInt(val);
-				dif--; //la posición en el array es dif - 1
+				int i = 0;
+				boolean enc = false;
+				while (i < lSudokus.size() && !enc) {
+					if (lSudokus.get(i).getDificultad() == dif) enc = true;
+					i++;
+				}
+				if (enc) {
+					d = lSudokus.get(--i);
+				} else {
+					d = new Dificultad(dif);
+					lSudokus.add(d);
+				}
+				d.setSudoku(s);
+			} else if (val.length() == 4) {
+				id = val.charAt(3) - '0';
+				s = new Sudoku(id);
 			}
 			if (l == 9) {
-				if (lSudokus.size() == lSoluciones.size()) {
-					if (lSudokus.size() < 3) {
-						ArrayList<int[][]> lista = new ArrayList<int[][]>();
-						lSudokus.add(dif,lista);
-					}
-					lSudokus.get(dif).add(a);
+				if (s.getSudoku() == null && s.getSol() == null) {
+					s.setSudoku(a);
 				} else {
-					if (lSoluciones.size() < 3) {
-						ArrayList<int[][]> lista = new ArrayList<int[][]>();
-						lSoluciones.add(dif,lista);
-					}
-					lSoluciones.get(dif).add(a);
+					s.setSolucion(a);
 				}
 				l = 0;
 			}
 		}
 		entrada.close();
 		} catch (IOException e) {e.printStackTrace();}
-	res.add(0,lSudokus);
-	res.add(1,lSoluciones);
-	return res;
+		return lSudokus;
 	}
 }

@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 
 public class ListaSudokus {
-	private ArrayList<ArrayList<int[][]>> lSudokus;
-	private ArrayList<ArrayList<int[][]>> lSoluciones;
+	private ArrayList<Dificultad> lSudokus;
 	private static ListaSudokus miListaSudokus;
 	
 	public ListaSudokus() {}
@@ -15,18 +14,30 @@ public class ListaSudokus {
 		return miListaSudokus;
 	}
 	
-	public int[][] getLSoluciones(int pos) {
-		return lSoluciones.get(pos).get(0);
+	public int[][] getLSoluciones(int id, int dif) {
+		boolean enc = false;
+		int i = 0;
+		while (i < lSudokus.size() && !enc) {
+			if (lSudokus.get(i).getDificultad() == dif) enc = true;
+			i++;
+		}
+		if (enc) return lSudokus.get(--i).getSudoku(id, true);
+		else return null;
 	}
 	
-	public int[][] getLSudokus(int pos) {
-		return lSudokus.get(pos).get(0);
+	public int[][] getLSudokus(int id, int dif) {
+		boolean enc = false;
+		int i = 0;
+		while (i < lSudokus.size() && !enc) {
+			if (lSudokus.get(i).getDificultad() == dif) enc = true;
+			i++;
+		}
+		if (enc) return lSudokus.get(--i).getSudoku(id, false);
+		else return null;
 	}
 	
 	public void obtenerListas() {
-		ArrayList<ArrayList<ArrayList<int[][]>>> l = CargadorTableros.getCargadorTableros().cargarTableros();
-		lSudokus = l.get(0);
-		lSoluciones = l.get(1);
+		lSudokus = CargadorTableros.getCargadorTableros().cargarTableros();
 	}
 }
 

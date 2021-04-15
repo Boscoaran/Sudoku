@@ -132,7 +132,7 @@ public class VentanaInicio {
 				public void mouseClicked(MouseEvent e) {
 					int nivel = comboBoxNivel.getSelectedIndex();
 					TableroVista.getTablero();
-					modelo.TableroModelo.getTablero().cargarTablero(nivel);
+					modelo.TableroModelo.getTablero().cargarTablero(++nivel);
 					frame.dispose();
 				}
 			});
