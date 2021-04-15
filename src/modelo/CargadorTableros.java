@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class CargadorTableros {
 	private static CargadorTableros miCargadorTableros;
+	
 	private CargadorTableros(){};
 	
 	public static CargadorTableros getCargadorTableros() {

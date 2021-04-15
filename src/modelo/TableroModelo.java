@@ -106,8 +106,8 @@ public class TableroModelo extends Observable{
 				candidatos.remove(pos);
 			}
 		}
-		int oX;
-		int oY;
+		int oX=0;
+		int oY=0;
 		if (x/3 <=1) {
 			oX=1;
 		}else if (x/3 <=2) {
@@ -126,8 +126,8 @@ public class TableroModelo extends Observable{
 		}
 		for (int a=0; a<3; a++) {
 			for (int b=0; b<3; b++) {
-				if (candidatos.contains((tablero[x+a][y+b]).getValor())) {
-					pos=candidatos.indexOf((tablero[x+a][y+b].getValor()));
+				if (candidatos.contains((tablero[oX+a][oY+b]).getValor())) {
+					pos=candidatos.indexOf((tablero[oX+a][oY+b].getValor()));
 					candidatos.remove(pos);
 				}
 			}

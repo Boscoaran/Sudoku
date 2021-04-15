@@ -8,15 +8,12 @@ public class CasillaModelo {
 	private ArrayList<Integer> posiblesValores;
 	private int coordenadaX;
 	private int coordenadaY;
-	private int origenX;
-	private int origenY;
 	
 	public CasillaModelo(boolean pFijo, int pNumero, int pX, int pY) {
 		fijo = pFijo;
 		numero = pNumero;
 		coordenadaX = pX;
-		coordenadaY = pY;
-		
+		coordenadaY = pY;		
 	}
 	
 	public void setValor(int i) {
