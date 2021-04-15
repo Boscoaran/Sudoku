@@ -33,10 +33,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings({ "serial", "deprecation" })
-public class Tablero extends JFrame implements Observer{
+public class TableroVista extends JFrame implements Observer{
 
 	private JFrame frmSudokuRoyaleMaster;
-	private static Tablero mTablero;
+	private static TableroVista mTablero;
 	private JPanelBackground panelDatos;
 	private JPanel panelTablero;
 	private Border bordeGrueso = new LineBorder(Color.BLUE, 5);
@@ -68,15 +68,15 @@ public class Tablero extends JFrame implements Observer{
 		});
 	}*/
 	
-	public static Tablero getTablero() {
-		if (mTablero == null) mTablero = new Tablero();
+	public static TableroVista getTablero() {
+		if (mTablero == null) mTablero = new TableroVista();
 		return mTablero;
 	}
-	private Tablero() {
+	private TableroVista() {
 		matrizPaneles = new JPanel[9][9];
 		initialize();
 		System.out.println();
-		modelo.Tablero.getTablero().addObserver(this);
+		modelo.TableroModelo.getTablero().addObserver(this);
 		
 	}
 	
@@ -197,7 +197,7 @@ public class Tablero extends JFrame implements Observer{
 			btnComprobar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 			btnComprobar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					modelo.Tablero.getTablero().comprobarResultado();
+					modelo.TableroModelo.getTablero().comprobarResultado();
 				}
 			});
 		}
@@ -246,7 +246,7 @@ public class Tablero extends JFrame implements Observer{
 												}
 												i++;
 											}
-											modelo.Tablero.getTablero().setValor(i-1,j-1,textFieldValor.getText());
+											modelo.TableroModelo.getTablero().setValor(i-1,j-1,textFieldValor.getText());
 										} 
 									} else {
 										String numCandidatos = textFieldCandidatos.getText();
@@ -366,7 +366,7 @@ public class Tablero extends JFrame implements Observer{
 			panelTablero.setLayout(new GridLayout(9, 9, 0, 0));
 			for (int i=1; i<10; i++) {
 				for (int j=1; j<10; j++) {
-					Casilla casilla = new Casilla(i,j);
+					CasillaVista casilla = new CasillaVista(i,j);
 					JPanel c = casilla.getCasilla();
 					panelTablero.add(c);
 					matrizPaneles[i-1][j-1] = c;
@@ -434,7 +434,7 @@ public class Tablero extends JFrame implements Observer{
 			if (a[1] == 0) JOptionPane.showMessageDialog(null, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
 			else JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
 		} else if (a[0] == 0) {
-			modelo.Casilla[][] t = modelo.Tablero.getTablero().getListaCasillas();
+			modelo.CasillaModelo[][] t = modelo.TableroModelo.getTablero().getListaCasillas();
 			for (int i = 0; i < t.length; i++) {
 				for (int j = 0; j < t[0].length; j++) {
 					if (t[i][j].getValor() != 0) {

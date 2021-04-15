@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 @SuppressWarnings("deprecation")
-public class Tablero extends Observable{
-	private static Tablero miTablero = null;
-	private Casilla tablero[][];
+public class TableroModelo extends Observable{
+	private static TableroModelo miTablero = null;
+	private CasillaModelo tablero[][];
 	private int tiempo;
 	private int numAyudas;
 	private int dificultad;
 	
-	private Tablero() {
-		tablero = new Casilla[9][9];
+	private TableroModelo() {
+		tablero = new CasillaModelo[9][9];
 		tiempo = 0;
 		numAyudas = 0;
 	}
 	
-	public static Tablero getTablero() {
+	public static TableroModelo getTablero() {
 		if (miTablero == null) {
-			miTablero = new Tablero();
+			miTablero = new TableroModelo();
 		}
 		return miTablero;
 	}
@@ -34,10 +34,10 @@ public class Tablero extends Observable{
 			while (j < tablero[0].length) {
 				int val = a[i][j];
 				if (val == 0) {
-					tablero[i][j] = new Casilla(false, val, i, j);
+					tablero[i][j] = new CasillaModelo(false, val, i, j);
 					
 				} else {
-					tablero[i][j] = new Casilla(true, val,i,j);
+					tablero[i][j] = new CasillaModelo(true, val,i,j);
 				}
 				j++;
 			}
@@ -49,7 +49,7 @@ public class Tablero extends Observable{
 		
 	}
 	
-	public Casilla[][] getListaCasillas() {
+	public CasillaModelo[][] getListaCasillas() {
 		return this.tablero;
 	}
 	

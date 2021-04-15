@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 
-public class Casilla extends JPanel{
+public class CasillaVista extends JPanel{
 	
 	/**
 	 * 
@@ -25,7 +25,7 @@ public class Casilla extends JPanel{
 	private int x;
 	private int y;
 
-	public Casilla(int pX, int pY) {
+	public CasillaVista(int pX, int pY) {
 		x=pX;
 		y=pY;
 	}
@@ -40,7 +40,7 @@ public class Casilla extends JPanel{
 			casilla.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					Tablero.getTablero().casillaSelect(e);
+					TableroVista.getTablero().casillaSelect(e);
 				}
 			});
 		return casilla;

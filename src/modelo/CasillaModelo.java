@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 
-public class Casilla {
+public class CasillaModelo {
 	private boolean fijo;
 	private int numero;
 	private ArrayList<Integer> posiblesValores;
@@ -11,7 +11,7 @@ public class Casilla {
 	private int origenX;
 	private int origenY;
 	
-	public Casilla(boolean pFijo, int pNumero, int pX, int pY) {
+	public CasillaModelo(boolean pFijo, int pNumero, int pX, int pY) {
 		fijo = pFijo;
 		numero = pNumero;
 		coordenadaX = pX;
