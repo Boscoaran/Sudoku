@@ -39,11 +39,12 @@ public class TableroModelo extends Observable{
 			int j = 0;
 			while (j < tablero[0].length) {
 				int val = a[i][j];
+				int[] orgs = this.getOrigenes(i,j);
 				if (val == 0) {
-					tablero[i][j] = new CasillaModelo(false, val, i, j);
+					tablero[i][j] = new CasillaModelo(false, val, i, j, orgs[0], orgs[1]);
 					
 				} else {
-					tablero[i][j] = new CasillaModelo(true, val,i,j);
+					tablero[i][j] = new CasillaModelo(true, val,i,j, orgs[0], orgs[1]);
 				}
 				j++;
 			}
@@ -100,49 +101,107 @@ public class TableroModelo extends Observable{
 		this.notifyObservers(arg);
 	}
 	
+	private int[] getOrigenes(int x, int y) {
+		int[] orgs = new int[2];
+		if (x == 0 || x == 1 || x == 2) {
+			if (y == 0 || y == 1 || y == 2) {
+				orgs[0] = 0;
+				orgs[1] = 0;
+			} else if (y == 3 || y == 4 || y == 5) {
+				orgs[0] = 0;
+				orgs[1] = 3;
+			} else {
+				orgs[0] = 0;
+				orgs[1] = 6;
+			}
+		} else if (x == 3 || x == 4 || x == 5) {
+			if (y == 0 || y == 1 || y == 2) {
+				orgs[0] = 3;
+				orgs[1] = 0;
+			} else if (y == 3 || y == 4 || y == 5) {
+				orgs[0] = 3;
+				orgs[1] = 3;
+			} else {
+				orgs[0] = 3;
+				orgs[1] = 6;
+			}
+		} else {
+			if (y == 0 || y == 1 || y == 2) {
+				orgs[0] = 6;
+				orgs[1] = 0;
+			} else if (y == 3 || y == 4 || y == 5) {
+				orgs[0] = 6;
+				orgs[1] = 3;
+			} else {
+				orgs[0] = 6;
+				orgs[1] = 6;
+			}
+		}
+		return orgs;
+	}
+	
 	public void calcularCandidatos(int x, int y) {
 		ArrayList<Integer> candidatos = new ArrayList<Integer>();
-		int pos = 0;
-		for(int n=0; n<9; n++){
-			candidatos.add(n+1);
-		}
-		for (int i=0; i<9; i++){
-			if (candidatos.contains((tablero[i][y]).getValor())) {
-				pos=candidatos.indexOf((tablero[i][y].getValor()));
-				candidatos.remove(pos);
+		ArrayList<Integer> valores = new ArrayList<Integer>();
+		if (tablero[x][y].getValor() == 0) {
+			//Valores de la fila
+			for (int i = 0; i < tablero.length; i++) {
+				int val = tablero[x][i].getValor();
+				if (val != 0) valores.add(val); 
 			}
-		}
-		for (int j=0; j<9; j++){
-			if (candidatos.contains((tablero[x][j]).getValor())) {
-				pos=candidatos.indexOf((tablero[x][j].getValor()));
-				candidatos.remove(pos);
+			//Valores de la columna
+			for (int i = 0; i < tablero.length; i++) {
+				int val = tablero[i][y].getValor();
+				if (val != 0) valores.add(val); 
 			}
-		}
-		int oX=0;
-		int oY=0;
-		if (x/3 <=1) {
-			oX=1;
-		}else if (x/3 <=2) {
-			oX=4;
-		}
-		else if (x/3 <=3) {
-			oX=7;
-		}
-		if (y/3 <=1) {
-			oY=1;
-		}else if (y/3 <=2) {
-			oY=4;
-		}
-		else if (y/3 <=3) {
-			oY=7;
-		}
-		for (int a=0; a<3; a++) {
-			for (int b=0; b<3; b++) {
-				if (candidatos.contains((tablero[oX+a][oY+b]).getValor())) {
-					pos=candidatos.indexOf((tablero[oX+a][oY+b].getValor()));
-					candidatos.remove(pos);
+			//Valores del sector
+			int[] orgs = tablero[x][y].getOrgs();
+			int i = orgs[0];
+			int iMax = i +3;
+			while (i < iMax) {
+				int j = orgs[1];
+				int jMax = j +3;
+				while (j < jMax) {
+					int val = tablero[i][j].getValor();
+					if (val != 0) valores.add(val);
+					j++;
 				}
+				i++;
+			}
+			valores = eliminarRepetidos(valores);
+			int j = 1;
+			while (j < 10) {
+				candidatos.add(j);
+				j++;
+			}
+			int k = 0;
+			boolean empty = false;
+			while (k < valores.size() && !empty) {
+				int a = 0;
+				while (a < candidatos.size() && !empty) {
+					if (valores.get(k) == candidatos.get(a)) {
+						candidatos.remove(a);
+						valores.remove(k);
+						if (valores.isEmpty()) empty = true;
+						k = -1;
+						break;
+					}
+					a++;
+				}
+				k++;
+			}
+			
+			tablero[x][y].setCandidatos(candidatos);
+			
+		}
+	}
+	
+	private ArrayList<Integer> eliminarRepetidos(ArrayList<Integer> a) {
+		for (int i = 0; i < a.size(); i++) {
+			for (int j = 0; j < a.size(); j++) {
+				if (a.get(i) == a.get(j) && i != j) a.remove(j);
 			}
 		}
+		return a;
 	}
 }

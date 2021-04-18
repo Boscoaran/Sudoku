@@ -326,6 +326,15 @@ public class TableroVista extends JFrame implements Observer{
 		if (btnAyuda == null) {
 			btnAyuda = new JButton("Ayuda");
 			btnAyuda.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
+			btnAyuda.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					int[] coords = select.getCoords();
+					System.out.println(coords[0] + " "+ coords[1]);
+					modelo.TableroModelo.getTablero().calcularCandidatos(--coords[0], --coords[1]);
+					
+				}
+			});
 		}
 		return btnAyuda;
 	}
