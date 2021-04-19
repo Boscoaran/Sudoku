@@ -28,6 +28,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import javax.swing.border.EtchedBorder;
 
@@ -87,7 +88,8 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster = new JFrame();
 		frmSudokuRoyaleMaster.setBackground(Color.BLACK);
 		frmSudokuRoyaleMaster.setTitle("SUDOKU ROYALE MASTER");
-		frmSudokuRoyaleMaster.setResizable(false);
+		frmSudokuRoyaleMaster.setResizable(true);
+		frmSudokuRoyaleMaster.setMinimumSize(new Dimension(800,640));
 		frmSudokuRoyaleMaster.setBounds(100, 100, 1000, 800);
 		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSudokuRoyaleMaster.getContentPane().setLayout(new BorderLayout(0, 0));

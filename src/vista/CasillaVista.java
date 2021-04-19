@@ -111,5 +111,9 @@ public class CasillaVista extends JPanel{
 	public String getValor() {
 		return valorLabel.getText();
 	}
+	public void tamañoLetra(int n) {
+		valorLabel.setFont(new Font("Tahoma", Font.PLAIN, n/40));
+		candidatosLabel.setFont(new Font("Tahoma", Font.PLAIN, n/70));
+	}
 }
 	
