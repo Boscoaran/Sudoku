@@ -2,6 +2,8 @@ package vista;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -13,18 +15,17 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.FlowLayout;
+import java.awt.Font;
 
 public class VentanaInicio {
 
 	private JFrame frame;
-	private JPanel panelNorth;
-	private JPanel panelSouth;
-	private JPanel panelCentro;
-	private JLabel lblNewLabel;
+	private JPanelBackground panelCentro;
 	private JButton btnComenzar;
 	private JLabel lblNombre;
 	private JTextField textFieldNombre;
-	private JLabel lblNewLabel_1;
+	private JLabel lblNivel;
 	private JComboBox<String> comboBoxNivel;
 
 	/**
@@ -57,72 +58,58 @@ public class VentanaInicio {
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 429, 206);
+		frame.setBounds(100, 100, 834, 506);
+		frame.setTitle("SUDOKU ROYALE MASTER");
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		frame.getContentPane().add(getPanelNorth(), BorderLayout.NORTH);
-		frame.getContentPane().add(getPanelSouth(), BorderLayout.SOUTH);
-		frame.getContentPane().add(getPanelCentro(), BorderLayout.CENTER);
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(getPanelCentro());
 		frame.setLocationRelativeTo(null);
 		this.frame.setVisible(true);
 	}
-
-	private JPanel getPanelNorth() {
-		if (panelNorth == null) {
-			panelNorth = new JPanel();
-			panelNorth.add(getLblNewLabel());
-		}
-		return panelNorth;
-	}
-	private JPanel getPanelSouth() {
-		if (panelSouth == null) {
-			panelSouth = new JPanel();
-			panelSouth.add(getBtnComenzar());
-		}
-		return panelSouth;
-	}
-	private JPanel getPanelCentro() {
+	private JPanelBackground getPanelCentro() {
 		if (panelCentro == null) {
-			panelCentro = new JPanel();
+			panelCentro = new JPanelBackground();
+			panelCentro.setBounds(0, 0, 828, 477);
+			panelCentro.setBackground("resources/fondo inicio.jpg");
 			GridBagLayout gbl_panelCentro = new GridBagLayout();
-			gbl_panelCentro.columnWidths = new int[]{0, 0, 0, 72, 91, 63, 0, 0};
-			gbl_panelCentro.rowHeights = new int[]{0, 0, 0, 0};
-			gbl_panelCentro.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-			gbl_panelCentro.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panelCentro.columnWidths = new int[]{284, 72, 91, 63, 0, 0};
+			gbl_panelCentro.rowHeights = new int[]{212, 0, 0, 19, 68, 0};
+			gbl_panelCentro.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+			gbl_panelCentro.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 			panelCentro.setLayout(gbl_panelCentro);
 			GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 			gbc_lblNombre.anchor = GridBagConstraints.EAST;
 			gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
-			gbc_lblNombre.gridx = 3;
+			gbc_lblNombre.gridx = 1;
 			gbc_lblNombre.gridy = 1;
 			panelCentro.add(getLblNombre(), gbc_lblNombre);
 			GridBagConstraints gbc_textFieldNombre = new GridBagConstraints();
 			gbc_textFieldNombre.gridwidth = 2;
 			gbc_textFieldNombre.insets = new Insets(0, 0, 5, 5);
 			gbc_textFieldNombre.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textFieldNombre.gridx = 4;
+			gbc_textFieldNombre.gridx = 2;
 			gbc_textFieldNombre.gridy = 1;
 			panelCentro.add(getTextFieldNombre(), gbc_textFieldNombre);
 			GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 			gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
-			gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
-			gbc_lblNewLabel_1.gridx = 3;
+			gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+			gbc_lblNewLabel_1.gridx = 1;
 			gbc_lblNewLabel_1.gridy = 2;
-			panelCentro.add(getLblNewLabel_1(), gbc_lblNewLabel_1);
+			panelCentro.add(getLblNivel(), gbc_lblNewLabel_1);
 			GridBagConstraints gbc_comboBoxNivel = new GridBagConstraints();
-			gbc_comboBoxNivel.insets = new Insets(0, 0, 0, 5);
+			gbc_comboBoxNivel.insets = new Insets(0, 0, 5, 5);
 			gbc_comboBoxNivel.fill = GridBagConstraints.HORIZONTAL;
-			gbc_comboBoxNivel.gridx = 4;
+			gbc_comboBoxNivel.gridx = 2;
 			gbc_comboBoxNivel.gridy = 2;
 			panelCentro.add(getComboBoxNivel(), gbc_comboBoxNivel);
+			GridBagConstraints gbc_btnComenzar = new GridBagConstraints();
+			gbc_btnComenzar.insets = new Insets(0, 0, 0, 5);
+			gbc_btnComenzar.gridx = 2;
+			gbc_btnComenzar.gridy = 4;
+			panelCentro.add(getBtnComenzar(), gbc_btnComenzar);
 		}
 		return panelCentro;
-	}
-	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("SUDOKU-ROYALE-MASTER");
-		}
-		return lblNewLabel;
 	}
 	private JButton getBtnComenzar() {
 		if (btnComenzar == null) {
@@ -142,6 +129,8 @@ public class VentanaInicio {
 	private JLabel getLblNombre() {
 		if (lblNombre == null) {
 			lblNombre = new JLabel("Nombre:");
+			lblNombre.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+			lblNombre.setForeground(new Color(234,183,69));
 		}
 		return lblNombre;
 	}
@@ -152,11 +141,13 @@ public class VentanaInicio {
 		}
 		return textFieldNombre;
 	}
-	private JLabel getLblNewLabel_1() {
-		if (lblNewLabel_1 == null) {
-			lblNewLabel_1 = new JLabel("Nivel:");
+	private JLabel getLblNivel() {
+		if (lblNivel == null) {
+			lblNivel = new JLabel("Nivel:");
+			lblNivel.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+			lblNivel.setForeground(new Color(234,183,69));
 		}
-		return lblNewLabel_1;
+		return lblNivel;
 	}
 	private JComboBox<String> getComboBoxNivel() {
 		if (comboBoxNivel == null) {

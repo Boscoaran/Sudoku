@@ -34,6 +34,8 @@ import javax.swing.border.EtchedBorder;
 
 
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings({ "serial", "deprecation" })
@@ -90,7 +92,18 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.setTitle("SUDOKU ROYALE MASTER");
 		frmSudokuRoyaleMaster.setResizable(true);
 		frmSudokuRoyaleMaster.setMinimumSize(new Dimension(800,640));
+		frmSudokuRoyaleMaster.setMaximumSize(new Dimension());
 		frmSudokuRoyaleMaster.setBounds(100, 100, 1000, 800);
+		frmSudokuRoyaleMaster.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e){
+				Component tablero = (Component) e.getSource();
+				Component[] lCas= ((TableroVista) tablero).getTablero().getComponents(); 
+				for (Component cas: lCas) {
+					((CasillaVista) cas).tamañoLetra(frmSudokuRoyaleMaster.getWidth());
+				}
+			}
+		});
 		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSudokuRoyaleMaster.getContentPane().setLayout(new BorderLayout(0, 0));
 		frmSudokuRoyaleMaster.getContentPane().add(getPanelWest(), BorderLayout.WEST);
@@ -171,8 +184,8 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel getLblCandidatos() {
 		if (lblCandidatos == null) {
 			lblCandidatos = new JLabel("Candidatos:");
-			lblCandidatos.setFont(new Font("Gang of Three", Font.PLAIN, 15));
-			lblCandidatos.setForeground(new Color(204, 153, 0));
+			lblCandidatos.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+			lblCandidatos.setForeground(new Color(234,183,69));
 		}
 		return lblCandidatos;
 	}
@@ -180,8 +193,8 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel getLblValor() {
 		if (lblValor == null) {
 			lblValor = new JLabel("Valor:");
-			lblValor.setFont(new Font("Gang of Three", Font.PLAIN, 15));
-			lblValor.setForeground(new Color(204, 153, 0));
+			lblValor.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+			lblValor.setForeground(new Color(234,183,69));
 		}
 		return lblValor;
 	}
