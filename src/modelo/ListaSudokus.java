@@ -7,7 +7,7 @@ public class ListaSudokus {
 	private ArrayList<Dificultad> lSudokus;
 	private static ListaSudokus miListaSudokus;
 	
-	public ListaSudokus() {}
+	private ListaSudokus() {}
 	
 	public static ListaSudokus getListaSudokus() {
 		if (miListaSudokus == null) miListaSudokus = new ListaSudokus();
