@@ -1,10 +1,8 @@
 package vista;
 
 import javax.swing.JFrame;
-import java.awt.BorderLayout;
 import java.awt.Color;
 
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.GridBagLayout;
@@ -15,7 +13,6 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.FlowLayout;
 import java.awt.Font;
 
 public class VentanaInicio {

@@ -80,8 +80,8 @@ public class TableroVista extends JFrame implements Observer{
 	private TableroVista() {
 		matrizPaneles = new CasillaVista[9][9];
 		initialize();
-		System.out.println();
-		modelo.TableroModelo.getTablero().addObserver(this);	
+		modelo.TableroModelo.getTablero().addObserver(this);
+		
 	}
 	
 		
@@ -91,12 +91,16 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.setTitle("SUDOKU ROYALE MASTER");
 		frmSudokuRoyaleMaster.setResizable(true);
 		frmSudokuRoyaleMaster.setMinimumSize(new Dimension(800,640));
-		frmSudokuRoyaleMaster.setMaximumSize(new Dimension(1000, 800));
+		frmSudokuRoyaleMaster.setMaximumSize(new Dimension());
 		frmSudokuRoyaleMaster.setBounds(100, 100, 1000, 800);
 		frmSudokuRoyaleMaster.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e){
-				ajustarTamaño(e.getComponent().getHeight());
+				Component tablero = (Component) e.getSource();
+				Component[] lCas= ((TableroVista) tablero).getTablero().getComponents(); 
+				for (Component cas: lCas) {
+					((CasillaVista) cas).tamañoLetra(frmSudokuRoyaleMaster.getWidth());
+				}
 			}
 		});
 		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,12 +114,6 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.setVisible(true);
 	}
 
-	private void ajustarTamaño(int h) {
-		Component[] lCas = panelTablero.getComponents();
-		for (Component cas: lCas) {
-			((CasillaVista) cas).tamañoLetra(h);
-		}
-	}
 	
 	
 //////////////////////////PANEL DATOS////////////////////////////////////////////	
@@ -255,10 +253,12 @@ public class TableroVista extends JFrame implements Observer{
 								if (textFieldValor.getText().equals("") || textFieldCandidatos.getText().equals("")) {
 									String numCandidatos = textFieldCandidatos.getText();
 									if (textFieldCandidatos.getText().equals("")) {
-										((JLabel)((JPanel)select.getComponent(0)).getComponent(0)).setText(" "); //Para que no se descuadre el tema
+										int[] coords = select.getCoords();
+										modelo.TableroModelo.getTablero().setCandidatos(null, coords[0]-1, coords[1]-1);
 										completed = true;
 									} else if (!compCandidatos(numCandidatos)) {
-										((JLabel)((JPanel)select.getComponent(0)).getComponent(0)).setText(textFieldCandidatos.getText());
+										int[] coords = select.getCoords();
+										modelo.TableroModelo.getTablero().setCandidatos(numCandidatos, coords[0]-1, coords[1]-1);
 										completed = true;
 									}
 								} else {
@@ -313,12 +313,19 @@ public class TableroVista extends JFrame implements Observer{
 		int i = 0;
 		boolean repetido = false;
 		boolean correcto = true;
+		boolean numCero = true;
 		while (i<num.length() && correcto) {
 			if (num.charAt(i) != ',' && num.charAt(i) != '/' && num.charAt(i) != '-' && num.charAt(i) != ' ') {
 				if (!Character.isDigit(num.charAt(i))) {
 					correcto = false;
 				} else {
-					repes.add((int)num.charAt(i));
+					if(Integer.parseInt(num.substring(i,i+1)) < 1) {
+						numCero = false;
+						correcto = false;
+					} else {
+						repes.add(Integer.parseInt(num.substring(i,i+1)));
+					}
+
 				}
 			}
 			i++;
@@ -332,8 +339,12 @@ public class TableroVista extends JFrame implements Observer{
 			if (repetido) {
 				JOptionPane.showMessageDialog(null, "Los candidatos no se pueden repetir", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
 			}
-		} else {
+		} else if (!correcto && numCero){
 			JOptionPane.showMessageDialog(null, "Los candidatos deben de ser números", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
+			repetido = true;
+		} else if (!correcto && !numCero) {
+			JOptionPane.showMessageDialog(null, "Los candidatos no pueden ser 0", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
+			repetido = true;
 		}
 		return repetido;
 	}
@@ -345,9 +356,11 @@ public class TableroVista extends JFrame implements Observer{
 			btnAyuda.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					int[] coords = select.getCoords();
-					System.out.println(coords[0] + " "+ coords[1]);
-					modelo.TableroModelo.getTablero().calcularCandidatos(--coords[0], --coords[1]);
+					if (select != null) {
+						int[] coords = select.getCoords();
+						modelo.TableroModelo.getTablero().calcularCandidatos(--coords[0], --coords[1]);
+					}
+					
 					
 				}
 			});
@@ -483,25 +496,33 @@ public class TableroVista extends JFrame implements Observer{
 //////////////////////////////METODOS MODELO-VISTA/////////////////////////////////
 	@Override
 	public void update(Observable o, Object arg) {
-		int[] a = (int[]) arg;
-		if (a[0] == 1) {
-			if (a[1] == 0) JOptionPane.showMessageDialog(null, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
-			else JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
-		} else if (a[0] == 0) {
-			modelo.CasillaModelo[][] t = modelo.TableroModelo.getTablero().getListaCasillas();
-			for (int i = 0; i < t.length; i++) {
-				for (int j = 0; j < t[0].length; j++) {
-					if (t[i][j].getValor() != 0) {
-						((JLabel)((JPanel)matrizPaneles[i][j].getComponent(1)).getComponent(0)).setText(Integer.toString(t[i][j].getValor()));
-						((JLabel)((JPanel)matrizPaneles[i][j].getComponent(1)).getComponent(0)).setForeground(Color.RED);
-						matrizPaneles[i][j].setEnabled(false);
+		if (arg instanceof ArrayList<?>) {
+			String s = ((ArrayList<?>) arg).get(0).toString().replace("[", "").replace("]", "");
+			int i = (int) ((ArrayList<?>)((ArrayList<?>) arg).get(1)).get(0);
+			int j = (int) ((ArrayList<?>)((ArrayList<?>) arg).get(1)).get(1);
+			((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(s);
+		} else {
+			int[] a = (int[]) arg;
+			if (a[0] == 1) {
+				if (a[1] == 0) JOptionPane.showMessageDialog(null, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
+				else JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
+			} else if (a[0] == 0) {
+				modelo.CasillaModelo[][] t = modelo.TableroModelo.getTablero().getListaCasillas();
+				for (int i = 0; i < t.length; i++) {
+					for (int j = 0; j < t[0].length; j++) {
+						if (t[i][j].getValor() != 0) {
+							((JLabel)((JPanel)matrizPaneles[i][j].getComponent(1)).getComponent(0)).setText(Integer.toString(t[i][j].getValor()));
+							((JLabel)((JPanel)matrizPaneles[i][j].getComponent(1)).getComponent(0)).setForeground(Color.RED);
+							matrizPaneles[i][j].setEnabled(false);
+						}
 					}
 				}
+			
+			} else if (a[0] == 2) {
+				if (a[3] == 0) ((JLabel)((JPanel)matrizPaneles[a[1]][a[2]].getComponent(1)).getComponent(0)).setText("");
+				else ((JLabel)((JPanel)matrizPaneles[a[1]][a[2]].getComponent(1)).getComponent(0)).setText(Integer.toString(a[3]));
 			}
-		
-		} else if (a[0] == 2) {
-			if (a[3] == 0) ((JLabel)((JPanel)matrizPaneles[a[1]][a[2]].getComponent(1)).getComponent(0)).setText("");
-			else ((JLabel)((JPanel)matrizPaneles[a[1]][a[2]].getComponent(1)).getComponent(0)).setText(Integer.toString(a[3]));
 		}
-	}
+		}
+		
 }

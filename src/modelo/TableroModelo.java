@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 
 @SuppressWarnings("deprecation")
@@ -203,5 +204,27 @@ public class TableroModelo extends Observable{
 			}
 		}
 		return a;
+	}
+	
+	public void setCandidatos(String s, int x, int y) {
+		ArrayList<Integer> a = new ArrayList<>();
+		if (s!= null) {
+			for (int i = 0; i < s.length(); i++) {
+				if (s.charAt(i)!= ',' && s.charAt(i)!= '/' && s.charAt(i)!= '-' && s.charAt(i) != ' ') {
+					a.add(Integer.parseInt(s.substring(i,i+1)));
+				}
+			}
+			this.tablero[x][y].setCandidatos(a);
+		} else {
+			this.tablero[x][y].setCandidatos(null);
+		}
+		ArrayList<ArrayList<Integer>> b = new ArrayList<>();
+		b.add(a);
+		ArrayList<Integer> coords = new ArrayList<>();
+		coords.add(x);
+		coords.add(y);
+		b.add(coords);
+		this.setChanged();
+		this.notifyObservers(b);
 	}
 }
