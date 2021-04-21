@@ -81,8 +81,7 @@ public class TableroVista extends JFrame implements Observer{
 		matrizPaneles = new CasillaVista[9][9];
 		initialize();
 		System.out.println();
-		modelo.TableroModelo.getTablero().addObserver(this);
-		
+		modelo.TableroModelo.getTablero().addObserver(this);	
 	}
 	
 		
@@ -92,16 +91,12 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.setTitle("SUDOKU ROYALE MASTER");
 		frmSudokuRoyaleMaster.setResizable(true);
 		frmSudokuRoyaleMaster.setMinimumSize(new Dimension(800,640));
-		frmSudokuRoyaleMaster.setMaximumSize(new Dimension());
+		frmSudokuRoyaleMaster.setMaximumSize(new Dimension(1000, 800));
 		frmSudokuRoyaleMaster.setBounds(100, 100, 1000, 800);
 		frmSudokuRoyaleMaster.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e){
-				Component tablero = (Component) e.getSource();
-				Component[] lCas= ((TableroVista) tablero).getTablero().getComponents(); 
-				for (Component cas: lCas) {
-					((CasillaVista) cas).tamañoLetra(frmSudokuRoyaleMaster.getWidth());
-				}
+				ajustarTamaño(e.getComponent().getHeight());
 			}
 		});
 		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -115,6 +110,12 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.setVisible(true);
 	}
 
+	private void ajustarTamaño(int h) {
+		Component[] lCas = panelTablero.getComponents();
+		for (Component cas: lCas) {
+			((CasillaVista) cas).tamañoLetra(h);
+		}
+	}
 	
 	
 //////////////////////////PANEL DATOS////////////////////////////////////////////	
