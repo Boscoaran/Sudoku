@@ -497,10 +497,13 @@ public class TableroVista extends JFrame implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		if (arg instanceof ArrayList<?>) {
-			String s = ((ArrayList<?>) arg).get(0).toString().replace("[", "").replace("]", "");
 			int i = (int) ((ArrayList<?>)((ArrayList<?>) arg).get(1)).get(0);
 			int j = (int) ((ArrayList<?>)((ArrayList<?>) arg).get(1)).get(1);
-			((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(s);
+			String s = ((ArrayList<?>) arg).get(0).toString().replace("[", "").replace("]", "");
+			if (s.isBlank()) ((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(" ");
+			else {
+				((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(s);
+			}
 		} else {
 			int[] a = (int[]) arg;
 			if (a[0] == 1) {

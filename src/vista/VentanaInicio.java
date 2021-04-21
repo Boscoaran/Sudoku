@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import java.awt.Color;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -114,10 +115,15 @@ public class VentanaInicio {
 			btnComenzar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					int nivel = comboBoxNivel.getSelectedIndex();
-					TableroVista.getTablero();
-					modelo.TableroModelo.getTablero().cargarTablero(++nivel);
-					frame.dispose();
+					if (!textFieldNombre.getText().equals("")) {
+						int nivel = comboBoxNivel.getSelectedIndex();
+						TableroVista.getTablero();
+						modelo.TableroModelo.getTablero().cargarTablero(++nivel);
+						frame.dispose();
+					} else {
+						JOptionPane.showMessageDialog(null, "Tienes que introducir un nombre", "Error Valor", JOptionPane.ERROR_MESSAGE);
+					}
+					
 				}
 			});
 		}
