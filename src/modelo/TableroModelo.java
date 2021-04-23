@@ -142,6 +142,7 @@ public class TableroModelo extends Observable{
 	}
 	
 	public void calcularCandidatos(int x, int y) {
+		numAyudas++;
 		ArrayList<Integer> candidatos = new ArrayList<Integer>();
 		ArrayList<Integer> valores = new ArrayList<Integer>();
 		if (tablero[x][y].getValor() == 0) {
