@@ -359,6 +359,8 @@ public class TableroVista extends JFrame implements Observer{
 					if (select != null) {
 						int[] coords = select.getCoords();
 						modelo.TableroModelo.getTablero().calcularCandidatos(--coords[0], --coords[1]);
+					} else {
+						modelo.TableroModelo.getTablero().calcularCandidatosGlobal();
 					}
 					
 					

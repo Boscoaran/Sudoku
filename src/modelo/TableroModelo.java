@@ -193,14 +193,33 @@ public class TableroModelo extends Observable{
 			}
 			
 			tablero[x][y].setCandidatos(candidatos);
-			
+			ArrayList<ArrayList<Integer>> b = new ArrayList<>();
+			b.add(candidatos);
+			ArrayList<Integer> coords = new ArrayList<>();
+			coords.add(x);
+			coords.add(y);
+			b.add(coords);
+			this.setChanged();
+			this.notifyObservers(b);
+		}
+	}
+	
+	public void calcularCandidatosGlobal() {
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero.length; j++) {
+				calcularCandidatos(i, j);
+			}
 		}
 	}
 	
 	private ArrayList<Integer> eliminarRepetidos(ArrayList<Integer> a) {
 		for (int i = 0; i < a.size(); i++) {
 			for (int j = 0; j < a.size(); j++) {
-				if (a.get(i) == a.get(j) && i != j) a.remove(j);
+				if (i>= a.size()) {
+					break;
+				} else {
+					if (a.get(i) == a.get(j) && i != j) a.remove(j);
+				}
 			}
 		}
 		return a;
