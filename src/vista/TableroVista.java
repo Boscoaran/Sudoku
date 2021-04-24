@@ -93,16 +93,16 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.setMinimumSize(new Dimension(800,640));
 		frmSudokuRoyaleMaster.setMaximumSize(new Dimension());
 		frmSudokuRoyaleMaster.setBounds(100, 100, 1000, 800);
-		frmSudokuRoyaleMaster.addComponentListener(new ComponentAdapter() {
+		/*frmSudokuRoyaleMaster.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e){
 				Component tablero = (Component) e.getSource();
-				Component[] lCas= ((TableroVista) tablero).getTablero().getComponents(); 
+				Component[] lCas= TableroVista.getTablero().getComponents(); 
 				for (Component cas: lCas) {
 					((CasillaVista) cas).tamañoLetra(frmSudokuRoyaleMaster.getWidth());
 				}
 			}
-		});
+		});*/
 		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSudokuRoyaleMaster.getContentPane().setLayout(new BorderLayout(0, 0));
 		frmSudokuRoyaleMaster.getContentPane().add(getPanelWest(), BorderLayout.WEST);
@@ -356,12 +356,13 @@ public class TableroVista extends JFrame implements Observer{
 			btnAyuda.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if (select != null) {
+					PanelAyuda p = new PanelAyuda(select);
+					/*if (select != null) {
 						int[] coords = select.getCoords();
 						modelo.TableroModelo.getTablero().calcularCandidatos(--coords[0], --coords[1]);
 					} else {
 						modelo.TableroModelo.getTablero().calcularCandidatosGlobal();
-					}
+					}*/
 					
 					
 				}
