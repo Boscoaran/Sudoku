@@ -140,6 +140,33 @@ public class TableroModelo extends Observable{
 		}
 		return orgs;
 	}
+	public void calcularCandidatos2(int x, int y) {
+		ArrayList<Integer> candidatos= new ArrayList<Integer>();
+		for (int aux=1; aux<10; aux++){
+			candidatos.add(aux);
+		}
+		for (int i=1; i<10; i++) {
+			int ind = candidatos.indexOf(tablero[i][y].getValor());
+			if (ind!=-1){
+				candidatos.remove(ind);
+			}
+		}
+		for (int j=1; j<10; j++) {
+			int ind = candidatos.indexOf(tablero[x][j].getValor());
+			if (ind!=-1){
+				candidatos.remove(ind);
+			}
+		}
+		int[] orgs=tablero[x][y].getOrgs();
+		for (int a=0; a<2; a++) {
+			for (int b=0; b<2; b++) {
+				int ind = candidatos.indexOf(tablero[orgs[0]+a][orgs[1]+b].getValor());
+				if (ind!=-1){
+					candidatos.remove(ind);
+				}
+			}
+		}
+	}
 	
 	public void calcularCandidatos(int x, int y) {
 		numAyudas++;
@@ -156,6 +183,7 @@ public class TableroModelo extends Observable{
 				int val = tablero[i][y].getValor();
 				if (val != 0) valores.add(val); 
 			}
+			
 			//Valores del sector
 			int[] orgs = tablero[x][y].getOrgs();
 			int i = orgs[0];
