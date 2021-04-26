@@ -1,7 +1,6 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Observable;
 
 @SuppressWarnings("deprecation")
@@ -140,97 +139,47 @@ public class TableroModelo extends Observable{
 		}
 		return orgs;
 	}
-	public void calcularCandidatos2(int x, int y) {
+	public void calcularCandidatos(int x, int y) {
 		ArrayList<Integer> candidatos= new ArrayList<Integer>();
 		for (int aux=1; aux<10; aux++){
 			candidatos.add(aux);
 		}
-		for (int i=1; i<10; i++) {
+		for (int i=1; i<9; i++) {
 			int ind = candidatos.indexOf(tablero[i][y].getValor());
 			if (ind!=-1){
 				candidatos.remove(ind);
 			}
 		}
-		for (int j=1; j<10; j++) {
+		for (int j=1; j<9; j++) {
 			int ind = candidatos.indexOf(tablero[x][j].getValor());
 			if (ind!=-1){
 				candidatos.remove(ind);
 			}
 		}
 		int[] orgs=tablero[x][y].getOrgs();
-		for (int a=0; a<2; a++) {
-			for (int b=0; b<2; b++) {
-				int ind = candidatos.indexOf(tablero[orgs[0]+a][orgs[1]+b].getValor());
+		int i = orgs[0];
+		int iMax = i +3;
+		while (i < iMax) {
+			int j = orgs[1];
+			int jMax = j +3;
+			while (j < jMax) {
+				int ind = candidatos.indexOf(tablero[i][j].getValor());
 				if (ind!=-1){
 					candidatos.remove(ind);
 				}
-			}
-		}
-	}
-	
-	public void calcularCandidatos(int x, int y) {
-		numAyudas++;
-		ArrayList<Integer> candidatos = new ArrayList<Integer>();
-		ArrayList<Integer> valores = new ArrayList<Integer>();
-		if (tablero[x][y].getValor() == 0) {
-			//Valores de la fila
-			for (int i = 0; i < tablero.length; i++) {
-				int val = tablero[x][i].getValor();
-				if (val != 0) valores.add(val); 
-			}
-			//Valores de la columna
-			for (int i = 0; i < tablero.length; i++) {
-				int val = tablero[i][y].getValor();
-				if (val != 0) valores.add(val); 
-			}
-			
-			//Valores del sector
-			int[] orgs = tablero[x][y].getOrgs();
-			int i = orgs[0];
-			int iMax = i +3;
-			while (i < iMax) {
-				int j = orgs[1];
-				int jMax = j +3;
-				while (j < jMax) {
-					int val = tablero[i][j].getValor();
-					if (val != 0) valores.add(val);
-					j++;
-				}
-				i++;
-			}
-			valores = eliminarRepetidos(valores);
-			int j = 1;
-			while (j < 10) {
-				candidatos.add(j);
 				j++;
 			}
-			int k = 0;
-			boolean empty = false;
-			while (k < valores.size() && !empty) {
-				int a = 0;
-				while (a < candidatos.size() && !empty) {
-					if (valores.get(k) == candidatos.get(a)) {
-						candidatos.remove(a);
-						valores.remove(k);
-						if (valores.isEmpty()) empty = true;
-						k = -1;
-						break;
-					}
-					a++;
-				}
-				k++;
-			}
-			
-			tablero[x][y].setCandidatos(candidatos);
-			ArrayList<ArrayList<Integer>> b = new ArrayList<>();
-			b.add(candidatos);
-			ArrayList<Integer> coords = new ArrayList<>();
-			coords.add(x);
-			coords.add(y);
-			b.add(coords);
-			this.setChanged();
-			this.notifyObservers(b);
+			i++;
 		}
+		tablero[x][y].setCandidatos(candidatos);
+		ArrayList<ArrayList<Integer>> b = new ArrayList<>();
+		b.add(candidatos);
+		ArrayList<Integer> coords = new ArrayList<>();
+		coords.add(x);
+		coords.add(y);
+		b.add(coords);
+		this.setChanged();
+		this.notifyObservers(b);
 	}
 	
 	public void calcularCandidatosGlobal() {
@@ -239,19 +188,6 @@ public class TableroModelo extends Observable{
 				calcularCandidatos(i, j);
 			}
 		}
-	}
-	
-	private ArrayList<Integer> eliminarRepetidos(ArrayList<Integer> a) {
-		for (int i = 0; i < a.size(); i++) {
-			for (int j = 0; j < a.size(); j++) {
-				if (i>= a.size()) {
-					break;
-				} else {
-					if (a.get(i) == a.get(j) && i != j) a.remove(j);
-				}
-			}
-		}
-		return a;
 	}
 	
 	public void setCandidatos(String s, int x, int y) {
