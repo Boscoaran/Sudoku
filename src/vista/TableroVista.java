@@ -140,7 +140,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JPanelBackground getPanelDatos() {
 		if (panelDatos == null) {
 			panelDatos = new JPanelBackground();
-			panelDatos.setBackground("resources/fondo sudoku datos.jpg");
+			panelDatos.setBackground("resources/BJ/east BJ.jpg");
 			GridBagLayout gbl_panelDatos = new GridBagLayout();
 			gbl_panelDatos.columnWidths = new int[]{18, 0, 117, 0, 0};
 			gbl_panelDatos.rowHeights = new int[]{20, 0, 0, 0, 0, 0, 0, 0, 110, 11, 0};
@@ -422,7 +422,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JPanelBackground getPanelNorth() {
 		if (panelNorth == null) {
 			panelNorth = new JPanelBackground();
-			panelNorth.setBackground("resources/fondo titulo.jpg");
+			panelNorth.setBackground("resources/BJ/north BJ.jpg");
 			GridBagLayout gbl_panelNorth = new GridBagLayout();
 			gbl_panelNorth.columnWidths = new int[]{1024, 0};
 			gbl_panelNorth.rowHeights = new int[]{0, 170, 0};
@@ -440,7 +440,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JPanelBackground getPanelSouth() {
 		if (panelSouth == null) {
 			panelSouth = new JPanelBackground();
-			panelSouth.setBackground("resources/fondo sudoku south.jpg");
+			panelSouth.setBackground("resources/BJ/south BJ.jpg");
 		}
 		return panelSouth;
 	}
@@ -452,7 +452,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JPanelBackground getPanelWest() {
 		if (panelWest == null) {
 			panelWest = new JPanelBackground();
-			panelWest.setBackground("resources/fondo sudoku west.jpg");
+			panelWest.setBackground("resources/BJ/west BJ.jpg");
 		}
 		return panelWest;
 	}
@@ -464,8 +464,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JPanelBackground getPanelTablero() {
 		if (panelTablero == null) {
 			panelTablero = new JPanelBackground();
-			panelTablero.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			panelTablero.setBackground("resources/fondo tablero.jpg");
+			panelTablero.setBackground("resources/BJ/centre BJ.jpg");
 			panelTablero.setLayout(new GridLayout(9, 9, 0, 0));
 			for (int i=1; i<10; i++) {
 				for (int j=1; j<10; j++) {
@@ -600,6 +599,13 @@ public class TableroVista extends JFrame implements Observer{
 	private JMenuItem getMntmTemaBJ() {
 		if (mntmTemaBJ == null) {
 			mntmTemaBJ = new JMenuItem("Bosque Japones");
+			mntmTemaBJ.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					panelNorth.setBackground("resources/BJ/north BJ.jpg");
+				}
+			});
 		}
 		return mntmTemaBJ;
 	}
@@ -607,6 +613,13 @@ public class TableroVista extends JFrame implements Observer{
 	private JMenuItem getMntmTemaCP() {
 		if (mntmTemaCP == null) {
 			mntmTemaCP = new JMenuItem("Cyberpunk");
+			mntmTemaCP.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					panelNorth.setBackground("resources/CP/north CP.jpg");
+				}
+			});
 		}
 		return mntmTemaCP;
 	}
