@@ -37,6 +37,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import javax.swing.BoxLayout;
+import javax.swing.Box;
+import javax.swing.JToolBar;
+import javax.swing.JPopupMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JComboBox;
+import java.awt.Choice;
+import javax.swing.JMenu;
 
 @SuppressWarnings({ "serial", "deprecation" })
 public class TableroVista extends JFrame implements Observer{
@@ -59,6 +69,17 @@ public class TableroVista extends JFrame implements Observer{
 	private CasillaVista matrizPaneles[][];
 	private JButton btnComprobar;
 	private Border bordeAct;
+	private JPanel panelTiempo;
+	private JLabel lblTiempo;
+	private JMenuBar menuBar;
+	private JMenu mnTema;
+	private JMenu mnPartida;
+	private JMenuItem mntmTemaBJ;
+	private JMenuItem mntmReiniciar;
+	private JMenuItem mntmTemaCP;
+	private JMenuItem mntmSP;
+	private JMenuItem mntmCambiarNivel;
+	private JMenuItem mntmCandidatos;
 
 	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -111,12 +132,14 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.getContentPane().add(getPanelTablero(), BorderLayout.CENTER);
 		frmSudokuRoyaleMaster.getContentPane().add(getPanelNorth(), BorderLayout.NORTH);
 		frmSudokuRoyaleMaster.setLocationRelativeTo(null);
+		frmSudokuRoyaleMaster.setJMenuBar(getMenuBar_1());
 		frmSudokuRoyaleMaster.setVisible(true);
 	}
 
 	
 	
 //////////////////////////PANEL DATOS////////////////////////////////////////////	
+	
 	
 	private JPanelBackground getPanelDatos() {
 		if (panelDatos == null) {
@@ -126,7 +149,7 @@ public class TableroVista extends JFrame implements Observer{
 			gbl_panelDatos.columnWidths = new int[]{18, 0, 117, 0, 0};
 			gbl_panelDatos.rowHeights = new int[]{20, 0, 0, 0, 0, 0, 0, 0, 110, 11, 0};
 			gbl_panelDatos.columnWeights = new double[]{1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-			gbl_panelDatos.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+			gbl_panelDatos.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 			panelDatos.setLayout(gbl_panelDatos);
 			GridBagConstraints gbc_lblCandidatos = new GridBagConstraints();
 			gbc_lblCandidatos.anchor = GridBagConstraints.EAST;
@@ -167,6 +190,13 @@ public class TableroVista extends JFrame implements Observer{
 			gbc_btnAyuda.gridx = 2;
 			gbc_btnAyuda.gridy = 6;
 			panelDatos.add(getBtnAyuda(), gbc_btnAyuda);
+			GridBagConstraints gbc_panel = new GridBagConstraints();
+			gbc_panel.gridwidth = 2;
+			gbc_panel.insets = new Insets(0, 0, 5, 5);
+			gbc_panel.fill = GridBagConstraints.BOTH;
+			gbc_panel.gridx = 1;
+			gbc_panel.gridy = 8;
+			panelDatos.add(getPanelTiempo(), gbc_panel);
 		}
 		return panelDatos;
 	}	
@@ -220,6 +250,24 @@ public class TableroVista extends JFrame implements Observer{
 		return btnComprobar;
 	}
 	
+	private JPanel getPanelTiempo() {
+		if (panelTiempo == null) {
+			panelTiempo = new JPanel();
+			panelTiempo.setOpaque(false);
+			panelTiempo.setLayout(new BorderLayout(0, 0));
+			panelTiempo.add(getLblTiempo());
+		}
+		return panelTiempo;
+	}
+	private JLabel getLblTiempo() {
+		if (lblTiempo == null) {
+			lblTiempo = new JLabel("00:00");
+			lblTiempo.setForeground(new Color(234,183,69));
+			lblTiempo.setFont(new Font("Gang of Three", Font.PLAIN, 50));
+			lblTiempo.setHorizontalAlignment(SwingConstants.CENTER);
+		}
+		return lblTiempo;
+	}
 	private boolean isInteger(String num) { //Metodo para comprobar que es un número
 		try {
 			Integer.parseInt(num);
@@ -380,10 +428,10 @@ public class TableroVista extends JFrame implements Observer{
 			panelNorth = new JPanelBackground();
 			panelNorth.setBackground("resources/fondo titulo.jpg");
 			GridBagLayout gbl_panelNorth = new GridBagLayout();
-			gbl_panelNorth.columnWidths = new int[]{923, 0};
-			gbl_panelNorth.rowHeights = new int[]{170, 0};
-			gbl_panelNorth.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-			gbl_panelNorth.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+			gbl_panelNorth.columnWidths = new int[]{1024, 0};
+			gbl_panelNorth.rowHeights = new int[]{0, 170, 0};
+			gbl_panelNorth.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+			gbl_panelNorth.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 			panelNorth.setLayout(gbl_panelNorth);
 		}
 		return panelNorth;
@@ -529,6 +577,69 @@ public class TableroVista extends JFrame implements Observer{
 				else ((JLabel)((JPanel)matrizPaneles[a[1]][a[2]].getComponent(1)).getComponent(0)).setText(Integer.toString(a[3]));
 			}
 		}
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+	}
+	private JMenuBar getMenuBar_1() {
+		if (menuBar == null) {
+			menuBar = new JMenuBar();
+			menuBar.add(getMnTema());
+			menuBar.add(getMnPartida());
 		}
-		
+		return menuBar;
+	}
+	private JMenu getMnTema() {
+		if (mnTema == null) {
+			mnTema = new JMenu("Tema");
+			mnTema.add(getMntmTemaBJ());
+			mnTema.add(getMntmTemaCP());
+			mnTema.add(getMntmSP());
+		}
+		return mnTema;
+	}
+	private JMenu getMnPartida() {
+		if (mnPartida == null) {
+			mnPartida = new JMenu("Partida");
+			mnPartida.add(getMntmReiniciar());
+			mnPartida.add(getMntmCambiarNivel());
+			mnPartida.add(getMenuItem_1());
+		}
+		return mnPartida;
+	}
+	private JMenuItem getMntmTemaBJ() {
+		if (mntmTemaBJ == null) {
+			mntmTemaBJ = new JMenuItem("Bosque Japones");
+		}
+		return mntmTemaBJ;
+	}
+	private JMenuItem getMntmReiniciar() {
+		if (mntmReiniciar == null) {
+			mntmReiniciar = new JMenuItem("Reiniciar");
+		}
+		return mntmReiniciar;
+	}
+	private JMenuItem getMntmTemaCP() {
+		if (mntmTemaCP == null) {
+			mntmTemaCP = new JMenuItem("Cyberpunk");
+		}
+		return mntmTemaCP;
+	}
+	private JMenuItem getMntmSP() {
+		if (mntmSP == null) {
+			mntmSP = new JMenuItem("Espacio");
+		}
+		return mntmSP;
+	}
+	private JMenuItem getMntmCambiarNivel() {
+		if (mntmCambiarNivel == null) {
+			mntmCambiarNivel = new JMenuItem("Cambiar nivel");
+		}
+		return mntmCambiarNivel;
+	}
+	private JMenuItem getMenuItem_1() {
+		if (mntmCandidatos == null) {
+			mntmCandidatos = new JMenuItem("Ocultar candidatos");
+		}
+		return mntmCandidatos;
+	}
 }
