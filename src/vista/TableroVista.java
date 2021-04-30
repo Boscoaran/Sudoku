@@ -54,8 +54,8 @@ public class TableroVista extends JFrame implements Observer{
 	private JFrame frmSudokuRoyaleMaster;
 	private static TableroVista mTablero;
 	private JPanelBackground panelDatos;
-	private JPanel panelTablero;
-	private Border bordeGrueso = new LineBorder(Color.BLUE, 5);
+	private JPanelBackground panelTablero;
+	private Border bordeGrueso = new LineBorder(new Color(132,178,54), 5);
 	private CasillaVista select = null;
 	private JTextField textFieldCandidatos;
 	private JLabel lblCandidatos;
@@ -111,17 +111,12 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.setBackground(Color.BLACK);
 		frmSudokuRoyaleMaster.setTitle("SUDOKU ROYALE MASTER");
 		frmSudokuRoyaleMaster.setResizable(true);
-		frmSudokuRoyaleMaster.setMinimumSize(new Dimension(800,640));
-		frmSudokuRoyaleMaster.setMaximumSize(new Dimension());
-		frmSudokuRoyaleMaster.setBounds(100, 100, 1000, 800);
+		frmSudokuRoyaleMaster.setMinimumSize(new Dimension(1153,941));
+		frmSudokuRoyaleMaster.setBounds(100, 100, 1153, 941);
 		/*frmSudokuRoyaleMaster.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e){
-				Component tablero = (Component) e.getSource();
-				Component[] lCas= TableroVista.getTablero().getComponents(); 
-				for (Component cas: lCas) {
-					((CasillaVista) cas).tamañoLetra(frmSudokuRoyaleMaster.getWidth());
-				}
+				System.out.println(frmSudokuRoyaleMaster.getBounds());
 			}
 		});*/
 		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -465,10 +460,11 @@ public class TableroVista extends JFrame implements Observer{
 	
 ////////////////////////////////TABLERO//////////////////////////////////////////////////	
 	
-	private JPanel getPanelTablero() {
+	private JPanelBackground getPanelTablero() {
 		if (panelTablero == null) {
-			panelTablero = new JPanel();
+			panelTablero = new JPanelBackground();
 			panelTablero.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+			panelTablero.setBackground("resources/fondo tablero.jpg");
 			panelTablero.setLayout(new GridLayout(9, 9, 0, 0));
 			for (int i=1; i<10; i++) {
 				for (int j=1; j<10; j++) {
@@ -550,7 +546,7 @@ public class TableroVista extends JFrame implements Observer{
 		if (arg instanceof ArrayList<?>) {
 			int i = (int) ((ArrayList<?>)((ArrayList<?>) arg).get(1)).get(0);
 			int j = (int) ((ArrayList<?>)((ArrayList<?>) arg).get(1)).get(1);
-			String s = ((ArrayList<?>) arg).get(0).toString().replace("[", "").replace("]", "");
+			String s = ((ArrayList<?>) arg).get(0).toString().replace("[", "").replace("]", "").replace(",", " ");
 			if (s.isBlank()) ((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(" ");
 			else {
 				((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(s);
@@ -566,7 +562,7 @@ public class TableroVista extends JFrame implements Observer{
 					for (int j = 0; j < t[0].length; j++) {
 						if (t[i][j].getValor() != 0) {
 							((JLabel)((JPanel)matrizPaneles[i][j].getComponent(1)).getComponent(0)).setText(Integer.toString(t[i][j].getValor()));
-							((JLabel)((JPanel)matrizPaneles[i][j].getComponent(1)).getComponent(0)).setForeground(Color.RED);
+							((JLabel)((JPanel)matrizPaneles[i][j].getComponent(1)).getComponent(0)).setForeground(new Color(142,200,64));
 							matrizPaneles[i][j].setEnabled(false);
 						}
 					}
@@ -578,6 +574,8 @@ public class TableroVista extends JFrame implements Observer{
 			}
 		}
 	}
+	
+//////////////////////////////TOP-BAR MENU////////////////////////////////////////	
 	private static void addPopup(Component component, final JPopupMenu popup) {
 	}
 	private JMenuBar getMenuBar_1() {

@@ -39,29 +39,34 @@ public class CasillaVista extends JPanel{
 			this.add(getValorPanel(), BorderLayout.CENTER);
 			this.setBorder(borde());
 			this.setName("Casilla " + x + " " + y);
+			this.setOpaque(false);
 	}
 	
 	public JPanel getCandidatosPanel() {
 			candidatosPanel = new JPanel();
 			candidatosPanel.add(getCandidatosLabel());
 			candidatosPanel.setName("Panel candidatos " + x + " " + y );
+			candidatosPanel.setOpaque(false);
 		return candidatosPanel;
 	}
 	
 	public JLabel getCandidatosLabel() {
 			candidatosLabel = new JLabel();
-			candidatosLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			candidatosLabel.setFont(new Font("Gang of Three", Font.PLAIN, 15));
+			candidatosLabel.setForeground(new Color(248,221,161));
 			candidatosLabel.setText(" ");
 		return candidatosLabel;
 	}
 	public JPanel getValorPanel() {
 			valorPanel = new JPanel();
 			valorPanel.add(getValorLabel());
+			valorPanel.setOpaque(false);
 		return valorPanel;
 	}
 	public JLabel getValorLabel() {
 			valorLabel= new JLabel();
-			valorLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			valorLabel.setFont(new Font("Gang of Three", Font.PLAIN, 30));
+			valorLabel.setForeground(new Color(234,183,69));
 			valorLabel.setText("");
 		return valorLabel;
 	}
@@ -101,7 +106,7 @@ public class CasillaVista extends JPanel{
 				r=3;
 			}
 		}
-		borde = new MatteBorder(u,l,d,r, new Color (0,0,0));
+		borde = new MatteBorder(u,l,d,r, new Color (28,63,56));
 		return borde;
 	}
 	
@@ -110,10 +115,6 @@ public class CasillaVista extends JPanel{
 	}
 	public String getValor() {
 		return valorLabel.getText();
-	}
-	public void tamanioLetra(int n) {
-		valorLabel.setFont(new Font("Tahoma", Font.PLAIN, n/40));
-		candidatosLabel.setFont(new Font("Tahoma", Font.PLAIN, n/70));
 	}
 }
 	
