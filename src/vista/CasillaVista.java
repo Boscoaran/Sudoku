@@ -116,5 +116,13 @@ public class CasillaVista extends JPanel{
 	public String getValor() {
 		return valorLabel.getText();
 	}
+	
+	public void ocultarCandidatos() {
+		candidatosLabel.setText(" ");
+	}
+	
+	public void mostrarCandidatos() {
+		candidatosLabel.setText("1 2 3");		
+	}
 }
 	

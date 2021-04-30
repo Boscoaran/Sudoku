@@ -80,6 +80,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JMenuItem mntmSP;
 	private JMenuItem mntmCambiarNivel;
 	private JMenuItem mntmCandidatos;
+	private JMenuItem mntmCandidatosMos;
 
 	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -595,49 +596,85 @@ public class TableroVista extends JFrame implements Observer{
 		}
 		return mnTema;
 	}
-	private JMenu getMnPartida() {
-		if (mnPartida == null) {
-			mnPartida = new JMenu("Partida");
-			mnPartida.add(getMntmReiniciar());
-			mnPartida.add(getMntmCambiarNivel());
-			mnPartida.add(getMenuItem_1());
-		}
-		return mnPartida;
-	}
+	
 	private JMenuItem getMntmTemaBJ() {
 		if (mntmTemaBJ == null) {
 			mntmTemaBJ = new JMenuItem("Bosque Japones");
 		}
 		return mntmTemaBJ;
 	}
-	private JMenuItem getMntmReiniciar() {
-		if (mntmReiniciar == null) {
-			mntmReiniciar = new JMenuItem("Reiniciar");
-		}
-		return mntmReiniciar;
-	}
+	
 	private JMenuItem getMntmTemaCP() {
 		if (mntmTemaCP == null) {
 			mntmTemaCP = new JMenuItem("Cyberpunk");
 		}
 		return mntmTemaCP;
 	}
+	
 	private JMenuItem getMntmSP() {
 		if (mntmSP == null) {
 			mntmSP = new JMenuItem("Espacio");
 		}
 		return mntmSP;
 	}
+	
+	private JMenu getMnPartida() {
+		if (mnPartida == null) {
+			mnPartida = new JMenu("Partida");
+			mnPartida.add(getMntmReiniciar());
+			mnPartida.add(getMntmCambiarNivel());
+			mnPartida.add(getMntmOcultarCand());
+		}
+		return mnPartida;
+	}
+	
+	private JMenuItem getMntmReiniciar() {
+		if (mntmReiniciar == null) {
+			mntmReiniciar = new JMenuItem("Reiniciar");
+		}
+		return mntmReiniciar;
+	}
+	
 	private JMenuItem getMntmCambiarNivel() {
 		if (mntmCambiarNivel == null) {
 			mntmCambiarNivel = new JMenuItem("Cambiar nivel");
 		}
 		return mntmCambiarNivel;
 	}
-	private JMenuItem getMenuItem_1() {
+	private JMenuItem getMntmOcultarCand() {
 		if (mntmCandidatos == null) {
 			mntmCandidatos = new JMenuItem("Ocultar candidatos");
+			mntmCandidatos.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Component[] lCasillas = getTablero().panelTablero.getComponents();
+					for (Component cas: lCasillas) {
+						((CasillaVista) cas).ocultarCandidatos();
+					}
+					mnPartida.add(getMntmCandidatosMos());
+					mnPartida.remove(mntmCandidatos);
+				}
+			});
 		}
 		return mntmCandidatos;
+	}
+	private JMenuItem getMntmCandidatosMos() {
+		if (mntmCandidatosMos == null) {
+			mntmCandidatosMos = new JMenuItem("Mostrar candidatos");
+			mntmCandidatosMos.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Component[] lCasillas = getTablero().panelTablero.getComponents();
+					for (Component cas: lCasillas) {
+						((CasillaVista) cas).mostrarCandidatos();
+					}
+					menuBar.add(getMntmOcultarCand());
+					menuBar.remove(mntmCandidatosMos);					
+				}
+			});
+		}
+		return mntmCandidatosMos;
 	}
 }
