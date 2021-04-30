@@ -670,8 +670,8 @@ public class TableroVista extends JFrame implements Observer{
 					for (Component cas: lCasillas) {
 						((CasillaVista) cas).mostrarCandidatos();
 					}
-					menuBar.add(getMntmOcultarCand());
-					menuBar.remove(mntmCandidatosMos);					
+					mnPartida.add(getMntmOcultarCand());
+					mnPartida.remove(mntmCandidatosMos);					
 				}
 			});
 		}

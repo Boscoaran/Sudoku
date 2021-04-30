@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 
+import modelo.TableroModelo;
+
 public class CasillaVista extends JPanel{
 	
 	/**
@@ -122,7 +124,7 @@ public class CasillaVista extends JPanel{
 	}
 	
 	public void mostrarCandidatos() {
-		candidatosLabel.setText("1 2 3");		
+		modelo.TableroModelo.getTablero().calcularCandidatosGlobal();	
 	}
 }
 	
