@@ -623,7 +623,7 @@ public class TableroVista extends JFrame implements Observer{
 			mnPartida = new JMenu("Partida");
 			mnPartida.add(getMntmReiniciar());
 			mnPartida.add(getMntmCambiarNivel());
-			mnPartida.add(getMntmOcultarCand());
+			mnPartida.add(getMntmCandidatosMos());
 		}
 		return mnPartida;
 	}
