@@ -7,14 +7,21 @@ import java.util.Observable;
 public class TableroModelo extends Observable{
 	private static TableroModelo miTablero = null;
 	private CasillaModelo tablero[][];
-	private int tiempo;
+	private String tiempo;
 	private int numAyudas;
 	private int dificultad;
+	private static boolean estaOn;
 	
 	private TableroModelo() {
 		tablero = new CasillaModelo[9][9];
-		tiempo = 0;
+		tiempo = "00:00:00";
 		numAyudas = 0;
+		estaOn = true;
+		iniciarReloj();
+	}
+	
+	public static boolean estaOn() {
+		return estaOn;
 	}
 	
 	public static TableroModelo getTablero() {
@@ -185,7 +192,8 @@ public class TableroModelo extends Observable{
 	public void calcularCandidatosGlobal() {
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero.length; j++) {
-				calcularCandidatos(i, j);
+				if (tablero[i][j].getValor() == 0)
+					calcularCandidatos(i, j);
 			}
 		}
 	}
@@ -210,5 +218,16 @@ public class TableroModelo extends Observable{
 		b.add(coords);
 		this.setChanged();
 		this.notifyObservers(b);
+	}
+	
+	public void iniciarReloj() {
+		Reloj r = new Reloj();
+		r.start();
+	}
+	
+	public void setTiempo(String t) {
+		this.tiempo = t;
+		this.setChanged();
+		this.notifyObservers(t);
 	}
 }

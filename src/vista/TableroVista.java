@@ -12,11 +12,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.Panel;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -30,22 +27,13 @@ import java.awt.Font;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
-import javax.swing.border.EtchedBorder;
 
 
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
-import javax.swing.BoxLayout;
-import javax.swing.Box;
-import javax.swing.JToolBar;
-import javax.swing.JPopupMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JComboBox;
-import java.awt.Choice;
 import javax.swing.JMenu;
 
 @SuppressWarnings({ "serial", "deprecation" })
@@ -81,19 +69,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JMenuItem mntmCambiarNivel;
 	private JMenuItem mntmCandidatos;
 	private JMenuItem mntmCandidatosMos;
-
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Tablero window = new Tablero();
-					window.frmSudokuRoyaleMaster.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
+	private boolean candidatosAct = false;
 	
 	public static TableroVista getTablero() {
 		if (mTablero == null) mTablero = new TableroVista();
@@ -114,12 +90,6 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.setResizable(true);
 		frmSudokuRoyaleMaster.setMinimumSize(new Dimension(1153,941));
 		frmSudokuRoyaleMaster.setBounds(100, 100, 1153, 941);
-		/*frmSudokuRoyaleMaster.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e){
-				System.out.println(frmSudokuRoyaleMaster.getBounds());
-			}
-		});*/
 		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSudokuRoyaleMaster.getContentPane().setLayout(new BorderLayout(0, 0));
 		frmSudokuRoyaleMaster.getContentPane().add(getPanelWest(), BorderLayout.WEST);
@@ -326,6 +296,7 @@ public class TableroVista extends JFrame implements Observer{
 						btnModificar.setEnabled(false);
 						textFieldCandidatos.setEnabled(false);
 						textFieldValor.setEnabled(false);
+						if (candidatosAct) modelo.TableroModelo.getTablero().calcularCandidatosGlobal();
 					}
 					}
 				}
@@ -400,15 +371,7 @@ public class TableroVista extends JFrame implements Observer{
 			btnAyuda.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					PanelAyuda p = new PanelAyuda(select);
-					/*if (select != null) {
-						int[] coords = select.getCoords();
-						modelo.TableroModelo.getTablero().calcularCandidatos(--coords[0], --coords[1]);
-					} else {
-						modelo.TableroModelo.getTablero().calcularCandidatosGlobal();
-					}*/
-					
-					
+					new PanelAyuda(select);
 				}
 			});
 		}
@@ -493,19 +456,14 @@ public class TableroVista extends JFrame implements Observer{
 			textFieldValor.requestFocusInWindow();
 			btnModificar.setEnabled(true);
 			seleccionado.setBorder(bordeGrueso);
-			for (Component x1: seleccionado.getComponents()) {
-				for (Component x2: ((JPanel) x1).getComponents()) {
-					if (((JLabel) x2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))) {
-						textFieldValor.setText(((JLabel) x2).getText());
-						
-					} else {
-						textFieldCandidatos.setText(((JLabel) x2).getText());
-						if (((JLabel)x2).getText().equals(" ")) {
-							textFieldCandidatos.setText("");
-						}
-					}
-				}
-			}
+			//Llenar el label de los candidatos
+			String cand = ((JLabel)((JPanel)seleccionado.getComponent(0)).getComponent(0)).getText();
+			if (cand == " ") 
+				textFieldCandidatos.setText("");
+			else
+				textFieldCandidatos.setText(cand);
+			//Llenar el label del valor
+			textFieldValor.setText(((JLabel)((JPanel)seleccionado.getComponent(1)).getComponent(0)).getText());
 			select=seleccionado;
 		} else if (!seleccionado.getBorder().equals(bordeGrueso) && select != null && seleccionado.isEnabled()) {
 			select.setBorder(bordeAct);
@@ -513,19 +471,14 @@ public class TableroVista extends JFrame implements Observer{
 			textFieldCandidatos.setText("");
 			textFieldValor.setText("");
 			seleccionado.setBorder(bordeGrueso);
-			for (Component x1: seleccionado.getComponents()) {
-				for (Component x2: ((JPanel) x1).getComponents()) {
-					if (((JLabel) x2).getFont().equals(new Font("Tahoma", Font.PLAIN, 20))) {
-						textFieldValor.setText(((JLabel) x2).getText());
-						
-					} else {
-						textFieldCandidatos.setText(((JLabel) x2).getText());
-						if (((JLabel)x2).getText().equals(" ")) {
-							textFieldCandidatos.setText("");
-						}
-					}
-				}
-			}
+			//Llenar el label de los candidatos
+			String cand = ((JLabel)((JPanel)seleccionado.getComponent(0)).getComponent(0)).getText();
+			if (cand == " ") 
+				textFieldCandidatos.setText("");
+			else
+				textFieldCandidatos.setText(cand);
+			//Llenar el label del valor
+			textFieldValor.setText(((JLabel)((JPanel)seleccionado.getComponent(1)).getComponent(0)).getText());
 			select=seleccionado;
 		} else if (seleccionado.getBorder().equals(bordeGrueso)) {
 			select.setBorder(bordeAct);
@@ -551,6 +504,8 @@ public class TableroVista extends JFrame implements Observer{
 			else {
 				((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(s);
 			}
+		}else if (arg instanceof String) {
+			this.lblTiempo.setText((String)arg);
 		} else {
 			int[] a = (int[]) arg;
 			if (a[0] == 1) {
@@ -576,8 +531,7 @@ public class TableroVista extends JFrame implements Observer{
 	}
 	
 //////////////////////////////TOP-BAR MENU////////////////////////////////////////	
-	private static void addPopup(Component component, final JPopupMenu popup) {
-	}
+
 	private JMenuBar getMenuBar_1() {
 		if (menuBar == null) {
 			menuBar = new JMenuBar();
@@ -665,6 +619,7 @@ public class TableroVista extends JFrame implements Observer{
 					for (Component cas: lCasillas) {
 						((CasillaVista) cas).ocultarCandidatos();
 					}
+					candidatosAct = false;
 					mnPartida.add(getMntmCandidatosMos());
 					mnPartida.remove(mntmCandidatos);
 				}
@@ -679,12 +634,11 @@ public class TableroVista extends JFrame implements Observer{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Component[] lCasillas = getTablero().panelTablero.getComponents();
-					for (Component cas: lCasillas) {
-						((CasillaVista) cas).mostrarCandidatos();
-					}
+					modelo.TableroModelo.getTablero().calcularCandidatosGlobal();
+					candidatosAct = true;
 					mnPartida.add(getMntmOcultarCand());
-					mnPartida.remove(mntmCandidatosMos);					
+					mnPartida.remove(mntmCandidatosMos);
+					JOptionPane.showMessageDialog(null, "A partir de ahora los candidatos se calcularán automáticamente cada vez que introduzcas un valor", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				}
 			});
 		}
