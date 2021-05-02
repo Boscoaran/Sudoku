@@ -2,8 +2,9 @@ package db;
 
 import java.sql.*;
 
+
 public class DataUsuarios {
-	private String url = "jdbc:ucanaccess://C://Users//joelb//git//Sudoku//database//usuarios.accdb";
+	private String url = "jdbc:ucanaccess://C://TEMP//usuarios.accdb";
 	private static DataUsuarios mDataUsuarios;
 	
 	private DataUsuarios() {}
@@ -13,8 +14,7 @@ public class DataUsuarios {
 		return mDataUsuarios;
 	}
 	
-	public void comprobarUsuario(String name) {
-		try {
+	public void comprobarUsuario(String name) throws SQLException{
 			Connection con = DriverManager.getConnection(url);
 			Statement s = con.createStatement();
 			ResultSet rs1 = s.executeQuery("SELECT * FROM usuario WHERE nombreUsuario = \"" + name + "\"");
@@ -28,15 +28,10 @@ public class DataUsuarios {
 				int res = Integer.parseInt(st) + 1;
 				st = res+"";
 				s = con.createStatement();
-				String query = "INSERT INTO usuario VALUES ("+ st + ", '" + name +" ', 0.0)";
+				String query = "INSERT INTO usuario VALUES ("+ st + ", '" + name +"', 0.0)";
 				s.execute(query);
 				s.close();
 			}
 			con.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
 	}
 }

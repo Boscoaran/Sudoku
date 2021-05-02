@@ -92,15 +92,21 @@ public class VentanaInicio {
 			btnComenzar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if (!textFieldNombre.getText().equals("")) {
-						db.DataUsuarios.getData().comprobarUsuario(textFieldNombre.getText());
-						int nivel = comboBoxNivel.getSelectedIndex();
-						TableroVista.getTablero();
-						modelo.TableroModelo.getTablero().cargarTablero(++nivel);
-						frame.dispose();
-					} else {
-						JOptionPane.showMessageDialog(null, "Tienes que introducir un nombre", "Error Valor", JOptionPane.ERROR_MESSAGE);
+					try {
+						if (!textFieldNombre.getText().equals("")) {
+							db.DataUsuarios.getData().comprobarUsuario(textFieldNombre.getText());
+							int nivel = comboBoxNivel.getSelectedIndex();
+							TableroVista.getTablero();
+							modelo.TableroModelo.getTablero().cargarTablero(++nivel);
+							frame.dispose();
+						} else {
+							JOptionPane.showMessageDialog(null, "Tienes que introducir un nombre", "Error Valor", JOptionPane.ERROR_MESSAGE);
+						}
+					} catch (Exception e2) {
+						e2.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Para el correcto funcionamiento del programa, introduce la base de datos en C:/TEMP/", "Error en la base de datos", JOptionPane.ERROR_MESSAGE);
 					}
+					
 					
 				}
 			});
