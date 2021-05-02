@@ -25,33 +25,10 @@ public class VentanaInicio {
 	private JTextField textFieldNombre;
 	private JLabel lblNivel;
 	private JComboBox<String> comboBoxNivel;
-
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaInicio window = new VentanaInicio();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
-	/**
-	 * Create the application.
-	 */
+	
 	public VentanaInicio() {
 		initialize();
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	
 	
 	private void initialize() {
@@ -116,6 +93,7 @@ public class VentanaInicio {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					if (!textFieldNombre.getText().equals("")) {
+						db.DataUsuarios.getData().comprobarUsuario(textFieldNombre.getText());
 						int nivel = comboBoxNivel.getSelectedIndex();
 						TableroVista.getTablero();
 						modelo.TableroModelo.getTablero().cargarTablero(++nivel);
