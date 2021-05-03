@@ -13,9 +13,11 @@ import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
+import java.awt.GridBagLayout;
 
 @SuppressWarnings("deprecation")
 public class PanelTopJugadores extends JFrame implements Observer{
@@ -28,11 +30,12 @@ public class PanelTopJugadores extends JFrame implements Observer{
 	private JLabel etiq[][];
 	private JPanel panel_1;
 	private static PanelTopJugadores mPanel;
+	private GridBagConstraints cons;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -55,7 +58,7 @@ public class PanelTopJugadores extends JFrame implements Observer{
 	}
 	
 	private PanelTopJugadores() {
-		etiq = new JLabel[10][2];
+		etiq = new JLabel[10][3];
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -73,7 +76,9 @@ public class PanelTopJugadores extends JFrame implements Observer{
 		
 		panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new GridLayout(0, 2, 0, 0));
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		cons = new GridBagConstraints();
+		panel_1.setLayout(gbl_panel_1);
 		
 		cargarLista();
 		db.DataUsuarios.getData().cargarPuntuaciones();
@@ -84,16 +89,41 @@ public class PanelTopJugadores extends JFrame implements Observer{
 	private void cargarLista() {
 		for (int i = 0; i < etiq.length; i++) {
 			for (int j = 0; j < etiq[0].length; j++) {
-				if (j == 0) {
+				 if (j == 0) {
+					JLabel lblPos = new JLabel(i+1 + ".");
+					lblPos.setHorizontalAlignment(SwingConstants.RIGHT);
+					lblPos.setFont(new Font("Tahoma", Font.PLAIN, 16));
+					cons.gridx = 0;
+					cons.gridy = i;
+					cons.gridwidth = 1;
+					cons.gridheight = 1;
+					cons.weightx = 0.1;
+					panel_1.add(lblPos,cons);
+					etiq[i][j] = lblPos;
+				 } else if (j == 1) {
 					JLabel lblJugador = new JLabel("Etiq_Jugador" + i);
-					lblJugador.setHorizontalAlignment(SwingConstants.CENTER);
-					panel_1.add(lblJugador);
+					lblJugador.setHorizontalAlignment(SwingConstants.LEFT);
+					lblJugador.setFont(new Font("Tahoma", Font.PLAIN, 16));
+					cons.gridx = 1;
+					cons.gridy = i;
+					cons.gridwidth = 1;
+					cons.gridheight = 1;
+					cons.weightx = 0.1;
+					panel_1.add(lblJugador,cons);
 					etiq[i][j] = lblJugador;
 				} else {
 					JLabel lblPuntuacion = new JLabel("Etiq_Puntuacion" + i);
 					lblPuntuacion.setHorizontalAlignment(SwingConstants.CENTER);
-					panel_1.add(lblPuntuacion);
+					lblPuntuacion.setFont(new Font("Tahoma", Font.PLAIN, 16));
+					cons.gridx = 2;
+					cons.gridy = i;
+					cons.gridwidth = 1;
+					cons.gridheight = 1;
+					cons.weightx = 0.2;
+					panel_1.add(lblPuntuacion,cons);
 					etiq[i][j] = lblPuntuacion;
+					cons.weightx = 0.0;
+					cons.gridwidth = 0;
 				}
 			}
 		}
@@ -103,9 +133,15 @@ public class PanelTopJugadores extends JFrame implements Observer{
 	public void update(Observable o, Object arg) {
 		if (arg instanceof Usuario[]) {
 			Usuario[] l = (Usuario[]) arg;
-			for (int i = 0; i< l.length; i++) {
-				etiq[i][0].setText(i+1 + "\t" + l[i].getName());
-				etiq[i][1].setText(l[i].getPointsText());
+			for (int i = 0; i< 10; i++) {
+				if (i>= l.length) {
+					etiq[i][1].setText("");
+					etiq[i][2].setText("");
+				} else {
+					etiq[i][1].setText(l[i].getName());
+					etiq[i][2].setText(l[i].getPointsText());
+				}
+				
 			}
 		}
 		
