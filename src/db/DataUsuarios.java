@@ -59,7 +59,36 @@ public class DataUsuarios {
 		
 	}
 	
-	public void anadirRegistro() {
-		
+	public void anadirRegistro(String user, int id, int dif, double points) {
+		try {
+			Connection con = DriverManager.getConnection(url);
+			Statement s = con.createStatement();
+			String query = "SELECT id FROM usuario where nombreUsuario = '" + user +"'";
+			ResultSet rs = s.executeQuery(query);
+			rs.next();
+			int userId = rs.getInt(1);
+			
+			int idPuntos = 0;
+			query = "SELECT idPuntuacion FROM puntuacionSudokus";
+			rs = s.executeQuery(query);
+			while(rs.next()) {
+				idPuntos = rs.getInt(1);
+			}
+			idPuntos++;
+			s = con.createStatement();
+			//query = "INSERT INTO puntuacionSudokus VALUES (" + idPuntos + "," + userId + "," + id + "," + dif + "," + puntosStr + ");";
+			PreparedStatement st = con.prepareStatement("INSERT INTO puntuacionSudokus (idPuntuacion,idUsuario,idSudoku,dif,puntuacion) VALUES (?,?,?,?,?)");
+			st.setInt(1, idPuntos);
+			st.setInt(2, userId);
+			st.setInt(3, id);
+			st.setInt(4, dif);
+			st.setDouble(5, points);
+			st.execute();
+			st.close();
+			s.close();
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

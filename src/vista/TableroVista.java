@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import db.DataUsuarios;
 import modelo.TableroModelo;
 
 import java.awt.Color;
@@ -228,7 +229,7 @@ public class TableroVista extends JFrame implements Observer{
 	}
 	private JLabel getLblTiempo() {
 		if (lblTiempo == null) {
-			lblTiempo = new JLabel("00:00");
+			lblTiempo = new JLabel("00:00:00");
 			lblTiempo.setForeground(new Color(234,183,69));
 			lblTiempo.setFont(new Font("Gang of Three", Font.PLAIN, 50));
 			lblTiempo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -517,6 +518,7 @@ public class TableroVista extends JFrame implements Observer{
 					
 				} else {
 					JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
+					DataUsuarios.getData().anadirRegistro(TableroModelo.getTablero().getUser(), TableroModelo.getTablero().getId(), TableroModelo.getTablero().getDif(), TableroModelo.getTablero().getPuntos());
 					frmSudokuRoyaleMaster.dispose();
 					new PanelVicDer(TableroModelo.getTablero().getUser(), true, TableroModelo.getTablero().getPuntos());
 					

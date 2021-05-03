@@ -15,6 +15,7 @@ public class TableroModelo extends Observable{
 	private static boolean estaOn;
 	private String usuario;
 	private double puntos;
+	private int idSudoku;
 	
 	private TableroModelo() {
 		tablero = new CasillaModelo[9][9];
@@ -24,6 +25,14 @@ public class TableroModelo extends Observable{
 		numAyudas = 0;
 		estaOn = true;
 		iniciarReloj();
+	}
+	
+	public int getDif() {
+		return dificultad;
+	}
+	
+	public int getId() {
+		return idSudoku;
 	}
 	
 	public static boolean estaOn() {
@@ -58,7 +67,9 @@ public class TableroModelo extends Observable{
 		if (dif == 1) pId = 1;
 		else if (dif == 2) pId = 3;
 		else pId = 4;
-		int[][] a = ListaSudokus.getListaSudokus().getLSudokus(pId, dif);
+		idSudoku = pId;
+		//int[][] a = ListaSudokus.getListaSudokus().getLSudokus(pId, dif);
+		int[][] a = ListaSudokus.getListaSudokus().getLSoluciones(pId, dif);
 		///////////////
 		dificultad = dif;
 		int i = 0;

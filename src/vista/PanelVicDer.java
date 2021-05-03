@@ -24,7 +24,7 @@ public class PanelVicDer extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -35,7 +35,7 @@ public class PanelVicDer extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
@@ -43,6 +43,7 @@ public class PanelVicDer extends JFrame {
 	public PanelVicDer(String u, boolean cor, double punt) {
 		user = u;
 		correcto = cor;
+		puntos = punt;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
