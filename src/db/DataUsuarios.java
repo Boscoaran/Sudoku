@@ -49,7 +49,6 @@ public class DataUsuarios {
 				double punt = rs.getDouble(3);
 				Usuario u = new Usuario(id,n,punt);
 				CatalogoUsuarios.getCatalogoUsuarios().anadirUsuario(u);
-				System.out.println("hola");
 			}
 			s.close();
 			con.close();
@@ -57,6 +56,10 @@ public class DataUsuarios {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public void anadirRegistro() {
 		
 	}
 }

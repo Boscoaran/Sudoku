@@ -97,7 +97,7 @@ public class VentanaInicio {
 							db.DataUsuarios.getData().comprobarUsuario(textFieldNombre.getText());
 							int nivel = comboBoxNivel.getSelectedIndex();
 							TableroVista.getTablero();
-							modelo.TableroModelo.getTablero().cargarTablero(++nivel);
+							modelo.TableroModelo.getTablero().cargarTablero(++nivel,textFieldNombre.getText());
 							frame.dispose();
 						} else {
 							JOptionPane.showMessageDialog(null, "Tienes que introducir un nombre", "Error Valor", JOptionPane.ERROR_MESSAGE);

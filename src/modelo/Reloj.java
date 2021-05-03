@@ -20,7 +20,7 @@ public class Reloj extends Thread{
 					}
 				}
 				String t = textConv(hora)+":"+textConv(min)+":"+textConv(seg);
-				TableroModelo.getTablero().setTiempo(t);
+				TableroModelo.getTablero().setTiempo(t,hora,min,seg);
 				
 			}
 		} catch (Exception e) {

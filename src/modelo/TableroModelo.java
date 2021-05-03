@@ -7,14 +7,20 @@ import java.util.Observable;
 public class TableroModelo extends Observable{
 	private static TableroModelo miTablero = null;
 	private CasillaModelo tablero[][];
-	private String tiempo;
+	private int h;
+	private int m;
+	private int s;
 	private int numAyudas;
 	private int dificultad;
 	private static boolean estaOn;
+	private String usuario;
+	private double puntos;
 	
 	private TableroModelo() {
 		tablero = new CasillaModelo[9][9];
-		tiempo = "00:00:00";
+		s = 0;
+		m = 0;
+		h = 0;
 		numAyudas = 0;
 		estaOn = true;
 		iniciarReloj();
@@ -31,7 +37,21 @@ public class TableroModelo extends Observable{
 		return miTablero;
 	}
 	
-	public void cargarTablero (int dif) {
+	public double getPuntos() {
+		return puntos;
+	}
+	
+	public String getUser() {
+		return usuario;
+	}
+	
+	private void calcularPuntos() {
+		int segundos = h*3600 + m*60 + s;
+		puntos = (30000 * dificultad/(segundos + (30*numAyudas)));
+	}
+	
+	public void cargarTablero (int dif,String u) {
+		usuario = u;
 		ListaSudokus.getListaSudokus().obtenerListas();
 		//PROVISIONAL//
 		int pId;
@@ -101,6 +121,7 @@ public class TableroModelo extends Observable{
 		}
 		if (correcto) {
 			arg[1] = 1;
+			calcularPuntos();
 		} else {
 			arg[1] = 0;
 		}
@@ -225,8 +246,10 @@ public class TableroModelo extends Observable{
 		r.start();
 	}
 	
-	public void setTiempo(String t) {
-		this.tiempo = t;
+	public void setTiempo(String t,int hora, int min, int seg) {
+		h = hora;
+		m = min;
+		s = seg;
 		this.setChanged();
 		this.notifyObservers(t);
 	}

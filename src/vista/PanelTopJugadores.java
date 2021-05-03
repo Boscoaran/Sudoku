@@ -15,9 +15,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.GridBagLayout;
+import javax.swing.JButton;
 
 @SuppressWarnings("deprecation")
 public class PanelTopJugadores extends JFrame implements Observer{
@@ -29,8 +32,8 @@ public class PanelTopJugadores extends JFrame implements Observer{
 	private JPanel contentPane;
 	private JLabel etiq[][];
 	private JPanel panel_1;
-	private static PanelTopJugadores mPanel;
 	private GridBagConstraints cons;
+	private JButton btnAtras;
 
 	/**
 	 * Launch the application.
@@ -52,12 +55,8 @@ public class PanelTopJugadores extends JFrame implements Observer{
 	 * Create the frame.
 	 */
 	
-	public static PanelTopJugadores getPanelTopJugadores() {
-		if (mPanel == null) mPanel = new PanelTopJugadores();
-		return mPanel;
-	}
-	
-	private PanelTopJugadores() {
+	public PanelTopJugadores(String u, boolean c, double points) {
+		
 		etiq = new JLabel[10][3];
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -80,8 +79,19 @@ public class PanelTopJugadores extends JFrame implements Observer{
 		cons = new GridBagConstraints();
 		panel_1.setLayout(gbl_panel_1);
 		
+		btnAtras = new JButton("Atr\u00E1s");
+		contentPane.add(btnAtras, BorderLayout.SOUTH);
+		btnAtras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new PanelVicDer(u,c,points);
+				dispose();
+			}
+		});
+		
 		cargarLista();
 		db.DataUsuarios.getData().cargarPuntuaciones();
+		setLocationRelativeTo(null);
 		setVisible(true);
 		
 		}

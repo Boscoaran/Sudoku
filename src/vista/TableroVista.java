@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import modelo.TableroModelo;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -210,7 +211,6 @@ public class TableroVista extends JFrame implements Observer{
 			btnComprobar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					modelo.TableroModelo.getTablero().comprobarResultado();
-					PanelTopJugadores.getPanelTopJugadores();
 				}
 			});
 		}
@@ -510,8 +510,17 @@ public class TableroVista extends JFrame implements Observer{
 		} else {
 			int[] a = (int[]) arg;
 			if (a[0] == 1) {
-				if (a[1] == 0) JOptionPane.showMessageDialog(null, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
-				else JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
+				if (a[1] == 0) {
+					JOptionPane.showMessageDialog(null, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
+					frmSudokuRoyaleMaster.dispose();
+					new PanelVicDer(TableroModelo.getTablero().getUser(), false, 0);
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
+					frmSudokuRoyaleMaster.dispose();
+					new PanelVicDer(TableroModelo.getTablero().getUser(), true, TableroModelo.getTablero().getPuntos());
+					
+				}
 			} else if (a[0] == 0) {
 				modelo.CasillaModelo[][] t = modelo.TableroModelo.getTablero().getListaCasillas();
 				for (int i = 0; i < t.length; i++) {
