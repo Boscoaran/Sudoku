@@ -210,6 +210,7 @@ public class TableroVista extends JFrame implements Observer{
 			btnComprobar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					modelo.TableroModelo.getTablero().comprobarResultado();
+					PanelTopJugadores.getPanelTopJugadores();
 				}
 			});
 		}

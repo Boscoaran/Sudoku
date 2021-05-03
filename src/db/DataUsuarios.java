@@ -2,6 +2,8 @@ package db;
 
 import java.sql.*;
 
+import modelo.CatalogoUsuarios;
+import modelo.Usuario;
 
 public class DataUsuarios {
 	private String url = "jdbc:ucanaccess://C://TEMP//usuarios.accdb";
@@ -33,5 +35,28 @@ public class DataUsuarios {
 				s.close();
 			}
 			con.close();
+	}
+	
+	public void cargarPuntuaciones() {
+		try {
+			Connection con = DriverManager.getConnection(url);
+			Statement s = con.createStatement();
+			String query = "SELECT * FROM usuario ORDER BY mejorPuntuacion DESC";
+			ResultSet rs = s.executeQuery(query);
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				String n = rs.getString(2);
+				double punt = rs.getDouble(3);
+				Usuario u = new Usuario(id,n,punt);
+				CatalogoUsuarios.getCatalogoUsuarios().anadirUsuario(u);
+				System.out.println("hola");
+			}
+			s.close();
+			con.close();
+			CatalogoUsuarios.getCatalogoUsuarios().mostrar();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
