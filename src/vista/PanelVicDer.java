@@ -92,6 +92,15 @@ public class PanelVicDer extends JFrame {
 			}
 		});
 		panel_2.add(btnEstad);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
+		panel_2.add(btnSalir);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
