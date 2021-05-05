@@ -63,13 +63,15 @@ public class PanelVictoria {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 430, 247);
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 415, 250);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getPanelNorth());
 		frame.getContentPane().add(getPanelSouth());
 		frame.getContentPane().add(getPanelInfo());
 		frame.getContentPane().add(getIcon());
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
@@ -98,7 +100,7 @@ public class PanelVictoria {
 	private JPanel getPanelSouth() {
 		if (panelSouth == null) {
 			panelSouth = new JPanel();
-			panelSouth.setBounds(0, 168, 414, 40);
+			panelSouth.setBounds(0, 166, 414, 30);
 			panelSouth.add(getBtnReplay());
 			panelSouth.add(getBtnRanking());
 			panelSouth.add(getBtnSalir());
@@ -172,7 +174,7 @@ public class PanelVictoria {
 		if (icon == null) {
 			icon = new JLabel("");
 			icon.setIcon(new ImageIcon(PanelVictoria.class.getResource("/BJ/fondo estandar 1 resize.jpg")));
-			icon.setBounds(0, 0, 414, 208);
+			icon.setBounds(0, 0, 414, 232);
 		}
 		return icon;
 	}

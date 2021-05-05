@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -79,6 +80,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel lblGif5;
 	private JLabel lblGif6;
 	private boolean candidatosAct = false;
+	private Dimension tamañoPantalla= Toolkit.getDefaultToolkit().getScreenSize();
 	
 	public TableroVista() {
 		matrizPaneles = new CasillaVista[9][9];
@@ -94,7 +96,7 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.setTitle("SUDOKU ROYALE MASTER");
 		frmSudokuRoyaleMaster.setResizable(true);
 		frmSudokuRoyaleMaster.setMinimumSize(new Dimension(1153,941));
-		frmSudokuRoyaleMaster.setBounds(100, 100, 1153, 941);
+		frmSudokuRoyaleMaster.setSize((int)(tamañoPantalla.width*0.75), (int)(tamañoPantalla.height*0.75));
 		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSudokuRoyaleMaster.getContentPane().setLayout(new BorderLayout(0, 0));
 		frmSudokuRoyaleMaster.getContentPane().add(getPanelWest(), BorderLayout.WEST);
