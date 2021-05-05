@@ -290,6 +290,7 @@ public class TableroVista extends JFrame implements Observer{
 								if (compValor(s)) {
 									int[] coords = select.getCoords();
 									modelo.TableroModelo.getTablero().setValor(coords[0]-1, coords[1]-1, s);
+									TableroModelo.getTablero().eliminarCandidatos(coords[0]-1,coords[1]-1);
 								} else if (s.equals("")) {
 									int[] coords = select.getCoords();
 									modelo.TableroModelo.getTablero().setValor(coords[0]-1, coords[1]-1, "0");
@@ -312,6 +313,7 @@ public class TableroVista extends JFrame implements Observer{
 									} else {
 										((JLabel)((JPanel)select.getComponent(0)).getComponent(0)).setText(" ");
 										JOptionPane.showMessageDialog(null, "Se han eliminado los candidatos", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+										
 										completed = true;
 									}
 									
@@ -327,7 +329,7 @@ public class TableroVista extends JFrame implements Observer{
 						btnModificar.setEnabled(false);
 						textFieldCandidatos.setEnabled(false);
 						textFieldValor.setEnabled(false);
-						if (candidatosAct) modelo.TableroModelo.getTablero().calcularCandidatosGlobal(mostrarCandidatos);
+						modelo.TableroModelo.getTablero().calcularCandidatosGlobal(mostrarCandidatos);
 					}
 					}
 				}
@@ -402,7 +404,8 @@ public class TableroVista extends JFrame implements Observer{
 			btnAyuda.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					new PanelAyuda(select);
+					//new PanelAyuda(select);
+					TableroModelo.getTablero().uniqueCandidate();
 				}
 			});
 		}
