@@ -2,6 +2,7 @@ package vista;
 
 
 import javax.swing.JFrame;
+
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -14,6 +15,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -28,6 +30,8 @@ import modelo.TableroModelo;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
@@ -41,6 +45,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+
+import java.io.IOException;
 
 @SuppressWarnings({ "serial", "deprecation" })
 public class TableroVista extends JFrame implements Observer{
@@ -83,6 +89,7 @@ public class TableroVista extends JFrame implements Observer{
 	private boolean candidatosAct = false;
 	private Dimension tamañoPantalla;
 	private boolean mostrarCandidatos = false;
+	public Font go3;
 	
 	public TableroVista() {
 		matrizPaneles = new CasillaVista[9][9];
@@ -118,8 +125,14 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.setLocationRelativeTo(null);
 		frmSudokuRoyaleMaster.setJMenuBar(getMenuBar_1());
 		frmSudokuRoyaleMaster.setVisible(true);
+		try {
+			go3 = Font.createFont(Font.TRUETYPE_FONT, new File("resources/go3v2.ttf"));
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources/go3v2.ttf")));
+		} catch (IOException | FontFormatException e) {
+			// TODO: handle exception
+		}
 	}
-
 	
 	
 //////////////////////////PANEL DATOS////////////////////////////////////////////	
@@ -197,7 +210,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel getLblCandidatos() {
 		if (lblCandidatos == null) {
 			lblCandidatos = new JLabel("Candidatos:");
-			lblCandidatos.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+			lblCandidatos.setFont(new Font("go3", Font.PLAIN, 20));
 			lblCandidatos.setForeground(new Color(234,183,69));
 		}
 		return lblCandidatos;

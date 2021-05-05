@@ -86,13 +86,13 @@ public class PanelVictoria {
 	}
 	private JLabel getLblTitulo() {
 		if (lblTitulo == null) {
-			lblTitulo = new JLabel("Enhorabuena has resuelto el sudoku");
+			lblTitulo = new JLabel("Enhorabuena, has resuelto el sudoku");
 			lblTitulo.setFont(new Font("Gang of Three", Font.PLAIN, 20));
 			lblTitulo.setForeground(new Color(234,183,69));
 			if (correcto) {
 				lblTitulo.setText("Enhorabuena, has resuelto el Sudoku");
 			} else {
-				lblTitulo.setText("Vaya, no tienes ni idea");
+				lblTitulo.setText("Haber estudiao");
 			}
 		}
 		return lblTitulo;
