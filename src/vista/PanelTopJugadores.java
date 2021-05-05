@@ -64,7 +64,7 @@ public class PanelTopJugadores extends JFrame implements Observer{
 		
 		etiq = new JLabel[10][3];
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 343);
+		setBounds(100, 100, 500, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -82,12 +82,16 @@ public class PanelTopJugadores extends JFrame implements Observer{
 		panelTitulo.add(lblTitulo);
 		
 		panelDatos = new JPanel();
-		panelDatos.setBounds(5, 39, 484, 254);
+		panelDatos.setBounds(5, 39, 484, 245);
 		panelDatos.setOpaque(false);
 		contentPane.add(panelDatos);
 		GridBagLayout gbl_panelDatos = new GridBagLayout();
-		cons = new GridBagConstraints();
+		/*gbl_panelDatos.columnWidths = new int[]{0};
+		gbl_panelDatos.rowHeights = new int[]{0};
+		gbl_panelDatos.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_panelDatos.rowWeights = new double[]{Double.MIN_VALUE};*/
 		panelDatos.setLayout(gbl_panelDatos);
+		cons = new GridBagConstraints();
 		
 		btnAtras = new JButton("Atr\u00E1s");
 		btnAtras.setBounds(5, 284, 484, 32);
@@ -175,5 +179,4 @@ public class PanelTopJugadores extends JFrame implements Observer{
 		}
 		
 	}
-
 }

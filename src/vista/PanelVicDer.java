@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -45,37 +46,43 @@ public class PanelVicDer extends JFrame {
 	 * Create the frame.
 	 */
 	public PanelVicDer(String u, boolean cor, double punt) {
+		setResizable(false);
 		user = u;
 		correcto = cor;
 		puntos = punt;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
+		setBounds(100, 100, 450, 180);
+		contentPane = new JPanelBackground();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.NORTH);
+		JPanel panelTitulo = new JPanel();
+		contentPane.add(panelTitulo, BorderLayout.NORTH);
+		panelTitulo.setOpaque(false);
 		
-		JLabel lblVictoria = new JLabel("New label");
+		JLabel lblVictoria = new JLabel("");
 		if (cor) lblVictoria.setText("Buen trabajo joven padawan");
 		else lblVictoria.setText("W A S T E D");
-		lblVictoria.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel.add(lblVictoria);
+		lblVictoria.setFont(new Font("Gang of Three", Font.PLAIN, 28));
+		lblVictoria.setForeground(new Color(234,183,69));
+		panelTitulo.add(lblVictoria);
 		
-		JPanel panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.CENTER);
+		JPanel panelInfo = new JPanel();
+		contentPane.add(panelInfo, BorderLayout.CENTER);
+		panelInfo.setOpaque(false);
 		
-		JLabel lblInfo = new JLabel("New label2");
+		JLabel lblInfo = new JLabel("");
 		if (cor) lblInfo.setText(u+ ", tu puntuación es " + punt);
 		else lblInfo.setText("");
-		lblInfo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblInfo.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+		lblInfo.setForeground(new Color(234,183,69));
 		lblInfo.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lblInfo);
+		panelInfo.add(lblInfo);
 		
-		JPanel panel_2 = new JPanel();
-		contentPane.add(panel_2, BorderLayout.SOUTH);
+		JPanel panelOpciones = new JPanel();
+		contentPane.add(panelOpciones, BorderLayout.SOUTH);
+		panelOpciones.setOpaque(false);
 		
 		JButton btnJugar = new JButton("Jugar de nuevo");
 		btnJugar.addMouseListener(new MouseAdapter() {
@@ -85,7 +92,7 @@ public class PanelVicDer extends JFrame {
 				dispose();
 			}
 		});
-		panel_2.add(btnJugar);
+		panelOpciones.add(btnJugar);
 		
 		JButton btnEstad = new JButton("Pasar a estad\u00EDsticas");
 		btnEstad.addMouseListener(new MouseAdapter() {
@@ -95,7 +102,7 @@ public class PanelVicDer extends JFrame {
 				dispose();
 			}
 		});
-		panel_2.add(btnEstad);
+		panelOpciones.add(btnEstad);
 		
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addMouseListener(new MouseAdapter() {
@@ -104,7 +111,7 @@ public class PanelVicDer extends JFrame {
 				dispose();
 			}
 		});
-		panel_2.add(btnSalir);
+		panelOpciones.add(btnSalir);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}

@@ -556,7 +556,7 @@ public class TableroVista extends JFrame implements Observer{
 					JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
 					DataUsuarios.getData().anadirRegistro(TableroModelo.getTablero().getUser(), TableroModelo.getTablero().getId(), TableroModelo.getTablero().getDif(), TableroModelo.getTablero().getPuntos());
 					frmSudokuRoyaleMaster.dispose();
-					new PanelVicDer(TableroModelo.getTablero().getUser(), true, TableroModelo.getTablero().getPuntos());
+					new PanelVictoria(TableroModelo.getTablero().getUser(), true, TableroModelo.getTablero().getPuntos());
 					TableroModelo.getTablero().eliminarTablero();
 				}
 			} else if (a[0] == 0) {
