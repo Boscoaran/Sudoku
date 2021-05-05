@@ -37,6 +37,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import javax.swing.ImageIcon;
 
 @SuppressWarnings({ "serial", "deprecation" })
 public class TableroVista extends JFrame implements Observer{
@@ -72,6 +73,12 @@ public class TableroVista extends JFrame implements Observer{
 	private JMenuItem mntmCandidatos;
 	private JMenuItem mntmCandidatosMos;
 	private boolean candidatosAct = false;
+	private JLabel lblGif1;
+	private JLabel lblGif2;
+	private JLabel lblGif3;
+	private JLabel lblGif4;
+	private JLabel lblGif5;
+	private JLabel lblGif6;
 	
 	public static TableroVista getTablero() {
 		if (mTablero == null) mTablero = new TableroVista();
@@ -389,11 +396,41 @@ public class TableroVista extends JFrame implements Observer{
 			panelNorth = new JPanelBackground();
 			panelNorth.setBackground("resources/BJ/north BJ.jpg");
 			GridBagLayout gbl_panelNorth = new GridBagLayout();
-			gbl_panelNorth.columnWidths = new int[]{1024, 0};
-			gbl_panelNorth.rowHeights = new int[]{0, 170, 0};
-			gbl_panelNorth.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+			gbl_panelNorth.columnWidths = new int[]{190, 190, 190, 190, 190, 179, 0};
+			gbl_panelNorth.rowHeights = new int[]{180, -18, 0};
+			gbl_panelNorth.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 			gbl_panelNorth.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 			panelNorth.setLayout(gbl_panelNorth);
+			GridBagConstraints gbc_lblGif1 = new GridBagConstraints();
+			gbc_lblGif1.insets = new Insets(0, 0, 5, 5);
+			gbc_lblGif1.gridx = 0;
+			gbc_lblGif1.gridy = 0;
+			panelNorth.add(getLblGif1(), gbc_lblGif1);
+			GridBagConstraints gbc_lblGif2 = new GridBagConstraints();
+			gbc_lblGif2.insets = new Insets(0, 0, 5, 5);
+			gbc_lblGif2.gridx = 1;
+			gbc_lblGif2.gridy = 0;
+			panelNorth.add(getLblGif2(), gbc_lblGif2);
+			GridBagConstraints gbc_lblGif3 = new GridBagConstraints();
+			gbc_lblGif3.insets = new Insets(0, 0, 5, 5);
+			gbc_lblGif3.gridx = 2;
+			gbc_lblGif3.gridy = 0;
+			panelNorth.add(getLblGif3(), gbc_lblGif3);
+			GridBagConstraints gbc_lblGif4 = new GridBagConstraints();
+			gbc_lblGif4.insets = new Insets(0, 0, 5, 5);
+			gbc_lblGif4.gridx = 3;
+			gbc_lblGif4.gridy = 0;
+			panelNorth.add(getLblGif4(), gbc_lblGif4);
+			GridBagConstraints gbc_lblGif5 = new GridBagConstraints();
+			gbc_lblGif5.insets = new Insets(0, 0, 5, 5);
+			gbc_lblGif5.gridx = 4;
+			gbc_lblGif5.gridy = 0;
+			panelNorth.add(getLblGif5(), gbc_lblGif5);
+			GridBagConstraints gbc_lblGif6 = new GridBagConstraints();
+			gbc_lblGif6.insets = new Insets(0, 0, 5, 0);
+			gbc_lblGif6.gridx = 5;
+			gbc_lblGif6.gridy = 0;
+			panelNorth.add(getLblGif6(), gbc_lblGif6);
 		}
 		return panelNorth;
 	}
@@ -655,5 +692,47 @@ public class TableroVista extends JFrame implements Observer{
 			});
 		}
 		return mntmCandidatosMos;
+	}
+	private JLabel getLblGif1() {
+		if (lblGif1 == null) {
+			lblGif1 = new JLabel("");
+			lblGif1.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas1.gif")));
+		}
+		return lblGif1;
+	}
+	private JLabel getLblGif2() {
+		if (lblGif2 == null) {
+			lblGif2 = new JLabel("");
+			lblGif2.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas2.gif")));
+		}
+		return lblGif2;
+	}
+	private JLabel getLblGif3() {
+		if (lblGif3 == null) {
+			lblGif3 = new JLabel("");
+			lblGif3.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas3.gif")));
+		}
+		return lblGif3;
+	}
+	private JLabel getLblGif4() {
+		if (lblGif4 == null) {
+			lblGif4 = new JLabel("");
+			lblGif4.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas1.gif")));
+		}
+		return lblGif4;
+	}
+	private JLabel getLblGif5() {
+		if (lblGif5 == null) {
+			lblGif5 = new JLabel("");
+			lblGif5.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas2.gif")));
+		}
+		return lblGif5;
+	}
+	private JLabel getLblGif6() {
+		if (lblGif6 == null) {
+			lblGif6 = new JLabel("");
+			lblGif6.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas4.gif")));
+		}
+		return lblGif6;
 	}
 }

@@ -7,27 +7,27 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/joelb/git/Sudoku/libraries/commons-lang3-3.8.1.jar">
+	<classpathentry kind="lib" path="libraries/commons-lang3-3.8.1.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/joelb/git/Sudoku/libraries/commons-logging-1.2.jar">
+	<classpathentry kind="lib" path="libraries/commons-logging-1.2.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/joelb/git/Sudoku/libraries/hsqldb-2.5.0.jar">
+	<classpathentry kind="lib" path="libraries/hsqldb-2.5.0.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/joelb/git/Sudoku/libraries/jackcess-3.0.1.jar">
+	<classpathentry kind="lib" path="libraries/jackcess-3.0.1.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/joelb/git/Sudoku/libraries/ucanaccess-5.0.1.jar">
+	<classpathentry kind="lib" path="libraries/ucanaccess-5.0.1.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
