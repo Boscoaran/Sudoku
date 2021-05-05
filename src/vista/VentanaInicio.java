@@ -25,8 +25,12 @@ public class VentanaInicio {
 	private JTextField textFieldNombre;
 	private JLabel lblNivel;
 	private JComboBox<String> comboBoxNivel;
+	private String user;
+	private boolean vuelta = false;
 	
-	public VentanaInicio() {
+	public VentanaInicio(String u, boolean b) {
+		user = u;
+		vuelta = b;
 		initialize();
 	}
 	
@@ -96,7 +100,7 @@ public class VentanaInicio {
 						if (!textFieldNombre.getText().equals("")) {
 							db.DataUsuarios.getData().comprobarUsuario(textFieldNombre.getText());
 							int nivel = comboBoxNivel.getSelectedIndex();
-							TableroVista.getTablero();
+							new TableroVista();
 							modelo.TableroModelo.getTablero().cargarTablero(++nivel,textFieldNombre.getText());
 							frame.dispose();
 						} else {
@@ -125,6 +129,7 @@ public class VentanaInicio {
 		if (textFieldNombre == null) {
 			textFieldNombre = new JTextField();
 			textFieldNombre.setColumns(10);
+			if (user != null) textFieldNombre.setText(user);
 		}
 		return textFieldNombre;
 	}

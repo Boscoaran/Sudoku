@@ -4,9 +4,11 @@ public class Sudoku {
 	private int id;
 	private int[][] sudokuVacio;
 	private int[][] sudokuSol;
+	private boolean realizado;
 	
 	public Sudoku(int pId) {
 		id = pId;
+		realizado = false;
 	}
 	
 	public int getId() {
@@ -14,11 +16,13 @@ public class Sudoku {
 	}
 	
 	public int[][] getSol() {
-		return sudokuSol;
+		if (!realizado) return sudokuSol;
+		return null;
 	}
 	
 	public int[][] getSudoku() {
-		return sudokuVacio;
+		if (!realizado) return sudokuVacio;
+		else return null;
 	}
 	
 	public void setSudoku(int[][] pSud) {
@@ -27,5 +31,9 @@ public class Sudoku {
 	
 	public void setSolucion(int[][] pSol) {
 		sudokuSol = pSol;
+	}
+	
+	public void setRealizado() {
+		realizado = true;
 	}
 }

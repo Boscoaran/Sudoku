@@ -10,7 +10,9 @@ public class Reloj extends Thread{
 				seg++;
 				if (seg == 60) {
 					min++;
+					seg = 0;
 					if (min == 60) {
+						min = 0;
 						hora++;
 						if (hora == 100) {
 							hora = 0;

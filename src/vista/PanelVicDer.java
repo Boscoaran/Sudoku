@@ -16,6 +16,10 @@ import javax.swing.SwingConstants;
 
 public class PanelVicDer extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private boolean correcto;
 	private String user;
@@ -77,7 +81,7 @@ public class PanelVicDer extends JFrame {
 		btnJugar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new VentanaInicio();
+				new VentanaInicio(user,true);
 				dispose();
 			}
 		});

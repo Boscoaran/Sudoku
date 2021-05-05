@@ -33,4 +33,16 @@ public class Dificultad {
 	public void setSudoku(Sudoku s) {
 		lSudokus.add(s);
 	}
+	
+	public void setRealizado(int id) {
+		int i = 0;
+		boolean enc = false;
+		while (i < lSudokus.size() && !enc) {
+			if (lSudokus.get(i).getId() == id) {
+				lSudokus.get(i).setRealizado();
+				enc = true;
+			}
+			i++;
+		}
+	}
 }

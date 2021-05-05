@@ -61,37 +61,57 @@ public class TableroModelo extends Observable{
 	
 	public void cargarTablero (int dif,String u) {
 		usuario = u;
-		ListaSudokus.getListaSudokus().obtenerListas();
-		//PROVISIONAL//
-		int pId;
-		if (dif == 1) pId = 1;
-		else if (dif == 2) pId = 3;
-		else pId = 4;
-		idSudoku = pId;
-		//int[][] a = ListaSudokus.getListaSudokus().getLSudokus(pId, dif);
-		int[][] a = ListaSudokus.getListaSudokus().getLSoluciones(pId, dif);
-		///////////////
-		dificultad = dif;
-		int i = 0;
-		while (i< tablero.length) {
-			int j = 0;
-			while (j < tablero[0].length) {
-				int val = a[i][j];
-				int[] orgs = this.getOrigenes(i,j);
-				if (val == 0) {
-					tablero[i][j] = new CasillaModelo(false, val, i, j, orgs[0], orgs[1]);
-					
-				} else {
-					tablero[i][j] = new CasillaModelo(true, val,i,j, orgs[0], orgs[1]);
-				}
-				j++;
-			}
-			i++;
+		if (!ListaSudokus.getListaSudokus().estaCargado()) {
+			ListaSudokus.getListaSudokus().obtenerListas();
 		}
-		int [] arg = {0};
-		this.setChanged();
-		this.notifyObservers(arg);
-		
+		boolean hecho = false;
+		int[][] a = new int[9][9];
+		int intento = 1;
+		//PROVISIONAL//
+		while (!hecho) {
+			int pId;
+			if (dif == 1) pId = 1;
+			else if (dif == 2) pId = 3;
+			else pId = 4;
+			idSudoku = pId;
+			//a = ListaSudokus.getListaSudokus().getLSudokus(pId, dif);
+			a = ListaSudokus.getListaSudokus().getLSoluciones(pId, dif);
+			///////////////
+			if (a != null) {
+				hecho = true;
+			} else {
+				if (dif == 3) dif = 1;
+				else dif++;
+				intento++;
+			}
+			if (intento == 4) {
+				this.setChanged();
+				this.notifyObservers("null");
+				break;
+			}
+		}
+		if (hecho) {
+			dificultad = dif;
+			int i = 0;
+			while (i< tablero.length) {
+				int j = 0;
+				while (j < tablero[0].length) {
+					int val = a[i][j];
+					int[] orgs = this.getOrigenes(i,j);
+					if (val == 0) {
+						tablero[i][j] = new CasillaModelo(false, val, i, j, orgs[0], orgs[1]);
+						
+					} else {
+						tablero[i][j] = new CasillaModelo(true, val,i,j, orgs[0], orgs[1]);
+					}
+					j++;
+				}
+				i++;
+			}
+			int [] arg = {0};
+			this.setChanged();
+			this.notifyObservers(arg);
+		}
 	}
 	
 	public CasillaModelo[][] getListaCasillas() {
@@ -110,6 +130,7 @@ public class TableroModelo extends Observable{
 	}
 	
 	public void comprobarResultado() {
+		TableroModelo.estaOn = false;
 		int[] arg = new int[2];
 		arg[0] = 1; //identifica el proceso del resultado
 		//PROVISIONAL//
@@ -133,6 +154,7 @@ public class TableroModelo extends Observable{
 		if (correcto) {
 			arg[1] = 1;
 			calcularPuntos();
+			ListaSudokus.getListaSudokus().setRealizado(idSudoku, dificultad);
 		} else {
 			arg[1] = 0;
 		}
@@ -263,5 +285,9 @@ public class TableroModelo extends Observable{
 		s = seg;
 		this.setChanged();
 		this.notifyObservers(t);
+	}
+	
+	public void eliminarTablero() {
+		TableroModelo.miTablero = null;
 	}
 }

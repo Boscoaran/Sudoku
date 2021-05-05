@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -37,7 +38,6 @@ import javax.swing.SwingConstants;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
-import javax.swing.ImageIcon;
 
 @SuppressWarnings({ "serial", "deprecation" })
 public class TableroVista extends JFrame implements Observer{
@@ -72,19 +72,15 @@ public class TableroVista extends JFrame implements Observer{
 	private JMenuItem mntmCambiarNivel;
 	private JMenuItem mntmCandidatos;
 	private JMenuItem mntmCandidatosMos;
-	private boolean candidatosAct = false;
 	private JLabel lblGif1;
 	private JLabel lblGif2;
 	private JLabel lblGif3;
 	private JLabel lblGif4;
 	private JLabel lblGif5;
 	private JLabel lblGif6;
+	private boolean candidatosAct = false;
 	
-	public static TableroVista getTablero() {
-		if (mTablero == null) mTablero = new TableroVista();
-		return mTablero;
-	}
-	private TableroVista() {
+	public TableroVista() {
 		matrizPaneles = new CasillaVista[9][9];
 		initialize();
 		modelo.TableroModelo.getTablero().addObserver(this);
@@ -543,8 +539,11 @@ public class TableroVista extends JFrame implements Observer{
 			else {
 				((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(s);
 			}
-		}else if (arg instanceof String) {
+		}else if (arg instanceof String && !arg.equals("null")) {
 			this.lblTiempo.setText((String)arg);
+		}else if (arg instanceof String && arg.equals("null")) {
+			JOptionPane.showMessageDialog(null, "No hay más sudokus para ti :(", "Límite de sudokus alcanzado", JOptionPane.ERROR_MESSAGE);
+			frmSudokuRoyaleMaster.dispose();
 		} else {
 			int[] a = (int[]) arg;
 			if (a[0] == 1) {
@@ -552,13 +551,13 @@ public class TableroVista extends JFrame implements Observer{
 					JOptionPane.showMessageDialog(null, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
 					frmSudokuRoyaleMaster.dispose();
 					new PanelVicDer(TableroModelo.getTablero().getUser(), false, 0);
-					
+					TableroModelo.getTablero().eliminarTablero();
 				} else {
 					JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");
 					DataUsuarios.getData().anadirRegistro(TableroModelo.getTablero().getUser(), TableroModelo.getTablero().getId(), TableroModelo.getTablero().getDif(), TableroModelo.getTablero().getPuntos());
 					frmSudokuRoyaleMaster.dispose();
 					new PanelVicDer(TableroModelo.getTablero().getUser(), true, TableroModelo.getTablero().getPuntos());
-					
+					TableroModelo.getTablero().eliminarTablero();
 				}
 			} else if (a[0] == 0) {
 				modelo.CasillaModelo[][] t = modelo.TableroModelo.getTablero().getListaCasillas();
@@ -664,7 +663,7 @@ public class TableroVista extends JFrame implements Observer{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Component[] lCasillas = getTablero().panelTablero.getComponents();
+					Component[] lCasillas = panelTablero.getComponents();
 					for (Component cas: lCasillas) {
 						((CasillaVista) cas).ocultarCandidatos();
 					}

@@ -6,8 +6,11 @@ import java.util.ArrayList;
 public class ListaSudokus {
 	private ArrayList<Dificultad> lSudokus;
 	private static ListaSudokus miListaSudokus;
+	private boolean cargado;
 	
-	private ListaSudokus() {}
+	private ListaSudokus() {
+		cargado = false;
+	}
 	
 	public static ListaSudokus getListaSudokus() {
 		if (miListaSudokus == null) miListaSudokus = new ListaSudokus();
@@ -38,6 +41,23 @@ public class ListaSudokus {
 	
 	public void obtenerListas() {
 		lSudokus = CargadorTableros.getCargadorTableros().cargarTableros();
+		cargado = true;
+	}
+	
+	public void setRealizado(int id, int dif) {
+		int i = 0;
+		boolean enc = false;
+		while (i < lSudokus.size() && !enc) {
+			if (lSudokus.get(i).getDificultad() == dif) {
+				lSudokus.get(i).setRealizado(id);
+				enc = true;
+			}
+			i++;
+		}
+	}
+	
+	public boolean estaCargado() {
+		return cargado;
 	}
 }
 

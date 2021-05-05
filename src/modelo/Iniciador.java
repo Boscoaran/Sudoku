@@ -1,7 +1,5 @@
 package modelo;
 
-
-
 public class Iniciador {
 	public static void main(String[] args) {
 		Iniciador i = new Iniciador();
@@ -12,7 +10,7 @@ public class Iniciador {
 	public Iniciador() {}
 	
 	public void menu() {
-		vista.VentanaInicio v = new vista.VentanaInicio();
+		new vista.VentanaInicio(null,false);
 	}
 	
 }
