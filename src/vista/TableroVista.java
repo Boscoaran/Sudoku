@@ -550,7 +550,7 @@ public class TableroVista extends JFrame implements Observer{
 				if (a[1] == 0) {
 					JOptionPane.showMessageDialog(null, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
 					frmSudokuRoyaleMaster.dispose();
-					new PanelVicDer(TableroModelo.getTablero().getUser(), false, 0);
+					new PanelVictoria(TableroModelo.getTablero().getUser(), false, 0);
 					TableroModelo.getTablero().eliminarTablero();
 				} else {
 					JOptionPane.showMessageDialog(null, "Has completado el sudoku de manera satisfactoria, mis dieses");

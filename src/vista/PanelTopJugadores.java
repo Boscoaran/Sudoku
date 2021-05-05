@@ -104,7 +104,7 @@ public class PanelTopJugadores extends JFrame implements Observer{
 		btnAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new PanelVicDer(u,c,points);
+				new PanelVictoria(u,c,points);
 				dispose();
 			}
 		});

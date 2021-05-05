@@ -2,6 +2,8 @@ package vista;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
@@ -107,18 +109,40 @@ public class PanelVictoria {
 	private JButton getBtnReplay() {
 		if (btnReplay == null) {
 			btnReplay = new JButton("Jugar de nuevo");
+			btnReplay.addMouseListener(new MouseAdapter() {
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					new VentanaInicio(user, true);
+				}
+			});
 		}
 		return btnReplay;
 	}
 	private JButton getBtnRanking() {
 		if (btnRanking == null) {
 			btnRanking = new JButton("Ranking");
+			btnRanking.addMouseListener(new MouseAdapter() {
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					new PanelTopJugadores(user, correcto, puntos);
+					frame.dispose();
+				}
+			});
 		}
 		return btnRanking;
 	}
 	private JButton getBtnSalir() {
 		if (btnSalir == null) {
 			btnSalir = new JButton("Salir");
+			btnSalir.addMouseListener(new MouseAdapter() {
+			
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					frame.dispose();
+				}
+			});
 		}
 		return btnSalir;
 	}
