@@ -293,4 +293,30 @@ public class TableroModelo extends Observable{
 	public void eliminarTablero() {
 		TableroModelo.miTablero = null;
 	}
+	
+	public void soleCandidate() {
+		boolean enc = false;
+		int i = 0;
+		while (i < tablero.length && !enc) {
+			int j = 0;
+			while (j < tablero[0].length && !enc) {
+				if (tablero[i][j].getCandidatos().size() == 1) {
+					String st = "Estrategia: SoleCandidate -> Casilla (" + i+1 + ", " + j+1 + ") -> Valor: " + tablero[i][j].getValor();
+					enc = true;
+					setChanged();
+					notifyObservers(st);
+				}
+				j++;	
+			}
+			i++;
+		}
+	}
+	
+	public void uniqueCandidate() {
+		boolean enc = false;
+		int vuelta = 0;
+		while (vuelta < 9 && !enc) {
+		
+		}
+	}
 }

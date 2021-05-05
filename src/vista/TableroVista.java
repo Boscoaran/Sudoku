@@ -44,7 +44,6 @@ import javax.swing.JMenu;
 public class TableroVista extends JFrame implements Observer{
 
 	private JFrame frmSudokuRoyaleMaster;
-	private static TableroVista mTablero;
 	private JPanelBackground panelDatos;
 	private JPanelBackground panelTablero;
 	private Border bordeGrueso = new LineBorder(new Color(132,178,54), 5);
