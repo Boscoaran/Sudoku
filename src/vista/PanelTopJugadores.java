@@ -1,6 +1,8 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -21,6 +23,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 @SuppressWarnings("deprecation")
 public class PanelTopJugadores extends JFrame implements Observer{
@@ -31,9 +34,10 @@ public class PanelTopJugadores extends JFrame implements Observer{
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel etiq[][];
-	private JPanel panel_1;
+	private JPanel panelDatos;
 	private GridBagConstraints cons;
 	private JButton btnAtras;
+	private JLabel lblNewLabel_1;
 
 	/**
 	 * Launch the application.
@@ -56,31 +60,43 @@ public class PanelTopJugadores extends JFrame implements Observer{
 	 */
 	
 	public PanelTopJugadores(String u, boolean c, double points) {
+		setResizable(false);
 		
 		etiq = new JLabel[10][3];
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 343);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		modelo.CatalogoUsuarios.getCatalogoUsuarios().addObserver(this);
+		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.NORTH);
+		JPanel panelTitulo = new JPanel();
+		panelTitulo.setBounds(5, 0, 484, 39);
+		panelTitulo.setOpaque(false);
+		contentPane.add(panelTitulo);
 		
-		JLabel lblNewLabel = new JLabel("Hall of Fame");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel.add(lblNewLabel);
+		JLabel lblTitulo = new JLabel("Hall of Fame");
+		lblTitulo.setForeground(new Color(234,183,69));
+		lblTitulo.setFont(new Font("Gang of Three", Font.PLAIN, 28));
+		panelTitulo.add(lblTitulo);
 		
-		panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.CENTER);
-		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		panelDatos = new JPanel();
+		panelDatos.setBounds(5, 39, 484, 254);
+		panelDatos.setOpaque(false);
+		contentPane.add(panelDatos);
+		GridBagLayout gbl_panelDatos = new GridBagLayout();
 		cons = new GridBagConstraints();
-		panel_1.setLayout(gbl_panel_1);
+		panelDatos.setLayout(gbl_panelDatos);
 		
 		btnAtras = new JButton("Atr\u00E1s");
-		contentPane.add(btnAtras, BorderLayout.SOUTH);
+		btnAtras.setBounds(5, 284, 484, 32);
+		contentPane.add(btnAtras);
+		
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(PanelTopJugadores.class.getResource("/BJ/fondo estandar 1 resize.jpg")));
+		lblNewLabel_1.setBounds(5, 0, 484, 316);
+		contentPane.add(lblNewLabel_1);
 		btnAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -102,35 +118,38 @@ public class PanelTopJugadores extends JFrame implements Observer{
 				 if (j == 0) {
 					JLabel lblPos = new JLabel(i+1 + ".");
 					lblPos.setHorizontalAlignment(SwingConstants.RIGHT);
-					lblPos.setFont(new Font("Tahoma", Font.PLAIN, 16));
+					lblPos.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+					lblPos.setForeground(new Color(234,183,69));
 					cons.gridx = 0;
 					cons.gridy = i;
 					cons.gridwidth = 1;
 					cons.gridheight = 1;
 					cons.weightx = 0.1;
-					panel_1.add(lblPos,cons);
+					panelDatos.add(lblPos,cons);
 					etiq[i][j] = lblPos;
 				 } else if (j == 1) {
 					JLabel lblJugador = new JLabel("Etiq_Jugador" + i);
 					lblJugador.setHorizontalAlignment(SwingConstants.LEFT);
-					lblJugador.setFont(new Font("Tahoma", Font.PLAIN, 16));
+					lblJugador.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+					lblJugador.setForeground(new Color(234,183,69));
 					cons.gridx = 1;
 					cons.gridy = i;
 					cons.gridwidth = 1;
 					cons.gridheight = 1;
 					cons.weightx = 0.1;
-					panel_1.add(lblJugador,cons);
+					panelDatos.add(lblJugador,cons);
 					etiq[i][j] = lblJugador;
 				} else {
 					JLabel lblPuntuacion = new JLabel("Etiq_Puntuacion" + i);
 					lblPuntuacion.setHorizontalAlignment(SwingConstants.CENTER);
-					lblPuntuacion.setFont(new Font("Tahoma", Font.PLAIN, 16));
+					lblPuntuacion.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+					lblPuntuacion.setForeground(new Color(234,183,69));
 					cons.gridx = 2;
 					cons.gridy = i;
 					cons.gridwidth = 1;
 					cons.gridheight = 1;
 					cons.weightx = 0.2;
-					panel_1.add(lblPuntuacion,cons);
+					panelDatos.add(lblPuntuacion,cons);
 					etiq[i][j] = lblPuntuacion;
 					cons.weightx = 0.0;
 					cons.gridwidth = 0;
