@@ -49,7 +49,7 @@ public class PanelAyuda extends JFrame {
 		btnCandidatosGlobal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				modelo.TableroModelo.getTablero().calcularCandidatosGlobal();
+				modelo.TableroModelo.getTablero().calcularCandidatosGlobal(true);
 				dispose();
 			}
 		});
@@ -63,7 +63,7 @@ public class PanelAyuda extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (btnCandidatosUno.isEnabled()) {
 					int[] coords = cas.getCoords();
-					modelo.TableroModelo.getTablero().calcularCandidatos(coords[0]-1, coords[1]-1);
+					modelo.TableroModelo.getTablero().calcularCandidatos(coords[0]-1, coords[1]-1, true);
 					dispose();
 				}
 			}

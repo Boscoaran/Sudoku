@@ -74,8 +74,8 @@ public class TableroModelo extends Observable{
 			else if (dif == 2) pId = 3;
 			else pId = 4;
 			idSudoku = pId;
-			//a = ListaSudokus.getListaSudokus().getLSudokus(pId, dif);
-			a = ListaSudokus.getListaSudokus().getLSoluciones(pId, dif);
+			a = ListaSudokus.getListaSudokus().getLSudokus(pId, dif);
+			//a = ListaSudokus.getListaSudokus().getLSoluciones(pId, dif);
 			///////////////
 			if (a != null) {
 				hecho = true;
@@ -200,18 +200,18 @@ public class TableroModelo extends Observable{
 		}
 		return orgs;
 	}
-	public void calcularCandidatos(int x, int y) {
+	public void calcularCandidatos(int x, int y, boolean mostrar) {
 		ArrayList<Integer> candidatos= new ArrayList<Integer>();
 		for (int aux=1; aux<10; aux++){
 			candidatos.add(aux);
 		}
-		for (int i=1; i<9; i++) {
+		for (int i=0; i<9; i++) {
 			int ind = candidatos.indexOf(tablero[i][y].getValor());
 			if (ind!=-1){
 				candidatos.remove(ind);
 			}
 		}
-		for (int j=1; j<9; j++) {
+		for (int j=0; j<9; j++) {
 			int ind = candidatos.indexOf(tablero[x][j].getValor());
 			if (ind!=-1){
 				candidatos.remove(ind);
@@ -239,15 +239,18 @@ public class TableroModelo extends Observable{
 		coords.add(x);
 		coords.add(y);
 		b.add(coords);
-		this.setChanged();
-		this.notifyObservers(b);
+		if (mostrar) {
+			this.setChanged();
+			this.notifyObservers(b);
+		}
+		
 	}
 	
-	public void calcularCandidatosGlobal() {
+	public void calcularCandidatosGlobal(boolean mostrar) {
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero.length; j++) {
 				if (tablero[i][j].getValor() == 0)
-					calcularCandidatos(i, j);
+					calcularCandidatos(i, j,mostrar);
 			}
 		}
 	}

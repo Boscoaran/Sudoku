@@ -81,6 +81,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel lblGif6;
 	private boolean candidatosAct = false;
 	private Dimension tamañoPantalla;
+	private boolean mostrarCandidatos = false;
 	
 	public TableroVista() {
 		matrizPaneles = new CasillaVista[9][9];
@@ -94,10 +95,12 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster = new JFrame();
 		frmSudokuRoyaleMaster.setBackground(Color.BLACK);
 		frmSudokuRoyaleMaster.setTitle("SUDOKU ROYALE MASTER");
-		frmSudokuRoyaleMaster.setResizable(true);
 		tamañoPantalla=Toolkit.getDefaultToolkit().getScreenSize();
 		frmSudokuRoyaleMaster.setMinimumSize(new Dimension((int)(tamañoPantalla.width*0.5),(int)(tamañoPantalla.height*0.8)));
 		frmSudokuRoyaleMaster.setBounds(0,0,(int)(tamañoPantalla.width*0.6), (int)(tamañoPantalla.height*0.9));
+		frmSudokuRoyaleMaster.setSize((int)(tamañoPantalla.width*0.75), (int)(tamañoPantalla.height*0.75));
+		System.out.println(tamañoPantalla.width);
+		System.out.println(tamañoPantalla.height);
 		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSudokuRoyaleMaster.getContentPane().setLayout(new BorderLayout(0, 0));
 		frmSudokuRoyaleMaster.getContentPane().add(getPanelWest(), BorderLayout.WEST);
@@ -304,7 +307,7 @@ public class TableroVista extends JFrame implements Observer{
 						btnModificar.setEnabled(false);
 						textFieldCandidatos.setEnabled(false);
 						textFieldValor.setEnabled(false);
-						if (candidatosAct) modelo.TableroModelo.getTablero().calcularCandidatosGlobal();
+						if (candidatosAct) modelo.TableroModelo.getTablero().calcularCandidatosGlobal(mostrarCandidatos);
 					}
 					}
 				}
@@ -572,6 +575,7 @@ public class TableroVista extends JFrame implements Observer{
 							matrizPaneles[i][j].setEnabled(false);
 						}
 					}
+					TableroModelo.getTablero().calcularCandidatosGlobal(mostrarCandidatos);
 				}
 			
 			} else if (a[0] == 2) {
@@ -685,7 +689,8 @@ public class TableroVista extends JFrame implements Observer{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					modelo.TableroModelo.getTablero().calcularCandidatosGlobal();
+					mostrarCandidatos = true;
+					modelo.TableroModelo.getTablero().calcularCandidatosGlobal(mostrarCandidatos);
 					candidatosAct = true;
 					mnPartida.add(getMntmOcultarCand());
 					mnPartida.remove(mntmCandidatosMos);
