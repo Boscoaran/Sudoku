@@ -39,6 +39,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 @SuppressWarnings({ "serial", "deprecation" })
 public class TableroVista extends JFrame implements Observer{
@@ -92,14 +94,20 @@ public class TableroVista extends JFrame implements Observer{
 		
 	private void initialize() {
 		frmSudokuRoyaleMaster = new JFrame();
+		frmSudokuRoyaleMaster.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				Component[] lCas = panelTablero.getComponents();
+				for (Component c: lCas) {
+					((CasillaVista)c).tamañoLetra(frmSudokuRoyaleMaster.getHeight(), frmSudokuRoyaleMaster.getWidth());
+				}
+			}
+		});
 		frmSudokuRoyaleMaster.setBackground(Color.BLACK);
 		frmSudokuRoyaleMaster.setTitle("SUDOKU ROYALE MASTER");
 		tamañoPantalla=Toolkit.getDefaultToolkit().getScreenSize();
 		frmSudokuRoyaleMaster.setMinimumSize(new Dimension((int)(tamañoPantalla.width*0.5),(int)(tamañoPantalla.height*0.8)));
 		frmSudokuRoyaleMaster.setBounds(0,0,(int)(tamañoPantalla.width*0.6), (int)(tamañoPantalla.height*0.9));
-		frmSudokuRoyaleMaster.setSize((int)(tamañoPantalla.width*0.75), (int)(tamañoPantalla.height*0.75));
-		System.out.println(tamañoPantalla.width);
-		System.out.println(tamañoPantalla.height);
 		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSudokuRoyaleMaster.getContentPane().setLayout(new BorderLayout(0, 0));
 		frmSudokuRoyaleMaster.getContentPane().add(getPanelWest(), BorderLayout.WEST);
@@ -389,7 +397,6 @@ public class TableroVista extends JFrame implements Observer{
 	}
 	
 	
-	
 ///////////////////////////////////////PANEL TITULO///////////////////////////////////////////////	
 	
 	private JPanelBackground getPanelNorth() {
@@ -472,6 +479,7 @@ public class TableroVista extends JFrame implements Observer{
 			for (int i=1; i<10; i++) {
 				for (int j=1; j<10; j++) {
 					CasillaVista casilla = new CasillaVista(i,j);
+					casilla.tamañoLetra(frmSudokuRoyaleMaster.getHeight(), frmSudokuRoyaleMaster.getWidth());
 					panelTablero.add(casilla);
 					casilla.addMouseListener(new MouseAdapter() {
 						@Override
