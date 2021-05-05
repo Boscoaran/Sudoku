@@ -80,7 +80,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel lblGif5;
 	private JLabel lblGif6;
 	private boolean candidatosAct = false;
-	private Dimension tamañoPantalla= Toolkit.getDefaultToolkit().getScreenSize();
+	private Dimension tamañoPantalla;
 	
 	public TableroVista() {
 		matrizPaneles = new CasillaVista[9][9];
@@ -95,8 +95,9 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.setBackground(Color.BLACK);
 		frmSudokuRoyaleMaster.setTitle("SUDOKU ROYALE MASTER");
 		frmSudokuRoyaleMaster.setResizable(true);
-		frmSudokuRoyaleMaster.setMinimumSize(new Dimension(1153,941));
-		frmSudokuRoyaleMaster.setSize((int)(tamañoPantalla.width*0.75), (int)(tamañoPantalla.height*0.75));
+		tamañoPantalla=Toolkit.getDefaultToolkit().getScreenSize();
+		frmSudokuRoyaleMaster.setMinimumSize(new Dimension((int)(tamañoPantalla.width*0.5),(int)(tamañoPantalla.height*0.8)));
+		frmSudokuRoyaleMaster.setBounds(0,0,(int)(tamañoPantalla.width*0.6), (int)(tamañoPantalla.height*0.9));
 		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSudokuRoyaleMaster.getContentPane().setLayout(new BorderLayout(0, 0));
 		frmSudokuRoyaleMaster.getContentPane().add(getPanelWest(), BorderLayout.WEST);
