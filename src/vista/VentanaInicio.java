@@ -27,6 +27,7 @@ public class VentanaInicio {
 	private JComboBox<String> comboBoxNivel;
 	private String user;
 	private boolean vuelta = false;
+	private static Font go3;
 	
 	public VentanaInicio(String u, boolean b) {
 		user = u;
@@ -36,6 +37,7 @@ public class VentanaInicio {
 	
 	
 	private void initialize() {
+		go3 = AddFont.createFont();
 		frame = new JFrame();
 		frame.setBounds(100, 100, 834, 506);
 		frame.setTitle("SUDOKU ROYALE MASTER");
@@ -46,6 +48,11 @@ public class VentanaInicio {
 		frame.setLocationRelativeTo(null);
 		this.frame.setVisible(true);
 	}
+	
+	public static Font getFuente() {
+		return go3;
+	}
+	
 	private JPanelBackground getPanelCentro() {
 		if (panelCentro == null) {
 			panelCentro = new JPanelBackground();
@@ -120,7 +127,7 @@ public class VentanaInicio {
 	private JLabel getLblNombre() {
 		if (lblNombre == null) {
 			lblNombre = new JLabel("Nombre:");
-			lblNombre.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+			lblNombre.setFont(go3);
 			lblNombre.setForeground(new Color(234,183,69));
 		}
 		return lblNombre;
@@ -136,7 +143,7 @@ public class VentanaInicio {
 	private JLabel getLblNivel() {
 		if (lblNivel == null) {
 			lblNivel = new JLabel("Nivel:");
-			lblNivel.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+			lblNivel.setFont(go3);
 			lblNivel.setForeground(new Color(234,183,69));
 		}
 		return lblNivel;

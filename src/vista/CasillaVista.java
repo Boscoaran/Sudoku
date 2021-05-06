@@ -2,12 +2,15 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
+import java.awt.FlowLayout;
 
 public class CasillaVista extends JPanel{
 	
@@ -21,6 +24,8 @@ public class CasillaVista extends JPanel{
 	private JLabel candidatosLabel;
 	private int x;
 	private int y;
+	private Font go3 = VentanaInicio.getFuente();
+	private Dimension sZ=Toolkit.getDefaultToolkit().getScreenSize();
 
 	public CasillaVista(int pX, int pY) {
 		x=pX;
@@ -44,6 +49,8 @@ public class CasillaVista extends JPanel{
 	
 	public JPanel getCandidatosPanel() {
 			candidatosPanel = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) candidatosPanel.getLayout();
+			flowLayout.setHgap(3);
 			candidatosPanel.add(getCandidatosLabel());
 			candidatosPanel.setName("Panel candidatos " + x + " " + y );
 			candidatosPanel.setOpaque(false);
@@ -52,7 +59,7 @@ public class CasillaVista extends JPanel{
 	
 	public JLabel getCandidatosLabel() {
 			candidatosLabel = new JLabel();
-			candidatosLabel.setFont(new Font("Gang of Three", Font.PLAIN, 15));
+			candidatosLabel.setFont(go3.deriveFont(sZ.width/130f));
 			candidatosLabel.setForeground(new Color(248,221,161));
 			candidatosLabel.setText(" ");
 		return candidatosLabel;
@@ -65,12 +72,16 @@ public class CasillaVista extends JPanel{
 	}
 	public JLabel getValorLabel() {
 			valorLabel= new JLabel();
-			valorLabel.setFont(new Font("Gang of Three", Font.PLAIN, 30));
+			valorLabel.setFont(go3.deriveFont(sZ.width/60f));
 			valorLabel.setForeground(new Color(234,183,69));
 			valorLabel.setText("");
 		return valorLabel;
 	}
 	
+	public void tamañoLetra(int ref, int ref2) {
+		valorLabel.setFont(valorLabel.getFont().deriveFont(ref/30f));
+		candidatosLabel.setFont(valorLabel.getFont().deriveFont(ref2/80f));
+	}
 	private Border borde() {
 		Border borde = null;
 		int u=1,d=1,r=1,l=1;

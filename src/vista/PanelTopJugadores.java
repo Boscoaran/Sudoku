@@ -37,7 +37,8 @@ public class PanelTopJugadores extends JFrame implements Observer{
 	private JPanel panelDatos;
 	private GridBagConstraints cons;
 	private JButton btnAtras;
-	private JLabel lblNewLabel_1;
+	private Font go3 = VentanaInicio.getFuente();
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -64,7 +65,7 @@ public class PanelTopJugadores extends JFrame implements Observer{
 		
 		etiq = new JLabel[10][3];
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 350);
+		setBounds(100, 100, 500, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -78,11 +79,11 @@ public class PanelTopJugadores extends JFrame implements Observer{
 		
 		JLabel lblTitulo = new JLabel("Hall of Fame");
 		lblTitulo.setForeground(new Color(234,183,69));
-		lblTitulo.setFont(new Font("Gang of Three", Font.PLAIN, 28));
+		lblTitulo.setFont(go3);
 		panelTitulo.add(lblTitulo);
 		
 		panelDatos = new JPanel();
-		panelDatos.setBounds(5, 39, 484, 245);
+		panelDatos.setBounds(5, 37, 484, 322);
 		panelDatos.setOpaque(false);
 		contentPane.add(panelDatos);
 		GridBagLayout gbl_panelDatos = new GridBagLayout();
@@ -94,13 +95,13 @@ public class PanelTopJugadores extends JFrame implements Observer{
 		cons = new GridBagConstraints();
 		
 		btnAtras = new JButton("Atr\u00E1s");
-		btnAtras.setBounds(5, 284, 484, 32);
+		btnAtras.setBounds(174, 361, 111, 32);
 		contentPane.add(btnAtras);
 		
-		lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(PanelTopJugadores.class.getResource("/BJ/fondo estandar 1 resize.jpg")));
-		lblNewLabel_1.setBounds(5, 0, 484, 316);
-		contentPane.add(lblNewLabel_1);
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(PanelTopJugadores.class.getResource("/BJ/fondo estandar v.jpg")));
+		lblNewLabel.setBounds(-22, 0, 557, 433);
+		contentPane.add(lblNewLabel);
 		btnAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -122,7 +123,7 @@ public class PanelTopJugadores extends JFrame implements Observer{
 				 if (j == 0) {
 					JLabel lblPos = new JLabel(i+1 + ".");
 					lblPos.setHorizontalAlignment(SwingConstants.RIGHT);
-					lblPos.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+					lblPos.setFont(go3);
 					lblPos.setForeground(new Color(234,183,69));
 					cons.gridx = 0;
 					cons.gridy = i;
@@ -134,7 +135,7 @@ public class PanelTopJugadores extends JFrame implements Observer{
 				 } else if (j == 1) {
 					JLabel lblJugador = new JLabel("Etiq_Jugador" + i);
 					lblJugador.setHorizontalAlignment(SwingConstants.LEFT);
-					lblJugador.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+					lblJugador.setFont(go3);
 					lblJugador.setForeground(new Color(234,183,69));
 					cons.gridx = 1;
 					cons.gridy = i;
@@ -146,7 +147,7 @@ public class PanelTopJugadores extends JFrame implements Observer{
 				} else {
 					JLabel lblPuntuacion = new JLabel("Etiq_Puntuacion" + i);
 					lblPuntuacion.setHorizontalAlignment(SwingConstants.CENTER);
-					lblPuntuacion.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+					lblPuntuacion.setFont(go3);
 					lblPuntuacion.setForeground(new Color(234,183,69));
 					cons.gridx = 2;
 					cons.gridy = i;
