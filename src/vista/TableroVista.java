@@ -104,6 +104,7 @@ public class TableroVista extends JFrame implements Observer{
 		
 	private void initialize() {
 		frmSudokuRoyaleMaster = new JFrame();
+		go3 = AddFont.createFont();
 		frmSudokuRoyaleMaster.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -128,13 +129,6 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.setLocationRelativeTo(null);
 		frmSudokuRoyaleMaster.setJMenuBar(getMenuBar_1());
 		frmSudokuRoyaleMaster.setVisible(true);
-		try {
-			go3 = Font.createFont(Font.TRUETYPE_FONT, new File("resources/go3v2.ttf"));
-			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources/go3v2.ttf")));
-		} catch (IOException | FontFormatException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	
@@ -220,7 +214,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel getLblCandidatos() {
 		if (lblCandidatos == null) {
 			lblCandidatos = new JLabel("Candidatos:");
-			lblCandidatos.setFont(new Font("Dialog", Font.PLAIN, 18));
+			lblCandidatos.setFont(go3.deriveFont(18f));
 			lblCandidatos.setForeground(new Color(234,183,69));
 		}
 		return lblCandidatos;
@@ -229,7 +223,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel getLblValor() {
 		if (lblValor == null) {
 			lblValor = new JLabel("Valor:");
-			lblValor.setFont(new Font("Dialog", Font.PLAIN, 18));
+			lblValor.setFont(go3.deriveFont(18f));
 			lblValor.setForeground(new Color(234,183,69));
 		}
 		return lblValor;
@@ -270,7 +264,7 @@ public class TableroVista extends JFrame implements Observer{
 		if (lblTiempo == null) {
 			lblTiempo = new JLabel("00:00:00");
 			lblTiempo.setForeground(new Color(234,183,69));
-			lblTiempo.setFont(new Font("Gang of Three", Font.PLAIN, 50));
+			lblTiempo.setFont(go3.deriveFont(50f));
 			lblTiempo.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 		return lblTiempo;
