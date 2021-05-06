@@ -27,8 +27,9 @@ public class PanelVictoria {
 	private double puntos;
 	private boolean correcto;
 	private JPanel panelInfo;
-	private JLabel lblInfo;
 	private JLabel icon;
+	private Font go3 = VentanaInicio.getFuente();
+	private JLabel lblInfo_1;
 
 	/**
 	 * Create the application.
@@ -46,7 +47,7 @@ public class PanelVictoria {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 415, 250);
+		frame.setBounds(100, 100, 490, 250);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getPanelNorth());
@@ -60,7 +61,7 @@ public class PanelVictoria {
 	private JPanel getPanelNorth() {
 		if (panelNorth == null) {
 			panelNorth = new JPanel();
-			panelNorth.setBounds(0, 0, 414, 34);
+			panelNorth.setBounds(0, 0, 484, 52);
 			panelNorth.add(getLblTitulo());
 			panelNorth.setOpaque(false);
 		}
@@ -69,7 +70,7 @@ public class PanelVictoria {
 	private JLabel getLblTitulo() {
 		if (lblTitulo == null) {
 			lblTitulo = new JLabel("Enhorabuena, has resuelto el sudoku");
-			lblTitulo.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+			lblTitulo.setFont(go3);
 			lblTitulo.setForeground(new Color(234,183,69));
 			if (correcto) {
 				lblTitulo.setText("Enhorabuena, has resuelto el Sudoku");
@@ -82,7 +83,7 @@ public class PanelVictoria {
 	private JPanel getPanelSouth() {
 		if (panelSouth == null) {
 			panelSouth = new JPanel();
-			panelSouth.setBounds(0, 166, 414, 30);
+			panelSouth.setBounds(0, 166, 484, 55);
 			panelSouth.add(getBtnReplay());
 			panelSouth.add(getBtnRanking());
 			panelSouth.add(getBtnSalir());
@@ -133,31 +134,28 @@ public class PanelVictoria {
 	private JPanel getPanelInfo() {
 		if (panelInfo == null) {
 			panelInfo = new JPanel();
-			panelInfo.setBounds(0, 34, 414, 134);
-			panelInfo.setLayout(new BorderLayout(0, 0));
-			panelInfo.add(getLblInfo());
+			panelInfo.setBounds(0, 34, 484, 134);
 			panelInfo.setOpaque(false);
+			panelInfo.setLayout(new BorderLayout(0, 0));
+			panelInfo.add(getLblInfo_1_1());
 		}
 		return panelInfo;
-	}
-	private JLabel getLblInfo() {
-		if (lblInfo == null) {
-			lblInfo = new JLabel("");
-			lblInfo.setHorizontalAlignment(SwingConstants.CENTER);
-			lblInfo.setFont(new Font("Gang of Three", Font.PLAIN, 20));
-			lblInfo.setForeground(new Color(234,183,69));
-			if (correcto) {
-				lblInfo.setText(user+", tu puntuación es "+ puntos);
-			}
-		}
-		return lblInfo;
 	}
 	private JLabel getIcon() {
 		if (icon == null) {
 			icon = new JLabel("");
-			icon.setIcon(new ImageIcon(PanelVictoria.class.getResource("/BJ/fondo estandar 1 resize.jpg")));
-			icon.setBounds(0, 0, 414, 232);
+			icon.setIcon(new ImageIcon(PanelVictoria.class.getResource("/BJ/fondo estandar.jpg")));
+			icon.setBounds(0, 0, 484, 232);
 		}
 		return icon;
+	}
+	private JLabel getLblInfo_1_1() {
+		if (lblInfo_1 == null) {
+			lblInfo_1 = new JLabel(user +": tu puntuaci\u00F3n es de: "+ puntos);
+			lblInfo_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblInfo_1.setForeground(new Color(234, 183, 69));
+			lblInfo_1.setFont(go3);
+		}
+		return lblInfo_1;
 	}
 }

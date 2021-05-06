@@ -74,8 +74,8 @@ public class TableroModelo extends Observable{
 			else if (dif == 2) pId = 3;
 			else pId = 4;
 			idSudoku = pId;
-			a = ListaSudokus.getListaSudokus().getLSudokus(pId, dif);
-			//a = ListaSudokus.getListaSudokus().getLSoluciones(pId, dif);
+			//a = ListaSudokus.getListaSudokus().getLSudokus(pId, dif);
+			a = ListaSudokus.getListaSudokus().getLSoluciones(pId, dif);
 			///////////////
 			if (a != null) {
 				hecho = true;

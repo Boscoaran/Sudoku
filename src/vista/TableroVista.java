@@ -88,11 +88,11 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel lblGif5;
 	private JLabel lblGif6;
 	private boolean candidatosAct = false;
-	private Dimension tamañoPantalla;
 	private boolean mostrarCandidatos = false;
-	public Font go3;
+	private static Font go3 = VentanaInicio.getFuente();;
 	private JPanel panelAyuda;
 	private JTextArea textArea;
+	private Dimension tamañoPantalla=Toolkit.getDefaultToolkit().getScreenSize();
 	
 	public TableroVista() {
 		matrizPaneles = new CasillaVista[9][9];
@@ -104,19 +104,17 @@ public class TableroVista extends JFrame implements Observer{
 		
 	private void initialize() {
 		frmSudokuRoyaleMaster = new JFrame();
-		go3 = AddFont.createFont();
 		frmSudokuRoyaleMaster.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
 				Component[] lCas = panelTablero.getComponents();
-				/*for (Component c: lCas) {
+				for (Component c: lCas) {
 					((CasillaVista)c).tamañoLetra(frmSudokuRoyaleMaster.getHeight(), frmSudokuRoyaleMaster.getWidth());
-				}*/
+				}
 			}
 		});
 		frmSudokuRoyaleMaster.setBackground(Color.BLACK);
 		frmSudokuRoyaleMaster.setTitle("SUDOKU ROYALE MASTER");
-		tamañoPantalla=Toolkit.getDefaultToolkit().getScreenSize();
 		frmSudokuRoyaleMaster.setMinimumSize(new Dimension((int)(tamañoPantalla.width*0.5),(int)(tamañoPantalla.height*0.8)));
 		frmSudokuRoyaleMaster.setBounds(0,0,(int)(tamañoPantalla.width*0.6), (int)(tamañoPantalla.height*0.9));
 		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -130,6 +128,7 @@ public class TableroVista extends JFrame implements Observer{
 		frmSudokuRoyaleMaster.setJMenuBar(getMenuBar_1());
 		frmSudokuRoyaleMaster.setVisible(true);
 	}
+	
 	
 	
 //////////////////////////PANEL DATOS////////////////////////////////////////////	
