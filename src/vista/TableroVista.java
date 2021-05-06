@@ -47,6 +47,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 import java.io.IOException;
+import javax.swing.JTextArea;
 
 @SuppressWarnings({ "serial", "deprecation" })
 public class TableroVista extends JFrame implements Observer{
@@ -90,6 +91,8 @@ public class TableroVista extends JFrame implements Observer{
 	private Dimension tamañoPantalla;
 	private boolean mostrarCandidatos = false;
 	public Font go3;
+	private JPanel panelAyuda;
+	private JTextArea textArea;
 	
 	public TableroVista() {
 		matrizPaneles = new CasillaVista[9][9];
@@ -105,9 +108,9 @@ public class TableroVista extends JFrame implements Observer{
 			@Override
 			public void componentResized(ComponentEvent e) {
 				Component[] lCas = panelTablero.getComponents();
-				for (Component c: lCas) {
+				/*for (Component c: lCas) {
 					((CasillaVista)c).tamañoLetra(frmSudokuRoyaleMaster.getHeight(), frmSudokuRoyaleMaster.getWidth());
-				}
+				}*/
 			}
 		});
 		frmSudokuRoyaleMaster.setBackground(Color.BLACK);
@@ -130,7 +133,7 @@ public class TableroVista extends JFrame implements Observer{
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resources/go3v2.ttf")));
 		} catch (IOException | FontFormatException e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 	
@@ -194,6 +197,13 @@ public class TableroVista extends JFrame implements Observer{
 			gbc_panel.gridx = 1;
 			gbc_panel.gridy = 8;
 			panelDatos.add(getPanelTiempo(), gbc_panel);
+			GridBagConstraints gbc_panelAyuda = new GridBagConstraints();
+			gbc_panelAyuda.gridwidth = 2;
+			gbc_panelAyuda.insets = new Insets(0, 0, 0, 5);
+			gbc_panelAyuda.fill = GridBagConstraints.VERTICAL;
+			gbc_panelAyuda.gridx = 1;
+			gbc_panelAyuda.gridy = 9;
+			panelDatos.add(getPanelAyuda(), gbc_panelAyuda);
 		}
 		return panelDatos;
 	}	
@@ -210,7 +220,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel getLblCandidatos() {
 		if (lblCandidatos == null) {
 			lblCandidatos = new JLabel("Candidatos:");
-			lblCandidatos.setFont(new Font("go3", Font.PLAIN, 20));
+			lblCandidatos.setFont(new Font("Dialog", Font.PLAIN, 18));
 			lblCandidatos.setForeground(new Color(234,183,69));
 		}
 		return lblCandidatos;
@@ -219,7 +229,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel getLblValor() {
 		if (lblValor == null) {
 			lblValor = new JLabel("Valor:");
-			lblValor.setFont(new Font("Gang of Three", Font.PLAIN, 20));
+			lblValor.setFont(new Font("Dialog", Font.PLAIN, 18));
 			lblValor.setForeground(new Color(234,183,69));
 		}
 		return lblValor;
@@ -405,7 +415,7 @@ public class TableroVista extends JFrame implements Observer{
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					//new PanelAyuda(select);
-					TableroModelo.getTablero().uniqueCandidate();
+					TableroModelo.getTablero().solicitarAyuda();
 				}
 			});
 		}
@@ -495,7 +505,7 @@ public class TableroVista extends JFrame implements Observer{
 			for (int i=1; i<10; i++) {
 				for (int j=1; j<10; j++) {
 					CasillaVista casilla = new CasillaVista(i,j);
-					casilla.tamañoLetra(frmSudokuRoyaleMaster.getHeight(), frmSudokuRoyaleMaster.getWidth());
+					//casilla.tamañoLetra(frmSudokuRoyaleMaster.getHeight(), frmSudokuRoyaleMaster.getWidth());
 					panelTablero.add(casilla);
 					casilla.addMouseListener(new MouseAdapter() {
 						@Override
@@ -568,11 +578,13 @@ public class TableroVista extends JFrame implements Observer{
 			else {
 				((JLabel)((JPanel)matrizPaneles[i][j].getComponent(0)).getComponent(0)).setText(s);
 			}
-		}else if (arg instanceof String && !arg.equals("null")) {
+		}else if (arg instanceof String && ((String) arg).substring(2, 3).equals(":")) {
 			this.lblTiempo.setText((String)arg);
 		}else if (arg instanceof String && arg.equals("null")) {
 			JOptionPane.showMessageDialog(null, "No hay más sudokus para ti :(", "Límite de sudokus alcanzado", JOptionPane.ERROR_MESSAGE);
 			frmSudokuRoyaleMaster.dispose();
+		}else if (arg instanceof String && ((String) arg).substring(0, 10).equals("Estrategia")) {
+			textArea.setText(/*textArea.getText() +*/ arg + "");
 		} else {
 			int[] a = (int[]) arg;
 			if (a[0] == 1) {
@@ -764,5 +776,21 @@ public class TableroVista extends JFrame implements Observer{
 			lblGif6.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas4.gif")));
 		}
 		return lblGif6;
+	}
+	private JPanel getPanelAyuda() {
+		if (panelAyuda == null) {
+			panelAyuda = new JPanel();
+			panelAyuda.setOpaque(false);
+			panelAyuda.setLayout(new BorderLayout(0, 0));
+			panelAyuda.add(getTextArea(), BorderLayout.CENTER);
+		}
+		return panelAyuda;
+	}
+	private JTextArea getTextArea() {
+		if (textArea == null) {
+			textArea = new JTextArea(5,20);
+			textArea.setEditable(false);
+		}
+		return textArea;
 	}
 }

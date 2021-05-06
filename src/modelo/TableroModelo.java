@@ -294,14 +294,23 @@ public class TableroModelo extends Observable{
 		TableroModelo.miTablero = null;
 	}
 	
-	public void soleCandidate() {
+	public void solicitarAyuda() {
+		boolean completed = false;
+		completed = soleCandidate();
+		if (!completed) completed = uniqueCandidate();
+	}
+	
+	public boolean soleCandidate() {
+		boolean completed = false;
 		boolean enc = false;
 		int i = 0;
 		while (i < tablero.length && !enc) {
 			int j = 0;
 			while (j < tablero[0].length && !enc) {
-				if (tablero[i][j].getCandidatos().size() == 1) {
-					String st = "Estrategia: SoleCandidate -> Casilla (" + i+1 + ", " + j+1 + ") -> Valor: " + tablero[i][j].getValor();
+				ArrayList<Integer> a = tablero[i][j].getCandidatos();
+				if (a != null && tablero[i][j].getCandidatos().size() == 1) {
+					completed = true;
+					String st = "Estrategia: SoleCandidate -> \nCasilla (" + ++i + ", " + ++j + ") -> \nValor: " + tablero[--i][--j].getCandidatos().get(0);
 					enc = true;
 					setChanged();
 					notifyObservers(st);
@@ -310,9 +319,12 @@ public class TableroModelo extends Observable{
 			}
 			i++;
 		}
+		return completed;
 	}
 	
-	public void uniqueCandidate() {
+	
+	public boolean uniqueCandidate() {
+		boolean completed = false;
 		boolean enc = false;
 		int vuelta = 0;
 		int i = 0;
@@ -363,9 +375,12 @@ public class TableroModelo extends Observable{
 			vuelta++;
 		}
 		if (enc) {
-			String st = "Estrategia: Unique Candidate -> Casilla(" + i + ", " + j + ") -> Valor: " + tablero[--i][--j].getCandidatos().get(--index);
-			System.out.println(st);
+			completed = true;
+			String st = "Estrategia: Unique Candidate -> \nCasilla(" + i + ", " + j + ") -> \nValor: " + tablero[--i][--j].getCandidatos().get(--index);
+			setChanged();
+			notifyObservers(st);
 		}
+		return completed;
 	}
 	
 	private boolean recorrerCandidatos(int orgI, int orgJ, int i, int j, int iMax, int jMax, int candidato) {
