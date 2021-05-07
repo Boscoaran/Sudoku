@@ -6,7 +6,9 @@ import modelo.CatalogoUsuarios;
 import modelo.Usuario;
 
 public class DataUsuarios {
-	private String url = "jdbc:ucanaccess://C://TEMP//usuarios.accdb";
+	private String urlw10 = "jdbc:ucanaccess://C://TEMP//usuarios.accdb";
+	private String urllinux = "...";
+	private String so = System.getProperty("os.name");
 	private static DataUsuarios mDataUsuarios;
 	
 	private DataUsuarios() {}
@@ -17,29 +19,41 @@ public class DataUsuarios {
 	}
 	
 	public void comprobarUsuario(String name) throws SQLException{
-			Connection con = DriverManager.getConnection(url);
-			Statement s = con.createStatement();
-			ResultSet rs1 = s.executeQuery("SELECT * FROM usuario WHERE nombreUsuario = \"" + name + "\"");
-			if (!rs1.next()) {
-				String st = "1";
-				s = con.createStatement();
-				rs1 = s.executeQuery("SELECT id FROM usuario");
-				while(rs1.next()) {
-					st = rs1.getString(1);
-				}
-				int res = Integer.parseInt(st) + 1;
-				st = res+"";
-				s = con.createStatement();
-				String query = "INSERT INTO usuario VALUES ("+ st + ", '" + name +"', 0.0)";
-				s.execute(query);
-				s.close();
+		Connection con = null;	
+		if (so.equals("windows10")) {
+			con = DriverManager.getConnection(urlw10);
+		}
+		else if (so.equals("...")) {
+			con = DriverManager.getConnection(urlw10);
+		}
+		Statement s = con.createStatement();
+		ResultSet rs1 = s.executeQuery("SELECT * FROM usuario WHERE nombreUsuario = \"" + name + "\"");
+		if (!rs1.next()) {
+			String st = "1";
+			s = con.createStatement();
+			rs1 = s.executeQuery("SELECT id FROM usuario");
+			while(rs1.next()) {
+				st = rs1.getString(1);
 			}
-			con.close();
+			int res = Integer.parseInt(st) + 1;
+			st = res+"";
+			s = con.createStatement();
+			String query = "INSERT INTO usuario VALUES ("+ st + ", '" + name +"', 0.0)";
+			s.execute(query);
+			s.close();
+		}
+		con.close();
 	}
 	
 	public void cargarPuntuaciones() {
 		try {
-			Connection con = DriverManager.getConnection(url);
+			Connection con = null;	
+			if (so.equals("windows10")) {
+				con = DriverManager.getConnection(urlw10);
+			}
+			else if (so.equals("...")) {
+				con = DriverManager.getConnection(urlw10);
+			}
 			Statement s = con.createStatement();
 			String query = "SELECT * FROM usuario ORDER BY mejorPuntuacion DESC";
 			ResultSet rs = s.executeQuery(query);
@@ -61,7 +75,13 @@ public class DataUsuarios {
 	
 	public void anadirRegistro(String user, int id, int dif, double points) {
 		try {
-			Connection con = DriverManager.getConnection(url);
+			Connection con = null;	
+			if (so.equals("windows10")) {
+				con = DriverManager.getConnection(urlw10);
+			}
+			else if (so.equals("...")) {
+				con = DriverManager.getConnection(urlw10);
+			}
 			Statement s = con.createStatement();
 			String query = "SELECT id FROM usuario where nombreUsuario = '" + user +"'";
 			ResultSet rs = s.executeQuery(query);
