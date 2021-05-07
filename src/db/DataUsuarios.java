@@ -77,7 +77,7 @@ public class DataUsuarios {
 			int userId = rs.getInt(1);
 			
 			int idPuntos = 0;
-			query = "SELECT idP FROM Sudoku";
+			query = "SELECT idP FROM puntuacionSudokus";
 			rs = s.executeQuery(query);
 			while(rs.next()) {
 				idPuntos = rs.getInt(1);
@@ -85,18 +85,35 @@ public class DataUsuarios {
 			idPuntos++;
 			s = con.createStatement();
 			//query = "INSERT INTO puntuacionSudokus VALUES (" + idPuntos + "," + userId + "," + id + "," + dif + "," + puntosStr + ");";
-			PreparedStatement st = con.prepareStatement("INSERT INTO Sudoku (idP, idU, idS, dif, P) VALUES (?,?,?,?,?)");
+			PreparedStatement st = con.prepareStatement("INSERT INTO puntuacionSudokus (idP, idU, idS, dif, puntuacion) VALUES (?,?,?,?,?)");
 			st.setInt(1, idPuntos);
 			st.setInt(2, userId);
 			st.setInt(3, id);
 			st.setInt(4, dif);
 			st.setDouble(5, points);
 			st.execute();
+			anadirMejorPuntuacion(user, con, points);
 			st.close();
 			s.close();
 			rs.close();
+			
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Error al registrar el dirver de MySQL:" + e);
+		}
+	}
+	
+	private void anadirMejorPuntuacion(String u, Connection c, double points) throws SQLException {
+		Statement s = c.createStatement();
+		String query = "SELECT maxP FROM Usuario WHERE Nombre = '" + u + "';" ;
+		ResultSet rs = s.executeQuery(query);
+		rs.next();
+		double p = rs.getDouble(1);
+		if (p <= points) {
+			PreparedStatement st = c.prepareStatement("UPDATE Usuario SET maxP = ? WHERE Nombre = ? ;");
+			st.setDouble(1, points);
+			st.setString(2, u);
+			st.executeUpdate();
 		}
 	}
 }
