@@ -15,7 +15,7 @@ public class Usuario {
 		return nombreUsuario;
 	}
 	
-	public String getPointsText() {
-		return mejorPuntuacion+"";
+	public String getPoints() {
+		return Double.toString(mejorPuntuacion);
 	}
 }

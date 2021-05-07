@@ -173,7 +173,7 @@ public class PanelTopJugadores extends JFrame implements Observer{
 					etiq[i][2].setText("");
 				} else {
 					etiq[i][1].setText(l[i].getName());
-					etiq[i][2].setText(l[i].getPointsText());
+					etiq[i][2].setText(l[i].getPoints());
 				}
 				
 			}

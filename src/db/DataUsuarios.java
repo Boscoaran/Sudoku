@@ -20,7 +20,6 @@ public class DataUsuarios {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://sql4.freesqldatabase.com/sql4410920", "sql4410920","k5rSggjwym");
-			System.out.println("Conectado");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Error al registrar el dirver de MySQL:" + e);
 		}
@@ -48,7 +47,6 @@ public class DataUsuarios {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://sql4.freesqldatabase.com/sql4410920", "sql4410920","k5rSggjwym");
-			System.out.println("Conectado");
 			Statement s = con.createStatement();
 			String query = "SELECT * FROM Usuario ORDER BY maxP DESC";
 			ResultSet rs = s.executeQuery(query);
@@ -72,7 +70,6 @@ public class DataUsuarios {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://sql4.freesqldatabase.com/sql4410920", "sql4410920","k5rSggjwym");
-			System.out.println("Conectado");
 			Statement s = con.createStatement();
 			String query = "SELECT id FROM Usuario where Nombre = '" + user +"'";
 			ResultSet rs = s.executeQuery(query);
@@ -88,7 +85,7 @@ public class DataUsuarios {
 			idPuntos++;
 			s = con.createStatement();
 			//query = "INSERT INTO puntuacionSudokus VALUES (" + idPuntos + "," + userId + "," + id + "," + dif + "," + puntosStr + ");";
-			PreparedStatement st = con.prepareStatement("INSERT INTO Sudoku (idPuntuacion,idUsuario,idSudoku,dif,puntuacion) VALUES (?,?,?,?,?)");
+			PreparedStatement st = con.prepareStatement("INSERT INTO Sudoku (idP, idU, idS, dif, P) VALUES (?,?,?,?,?)");
 			st.setInt(1, idPuntos);
 			st.setInt(2, userId);
 			st.setInt(3, id);
