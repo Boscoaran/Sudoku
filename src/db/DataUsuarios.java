@@ -25,7 +25,8 @@ public class DataUsuarios {
 			System.out.println("Error al registrar el dirver de MySQL:" + e);
 		}
 		Connection con = null;
-	 con = DriverManager.getConnection("inbound-obelisk-313011:europe-west2:sudoku-royale-master");
+		con = DriverManager.getConnection("jdbc:mysql://sql4.freesqldatabase.com/SUDOKU" , "sql4410905", "p1TIshqzLH");
+		System.out.println("Conectado");
 		/*if (so.equals("windows10")) {
 			con = DriverManager.getConnection(urlw10);
 		}
