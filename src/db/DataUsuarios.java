@@ -7,7 +7,7 @@ import modelo.Usuario;
 
 public class DataUsuarios {
 	private String urlw10 = "jdbc:ucanaccess://C://TEMP//usuarios.accdb";
-	private String urllinux = "...";
+	private String urllinux = "jdbc:ucaccess:/home/bosco/Escritorio/usuarios.accdb";
 	private String so = System.getProperty("os.name");
 	private static DataUsuarios mDataUsuarios;
 	
@@ -19,13 +19,19 @@ public class DataUsuarios {
 	}
 	
 	public void comprobarUsuario(String name) throws SQLException{
-		Connection con = null;	
-		if (so.equals("windows10")) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Error al registrar el dirver de MySQL:" + e);
+		}
+		Connection con = null;
+	 con = DriverManager.getConnection("inbound-obelisk-313011:europe-west2:sudoku-royale-master");
+		/*if (so.equals("windows10")) {
 			con = DriverManager.getConnection(urlw10);
 		}
-		else if (so.equals("...")) {
-			con = DriverManager.getConnection(urlw10);
-		}
+		else if (so.equals("linux")) {
+			con = DriverManager.getConnection(urllinux);
+		}*/
 		Statement s = con.createStatement();
 		ResultSet rs1 = s.executeQuery("SELECT * FROM usuario WHERE nombreUsuario = \"" + name + "\"");
 		if (!rs1.next()) {
@@ -51,8 +57,8 @@ public class DataUsuarios {
 			if (so.equals("windows10")) {
 				con = DriverManager.getConnection(urlw10);
 			}
-			else if (so.equals("...")) {
-				con = DriverManager.getConnection(urlw10);
+			else if (so.equals("linux")) {
+				con = DriverManager.getConnection(urllinux);
 			}
 			Statement s = con.createStatement();
 			String query = "SELECT * FROM usuario ORDER BY mejorPuntuacion DESC";
@@ -79,8 +85,8 @@ public class DataUsuarios {
 			if (so.equals("windows10")) {
 				con = DriverManager.getConnection(urlw10);
 			}
-			else if (so.equals("...")) {
-				con = DriverManager.getConnection(urlw10);
+			else if (so.equals("linux")) {
+				con = DriverManager.getConnection(urllinux);
 			}
 			Statement s = con.createStatement();
 			String query = "SELECT id FROM usuario where nombreUsuario = '" + user +"'";

@@ -78,7 +78,7 @@ public class CasillaVista extends JPanel{
 		return valorLabel;
 	}
 	
-	public void tamañoLetra(int ref, int ref2) {
+	public void tamanioLetra(int ref, int ref2) {
 		valorLabel.setFont(valorLabel.getFont().deriveFont(ref/30f));
 		candidatosLabel.setFont(valorLabel.getFont().deriveFont(ref2/80f));
 	}

@@ -92,7 +92,7 @@ public class TableroVista extends JFrame implements Observer{
 	private static Font go3 = VentanaInicio.getFuente();;
 	private JPanel panelAyuda;
 	private JTextArea textArea;
-	private Dimension tamañoPantalla=Toolkit.getDefaultToolkit().getScreenSize();
+	private Dimension tamanioPantalla=Toolkit.getDefaultToolkit().getScreenSize();
 	
 	public TableroVista() {
 		matrizPaneles = new CasillaVista[9][9];
@@ -109,14 +109,14 @@ public class TableroVista extends JFrame implements Observer{
 			public void componentResized(ComponentEvent e) {
 				Component[] lCas = panelTablero.getComponents();
 				for (Component c: lCas) {
-					((CasillaVista)c).tamañoLetra(frmSudokuRoyaleMaster.getHeight(), frmSudokuRoyaleMaster.getWidth());
+					((CasillaVista)c).tamanioLetra(frmSudokuRoyaleMaster.getHeight(), frmSudokuRoyaleMaster.getWidth());
 				}
 			}
 		});
 		frmSudokuRoyaleMaster.setBackground(Color.BLACK);
 		frmSudokuRoyaleMaster.setTitle("SUDOKU ROYALE MASTER");
-		frmSudokuRoyaleMaster.setMinimumSize(new Dimension((int)(tamañoPantalla.width*0.5),(int)(tamañoPantalla.height*0.8)));
-		frmSudokuRoyaleMaster.setBounds(0,0,(int)(tamañoPantalla.width*0.6), (int)(tamañoPantalla.height*0.9));
+		frmSudokuRoyaleMaster.setMinimumSize(new Dimension((int)(tamanioPantalla.width*0.5),(int)(tamanioPantalla.height*0.8)));
+		frmSudokuRoyaleMaster.setBounds(0,0,(int)(tamanioPantalla.width*0.6), (int)(tamanioPantalla.height*0.9));
 		frmSudokuRoyaleMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSudokuRoyaleMaster.getContentPane().setLayout(new BorderLayout(0, 0));
 		frmSudokuRoyaleMaster.getContentPane().add(getPanelWest(), BorderLayout.WEST);
@@ -268,7 +268,7 @@ public class TableroVista extends JFrame implements Observer{
 		}
 		return lblTiempo;
 	}
-	private boolean isInteger(String num) { //Metodo para comprobar que es un número
+	private boolean isInteger(String num) { //Metodo para comprobar que es un nï¿½mero
 		try {
 			Integer.parseInt(num);
 			return true;
@@ -345,11 +345,11 @@ public class TableroVista extends JFrame implements Observer{
 		boolean correcto = true;
 		if (!num.equals("")) {
 			if ((isInteger(num) && num.length() > 1) || (isInteger(num) && Integer.parseInt(num) == 0)) {
-				JOptionPane.showMessageDialog(null, "Tan solo puede introducir un número distinto de 0", "Error Valor", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Tan solo puede introducir un nï¿½mero distinto de 0", "Error Valor", JOptionPane.ERROR_MESSAGE);
 				textFieldValor.setText("");
 				correcto=false;
 			}else if (!isInteger(num) && num.length()!=0) {
-				JOptionPane.showMessageDialog(null, "Debe introducir un número", "Error Valor", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Debe introducir un nï¿½mero", "Error Valor", JOptionPane.ERROR_MESSAGE);
 				textFieldValor.setText("");
 				correcto=false;
 			}
@@ -391,7 +391,7 @@ public class TableroVista extends JFrame implements Observer{
 				JOptionPane.showMessageDialog(null, "Los candidatos no se pueden repetir", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (!correcto && numCero){
-			JOptionPane.showMessageDialog(null, "Los candidatos deben de ser números", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Los candidatos deben de ser nï¿½meros", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
 			repetido = true;
 		} else if (!correcto && !numCero) {
 			JOptionPane.showMessageDialog(null, "Los candidatos no pueden ser 0", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
@@ -498,7 +498,7 @@ public class TableroVista extends JFrame implements Observer{
 			for (int i=1; i<10; i++) {
 				for (int j=1; j<10; j++) {
 					CasillaVista casilla = new CasillaVista(i,j);
-					//casilla.tamañoLetra(frmSudokuRoyaleMaster.getHeight(), frmSudokuRoyaleMaster.getWidth());
+					//casilla.tamaï¿½oLetra(frmSudokuRoyaleMaster.getHeight(), frmSudokuRoyaleMaster.getWidth());
 					panelTablero.add(casilla);
 					casilla.addMouseListener(new MouseAdapter() {
 						@Override
@@ -574,7 +574,7 @@ public class TableroVista extends JFrame implements Observer{
 		}else if (arg instanceof String && ((String) arg).substring(2, 3).equals(":")) {
 			this.lblTiempo.setText((String)arg);
 		}else if (arg instanceof String && arg.equals("null")) {
-			JOptionPane.showMessageDialog(null, "No hay más sudokus para ti :(", "Límite de sudokus alcanzado", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "No hay mï¿½s sudokus para ti :(", "Lï¿½mite de sudokus alcanzado", JOptionPane.ERROR_MESSAGE);
 			frmSudokuRoyaleMaster.dispose();
 		}else if (arg instanceof String && ((String) arg).substring(0, 10).equals("Estrategia")) {
 			textArea.setText(/*textArea.getText() +*/ arg + "");
@@ -722,7 +722,7 @@ public class TableroVista extends JFrame implements Observer{
 					candidatosAct = true;
 					mnPartida.add(getMntmOcultarCand());
 					mnPartida.remove(mntmCandidatosMos);
-					JOptionPane.showMessageDialog(null, "A partir de ahora los candidatos se calcularán automáticamente cada vez que introduzcas un valor", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "A partir de ahora los candidatos se calcularï¿½n automï¿½ticamente cada vez que introduzcas un valor", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				}
 			});
 		}
