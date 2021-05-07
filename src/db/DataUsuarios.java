@@ -36,7 +36,7 @@ public class DataUsuarios {
 			int res = Integer.parseInt(st) + 1;
 			st = res+"";
 			s = con.createStatement();
-			String query = "INSERT INTO usuario VALUES ("+ st + ", '" + name +"', 0.0)";
+			String query = "INSERT INTO Usuario VALUES ("+ st + ", '" + name +"', 0.0)";
 			s.execute(query);
 			s.close();
 		}
@@ -74,13 +74,13 @@ public class DataUsuarios {
 			con = DriverManager.getConnection("jdbc:mysql://sql4.freesqldatabase.com/sql4410920", "sql4410920","k5rSggjwym");
 			System.out.println("Conectado");
 			Statement s = con.createStatement();
-			String query = "SELECT id FROM usuario where nombreUsuario = '" + user +"'";
+			String query = "SELECT id FROM Usuario where Nombre = '" + user +"'";
 			ResultSet rs = s.executeQuery(query);
 			rs.next();
 			int userId = rs.getInt(1);
 			
 			int idPuntos = 0;
-			query = "SELECT idPuntuacion FROM puntuacionSudokus";
+			query = "SELECT idP FROM Sudoku";
 			rs = s.executeQuery(query);
 			while(rs.next()) {
 				idPuntos = rs.getInt(1);
@@ -88,7 +88,7 @@ public class DataUsuarios {
 			idPuntos++;
 			s = con.createStatement();
 			//query = "INSERT INTO puntuacionSudokus VALUES (" + idPuntos + "," + userId + "," + id + "," + dif + "," + puntosStr + ");";
-			PreparedStatement st = con.prepareStatement("INSERT INTO puntuacionSudokus (idPuntuacion,idUsuario,idSudoku,dif,puntuacion) VALUES (?,?,?,?,?)");
+			PreparedStatement st = con.prepareStatement("INSERT INTO Sudoku (idPuntuacion,idUsuario,idSudoku,dif,puntuacion) VALUES (?,?,?,?,?)");
 			st.setInt(1, idPuntos);
 			st.setInt(2, userId);
 			st.setInt(3, id);
