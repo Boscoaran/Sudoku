@@ -6,9 +6,6 @@ import modelo.CatalogoUsuarios;
 import modelo.Usuario;
 
 public class DataUsuarios {
-	private String urlw10 = "jdbc:ucanaccess://C://TEMP//usuarios.accdb";
-	private String urllinux = "jdbc:ucaccess:/home/bosco/Escritorio/usuarios.accdb";
-	private String so = System.getProperty("os.name");
 	private static DataUsuarios mDataUsuarios;
 	
 	private DataUsuarios() {}
@@ -19,26 +16,20 @@ public class DataUsuarios {
 	}
 	
 	public void comprobarUsuario(String name) throws SQLException{
+		Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://sql4.freesqldatabase.com/sql4410920", "sql4410920","k5rSggjwym");
+			System.out.println("Conectado");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Error al registrar el dirver de MySQL:" + e);
 		}
-		Connection con = null;
-		con = DriverManager.getConnection("jdbc:mysql://sql4.freesqldatabase.com/SUDOKU" , "sql4410905", "p1TIshqzLH");
-		System.out.println("Conectado");
-		/*if (so.equals("windows10")) {
-			con = DriverManager.getConnection(urlw10);
-		}
-		else if (so.equals("linux")) {
-			con = DriverManager.getConnection(urllinux);
-		}*/
 		Statement s = con.createStatement();
-		ResultSet rs1 = s.executeQuery("SELECT * FROM usuario WHERE nombreUsuario = \"" + name + "\"");
+		ResultSet rs1 = s.executeQuery("SELECT * FROM Usuario WHERE Nombre = \"" + name + "\"");
 		if (!rs1.next()) {
 			String st = "1";
 			s = con.createStatement();
-			rs1 = s.executeQuery("SELECT id FROM usuario");
+			rs1 = s.executeQuery("SELECT id FROM Usuario");
 			while(rs1.next()) {
 				st = rs1.getString(1);
 			}
@@ -53,69 +44,62 @@ public class DataUsuarios {
 	}
 	
 	public void cargarPuntuaciones() {
+		Connection con = null;
 		try {
-			Connection con = null;	
-			if (so.equals("windows10")) {
-				con = DriverManager.getConnection(urlw10);
-			}
-			else if (so.equals("linux")) {
-				con = DriverManager.getConnection(urllinux);
-			}
-			Statement s = con.createStatement();
-			String query = "SELECT * FROM usuario ORDER BY mejorPuntuacion DESC";
-			ResultSet rs = s.executeQuery(query);
-			while (rs.next()) {
-				int id = rs.getInt(1);
-				String n = rs.getString(2);
-				double punt = rs.getDouble(3);
-				Usuario u = new Usuario(id,n,punt);
-				CatalogoUsuarios.getCatalogoUsuarios().anadirUsuario(u);
-			}
-			s.close();
-			con.close();
-			CatalogoUsuarios.getCatalogoUsuarios().mostrar();
-		} catch (Exception e) {
-			e.printStackTrace();
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://sql4.freesqldatabase.com/sql4410920", "sql4410920","k5rSggjwym");
+			System.out.println("Conectado");
+		Statement s = con.createStatement();
+		String query = "SELECT * FROM Usuario ORDER BY maxP DESC";
+		ResultSet rs = s.executeQuery(query);
+		while (rs.next()) {
+			int id = rs.getInt(1);
+			String n = rs.getString(2);
+			double punt = rs.getDouble(3);
+			Usuario u = new Usuario(id,n,punt);
+			CatalogoUsuarios.getCatalogoUsuarios().anadirUsuario(u);
 		}
-		
+		s.close();
+		con.close();
+		CatalogoUsuarios.getCatalogoUsuarios().mostrar();
+		} catch (ClassNotFoundException e) {
+			System.out.println("Error al registrar el dirver de MySQL:" + e);
+		}
 	}
 	
 	public void anadirRegistro(String user, int id, int dif, double points) {
+		Connection con = null;
 		try {
-			Connection con = null;	
-			if (so.equals("windows10")) {
-				con = DriverManager.getConnection(urlw10);
-			}
-			else if (so.equals("linux")) {
-				con = DriverManager.getConnection(urllinux);
-			}
-			Statement s = con.createStatement();
-			String query = "SELECT id FROM usuario where nombreUsuario = '" + user +"'";
-			ResultSet rs = s.executeQuery(query);
-			rs.next();
-			int userId = rs.getInt(1);
-			
-			int idPuntos = 0;
-			query = "SELECT idPuntuacion FROM puntuacionSudokus";
-			rs = s.executeQuery(query);
-			while(rs.next()) {
-				idPuntos = rs.getInt(1);
-			}
-			idPuntos++;
-			s = con.createStatement();
-			//query = "INSERT INTO puntuacionSudokus VALUES (" + idPuntos + "," + userId + "," + id + "," + dif + "," + puntosStr + ");";
-			PreparedStatement st = con.prepareStatement("INSERT INTO puntuacionSudokus (idPuntuacion,idUsuario,idSudoku,dif,puntuacion) VALUES (?,?,?,?,?)");
-			st.setInt(1, idPuntos);
-			st.setInt(2, userId);
-			st.setInt(3, id);
-			st.setInt(4, dif);
-			st.setDouble(5, points);
-			st.execute();
-			st.close();
-			s.close();
-			rs.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://sql4.freesqldatabase.com/sql4410920", "sql4410920","k5rSggjwym");
+			System.out.println("Conectado");
+		Statement s = con.createStatement();
+		String query = "SELECT id FROM usuario where nombreUsuario = '" + user +"'";
+		ResultSet rs = s.executeQuery(query);
+		rs.next();
+		int userId = rs.getInt(1);
+		
+		int idPuntos = 0;
+		query = "SELECT idPuntuacion FROM puntuacionSudokus";
+		rs = s.executeQuery(query);
+		while(rs.next()) {
+			idPuntos = rs.getInt(1);
 		}
+		idPuntos++;
+		s = con.createStatement();
+		//query = "INSERT INTO puntuacionSudokus VALUES (" + idPuntos + "," + userId + "," + id + "," + dif + "," + puntosStr + ");";
+		PreparedStatement st = con.prepareStatement("INSERT INTO puntuacionSudokus (idPuntuacion,idUsuario,idSudoku,dif,puntuacion) VALUES (?,?,?,?,?)");
+		st.setInt(1, idPuntos);
+		st.setInt(2, userId);
+		st.setInt(3, id);
+		st.setInt(4, dif);
+		st.setDouble(5, points);
+		st.execute();
+		st.close();
+		s.close();
+		rs.close();
+	} catch (ClassNotFoundException e) {
+		System.out.println("Error al registrar el dirver de MySQL:" + e);
+	}
 	}
 }
