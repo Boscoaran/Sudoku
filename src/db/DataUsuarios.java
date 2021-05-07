@@ -49,20 +49,20 @@ public class DataUsuarios {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://sql4.freesqldatabase.com/sql4410920", "sql4410920","k5rSggjwym");
 			System.out.println("Conectado");
-		Statement s = con.createStatement();
-		String query = "SELECT * FROM Usuario ORDER BY maxP DESC";
-		ResultSet rs = s.executeQuery(query);
-		while (rs.next()) {
-			int id = rs.getInt(1);
-			String n = rs.getString(2);
-			double punt = rs.getDouble(3);
-			Usuario u = new Usuario(id,n,punt);
-			CatalogoUsuarios.getCatalogoUsuarios().anadirUsuario(u);
-		}
-		s.close();
-		con.close();
-		CatalogoUsuarios.getCatalogoUsuarios().mostrar();
-		} catch (ClassNotFoundException e) {
+			Statement s = con.createStatement();
+			String query = "SELECT * FROM Usuario ORDER BY maxP DESC";
+			ResultSet rs = s.executeQuery(query);
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				String n = rs.getString(2);
+				double punt = rs.getDouble(3);
+				Usuario u = new Usuario(id,n,punt);
+				CatalogoUsuarios.getCatalogoUsuarios().anadirUsuario(u);
+			}
+			s.close();
+			con.close();
+			CatalogoUsuarios.getCatalogoUsuarios().mostrar();
+		} catch (Exception e) {
 			System.out.println("Error al registrar el dirver de MySQL:" + e);
 		}
 	}
@@ -73,33 +73,33 @@ public class DataUsuarios {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://sql4.freesqldatabase.com/sql4410920", "sql4410920","k5rSggjwym");
 			System.out.println("Conectado");
-		Statement s = con.createStatement();
-		String query = "SELECT id FROM usuario where nombreUsuario = '" + user +"'";
-		ResultSet rs = s.executeQuery(query);
-		rs.next();
-		int userId = rs.getInt(1);
-		
-		int idPuntos = 0;
-		query = "SELECT idPuntuacion FROM puntuacionSudokus";
-		rs = s.executeQuery(query);
-		while(rs.next()) {
-			idPuntos = rs.getInt(1);
+			Statement s = con.createStatement();
+			String query = "SELECT id FROM usuario where nombreUsuario = '" + user +"'";
+			ResultSet rs = s.executeQuery(query);
+			rs.next();
+			int userId = rs.getInt(1);
+			
+			int idPuntos = 0;
+			query = "SELECT idPuntuacion FROM puntuacionSudokus";
+			rs = s.executeQuery(query);
+			while(rs.next()) {
+				idPuntos = rs.getInt(1);
+			}
+			idPuntos++;
+			s = con.createStatement();
+			//query = "INSERT INTO puntuacionSudokus VALUES (" + idPuntos + "," + userId + "," + id + "," + dif + "," + puntosStr + ");";
+			PreparedStatement st = con.prepareStatement("INSERT INTO puntuacionSudokus (idPuntuacion,idUsuario,idSudoku,dif,puntuacion) VALUES (?,?,?,?,?)");
+			st.setInt(1, idPuntos);
+			st.setInt(2, userId);
+			st.setInt(3, id);
+			st.setInt(4, dif);
+			st.setDouble(5, points);
+			st.execute();
+			st.close();
+			s.close();
+			rs.close();
+		} catch (Exception e) {
+			System.out.println("Error al registrar el dirver de MySQL:" + e);
 		}
-		idPuntos++;
-		s = con.createStatement();
-		//query = "INSERT INTO puntuacionSudokus VALUES (" + idPuntos + "," + userId + "," + id + "," + dif + "," + puntosStr + ");";
-		PreparedStatement st = con.prepareStatement("INSERT INTO puntuacionSudokus (idPuntuacion,idUsuario,idSudoku,dif,puntuacion) VALUES (?,?,?,?,?)");
-		st.setInt(1, idPuntos);
-		st.setInt(2, userId);
-		st.setInt(3, id);
-		st.setInt(4, dif);
-		st.setDouble(5, points);
-		st.execute();
-		st.close();
-		s.close();
-		rs.close();
-	} catch (ClassNotFoundException e) {
-		System.out.println("Error al registrar el dirver de MySQL:" + e);
-	}
 	}
 }
