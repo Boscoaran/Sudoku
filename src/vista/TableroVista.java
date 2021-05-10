@@ -15,7 +15,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -30,8 +29,6 @@ import modelo.TableroModelo;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
@@ -45,9 +42,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-
-import java.io.IOException;
-import javax.swing.JTextArea;
+import java.awt.FlowLayout;
 
 @SuppressWarnings({ "serial", "deprecation" })
 public class TableroVista extends JFrame implements Observer{
@@ -72,12 +67,8 @@ public class TableroVista extends JFrame implements Observer{
 	private JPanel panelTiempo;
 	private JLabel lblTiempo;
 	private JMenuBar menuBar;
-	private JMenu mnTema;
 	private JMenu mnPartida;
-	private JMenuItem mntmTemaBJ;
 	private JMenuItem mntmReiniciar;
-	private JMenuItem mntmTemaCP;
-	private JMenuItem mntmSP;
 	private JMenuItem mntmCambiarNivel;
 	private JMenuItem mntmCandidatos;
 	private JMenuItem mntmCandidatosMos;
@@ -87,12 +78,13 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel lblGif4;
 	private JLabel lblGif5;
 	private JLabel lblGif6;
-	private boolean candidatosAct = false;
 	private boolean mostrarCandidatos = false;
 	private static Font go3 = VentanaInicio.getFuente();;
 	private JPanel panelAyuda;
-	private JTextArea textArea;
 	private Dimension tamanioPantalla=Toolkit.getDefaultToolkit().getScreenSize();
+	private JLabel lblAyuda1;
+	private JLabel lblAyuda2;
+	private JLabel lblAyuda3;
 	
 	public TableroVista() {
 		matrizPaneles = new CasillaVista[9][9];
@@ -191,9 +183,9 @@ public class TableroVista extends JFrame implements Observer{
 			gbc_panel.gridy = 8;
 			panelDatos.add(getPanelTiempo(), gbc_panel);
 			GridBagConstraints gbc_panelAyuda = new GridBagConstraints();
+			gbc_panelAyuda.fill = GridBagConstraints.BOTH;
 			gbc_panelAyuda.gridwidth = 2;
 			gbc_panelAyuda.insets = new Insets(0, 0, 0, 5);
-			gbc_panelAyuda.fill = GridBagConstraints.VERTICAL;
 			gbc_panelAyuda.gridx = 1;
 			gbc_panelAyuda.gridy = 9;
 			panelDatos.add(getPanelAyuda(), gbc_panelAyuda);
@@ -415,6 +407,45 @@ public class TableroVista extends JFrame implements Observer{
 		return btnAyuda;
 	}
 	
+	private JPanel getPanelAyuda() {
+		if (panelAyuda == null) {
+			panelAyuda = new JPanel();
+			panelAyuda.setOpaque(false);
+			panelAyuda.setLayout(new GridLayout(3, 1, 0, 0));
+			panelAyuda.add(getLblAyuda1());
+			panelAyuda.add(getLblAyuda2());
+			panelAyuda.add(getLblAyuda3());
+		}
+		return panelAyuda;
+	}
+	private JLabel getLblAyuda1() {
+		if (lblAyuda1 == null) {
+			lblAyuda1 = new JLabel(" ");
+			lblAyuda1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblAyuda1.setFont(go3.deriveFont(25f));
+			lblAyuda1.setForeground(new Color(234,183,69));
+		}
+		return lblAyuda1;
+	}
+	private JLabel getLblAyuda2() {
+		if (lblAyuda2 == null) {
+			lblAyuda2 = new JLabel(" ");
+			lblAyuda2.setHorizontalAlignment(SwingConstants.CENTER);
+			lblAyuda2.setForeground(new Color(234, 183, 69));
+			lblAyuda2.setFont(go3.deriveFont(35f));
+		}
+		return lblAyuda2;
+	}
+	private JLabel getLblAyuda3() {
+		if (lblAyuda3 == null) {
+			lblAyuda3 = new JLabel(" ");
+			lblAyuda3.setHorizontalAlignment(SwingConstants.CENTER);
+			lblAyuda3.setForeground(new Color(234, 183, 69));
+			lblAyuda3.setFont(go3.deriveFont(35f));
+		}
+		return lblAyuda3;
+	}
+
 	
 ///////////////////////////////////////PANEL TITULO///////////////////////////////////////////////	
 	
@@ -462,6 +493,48 @@ public class TableroVista extends JFrame implements Observer{
 		return panelNorth;
 	}
 	
+	private JLabel getLblGif1() {
+		if (lblGif1 == null) {
+			lblGif1 = new JLabel("");
+			lblGif1.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas1.gif")));
+		}
+		return lblGif1;
+	}
+	private JLabel getLblGif2() {
+		if (lblGif2 == null) {
+			lblGif2 = new JLabel("");
+			lblGif2.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas2.gif")));
+		}
+		return lblGif2;
+	}
+	private JLabel getLblGif3() {
+		if (lblGif3 == null) {
+			lblGif3 = new JLabel("");
+			lblGif3.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas3.gif")));
+		}
+		return lblGif3;
+	}
+	private JLabel getLblGif4() {
+		if (lblGif4 == null) {
+			lblGif4 = new JLabel("");
+			lblGif4.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas1.gif")));
+		}
+		return lblGif4;
+	}
+	private JLabel getLblGif5() {
+		if (lblGif5 == null) {
+			lblGif5 = new JLabel("");
+			lblGif5.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas2.gif")));
+		}
+		return lblGif5;
+	}
+	private JLabel getLblGif6() {
+		if (lblGif6 == null) {
+			lblGif6 = new JLabel("");
+			lblGif6.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas4.gif")));
+		}
+		return lblGif6;
+	}
 
 
 ///////////////////////////////////PANEL SOUTH////////////////////////////////////////////	
@@ -576,8 +649,11 @@ public class TableroVista extends JFrame implements Observer{
 		}else if (arg instanceof String && arg.equals("null")) {
 			JOptionPane.showMessageDialog(null, "No hay m�s sudokus para ti :(", "L�mite de sudokus alcanzado", JOptionPane.ERROR_MESSAGE);
 			frmSudokuRoyaleMaster.dispose();
-		}else if (arg instanceof String && ((String) arg).substring(0, 10).equals("Estrategia")) {
-			textArea.setText(/*textArea.getText() +*/ arg + "");
+		}else if (arg instanceof String[] && (((String[])arg)[0]).equals("Estrategia")) {
+			lblAyuda1.setText(((String[])arg)[1]);
+			lblAyuda2.setText(((String[])arg)[2]);
+			lblAyuda3.setText(((String[])arg)[3]);
+			
 		} else {
 			int[] a = (int[]) arg;
 			if (a[0] == 1) {
@@ -618,59 +694,14 @@ public class TableroVista extends JFrame implements Observer{
 	private JMenuBar getMenuBar_1() {
 		if (menuBar == null) {
 			menuBar = new JMenuBar();
-			menuBar.add(getMnTema());
 			menuBar.add(getMnPartida());
 		}
 		return menuBar;
 	}
-	private JMenu getMnTema() {
-		if (mnTema == null) {
-			mnTema = new JMenu("Tema");
-			mnTema.add(getMntmTemaBJ());
-			mnTema.add(getMntmTemaCP());
-			mnTema.add(getMntmSP());
-		}
-		return mnTema;
-	}
-	
-	private JMenuItem getMntmTemaBJ() {
-		if (mntmTemaBJ == null) {
-			mntmTemaBJ = new JMenuItem("Bosque Japones");
-			mntmTemaBJ.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					panelNorth.setBackground("resources/BJ/north BJ.jpg");
-				}
-			});
-		}
-		return mntmTemaBJ;
-	}
-	
-	private JMenuItem getMntmTemaCP() {
-		if (mntmTemaCP == null) {
-			mntmTemaCP = new JMenuItem("Cyberpunk");
-			mntmTemaCP.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					panelNorth.setBackground("resources/CP/north CP.jpg");
-				}
-			});
-		}
-		return mntmTemaCP;
-	}
-	
-	private JMenuItem getMntmSP() {
-		if (mntmSP == null) {
-			mntmSP = new JMenuItem("Espacio");
-		}
-		return mntmSP;
-	}
 	
 	private JMenu getMnPartida() {
 		if (mnPartida == null) {
-			mnPartida = new JMenu("Partida");
+			mnPartida = new JMenu("Opciones");
 			mnPartida.add(getMntmReiniciar());
 			mnPartida.add(getMntmCambiarNivel());
 			mnPartida.add(getMntmCandidatosMos());
@@ -702,7 +733,6 @@ public class TableroVista extends JFrame implements Observer{
 					for (Component cas: lCasillas) {
 						((CasillaVista) cas).ocultarCandidatos();
 					}
-					candidatosAct = false;
 					mnPartida.add(getMntmCandidatosMos());
 					mnPartida.remove(mntmCandidatos);
 				}
@@ -719,7 +749,6 @@ public class TableroVista extends JFrame implements Observer{
 				public void actionPerformed(ActionEvent e) {
 					mostrarCandidatos = true;
 					modelo.TableroModelo.getTablero().calcularCandidatosGlobal(mostrarCandidatos);
-					candidatosAct = true;
 					mnPartida.add(getMntmOcultarCand());
 					mnPartida.remove(mntmCandidatosMos);
 					JOptionPane.showMessageDialog(null, "A partir de ahora los candidatos se calcular�n autom�ticamente cada vez que introduzcas un valor", "Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -728,62 +757,5 @@ public class TableroVista extends JFrame implements Observer{
 		}
 		return mntmCandidatosMos;
 	}
-	private JLabel getLblGif1() {
-		if (lblGif1 == null) {
-			lblGif1 = new JLabel("");
-			lblGif1.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas1.gif")));
-		}
-		return lblGif1;
-	}
-	private JLabel getLblGif2() {
-		if (lblGif2 == null) {
-			lblGif2 = new JLabel("");
-			lblGif2.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas2.gif")));
-		}
-		return lblGif2;
-	}
-	private JLabel getLblGif3() {
-		if (lblGif3 == null) {
-			lblGif3 = new JLabel("");
-			lblGif3.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas3.gif")));
-		}
-		return lblGif3;
-	}
-	private JLabel getLblGif4() {
-		if (lblGif4 == null) {
-			lblGif4 = new JLabel("");
-			lblGif4.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas1.gif")));
-		}
-		return lblGif4;
-	}
-	private JLabel getLblGif5() {
-		if (lblGif5 == null) {
-			lblGif5 = new JLabel("");
-			lblGif5.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas2.gif")));
-		}
-		return lblGif5;
-	}
-	private JLabel getLblGif6() {
-		if (lblGif6 == null) {
-			lblGif6 = new JLabel("");
-			lblGif6.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas4.gif")));
-		}
-		return lblGif6;
-	}
-	private JPanel getPanelAyuda() {
-		if (panelAyuda == null) {
-			panelAyuda = new JPanel();
-			panelAyuda.setOpaque(false);
-			panelAyuda.setLayout(new BorderLayout(0, 0));
-			panelAyuda.add(getTextArea(), BorderLayout.CENTER);
-		}
-		return panelAyuda;
-	}
-	private JTextArea getTextArea() {
-		if (textArea == null) {
-			textArea = new JTextArea(5,20);
-			textArea.setEditable(false);
-		}
-		return textArea;
-	}
+	
 }

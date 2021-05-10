@@ -3,6 +3,8 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import javax.swing.text.html.HTML;
+
 @SuppressWarnings("deprecation")
 public class TableroModelo extends Observable{
 	private static TableroModelo miTablero = null;
@@ -74,8 +76,11 @@ public class TableroModelo extends Observable{
 			else if (dif == 2) pId = 3;
 			else pId = 4;
 			idSudoku = pId;
-			//a = ListaSudokus.getListaSudokus().getLSudokus(pId, dif);
-			a = ListaSudokus.getListaSudokus().getLSoluciones(pId, dif);
+			if (usuario.equals("TRUCO")) {
+				a = ListaSudokus.getListaSudokus().getLSoluciones(pId, dif);
+			}else {
+				a = ListaSudokus.getListaSudokus().getLSudokus(pId, dif);
+			}
 			///////////////
 			if (a != null) {
 				hecho = true;
@@ -310,7 +315,11 @@ public class TableroModelo extends Observable{
 				ArrayList<Integer> a = tablero[i][j].getCandidatos();
 				if (a != null && tablero[i][j].getCandidatos().size() == 1) {
 					completed = true;
-					String st = "Estrategia: SoleCandidate -> \nCasilla (" + ++i + ", " + ++j + ") -> \nValor: " + tablero[--i][--j].getCandidatos().get(0);
+					String[] st = new String[4];
+					st[0] = "Estrategia";
+					st[1] = "Sole Candidate";
+					st[2] = "Casilla(" + ++i + ", " + ++j + ")";
+					st[3] = "Valor: " + tablero[--i][--j].getCandidatos().get(0);
 					enc = true;
 					setChanged();
 					notifyObservers(st);
@@ -376,7 +385,11 @@ public class TableroModelo extends Observable{
 		}
 		if (enc) {
 			completed = true;
-			String st = "Estrategia: Unique Candidate -> \nCasilla(" + i + ", " + j + ") -> \nValor: " + tablero[--i][--j].getCandidatos().get(--index);
+			String[] st = new String[4];
+			st[0] = "Estrategia";
+			st[1] = "Unique Candidate";
+			st[2] = "Casilla(" + i + ", " + j + ")";
+			st[3] = "Valor: " + tablero[--i][--j].getCandidatos().get(--index);
 			setChanged();
 			notifyObservers(st);
 		}
