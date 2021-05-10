@@ -6,6 +6,8 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+import javax.swing.ImageIcon;
+
 public class AddFont extends Frame {
 
     /**
@@ -21,8 +23,7 @@ public class AddFont extends Frame {
 
 
             try {
-                myStream = new BufferedInputStream(
-                        new FileInputStream(FONT_PATH_GO3));
+                myStream = new BufferedInputStream(new FileInputStream(FONT_PATH_GO3));
                 go3ttf = Font.createFont(Font.TRUETYPE_FONT, myStream);
                 go3 = go3ttf.deriveFont(Font.PLAIN, 24);               
             } catch (Exception ex) {

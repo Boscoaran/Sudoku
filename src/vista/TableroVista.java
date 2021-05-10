@@ -129,7 +129,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JPanelBackground getPanelDatos() {
 		if (panelDatos == null) {
 			panelDatos = new JPanelBackground();
-			panelDatos.setBackground("resources/BJ/east BJ.jpg");
+			panelDatos.setBackground("east BJ.jpg");
 			GridBagLayout gbl_panelDatos = new GridBagLayout();
 			gbl_panelDatos.columnWidths = new int[]{18, 0, 117, 0, 0};
 			gbl_panelDatos.rowHeights = new int[]{20, 0, 0, 0, 0, 0, 0, 0, 110, 11, 0};
@@ -452,7 +452,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JPanelBackground getPanelNorth() {
 		if (panelNorth == null) {
 			panelNorth = new JPanelBackground();
-			panelNorth.setBackground("resources/BJ/north BJ.jpg");
+			panelNorth.setBackground("north BJ.jpg");
 			GridBagLayout gbl_panelNorth = new GridBagLayout();
 			gbl_panelNorth.columnWidths = new int[]{190, 190, 190, 190, 190, 179, 0};
 			gbl_panelNorth.rowHeights = new int[]{180, -18, 0};
@@ -496,42 +496,42 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel getLblGif1() {
 		if (lblGif1 == null) {
 			lblGif1 = new JLabel("");
-			lblGif1.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas1.gif")));
+			lblGif1.setIcon(new ImageIcon(getClass().getClassLoader().getResource("hojas1.gif")));
 		}
 		return lblGif1;
 	}
 	private JLabel getLblGif2() {
 		if (lblGif2 == null) {
 			lblGif2 = new JLabel("");
-			lblGif2.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas2.gif")));
+			lblGif2.setIcon(new ImageIcon(getClass().getClassLoader().getResource("hojas2.gif")));
 		}
 		return lblGif2;
 	}
 	private JLabel getLblGif3() {
 		if (lblGif3 == null) {
 			lblGif3 = new JLabel("");
-			lblGif3.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas3.gif")));
+			lblGif3.setIcon(new ImageIcon(getClass().getClassLoader().getResource("hojas3.gif")));
 		}
 		return lblGif3;
 	}
 	private JLabel getLblGif4() {
 		if (lblGif4 == null) {
 			lblGif4 = new JLabel("");
-			lblGif4.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas1.gif")));
+			lblGif4.setIcon(new ImageIcon(getClass().getClassLoader().getResource("hojas1.gif")));
 		}
 		return lblGif4;
 	}
 	private JLabel getLblGif5() {
 		if (lblGif5 == null) {
 			lblGif5 = new JLabel("");
-			lblGif5.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas2.gif")));
+			lblGif5.setIcon(new ImageIcon(getClass().getClassLoader().getResource("hojas2.gif")));
 		}
 		return lblGif5;
 	}
 	private JLabel getLblGif6() {
 		if (lblGif6 == null) {
 			lblGif6 = new JLabel("");
-			lblGif6.setIcon(new ImageIcon(TableroVista.class.getResource("/BJ/hojas4.gif")));
+			lblGif6.setIcon(new ImageIcon(getClass().getClassLoader().getResource("hojas4.gif")));
 		}
 		return lblGif6;
 	}
@@ -542,7 +542,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JPanelBackground getPanelSouth() {
 		if (panelSouth == null) {
 			panelSouth = new JPanelBackground();
-			panelSouth.setBackground("resources/BJ/south BJ.jpg");
+			panelSouth.setBackground("south BJ.jpg");
 		}
 		return panelSouth;
 	}
@@ -554,7 +554,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JPanelBackground getPanelWest() {
 		if (panelWest == null) {
 			panelWest = new JPanelBackground();
-			panelWest.setBackground("resources/BJ/west BJ.jpg");
+			panelWest.setBackground("west BJ.jpg");
 		}
 		return panelWest;
 	}
@@ -566,7 +566,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JPanelBackground getPanelTablero() {
 		if (panelTablero == null) {
 			panelTablero = new JPanelBackground();
-			panelTablero.setBackground("resources/BJ/centre BJ.jpg");
+			panelTablero.setBackground("centre BJ.jpg");
 			panelTablero.setLayout(new GridLayout(9, 9, 0, 0));
 			for (int i=1; i<10; i++) {
 				for (int j=1; j<10; j++) {

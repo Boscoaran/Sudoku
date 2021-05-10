@@ -144,7 +144,7 @@ public class PanelVictoria {
 	private JLabel getIcon() {
 		if (icon == null) {
 			icon = new JLabel("");
-			icon.setIcon(new ImageIcon(PanelVictoria.class.getResource("/BJ/fondo estandar.jpg")));
+			icon.setIcon(new ImageIcon(getClass().getClassLoader().getResource("fondo estandar.jpg")));
 			icon.setBounds(0, 0, 484, 232);
 		}
 		return icon;

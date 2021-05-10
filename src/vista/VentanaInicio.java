@@ -57,7 +57,7 @@ public class VentanaInicio {
 		if (panelCentro == null) {
 			panelCentro = new JPanelBackground();
 			panelCentro.setBounds(0, 0, 828, 477);
-			panelCentro.setBackground("resources/BJ/inicio BJ.jpg");
+			panelCentro.setBackground("inicio BJ.jpg");
 			GridBagLayout gbl_panelCentro = new GridBagLayout();
 			gbl_panelCentro.columnWidths = new int[]{284, 72, 91, 63, 0, 0};
 			gbl_panelCentro.rowHeights = new int[]{212, 0, 0, 19, 68, 0};

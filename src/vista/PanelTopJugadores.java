@@ -99,7 +99,7 @@ public class PanelTopJugadores extends JFrame implements Observer{
 		contentPane.add(btnAtras);
 		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(PanelTopJugadores.class.getResource("/BJ/fondo estandar v.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("fondo estandar v.jpg")));
 		lblNewLabel.setBounds(-22, 0, 557, 433);
 		contentPane.add(lblNewLabel);
 		btnAtras.addMouseListener(new MouseAdapter() {
