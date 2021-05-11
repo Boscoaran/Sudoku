@@ -26,12 +26,10 @@ public class VentanaInicio {
 	private JLabel lblNivel;
 	private JComboBox<String> comboBoxNivel;
 	private String user;
-	private boolean vuelta = false;
 	private static Font go3;
 	
-	public VentanaInicio(String u, boolean b) {
+	public VentanaInicio(String u) {
 		user = u;
-		vuelta = b;
 		initialize();
 	}
 	

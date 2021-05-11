@@ -73,7 +73,6 @@ public class TableroModelo extends Observable{
 		boolean hecho = false;
 		int[][] a = new int[9][9];
 		int intento = 1;
-		//PROVISIONAL//
 		while (!hecho) {
 			if (usuario.equals("TRUCO")) {
 				int pId;
@@ -85,7 +84,6 @@ public class TableroModelo extends Observable{
 			}else {
 				a = ListaSudokus.getListaSudokus().getLSudokus(dif);
 			}
-			///////////////
 			if (a != null) {
 				hecho = true;
 			} else {
@@ -142,9 +140,7 @@ public class TableroModelo extends Observable{
 		TableroModelo.estaOn = false;
 		int[] arg = new int[2];
 		arg[0] = 1; //identifica el proceso del resultado
-		//PROVISIONAL//
-		int[][] res = ListaSudokus.getListaSudokus().getLSoluciones(dificultad,idSudoku);
-		///////////////
+		int[][] res = ListaSudokus.getListaSudokus().getLSoluciones(idSudoku,dificultad);
 		boolean correcto = true;
 		int j, i;
 		i = 0;
@@ -237,9 +233,13 @@ public class TableroModelo extends Observable{
 			}
 			i++;
 		}
-		tablero[x][y].setCandidatos(candidatos);
+		tablero[x][y].setCandidatosSistema(candidatos);
 		ArrayList<ArrayList<Integer>> b = new ArrayList<>();
-		b.add(candidatos);
+		if (tablero[x][y].getCandidatosUsuario() == null) {
+			b.add(candidatos);
+		} else {
+			b.add(tablero[x][y].getCandidatosUsuario());
+		}
 		ArrayList<Integer> coords = new ArrayList<>();
 		coords.add(x);
 		coords.add(y);
@@ -268,9 +268,7 @@ public class TableroModelo extends Observable{
 					a.add(Integer.parseInt(s.substring(i,i+1)));
 				}
 			}
-			this.tablero[x][y].setCandidatos(a);
-		} else {
-			this.tablero[x][y].setCandidatos(null);
+			this.tablero[x][y].setCandidatosUsuario(a);
 		}
 		ArrayList<ArrayList<Integer>> b = new ArrayList<>();
 		b.add(a);
@@ -312,14 +310,14 @@ public class TableroModelo extends Observable{
 		while (i < tablero.length && !enc) {
 			int j = 0;
 			while (j < tablero[0].length && !enc) {
-				ArrayList<Integer> a = tablero[i][j].getCandidatos();
-				if (a != null && tablero[i][j].getCandidatos().size() == 1) {
+				ArrayList<Integer> a = tablero[i][j].getCandidatosSistema();
+				if (a != null && tablero[i][j].getCandidatosSistema().size() == 1) {
 					completed = true;
 					String[] st = new String[4];
 					st[0] = "Estrategia";
 					st[1] = "Sole Candidate";
 					st[2] = "Casilla(" + ++i + ", " + ++j + ")";
-					st[3] = "Valor: " + tablero[--i][--j].getCandidatos().get(0);
+					st[3] = "Valor: " + tablero[--i][--j].getCandidatosSistema().get(0);
 					enc = true;
 					setChanged();
 					notifyObservers(st);
@@ -360,14 +358,14 @@ public class TableroModelo extends Observable{
 				int jMax = j+3;
 				while (j < jMax && !enc) {
 					
-					ArrayList<Integer> a = tablero[i][j].getCandidatos();
+					ArrayList<Integer> a = tablero[i][j].getCandidatosSistema();
 					if (a != null) {
 						boolean repetido = true;
 						index = 0;
 						while (index < a.size() && repetido) {
-							if (!lista[tablero[i][j].getCandidatos().get(index)]) {
-								if (recorrerCandidatos(orgs[0],orgs[1],i,j,iMax,jMax,tablero[i][j].getCandidatos().get(index))) {
-									lista[tablero[i][j].getCandidatos().get(index)]= true;
+							if (!lista[tablero[i][j].getCandidatosSistema().get(index)]) {
+								if (recorrerCandidatos(orgs[0],orgs[1],i,j,iMax,jMax,tablero[i][j].getCandidatosSistema().get(index))) {
+									lista[tablero[i][j].getCandidatosSistema().get(index)]= true;
 								} else {
 									repetido = false;
 									enc = true;
@@ -389,7 +387,7 @@ public class TableroModelo extends Observable{
 			st[0] = "Estrategia";
 			st[1] = "Unique Candidate";
 			st[2] = "Casilla(" + i + ", " + j + ")";
-			st[3] = "Valor: " + tablero[--i][--j].getCandidatos().get(--index);
+			st[3] = "Valor: " + tablero[--i][--j].getCandidatosSistema().get(--index);
 			setChanged();
 			notifyObservers(st);
 		}
@@ -403,7 +401,7 @@ public class TableroModelo extends Observable{
 			while (jN < jMax && !repetido) {
 				if (jN == j && orgI == i) {}
 				else {
-					ArrayList<Integer> a = tablero[orgI][jN].getCandidatos();
+					ArrayList<Integer> a = tablero[orgI][jN].getCandidatosSistema();
 					if (a != null) {
 						int k = 0;
 						while (k < a.size() && !repetido) {
@@ -422,8 +420,12 @@ public class TableroModelo extends Observable{
 		return repetido;
 	}
 	
-	public void eliminarCandidatos(int i, int j) {
-		tablero[i][j].setCandidatos(null);
+	public void resetCandidatos() {
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[0].length; j++) {
+				tablero[i][j].setCandidatosUsuario(null);
+			}
+		}
 	}
 }
 

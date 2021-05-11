@@ -72,6 +72,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JMenuItem mntmCambiarNivel;
 	private JMenuItem mntmCandidatos;
 	private JMenuItem mntmCandidatosMos;
+	private JMenuItem mntmResetCandidatos;
 	private JLabel lblGif1;
 	private JLabel lblGif2;
 	private JLabel lblGif3;
@@ -260,7 +261,7 @@ public class TableroVista extends JFrame implements Observer{
 		}
 		return lblTiempo;
 	}
-	private boolean isInteger(String num) { //Metodo para comprobar que es un nï¿½mero
+	private boolean isInteger(String num) { //Metodo para comprobar que es un número
 		try {
 			Integer.parseInt(num);
 			return true;
@@ -277,55 +278,52 @@ public class TableroVista extends JFrame implements Observer{
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					if (select!=null) {
-						int cont= 1;
 						boolean completed = false;
-						while (cont != -1) {
-							if (cont == 1) {
-								String s = textFieldValor.getText();
-								if (compValor(s)) {
+						String s = textFieldValor.getText();
+						JLabel cas = ((JLabel)((JPanel)select.getComponent(0)).getComponent(0));
+						if (compValor(s)) {
+							String cand = textFieldCandidatos.getText();
+							if ((cand.equals("") && cas.getText().equals(" ")) || (cand.equals("") && !cas.getText().equals(" "))) {
+								int[] coords = select.getCoords();
+								modelo.TableroModelo.getTablero().setValor(coords[0]-1, coords[1]-1, s);
+								modelo.TableroModelo.getTablero().setCandidatos(null, coords[0]-1, coords[1]-1);
+								completed = true;
+							} else if ((!cand.equals("") && cas.getText().equals(" "))){
+								JOptionPane.showMessageDialog(null, "No se pueden introducir candidatos y valor a la vez", "Error", JOptionPane.ERROR_MESSAGE);
+							} else if (!cand.equals("") && !cas.getText().equals(" ")) {
+								JOptionPane.showMessageDialog(null, "Se han eliminado los candidatos", "Información", JOptionPane.INFORMATION_MESSAGE);
+								int[] coords = select.getCoords();
+								modelo.TableroModelo.getTablero().setValor(coords[0]-1, coords[1]-1, s);
+								modelo.TableroModelo.getTablero().setCandidatos(null, coords[0]-1, coords[1]-1);
+								completed = true;
+							}
+						} else if (s.equals("")) {
+							JLabel casValor = ((JLabel)((JPanel)select.getComponent(1)).getComponent(0));
+							String cand = textFieldCandidatos.getText();
+							if (casValor.getText().equals("")) {
+								if (!cand.equals("") && !compCandidatos(cand)) {
 									int[] coords = select.getCoords();
-									modelo.TableroModelo.getTablero().setValor(coords[0]-1, coords[1]-1, s);
-									TableroModelo.getTablero().eliminarCandidatos(coords[0]-1,coords[1]-1);
-								} else if (s.equals("")) {
-									int[] coords = select.getCoords();
-									modelo.TableroModelo.getTablero().setValor(coords[0]-1, coords[1]-1, "0");
+									modelo.TableroModelo.getTablero().setCandidatos(cand, coords[0]-1, coords[1]-1);
+									completed = true;
 								}
 							} else {
-								if (textFieldValor.getText().equals("") || textFieldCandidatos.getText().equals("")) {
-									String numCandidatos = textFieldCandidatos.getText();
-									if (textFieldCandidatos.getText().equals("")) {
-										int[] coords = select.getCoords();
-										modelo.TableroModelo.getTablero().setCandidatos(null, coords[0]-1, coords[1]-1);
-										completed = true;
-									} else if (!compCandidatos(numCandidatos)) {
-										int[] coords = select.getCoords();
-										modelo.TableroModelo.getTablero().setCandidatos(numCandidatos, coords[0]-1, coords[1]-1);
-										completed = true;
-									}
-								} else {
-									if (!((JLabel)((JPanel)select.getComponent(1)).getComponent(0)).getText().equals("") && ((JLabel)((JPanel)select.getComponent(0)).getComponent(0)).getText().equals(" ")) { 
-										JOptionPane.showMessageDialog(null, "No se puede introducir candidatos si se ha introducido un valor, por favor, elimina los candidatos", "Error Candidatos", JOptionPane.ERROR_MESSAGE);
-									} else {
-										((JLabel)((JPanel)select.getComponent(0)).getComponent(0)).setText(" ");
-										JOptionPane.showMessageDialog(null, "Se han eliminado los candidatos", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-										
-										completed = true;
-									}
-									
-								}	
+								if (!cand.equals("")) {
+									int[] coords = select.getCoords();
+									modelo.TableroModelo.getTablero().setValor(coords[0]-1, coords[1]-1, "0");
+									modelo.TableroModelo.getTablero().setCandidatos(cand, coords[0]-1, coords[1]-1);
+									completed = true;
+								}
 							}
-							cont--;
-					}
-					if (completed) {
-						textFieldCandidatos.setText("");
-						textFieldValor.setText("");
-						select.setBorder(bordeAct);
-						select=null;
-						btnModificar.setEnabled(false);
-						textFieldCandidatos.setEnabled(false);
-						textFieldValor.setEnabled(false);
-						modelo.TableroModelo.getTablero().calcularCandidatosGlobal(mostrarCandidatos);
-					}
+						if (completed) {
+							textFieldCandidatos.setText("");
+							textFieldValor.setText("");
+							select.setBorder(bordeAct);
+							select=null;
+							btnModificar.setEnabled(false);
+							textFieldCandidatos.setEnabled(false);
+							textFieldValor.setEnabled(false);
+							modelo.TableroModelo.getTablero().calcularCandidatosGlobal(mostrarCandidatos);
+						}
 					}
 				}
 			});
@@ -337,11 +335,11 @@ public class TableroVista extends JFrame implements Observer{
 		boolean correcto = true;
 		if (!num.equals("")) {
 			if ((isInteger(num) && num.length() > 1) || (isInteger(num) && Integer.parseInt(num) == 0)) {
-				JOptionPane.showMessageDialog(null, "Tan solo puede introducir un nï¿½mero distinto de 0", "Error Valor", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Tan solo puede introducir un número distinto de 0", "Error Valor", JOptionPane.ERROR_MESSAGE);
 				textFieldValor.setText("");
 				correcto=false;
 			}else if (!isInteger(num) && num.length()!=0) {
-				JOptionPane.showMessageDialog(null, "Debe introducir un nï¿½mero", "Error Valor", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Debe introducir un número", "Error Valor", JOptionPane.ERROR_MESSAGE);
 				textFieldValor.setText("");
 				correcto=false;
 			}
@@ -383,7 +381,7 @@ public class TableroVista extends JFrame implements Observer{
 				JOptionPane.showMessageDialog(null, "Los candidatos no se pueden repetir", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (!correcto && numCero){
-			JOptionPane.showMessageDialog(null, "Los candidatos deben de ser nï¿½meros", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Los candidatos deben de ser números", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
 			repetido = true;
 		} else if (!correcto && !numCero) {
 			JOptionPane.showMessageDialog(null, "Los candidatos no pueden ser 0", "Error Candidatos",JOptionPane.ERROR_MESSAGE);
@@ -399,7 +397,6 @@ public class TableroVista extends JFrame implements Observer{
 			btnAyuda.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					//new PanelAyuda(select);
 					TableroModelo.getTablero().solicitarAyuda();
 				}
 			});
@@ -647,7 +644,7 @@ public class TableroVista extends JFrame implements Observer{
 		}else if (arg instanceof String && ((String) arg).substring(2, 3).equals(":")) {
 			this.lblTiempo.setText((String)arg);
 		}else if (arg instanceof String && arg.equals("null")) {
-			JOptionPane.showMessageDialog(null, "No hay mï¿½s sudokus para ti :(", "Lï¿½mite de sudokus alcanzado", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "No hay más sudokus para ti :(", "Límite de sudokus alcanzado", JOptionPane.ERROR_MESSAGE);
 			frmSudokuRoyaleMaster.dispose();
 		}else if (arg instanceof String[] && (((String[])arg)[0]).equals("Estrategia")) {
 			lblAyuda1.setText(((String[])arg)[1]);
@@ -655,7 +652,7 @@ public class TableroVista extends JFrame implements Observer{
 			lblAyuda3.setText(((String[])arg)[3]);
 			
 		} else {
-			int[] a = (int[]) arg;
+ 			int[] a = (int[]) arg;
 			if (a[0] == 1) {
 				if (a[1] == 0) {
 					JOptionPane.showMessageDialog(null, "Lo sentimos, no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
@@ -712,6 +709,14 @@ public class TableroVista extends JFrame implements Observer{
 	private JMenuItem getMntmReiniciar() {
 		if (mntmReiniciar == null) {
 			mntmReiniciar = new JMenuItem("Reiniciar");
+			mntmReiniciar.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					modelo.TableroModelo.getTablero().cargarTablero(modelo.TableroModelo.getTablero().getDif(), modelo.TableroModelo.getTablero().getUser());
+					
+				}
+			});
 		}
 		return mntmReiniciar;
 	}
@@ -719,6 +724,15 @@ public class TableroVista extends JFrame implements Observer{
 	private JMenuItem getMntmCambiarNivel() {
 		if (mntmCambiarNivel == null) {
 			mntmCambiarNivel = new JMenuItem("Cambiar nivel");
+			mntmCambiarNivel.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					frmSudokuRoyaleMaster.dispose();
+					new VentanaInicio(modelo.TableroModelo.getTablero().getUser());
+					
+				}
+			});
 		}
 		return mntmCambiarNivel;
 	}
@@ -734,7 +748,8 @@ public class TableroVista extends JFrame implements Observer{
 						((CasillaVista) cas).ocultarCandidatos();
 					}
 					mnPartida.add(getMntmCandidatosMos());
-					mnPartida.remove(mntmCandidatos);
+					mnPartida.remove(getMntmOcultarCand());
+					mnPartida.remove(getMntmResetCandidatos());
 				}
 			});
 		}
@@ -750,12 +765,28 @@ public class TableroVista extends JFrame implements Observer{
 					mostrarCandidatos = true;
 					modelo.TableroModelo.getTablero().calcularCandidatosGlobal(mostrarCandidatos);
 					mnPartida.add(getMntmOcultarCand());
-					mnPartida.remove(mntmCandidatosMos);
-					JOptionPane.showMessageDialog(null, "A partir de ahora los candidatos se calcularï¿½n automï¿½ticamente cada vez que introduzcas un valor", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+					mnPartida.remove(getMntmCandidatosMos());
+					mnPartida.add(getMntmResetCandidatos());
+					JOptionPane.showMessageDialog(null, "A partir de ahora los candidatos se calcularán automáticamente cada vez que introduzcas un valor, salvo que los cambies tú", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				}
 			});
 		}
 		return mntmCandidatosMos;
+	}
+	
+	private JMenuItem getMntmResetCandidatos() {
+		if (mntmResetCandidatos == null) {
+			mntmResetCandidatos = new JMenuItem("Resetear candidatos");
+			mntmResetCandidatos.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					modelo.TableroModelo.getTablero().resetCandidatos();
+					modelo.TableroModelo.getTablero().calcularCandidatosGlobal(mostrarCandidatos);
+					JOptionPane.showMessageDialog(null, "Se ha reseteado los candidatos, todos se calcularán automáticamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				}
+			});
+		}
+		return mntmResetCandidatos;
 	}
 	
 }

@@ -10,7 +10,7 @@ public class Iniciador {
 	public Iniciador() {}
 	
 	public void menu() {
-		new vista.VentanaInicio(null,false);
+		new vista.VentanaInicio(null);
 	}
 	
 }

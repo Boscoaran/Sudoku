@@ -98,7 +98,8 @@ public class PanelVictoria {
 				
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					new VentanaInicio(user, true);
+					new VentanaInicio(user);
+					frame.dispose();
 				}
 			});
 		}
@@ -151,7 +152,7 @@ public class PanelVictoria {
 	}
 	private JLabel getLblInfo_1_1() {
 		if (lblInfo_1 == null) {
-			lblInfo_1 = new JLabel(user +": tu puntuaci\u00F3n es de: "+ puntos);
+			lblInfo_1 = new JLabel(user +": tu puntuación es de: "+ puntos);
 			lblInfo_1.setHorizontalAlignment(SwingConstants.CENTER);
 			lblInfo_1.setForeground(new Color(234, 183, 69));
 			lblInfo_1.setFont(go3);

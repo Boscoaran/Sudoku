@@ -36,13 +36,20 @@ public class CasillaModelo {
 		return orgs;
 	}
 	
-	public void setCandidatos(ArrayList<Integer> pCandidatos) {
+	public void setCandidatosSistema(ArrayList<Integer> pCandidatos) {
 		candidatosSistema = pCandidatos;
-		
 	}
 	
-	public ArrayList<Integer> getCandidatos() {
+	public void setCandidatosUsuario(ArrayList<Integer> pCandidatos)  {
+		candidatosUsuario = pCandidatos;
+	}
+	
+	public ArrayList<Integer> getCandidatosSistema() {
 		return candidatosSistema;
+	}
+	
+	public ArrayList<Integer> getCandidatosUsuario() {
+		return candidatosUsuario;
 	}
 	
 }
