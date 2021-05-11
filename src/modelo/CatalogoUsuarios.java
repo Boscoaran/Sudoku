@@ -21,14 +21,13 @@ public class CatalogoUsuarios extends Observable{
 		lUsuarios.add(u);
 	}
 	
-	public void mostrar() {
-		Usuario lU[] = new Usuario[lUsuarios.size()];
+	public String getNombre(int pId) {
 		int i = 0;
-		while (i < lUsuarios.size()) {
-			lU[i] = lUsuarios.get(i);
+		boolean enc = false;
+		while (i < lUsuarios.size() && !enc) {
+			if (lUsuarios.get(i).getId() == pId) return lUsuarios.get(i).getName();
 			i++;
 		}
-		this.setChanged();
-		this.notifyObservers(lU);
+		return null;
 	}
 }

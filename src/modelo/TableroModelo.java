@@ -61,6 +61,10 @@ public class TableroModelo extends Observable{
 		puntos = (30000 * dificultad/(segundos + (30*numAyudas)));
 	}
 	
+	public void setID(int pId) {
+		idSudoku = pId;
+	}
+	
 	public void cargarTablero (int dif,String u) {
 		usuario = u;
 		if (!ListaSudokus.getListaSudokus().estaCargado()) {
@@ -71,15 +75,15 @@ public class TableroModelo extends Observable{
 		int intento = 1;
 		//PROVISIONAL//
 		while (!hecho) {
-			int pId;
-			if (dif == 1) pId = 1;
-			else if (dif == 2) pId = 3;
-			else pId = 4;
-			idSudoku = pId;
 			if (usuario.equals("TRUCO")) {
+				int pId;
+				if (dif == 1) pId = 1;
+				else if (dif == 2) pId = 3;
+				else pId = 4;
+				idSudoku = pId;
 				a = ListaSudokus.getListaSudokus().getLSoluciones(pId, dif);
 			}else {
-				a = ListaSudokus.getListaSudokus().getLSudokus(pId, dif);
+				a = ListaSudokus.getListaSudokus().getLSudokus(dif);
 			}
 			///////////////
 			if (a != null) {
@@ -139,11 +143,7 @@ public class TableroModelo extends Observable{
 		int[] arg = new int[2];
 		arg[0] = 1; //identifica el proceso del resultado
 		//PROVISIONAL//
-		int pId;
-		if (dificultad == 1) pId = 1;
-		else if (dificultad == 2) pId = 3;
-		else pId = 4;
-		int[][] res = ListaSudokus.getListaSudokus().getLSoluciones(pId, dificultad);
+		int[][] res = ListaSudokus.getListaSudokus().getLSoluciones(dificultad,idSudoku);
 		///////////////
 		boolean correcto = true;
 		int j, i;

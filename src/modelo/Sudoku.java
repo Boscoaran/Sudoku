@@ -21,7 +21,10 @@ public class Sudoku {
 	}
 	
 	public int[][] getSudoku() {
-		if (!realizado) return sudokuVacio;
+		if (!realizado) {
+			TableroModelo.getTablero().setID(id);
+			return sudokuVacio;
+		}
 		else return null;
 	}
 	

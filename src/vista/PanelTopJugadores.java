@@ -19,6 +19,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.GridBagLayout;
@@ -69,7 +70,7 @@ public class PanelTopJugadores extends JFrame implements Observer{
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		modelo.CatalogoUsuarios.getCatalogoUsuarios().addObserver(this);
+		modelo.CatalogoPuntuaciones.getCatalogoPuntuaciones().addObserver(this);
 		contentPane.setLayout(null);
 		
 		JPanel panelTitulo = new JPanel();
@@ -165,15 +166,16 @@ public class PanelTopJugadores extends JFrame implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if (arg instanceof Usuario[]) {
-			Usuario[] l = (Usuario[]) arg;
+		if (arg instanceof Object[]) {
+			Object[] l = (Object[]) arg;
 			for (int i = 0; i< 10; i++) {
 				if (i>= l.length) {
 					etiq[i][1].setText("");
 					etiq[i][2].setText("");
 				} else {
-					etiq[i][1].setText(l[i].getName());
-					etiq[i][2].setText(l[i].getPoints());
+					int ind = (l[i].toString().indexOf("="));
+					etiq[i][1].setText(l[i].toString().substring(0,ind));
+					etiq[i][2].setText(l[i].toString().substring(ind+1, l[i].toString().length()-1));
 				}
 				
 			}

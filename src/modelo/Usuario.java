@@ -15,7 +15,7 @@ public class Usuario {
 		return nombreUsuario;
 	}
 	
-	public String getPoints() {
-		return Double.toString(mejorPuntuacion);
+	public int getId() {
+		return id;
 	}
 }

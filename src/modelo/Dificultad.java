@@ -15,7 +15,7 @@ public class Dificultad {
 		return dificultad;
 	}
 	
-	public int[][] getSudoku(int pId, boolean sol) {
+	public int[][] getSol(int pId) {
 		boolean enc = false;
 		int i = 0;
 		while (i < lSudokus.size() && !enc) {
@@ -23,11 +23,20 @@ public class Dificultad {
 			i++;
 		}
 		
-		if (enc && sol) {
-			return lSudokus.get(--i).getSol();
-		} else if (enc && !sol) {
-			return lSudokus.get(--i).getSudoku();
-		} else return null;
+		if (enc) return lSudokus.get(--i).getSol();
+		else return null;
+	}
+	
+	public int[][] getSudoku() {
+		int i = 0;
+		boolean enc = false;
+		int[][] tablero = null;
+		while (i < lSudokus.size() && !enc) {
+			tablero = lSudokus.get(i).getSudoku();
+			if (tablero != null) enc = true;
+			i++;
+		}
+		return tablero;
 	}
 	
 	public void setSudoku(Sudoku s) {

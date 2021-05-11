@@ -24,18 +24,18 @@ public class ListaSudokus {
 			if (lSudokus.get(i).getDificultad() == dif) enc = true;
 			i++;
 		}
-		if (enc) return lSudokus.get(--i).getSudoku(id, true);
+		if (enc) return lSudokus.get(--i).getSol(id);
 		else return null;
 	}
 	
-	public int[][] getLSudokus(int id, int dif) {
+	public int[][] getLSudokus(int dif) {
 		boolean enc = false;
 		int i = 0;
 		while (i < lSudokus.size() && !enc) {
 			if (lSudokus.get(i).getDificultad() == dif) enc = true;
 			i++;
 		}
-		if (enc) return lSudokus.get(--i).getSudoku(id, false);
+		if (enc) return lSudokus.get(--i).getSudoku();
 		else return null;
 	}
 	

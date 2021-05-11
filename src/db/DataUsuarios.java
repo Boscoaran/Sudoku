@@ -2,7 +2,9 @@ package db;
 
 import java.sql.*;
 
+import modelo.CatalogoPuntuaciones;
 import modelo.CatalogoUsuarios;
+import modelo.Puntuacion;
 import modelo.Usuario;
 
 public class DataUsuarios {
@@ -37,8 +39,16 @@ public class DataUsuarios {
 			s = con.createStatement();
 			String query = "INSERT INTO Usuario VALUES ("+ st + ", '" + name +"', 0.0)";
 			s.execute(query);
-			s.close();
 		}
+		rs1 = s.executeQuery("SELECT * FROM Usuario");
+		while (rs1.next()) {
+			int id = rs1.getInt(1);
+			String nombre = rs1.getString(2);
+			double puntos = rs1.getDouble(3);
+			Usuario u = new Usuario(id, nombre, puntos);
+			CatalogoUsuarios.getCatalogoUsuarios().anadirUsuario(u);
+		}
+		s.close();
 		con.close();
 	}
 	
@@ -50,16 +60,19 @@ public class DataUsuarios {
 			Statement s = con.createStatement();
 			String query = "SELECT * FROM Usuario ORDER BY maxP DESC";
 			ResultSet rs = s.executeQuery(query);
-			while (rs.next()) {
-				int id = rs.getInt(1);
-				String n = rs.getString(2);
-				double punt = rs.getDouble(3);
-				Usuario u = new Usuario(id,n,punt);
-				CatalogoUsuarios.getCatalogoUsuarios().anadirUsuario(u);
+			query = "SELECT * FROM puntuacionSudokus";
+			rs = s.executeQuery(query);
+			while(rs.next()) {
+				int idUsuario = rs.getInt(2);
+				int idSudoku = rs.getInt(3);
+				int dif = rs.getInt(4);
+				double puntuacion = rs.getDouble(5);
+				Puntuacion points = new Puntuacion (CatalogoUsuarios.getCatalogoUsuarios().getNombre(idUsuario),idSudoku, dif,puntuacion);
+				CatalogoPuntuaciones.getCatalogoPuntuaciones().anadirPuntuacion(points);
 			}
 			s.close();
 			con.close();
-			CatalogoUsuarios.getCatalogoUsuarios().mostrar();
+			CatalogoPuntuaciones.getCatalogoPuntuaciones().puntuacionesMayores();
 		} catch (Exception e) {
 			System.out.println("Error al registrar el dirver de MySQL:" + e);
 		}
