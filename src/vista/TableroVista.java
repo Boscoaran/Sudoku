@@ -314,6 +314,7 @@ public class TableroVista extends JFrame implements Observer{
 									completed = true;
 								}
 							}
+						}
 						if (completed) {
 							textFieldCandidatos.setText("");
 							textFieldValor.setText("");
