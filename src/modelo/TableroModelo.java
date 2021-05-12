@@ -18,6 +18,7 @@ public class TableroModelo extends Observable{
 	private String usuario;
 	private double puntos;
 	private int idSudoku;
+	private Reloj r;
 	
 	private TableroModelo() {
 		tablero = new CasillaModelo[9][9];
@@ -281,7 +282,7 @@ public class TableroModelo extends Observable{
 	}
 	
 	public void iniciarReloj() {
-		Reloj r = new Reloj();
+		r = new Reloj();
 		r.start();
 	}
 	
