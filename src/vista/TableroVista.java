@@ -101,8 +101,6 @@ public class TableroVista extends JFrame implements Observer{
 			public void componentResized(ComponentEvent e) {
 				Component[] lCas = panelTablero.getComponents();
 				for (Component c: lCas) {
-					//((CasillaVista)c).tamanioLetra(frmSudokuRoyaleMaster.getHeight(), frmSudokuRoyaleMaster.getWidth());
-					System.out.println(((CasillaVista)c).getHeight()+ " " + ((CasillaVista)c).getWidth());
 					((CasillaVista)c).tamanioLetra(((CasillaVista)c).getHeight(), ((CasillaVista)c).getWidth());
 				}
 			}
