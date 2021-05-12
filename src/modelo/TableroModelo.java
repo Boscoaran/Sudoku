@@ -75,7 +75,7 @@ public class TableroModelo extends Observable{
 		int[][] a = new int[9][9];
 		int intento = 1;
 		while (!hecho) {
-			if (usuario.equals("TRUCO")) {
+			if (usuario.contains("*")) {
 				int pId;
 				if (dif == 1) pId = 1;
 				else if (dif == 2) pId = 3;
@@ -257,8 +257,13 @@ public class TableroModelo extends Observable{
 			for (int j = 0; j < tablero.length; j++) {
 				if (tablero[i][j].getValor() == 0)
 					calcularCandidatos(i, j,mostrar);
+				else
+					eliminarCandidatosSistema(i,j);
 			}
 		}
+	}
+	private void eliminarCandidatosSistema(int i, int j) {
+		tablero[i][j].setCandidatosSistema(null);
 	}
 	
 	public void setCandidatos(String s, int x, int y) {

@@ -68,7 +68,6 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel lblTiempo;
 	private JMenuBar menuBar;
 	private JMenu mnPartida;
-	private JMenuItem mntmCambiarNivel;
 	private JMenuItem mntmCandidatos;
 	private JMenuItem mntmCandidatosMos;
 	private JMenuItem mntmResetCandidatos;
@@ -699,27 +698,11 @@ public class TableroVista extends JFrame implements Observer{
 	private JMenu getMnPartida() {
 		if (mnPartida == null) {
 			mnPartida = new JMenu("Opciones");
-			mnPartida.add(getMntmCambiarNivel());
 			mnPartida.add(getMntmCandidatosMos());
 		}
 		return mnPartida;
 	}
-	
-	private JMenuItem getMntmCambiarNivel() {
-		if (mntmCambiarNivel == null) {
-			mntmCambiarNivel = new JMenuItem("Cambiar nivel");
-			mntmCambiarNivel.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					frmSudokuRoyaleMaster.dispose();
-					new VentanaInicio(modelo.TableroModelo.getTablero().getUser());
-					
-				}
-			});
-		}
-		return mntmCambiarNivel;
-	}
+
 	private JMenuItem getMntmOcultarCand() {
 		if (mntmCandidatos == null) {
 			mntmCandidatos = new JMenuItem("Ocultar candidatos");

@@ -1,11 +1,11 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import static java.util.Comparator.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Observable;
-import java.util.stream.*;
+import static java.util.stream.Collectors.*;
 
 @SuppressWarnings("deprecation")
 public class CatalogoPuntuaciones extends Observable{
@@ -28,12 +28,12 @@ public class CatalogoPuntuaciones extends Observable{
 	public void puntuacionesMayores() {
 		Map<String,Double> puntos;
 		puntos = lPuntuaciones.stream(). //Sacar la lista de las mejores puntuaciones
-				collect(Collectors.groupingBy(Puntuacion::getNombre, 
-						Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparingDouble(Puntuacion::getPuntuacion)),
+				collect(groupingBy(Puntuacion::getNombre, 
+						collectingAndThen(maxBy(comparingDouble(Puntuacion::getPuntuacion)),
 								p-> p.get().getPuntuacion())));
 		puntos = puntos.entrySet().stream().sorted(Map.Entry //ordenar la lista de mayor a menor puntuacion
-				.comparingByValue(Comparator.reverseOrder()))
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (antValor, nuevoValor) -> antValor, LinkedHashMap::new));
+				.comparingByValue(reverseOrder()))
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (antValor, nuevoValor) -> antValor, LinkedHashMap::new));
 		
 		Object[] a = puntos.entrySet().toArray();
 
