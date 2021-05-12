@@ -68,6 +68,7 @@ public class TableroVista extends JFrame implements Observer{
 	private JLabel lblTiempo;
 	private JMenuBar menuBar;
 	private JMenu mnPartida;
+	private JMenuItem mntmSalir;
 	private JMenuItem mntmCandidatos;
 	private JMenuItem mntmCandidatosMos;
 	private JMenuItem mntmResetCandidatos;
@@ -100,7 +101,9 @@ public class TableroVista extends JFrame implements Observer{
 			public void componentResized(ComponentEvent e) {
 				Component[] lCas = panelTablero.getComponents();
 				for (Component c: lCas) {
-					((CasillaVista)c).tamanioLetra(frmSudokuRoyaleMaster.getHeight(), frmSudokuRoyaleMaster.getWidth());
+					//((CasillaVista)c).tamanioLetra(frmSudokuRoyaleMaster.getHeight(), frmSudokuRoyaleMaster.getWidth());
+					System.out.println(((CasillaVista)c).getHeight()+ " " + ((CasillaVista)c).getWidth());
+					((CasillaVista)c).tamanioLetra(((CasillaVista)c).getHeight(), ((CasillaVista)c).getWidth());
 				}
 			}
 		});
@@ -567,7 +570,6 @@ public class TableroVista extends JFrame implements Observer{
 			for (int i=1; i<10; i++) {
 				for (int j=1; j<10; j++) {
 					CasillaVista casilla = new CasillaVista(i,j);
-					//casilla.tama�oLetra(frmSudokuRoyaleMaster.getHeight(), frmSudokuRoyaleMaster.getWidth());
 					panelTablero.add(casilla);
 					casilla.addMouseListener(new MouseAdapter() {
 						@Override
@@ -699,10 +701,24 @@ public class TableroVista extends JFrame implements Observer{
 		if (mnPartida == null) {
 			mnPartida = new JMenu("Opciones");
 			mnPartida.add(getMntmCandidatosMos());
+			mnPartida.add(getMntmSalir());
 		}
 		return mnPartida;
 	}
 
+	private JMenuItem getMntmSalir() {
+		if (mntmSalir == null) {
+			mntmSalir = new JMenuItem("Salir");
+			mntmSalir.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					frmSudokuRoyaleMaster.dispose();					
+				}
+			});
+		}
+		return mntmSalir;
+	}
 	private JMenuItem getMntmOcultarCand() {
 		if (mntmCandidatos == null) {
 			mntmCandidatos = new JMenuItem("Ocultar candidatos");

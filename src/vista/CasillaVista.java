@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 public class CasillaVista extends JPanel{
 	
@@ -39,9 +40,9 @@ public class CasillaVista extends JPanel{
 	}
 	
 	public void inicializar() {
-			this.setLayout(new BorderLayout(0,0));
-			this.add(getCandidatosPanel(), BorderLayout.NORTH);
-			this.add(getValorPanel(), BorderLayout.CENTER);
+			setLayout(new GridLayout(0, 1, 0, 0));
+			this.add(getCandidatosPanel());
+			this.add(getValorPanel());
 			this.setBorder(borde());
 			this.setName("Casilla " + x + " " + y);
 			this.setOpaque(false);
@@ -78,9 +79,9 @@ public class CasillaVista extends JPanel{
 		return valorLabel;
 	}
 	
-	public void tamanioLetra(int ref, int ref2) {
-		valorLabel.setFont(valorLabel.getFont().deriveFont(ref/30f));
-		candidatosLabel.setFont(valorLabel.getFont().deriveFont(ref2/80f));
+	public void tamanioLetra(int h, int w) {
+		valorLabel.setFont(valorLabel.getFont().deriveFont(h/3f));
+		candidatosLabel.setFont(valorLabel.getFont().deriveFont(w/7f));
 	}
 	private Border borde() {
 		Border borde = null;
