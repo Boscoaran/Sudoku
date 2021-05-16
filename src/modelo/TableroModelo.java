@@ -303,125 +303,8 @@ public class TableroModelo extends Observable{
 	
 	public void solicitarAyuda() {
 		boolean completed = false;
-		completed = soleCandidate();
-		if (!completed) completed = uniqueCandidate();
-	}
-	
-	public boolean soleCandidate() {
-		boolean completed = false;
-		boolean enc = false;
-		int i = 0;
-		while (i < tablero.length && !enc) {
-			int j = 0;
-			while (j < tablero[0].length && !enc) {
-				ArrayList<Integer> a = tablero[i][j].getCandidatosSistema();
-				if (a != null && tablero[i][j].getCandidatosSistema().size() == 1) {
-					completed = true;
-					String[] st = new String[4];
-					st[0] = "Estrategia";
-					st[1] = "Sole Candidate";
-					st[2] = "Casilla(" + ++i + ", " + ++j + ")";
-					st[3] = "Valor: " + tablero[--i][--j].getCandidatosSistema().get(0);
-					enc = true;
-					setChanged();
-					notifyObservers(st);
-				}
-				j++;	
-			}
-			i++;
-		}
-		return completed;
-	}
-	
-	
-	public boolean uniqueCandidate() {
-		boolean completed = false;
-		boolean enc = false;
-		int vuelta = 0;
-		int i = 0;
-		int j = 0;
-		int index = 0;
-		while (vuelta < 9 && !enc) {
-			CasillaModelo c;
-			if (vuelta == 0) c = tablero[0][0];
-			else if (vuelta == 1) c = tablero[0][3];
-			else if (vuelta == 2) c = tablero[0][6];
-			else if (vuelta == 3) c = tablero[3][0];
-			else if (vuelta == 4) c = tablero[3][3];
-			else if (vuelta == 5) c = tablero[3][6];
-			else if (vuelta == 6) c = tablero[6][0];
-			else if (vuelta == 7) c = tablero[6][3];
-			else c = tablero[6][6];
-			
-			boolean lista[] = new boolean[10];
-			int[] orgs = c.getOrgs();
-			i = orgs[0];
-			int iMax = i+3;
-			while (i < iMax && !enc) {
-				j = orgs[1];
-				int jMax = j+3;
-				while (j < jMax && !enc) {
-					
-					ArrayList<Integer> a = tablero[i][j].getCandidatosSistema();
-					if (a != null) {
-						boolean repetido = true;
-						index = 0;
-						while (index < a.size() && repetido) {
-							if (!lista[tablero[i][j].getCandidatosSistema().get(index)]) {
-								if (recorrerCandidatos(orgs[0],orgs[1],i,j,iMax,jMax,tablero[i][j].getCandidatosSistema().get(index))) {
-									lista[tablero[i][j].getCandidatosSistema().get(index)]= true;
-								} else {
-									repetido = false;
-									enc = true;
-								}
-							}
-							index++;
-						}
-					}
-					
-					j++;
-				}
-				i++;
-			}
-			vuelta++;
-		}
-		if (enc) {
-			completed = true;
-			String[] st = new String[4];
-			st[0] = "Estrategia";
-			st[1] = "Unique Candidate";
-			st[2] = "Casilla(" + i + ", " + j + ")";
-			st[3] = "Valor: " + tablero[--i][--j].getCandidatosSistema().get(--index);
-			setChanged();
-			notifyObservers(st);
-		}
-		return completed;
-	}
-	
-	private boolean recorrerCandidatos(int orgI, int orgJ, int i, int j, int iMax, int jMax, int candidato) {
-		boolean repetido = false;
-		while (orgI < iMax && !repetido) {
-			int jN = orgJ;
-			while (jN < jMax && !repetido) {
-				if (jN == j && orgI == i) {}
-				else {
-					ArrayList<Integer> a = tablero[orgI][jN].getCandidatosSistema();
-					if (a != null) {
-						int k = 0;
-						while (k < a.size() && !repetido) {
-							if (a.get(k) == candidato) {
-								repetido = true;
-							} else {
-								k++;
-							}
-						}
-					}
-				}
-				jN++;
-			}
-			orgI++;
-		}
-		return repetido;
+		completed = GeneradorDeAyudas.getGenerador().generarAyuda("Sole Candidate").darAyuda(tablero);
+		if (!completed) GeneradorDeAyudas.getGenerador().generarAyuda("Unique Candidate").darAyuda(tablero);
 	}
 	
 	public void resetCandidatos() {
@@ -430,6 +313,12 @@ public class TableroModelo extends Observable{
 				tablero[i][j].setCandidatosUsuario(null);
 			}
 		}
+	}
+
+	public void actualizarAyuda(String[] st) {
+		setChanged();
+		notifyObservers(st);
+		
 	}
 }
 
