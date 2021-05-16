@@ -1,9 +1,6 @@
 package modelo;
 
-import java.util.Observable;
-
-@SuppressWarnings("deprecation")
-public class GeneradorDeAyudas extends Observable{
+public class GeneradorDeAyudas{
 	private static GeneradorDeAyudas mGenerador;
 	
 	private GeneradorDeAyudas() {}
