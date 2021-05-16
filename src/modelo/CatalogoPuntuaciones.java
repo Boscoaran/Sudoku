@@ -25,10 +25,10 @@ public class CatalogoPuntuaciones extends Observable{
 		lPuntuaciones.add(p);
 	}
 	
-	public void puntuacionesMayores(int level) {
+	public void puntuacionesMayores(int dif) {
 		Map<String,Double> puntos;
 		puntos = lPuntuaciones.stream(). //Sacar la lista de las mejores puntuaciones
-				filter(p -> p.esNivel(level)).collect(groupingBy(Puntuacion::getNombre, 
+				filter(p -> p.esNivel(dif)).collect(groupingBy(Puntuacion::getNombre, 
 						collectingAndThen(maxBy(comparingDouble(Puntuacion::getPuntuacion)),
 								p-> p.get().getPuntuacion())));
 		puntos = puntos.entrySet().stream().sorted(Map.Entry //ordenar la lista de mayor a menor puntuacion
