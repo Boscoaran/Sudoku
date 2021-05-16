@@ -645,6 +645,7 @@ public class TableroVista extends JFrame implements Observer{
 		}else if (arg instanceof String && arg.equals("null")) {
 			JOptionPane.showMessageDialog(null, "No hay más sudokus para ti :(", "Límite de sudokus alcanzado", JOptionPane.ERROR_MESSAGE);
 			frmSudokuRoyaleMaster.dispose();
+			Runtime.getRuntime().exit(1);
 		}else if (arg instanceof String[] && (((String[])arg)[0]).equals("Estrategia")) {
 			lblAyuda1.setText(((String[])arg)[1]);
 			lblAyuda2.setText(((String[])arg)[2]);
