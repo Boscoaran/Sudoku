@@ -20,4 +20,8 @@ public class Puntuacion {
 	public String getNombre() {
 		return name;
 	}
+
+	public boolean esNivel(int level) {
+		return dif == level;
+	}
 }

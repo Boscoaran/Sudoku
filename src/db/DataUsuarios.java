@@ -72,7 +72,7 @@ public class DataUsuarios {
 			}
 			s.close();
 			con.close();
-			CatalogoPuntuaciones.getCatalogoPuntuaciones().puntuacionesMayores();
+			CatalogoPuntuaciones.getCatalogoPuntuaciones().puntuacionesMayores(1);
 		} catch (Exception e) {
 			System.out.println("Error al registrar el dirver de MySQL:" + e);
 		}

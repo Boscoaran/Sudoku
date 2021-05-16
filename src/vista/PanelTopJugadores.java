@@ -1,37 +1,31 @@
 package vista;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import modelo.Usuario;
+import modelo.CatalogoPuntuaciones;
 
-import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import java.awt.BorderLayout;
 
 @SuppressWarnings("deprecation")
 public class PanelTopJugadores extends JFrame implements Observer{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel etiq[][];
@@ -39,28 +33,10 @@ public class PanelTopJugadores extends JFrame implements Observer{
 	private GridBagConstraints cons;
 	private JButton btnAtras;
 	private Font go3 = VentanaInicio.getFuente();
+	private JPanel panel;
+	private JComboBox<String> comboBox;
 	private JLabel lblNewLabel;
 
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PanelTopJugadores frame = new PanelTopJugadores();
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	
 	public PanelTopJugadores(String u, boolean c, double points) {
 		setResizable(false);
 		
@@ -77,32 +53,27 @@ public class PanelTopJugadores extends JFrame implements Observer{
 		panelTitulo.setBounds(5, 0, 484, 39);
 		panelTitulo.setOpaque(false);
 		contentPane.add(panelTitulo);
+		panelTitulo.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblTitulo = new JLabel("Hall of Fame");
 		lblTitulo.setForeground(new Color(234,183,69));
 		lblTitulo.setFont(go3);
-		panelTitulo.add(lblTitulo);
+		panelTitulo.add(lblTitulo, BorderLayout.CENTER);
+		
+		panel = new JPanel();
+		panelTitulo.add(panel, BorderLayout.EAST);
+		panel.setLayout(new BorderLayout(0, 0));
 		
 		panelDatos = new JPanel();
 		panelDatos.setBounds(5, 37, 484, 322);
 		panelDatos.setOpaque(false);
 		contentPane.add(panelDatos);
 		GridBagLayout gbl_panelDatos = new GridBagLayout();
-		/*gbl_panelDatos.columnWidths = new int[]{0};
-		gbl_panelDatos.rowHeights = new int[]{0};
-		gbl_panelDatos.columnWeights = new double[]{Double.MIN_VALUE};
-		gbl_panelDatos.rowWeights = new double[]{Double.MIN_VALUE};*/
 		panelDatos.setLayout(gbl_panelDatos);
 		cons = new GridBagConstraints();
 		
 		btnAtras = new JButton("Atr\u00E1s");
-		btnAtras.setBounds(174, 361, 111, 32);
-		contentPane.add(btnAtras);
-		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("fondo estandar v.jpg")));
-		lblNewLabel.setBounds(-22, 0, 557, 433);
-		contentPane.add(lblNewLabel);
+		btnAtras.setBounds(98, 361, 111, 32);
 		btnAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -110,6 +81,28 @@ public class PanelTopJugadores extends JFrame implements Observer{
 				dispose();
 			}
 		});
+		contentPane.add(btnAtras);
+		
+		comboBox = new JComboBox<String>();
+		comboBox.setBounds(278, 367, 89, 20);
+		contentPane.add(comboBox);
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"F\u00E1cil", "Medio", "Dif\u00EDcil"}));
+		
+		JButton btnNewButton = new JButton("Ver");
+		btnNewButton.setBounds(372, 366, 89, 23);
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				CatalogoPuntuaciones.getCatalogoPuntuaciones().puntuacionesMayores(comboBox.getSelectedIndex()+1);
+			}
+		});
+		contentPane.add(btnNewButton);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(0, -31, 558, 496);
+		lblNewLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("fondo estandar v.jpg")));
+		contentPane.add(lblNewLabel);
+		
 		
 		cargarLista();
 		db.DataUsuarios.getData().cargarPuntuaciones();
@@ -170,10 +163,12 @@ public class PanelTopJugadores extends JFrame implements Observer{
 			Object[] l = (Object[]) arg;
 			for (int i = 0; i< 10; i++) {
 				if (i>= l.length) {
+					etiq[i][0].setText("");
 					etiq[i][1].setText("");
 					etiq[i][2].setText("");
 				} else {
 					int ind = (l[i].toString().indexOf("="));
+					etiq[i][0].setText(i+1 + ".");
 					etiq[i][1].setText(l[i].toString().substring(0,ind));
 					etiq[i][2].setText(l[i].toString().substring(ind+1, l[i].toString().length()-1));
 				}
