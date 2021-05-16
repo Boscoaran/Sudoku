@@ -127,6 +127,7 @@ public class PanelVictoria {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					frame.dispose();
+					Runtime.getRuntime().exit(0);
 				}
 			});
 		}

@@ -711,7 +711,8 @@ public class TableroVista extends JFrame implements Observer{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					frmSudokuRoyaleMaster.dispose();					
+					frmSudokuRoyaleMaster.dispose();
+					Runtime.getRuntime().exit(0);
 				}
 			});
 		}
