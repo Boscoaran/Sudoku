@@ -31,11 +31,11 @@ public class Reloj extends Thread{
 		}
 	}
 	
-	public String textConv(int i) {
-		if (i < 10) {
-			return  "0"+i;
+	public String textConv(int tiempo) {
+		if (tiempo < 10) {
+			return  "0"+tiempo;
 		} else {
-			return i+"";
+			return tiempo+"";
 		}
 	}
 }
