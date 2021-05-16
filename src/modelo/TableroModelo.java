@@ -9,9 +9,7 @@ import javax.swing.text.html.HTML;
 public class TableroModelo extends Observable{
 	private static TableroModelo miTablero = null;
 	private CasillaModelo tablero[][];
-	private int h;
-	private int m;
-	private int s;
+	private int h,m,s;
 	private int numAyudas;
 	private int dificultad;
 	private static boolean estaOn;
